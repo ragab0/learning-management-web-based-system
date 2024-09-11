@@ -1,0 +1,29 @@
+footer {
+  background-color: var(--clr-grey-darker);
+  color: var(--clr-grey-light);
+  padding-block: 80px 140px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 50px;
+}
+
+.footer-content .logo {
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+  line-height: 1.7;
+  color: #fff;
+}
+
+.footer-content .logo span {
+  font-size: 1.5rem;
+}
+
+.footer-content li {
+  padding-block: 0.25rem;
+}
+.footer-content a:hover {
+  opacity: 0.9;
+}

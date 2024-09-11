@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function ShoopingPage() {
-  return <div>index</div>;
+  return <div className="shopping-page">ShoppingPage</div>;
 }

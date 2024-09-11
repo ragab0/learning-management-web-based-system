@@ -1,3 +1,4 @@
+// dummy data for the courses section
 module.exports.courses = [
   {
     category: "Front-end",
