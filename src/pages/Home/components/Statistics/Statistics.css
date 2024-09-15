@@ -1,0 +1,22 @@
+.statistics {
+    background: #f8fafc;
+}
+.stat{
+    position: relative;
+}
+.stat::before {
+  content: "";
+  position: absolute;
+  height: 60px;
+  width: 0;
+  border-width: 0 0 0 5px;
+  border-style: solid;
+  border-color: #e2e8f0;
+  top: 20%;
+  left: 100%;
+  transform: translateX(50%);
+}
+.disc {
+  color:rgb(77, 75, 75);
+  font-weight: normal;
+}
