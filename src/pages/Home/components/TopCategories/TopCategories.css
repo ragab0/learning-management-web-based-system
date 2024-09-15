@@ -1,0 +1,19 @@
+.seeAll, .categ {
+    color: #3b82f6;
+}
+.categ {
+    padding: 15px;
+    background: #e0f2fe;
+    border-radius: 50%;
+    font-size: 35px;
+}
+.box {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 40px;
+    border-color: #e9eef6;
+    border: 2px solid #e9eef6;
+    box-shadow: 2px 0px #f9fbfe;
+}
+
+
