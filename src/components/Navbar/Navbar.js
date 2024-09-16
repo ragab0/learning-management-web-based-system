@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { imgsComps } from "../../assets";
 import Logo from "../Logo/Logo";
 import "./Navbar.css";
@@ -18,7 +18,7 @@ export default function Navbar() {
         <Logo />
         <ul className="navbar-items">
           <li>
-            <Link to={"/courses"}>courses</Link>
+            <NavLink to={"/courses"}>courses</NavLink>
           </li>
           <li className="form-item">
             <form onSubmit={submitHandler}>
@@ -33,15 +33,15 @@ export default function Navbar() {
             </form>
           </li>
           <li>
-            <Link to={"/dashboard"}>
+            <NavLink to={"/dashboard"}>
               teach <span style={{ textTransform: "lowercase" }}>on</span>{" "}
               LMS-Depi
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/shopping"}>
+            <NavLink to={"/cart"}>
               <ShoppingIcon />
-            </Link>
+            </NavLink>
           </li>
           <li>
             <Link to={"/login"} className="my-btn btn--squared btn--trans">

@@ -2,12 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
-import ShoopingPage from "./pages/Shopping/ShoppingPage";
 import NotfoundPage from "./pages/Notfound/NotfoundPage";
 import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import CheckoutPage from "./pages/Checkout/CheckoutPage";
+import ShoppingCartPage from "./pages/ShoppingCart/ShoppingCartPage";
 import "./App.css";
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
             {/* <Route path="login" element={<LoginPage />} /> */}
             {/* <Route path="signup" element={<SignupPage />} /> */}
           </Route>
-          <Route path="shopping" element={<ShoopingPage />} />
+          <Route path="cart">
+            <Route path="" element={<ShoppingCartPage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
+          </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route path="*" element={<NotfoundPage />} />

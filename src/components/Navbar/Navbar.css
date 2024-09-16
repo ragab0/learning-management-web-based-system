@@ -8,7 +8,6 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  padding-inline: 2rem;
 }
 
 .navbar-items {
@@ -53,6 +52,10 @@
   padding: 0.75rem 1rem;
   position: relative;
   /* transition: var(--transition-main); */
+}
+
+.navbar-items a.active {
+  font-weight: bold;
 }
 
 .navbar-items a:not(.my-btn):hover {
