@@ -1,0 +1,40 @@
+.course-page .container .aside {
+  width: 35%;
+}
+
+.course-page .container .aside .course_image,
+.course-page .container .aside .course_info,
+.course-page .container .aside button,
+.course-page .container .aside .share {
+  width: 356px;
+  margin: 0 auto;
+}
+
+.course-page .container .aside .course_info .price {
+  color: #0f172a;
+}
+
+.course-page .container .aside .course_info strike {
+  color: #94a3b8;
+}
+
+.course-page .container .aside .course_info .discount {
+  color: #16a34a;
+}
+
+.course-page .container .aside .btn_add {
+  background-color: #020617;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 15px;
+}
+
+.course-page .container .aside .btn_buy {
+  padding: 10px;
+  font-weight: bold;
+  border: #020617 solid thin;
+}
+
+.course-page .container .aside .share h5 {
+  color: #0f172a;
+}

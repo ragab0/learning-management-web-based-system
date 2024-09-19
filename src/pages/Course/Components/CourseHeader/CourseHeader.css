@@ -1,0 +1,58 @@
+.course-page .container .content {
+  width: 70%;
+}
+
+.course-page .container .content span {
+  color: #000;
+  font-size: 20px;
+}
+
+.course-page .container .content .home,
+.course-page .category {
+  color: #334155;
+}
+
+.course-page .container .content .user {
+  color: #2563eb;
+}
+
+.course-page .section1 p {
+  color: #334155;
+}
+.course-page .section1 .rating .rate,
+.course-page .star {
+  color: #fec84b;
+  font-size: 16px;
+}
+
+.course-page .section1 .rating .no_rate,
+.course-page .desc {
+  color: #334155;
+  font-size: 16px;
+}
+
+.course-page .section1 .rating .desc {
+  color: #334155;
+  font-size: 16px;
+}
+
+.course-page .section1 .user_details img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.course-page .section1 .user_details .userName {
+  font-size: 16px;
+  color: #334155;
+}
+
+.course-page .section1 .user_details .userName .user_name {
+  font-size: 16px;
+  color: #2563eb;
+}
+
+.course-page .section1 .lang .language {
+  font-size: 16px;
+  color: #334155;
+}

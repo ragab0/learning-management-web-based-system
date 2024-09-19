@@ -4,7 +4,7 @@ import all from "./Statistics.css";
 export default function Statistics() {
   return (
     <div>
-      <div className="container-fluid mb-5">
+      <div className="container mb-5">
         <div className="row statistics p-4">
           <div className="col-3">
             <div className="stat text-center">

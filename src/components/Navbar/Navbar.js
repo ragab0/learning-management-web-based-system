@@ -12,7 +12,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="me-nav">
+    <nav className="main-navbar">
       {/* <div className="container-fluid"> */}
       <div className="container">
         <Logo />

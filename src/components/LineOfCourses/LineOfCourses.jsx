@@ -1,9 +1,9 @@
 import React from "react";
-import "./FeaturedCourses.css";
-import courseImage from "../../../../assets/course1.png";
-import { courses } from "../../../../data/dummyData";
+import { courses } from "../../data/dummyData";
+import courseImage from "../../assets/course1.png";
+import "./LineOfCourses.css";
 
-export default function FeaturedCourses() {
+export default function LineOfCourses({ title }) {
   const renderCourses = () => {
     return courses.slice(0, 4).map((course, index) => (
       <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={index}>
@@ -20,7 +20,7 @@ export default function FeaturedCourses() {
             <h6>by {course.instructorName}</h6>
           </div>
           <div className="rate d-flex flex-wrap">
-            {[...Array(5)].map((star, i) => (
+            {[...Array(Math.round(course.rating || 0))].map((_, i) => (
               <i className="fa-solid fa-star" key={i}></i>
             ))}
             <h6 className="mb-0">({course.ratingCount} Ratings)</h6>
@@ -45,8 +45,11 @@ export default function FeaturedCourses() {
   return (
     <div className="container mt-5">
       <div className="row d-flex flex-wrap">
-        <div className="col-12 mb-3">
-          <h2>Featured Courses</h2>
+        <div className="col-6 mb-3">
+          <h2>{title}</h2>
+        </div>
+        <div className="col-6 d-flex justify-content-end seeAll">
+          <a href="#">See All</a>
         </div>
         {renderCourses()}
       </div>

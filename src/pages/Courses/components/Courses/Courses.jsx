@@ -5,8 +5,8 @@ import courseImage from "../../../../assets/course1.png";
 
 export default function Courses() {
   const renderCourses = () => {
-    return courses.map((course) => (
-      <div className="col-lg-4 col-md-6 mb-4" key={course.id}>
+    return courses.map((course, i) => (
+      <div className="col-lg-4 col-md-6 mb-4" key={i}>
         <div className="box d-flex flex-column align-items-start p-3 pb-0">
           <div className="text-start mb-3 w-100">
             <img

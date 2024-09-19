@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CustomerComments.css";
-import customerImage from "../../../../assets/customersImgs/cust4.png";
-import { customers } from "../../../../data/dummyData";
+import customerImage from "../../assets/customersImgs/cust4.png";
+import { customers } from "../../data/dummyData";
 
 export default function CustomerComments() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,22 +56,24 @@ export default function CustomerComments() {
   };
 
   return (
-    <div className="container-fluid mt-5 p-5 customer">
-      <div className="row d-flex flex-wrap ps-5 pe-3 pb-3">
-        <div className="col-4">
-          <h2>What Our Customers Say About Us</h2>
+    <section className="customer-comments-section container">
+      <div className="container-fluid mt-5 p-5 customer">
+        <div className="row d-flex flex-wrap ps-5 pe-3 pb-3">
+          <div className="col-4">
+            <h2>What Our Customers Say About Us</h2>
+          </div>
+          <div className="col-8 d-flex justify-content-end align-items-center">
+            <button onClick={prevComment} className="btn btn-secondary">
+              <i className="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onClick={nextComment} className="btn btn-secondary m-3">
+              <i className="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
-        <div className="col-8 d-flex justify-content-end align-items-center">
-          <button onClick={prevComment} className="btn btn-secondary">
-            <i className="fa-solid fa-chevron-left"></i>
-          </button>
-          <button onClick={nextComment} className="btn btn-secondary m-3">
-            <i className="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
 
-      <div className="row ps-5 ">{renderCustomers()}</div>
-    </div>
+        <div className="row ps-5 ">{renderCustomers()}</div>
+      </div>
+    </section>
   );
 }

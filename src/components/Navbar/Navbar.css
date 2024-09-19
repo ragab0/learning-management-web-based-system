@@ -1,10 +1,10 @@
-.me-nav {
+.main-navbar {
   font-size: 14px;
   padding-block: 0.75rem !important;
   border-bottom: 1px solid var(--clr-grey-border);
 }
 
-.me-nav > div {
+.main-navbar > div {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;

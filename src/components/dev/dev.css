@@ -1,0 +1,27 @@
+.for-development {
+  padding: 0.75rem;
+  background-color: rgb(35 39 47 / 1);
+  color: rgba(120, 131, 155);
+}
+
+.for-development ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: rgba(120, 131, 155, 0.2);
+  border-radius: 50px;
+}
+.for-development ul a {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.for-development ul a:hover {
+  color: rgb(139, 150, 173);
+}
+
+.for-development ul a.active {
+  font-weight: bold;
+  font-size: 1.5rem;
+}

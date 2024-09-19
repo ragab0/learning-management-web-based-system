@@ -1,12 +1,12 @@
 import React from "react";
-import "./CoursesPage.css";
 import RateMenu from "./components/RateMenu/RateMenu";
 import ChaptersMenu from "./components/ChaptersMenu/ChaptersMenu";
 import PriceMenu from "./components/PriceMenu/PriceMenu";
 import CategoryMenu from "./components/CategoryMenu/CategoryMenu";
 import Courses from "./components/Courses/Courses";
-import PopularMentors from "./components/PopularMentors/PopularMentors";
-import FeaturedCourses from "./components/FeaturedCourses/FeaturedCourses";
+import LineOfInstructors from "../../components/LineOfMentors/LineOfInstructors";
+import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
+import "./CoursesPage.css";
 
 export default function CoursesPage() {
   return (
@@ -54,10 +54,10 @@ export default function CoursesPage() {
         <div className="col-lg-9 col-md-9">
           <Courses />
         </div>
-        <PopularMentors />
+        <LineOfInstructors title="Popular Mentors" />
         <br />
         <br />
-        <FeaturedCourses />
+        <LineOfCourses title="Featured Courses" />
       </div>
     </div>
   );

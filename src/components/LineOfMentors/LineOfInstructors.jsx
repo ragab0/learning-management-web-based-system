@@ -1,9 +1,9 @@
 import React from "react";
-import "./PopularMentors.css";
-import courseImage from "../../../../assets/mentorsImgs/mentor3.png";
-import { instructors } from "../../../../data/dummyData";
+import "./LineOfInstructors.css";
+import courseImage from "../../assets/mentorsImgs/mentor3.png";
+import { instructors } from "../../data/dummyData";
 
-export default function PopularMentors() {
+export default function LineOfInstructors({ title }) {
   const renderInstructors = () => {
     let instructorCards = [];
     for (let i = 0; i < Math.min(5, instructors.length); i++) {
@@ -40,9 +40,13 @@ export default function PopularMentors() {
     <div>
       <div className="container mt-5">
         <div className="row d-flex flex-wrap">
-          <div className="col-12 mb-1">
-            <h2>Popular Mentors</h2>
+          <div className="col-6 mb-1">
+            <h2>{title}</h2>
           </div>
+          <div className="col-6 d-flex justify-content-end seeAll">
+            <a href="#">See All</a>
+          </div>
+
           {renderInstructors()}
         </div>
       </div>

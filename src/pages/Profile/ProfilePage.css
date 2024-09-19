@@ -1,0 +1,14 @@
+.profile-page .container {
+  display: flex;
+  gap: 2rem;
+  margin-block: 2rem;
+}
+
+.profile-page aside {
+  width: 100%;
+  max-width: 300px;
+}
+
+.profile-page main {
+  width: 100%;
+}

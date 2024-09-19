@@ -1,0 +1,63 @@
+.learner_reviews {
+  display: flex;
+  justify-content: space-between;
+}
+
+.learner_reviews span {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.learner_reviews .learner_rate {
+  width: 30%;
+}
+
+.learner_reviews .theLearners {
+  width: 65%;
+  margin-left: 60px;
+}
+
+.learner_reviews .learner_comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.learner_reviews .learner_comments .learner1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.learner_reviews .learner_comments .learner_img_name {
+  width: 30%;
+}
+
+.learner_reviews .learner_comments .learner1_comment {
+  width: 65%;
+}
+
+.learner_reviews .learner_comments .learner_img_name img {
+  width: 60px;
+  height: 60px;
+}
+
+.learner_reviews .learner_comments .learner_img_name span {
+  color: #0f172a;
+}
+
+.learner_reviews
+  .learner_comments
+  .learner1_comment
+  .learner1_rate
+  .review_date {
+  color: #334155;
+}
+
+.learner_reviews.rate,
+.star {
+  color: #fec84b;
+  font-size: 16px;
+}
+
+.learner_reviews .star_empty {
+  color: #cbd5e1;
+}

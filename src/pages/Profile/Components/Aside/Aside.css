@@ -1,0 +1,10 @@
+.profile-page-aside a {
+  text-transform: capitalize;
+  display: block;
+  padding: 1rem;
+}
+
+.profile-page-aside a.active {
+  background-color: #000;
+  color: #fff;
+}
