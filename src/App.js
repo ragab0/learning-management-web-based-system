@@ -19,6 +19,7 @@ import TabMyCourses from "./pages/Profile/Components/TabMyCourses/TabMyCourses";
 import TabTeachers from "./pages/Profile/Components/TabTeachers/TabTeachers";
 import TabMessage from "./pages/Profile/Components/TabMessage/TabMessage";
 import TabMyReviews from "./pages/Profile/Components/TabMyReviews/TabMyReviews";
+import CourseContent from "./pages/CourseContent/CourseContent";
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
             <Route path="message" element={<TabMessage />} />
             <Route path="my-reviews" element={<TabMyReviews />} />
           </Route>
+          <Route path="coursecontent" element={<CourseContent />} />
+
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route path="*" element={<NotfoundPage />} />

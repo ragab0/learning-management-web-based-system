@@ -1,0 +1,56 @@
+.course {
+  border: 1px solid rgba(0, 0, 0, 0.181);
+  border-radius: 5px;
+  background: rgb(248, 250, 252);
+}
+.container-fluid {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.video-section {
+  margin-bottom: 20px;
+}
+
+.video-section video {
+  max-width: 100%;
+  height: auto;
+}
+
+.content:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+.content a.active {
+  background: #000;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.course-title {
+  flex-grow: 1;
+  margin: 0 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.course-icon {
+  font-size: 20px;
+  color: #666;
+}
+
+.course-icon:hover {
+  color: #000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+button:hover {
+  background: #000;
+}

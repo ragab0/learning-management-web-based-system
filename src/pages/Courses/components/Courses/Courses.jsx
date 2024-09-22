@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Courses.css";
 import { courses } from "../../../../data/dummyData";
 import courseImage from "../../../../assets/course1.png";
 
 export default function Courses() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const coursesPerPage = 10;
+
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(courses.length / coursesPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   const renderCourses = () => {
-    return courses.map((course, i) => (
+    return currentCourses.map((course, i) => (
       <div className="col-lg-4 col-md-6 mb-4" key={i}>
         <div className="box d-flex flex-column align-items-start p-3 pb-0">
           <div className="text-start mb-3 w-100">
@@ -45,6 +61,21 @@ export default function Courses() {
   return (
     <div className="container">
       <div className="row">{renderCourses()}</div>
+      <nav className="d-flex justify-content-center my-5">
+        <ul className="pagination pagination-sm">
+          {pageNumbers.map((num) => (
+            <li
+              key={num}
+              onClick={() => handlePageChange(num)}
+              className={`page-item ${currentPage === num ? "active" : ""}`}
+            >
+              <a className="page-link" href="#">
+                {num}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }

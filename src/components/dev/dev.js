@@ -18,6 +18,9 @@ export default function Dev() {
         <li>
           <NavLink to="/profile">ProfilePage</NavLink>
         </li>
+        <li>
+          <NavLink to="/coursecontent">CourseContent</NavLink>
+        </li>
       </ul>
     </div>
   );
