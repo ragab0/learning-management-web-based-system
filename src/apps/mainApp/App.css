@@ -4,6 +4,10 @@
   min-height: 100vh;
 }
 
+.main-app .app-wrapper > *:nth-child(1) {
+  height: 100%;
+}
+
 /* Global classes */
 
 .btn--squared {

@@ -1,0 +1,33 @@
+.auth-more-options > p {
+  position: relative;
+  text-align: center;
+  color: var(--clr-grey-disabled);
+  margin-block: 1.5rem;
+}
+.auth-more-options > p::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  z-index: -1;
+}
+
+.auth-more-options > p span {
+  background-color: white;
+  z-index: 3;
+  display: inline-block;
+  padding-inline: 1rem;
+}
+
+.auth-more-options li {
+  flex: 1;
+}
+
+.auth-more-options li button {
+  width: 100%;
+  padding-block: 0.75rem;
+}

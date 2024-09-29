@@ -2,7 +2,7 @@ import React from "react";
 import "./ShoppingCartPage.css";
 import Details from "./Components/Details/Details";
 import { Link } from "react-router-dom";
-import courseImg from "../../assets/course2.png";
+import courseImg from "../../../../assets/course2.png";
 
 const CourseCard = ({
   title,
@@ -14,7 +14,7 @@ const CourseCard = ({
 }) => (
   <div className="theCourse">
     <div className="theCourseImg">
-      <img src={courseImg} alt={`${title} course image`} />
+      <img src={courseImg} alt={`${title} course`} />
     </div>
     <div className="theCourseContent ms-2">
       <div className="course-price d-flex ms-1">
@@ -71,7 +71,7 @@ export default function ShoppingCartPage() {
   ];
 
   return (
-    <div className="container">
+    <div className="container shopping-cart-wrapper">
       <div className="content">
         <div className="shopping-cart-page">
           {/* Header section */}

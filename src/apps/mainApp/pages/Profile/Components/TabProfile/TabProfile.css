@@ -16,7 +16,7 @@
   color: #94a3b8;
 }
 
-select {
+.tab-profile select {
   border: 2px solid #e2e8f0;
   padding: 15px;
   border-radius: 10px;
@@ -72,24 +72,24 @@ select {
   margin-top: 20px;
 }
 
-.links {
+.tab-profile .links {
   border: 2px solid #e2e8f0;
   padding: 20px;
   border-radius: 10px;
   margin-top: 30px;
 }
 
-.links h5 {
+.tab-profile .links h5 {
   color: #0f172a;
 }
 
-.links label {
+.tab-profile .links label {
   display: block;
   color: #0f172a !important;
   font-weight: 500 !important;
 }
 
-.links input {
+.tab-profile .links input {
   display: block;
   width: 100%;
   border: 2px solid #e2e8f0;
@@ -97,7 +97,7 @@ select {
   padding: 15px !important;
 }
 
-.form-group {
+.tab-profile .form-group {
   display: flex;
   justify-content: space-between;
 }

@@ -56,7 +56,7 @@ function App() {
 function AppDev() {
   return (
     <>
-      <Dev />
+      {/* <Dev /> */}
       <App />
     </>
   );

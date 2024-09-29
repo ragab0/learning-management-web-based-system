@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <nav className="main-navbar">
       {/* <div className="container-fluid"> */}
-      <div className="container">
+      <div className=" container-fluid px-4">
         <Logo />
         <ul className="navbar-items">
           <li>
