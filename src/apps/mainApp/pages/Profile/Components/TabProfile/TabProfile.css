@@ -1,0 +1,103 @@
+.tab-profile form {
+  border: 2px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.tab-profile form label {
+  width: 48%;
+  color: #000;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.tab-profile form label input {
+  border: 2px solid #e2e8f0;
+  color: #94a3b8;
+}
+
+select {
+  border: 2px solid #e2e8f0;
+  padding: 15px;
+  border-radius: 10px;
+  color: #94a3b8;
+  width: 48%;
+}
+
+.uploadingImg {
+  border: 2px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.uploadingImg .img {
+  position: relative;
+  width: 392.48px;
+  height: 223px;
+  background: #e2e8f0;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+
+.uploadingImg .img img {
+  width: 39.03px;
+  height: 33.45px;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+
+.tab-profile form .uploadingImg input {
+  border: 2px solid #e2e8f0;
+  color: #94a3b8;
+  width: 60%;
+}
+
+.tab-profile form .uploadingImg .selectImage button {
+  border: 1px solid #000;
+  padding: 8px;
+  border-radius: 8px;
+  margin-left: 20px;
+  color: #0f172a;
+}
+
+.tab-profile form .uploadingImg .selectImage .saveImg {
+  display: block;
+  width: 20%;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #0f172a;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.links {
+  border: 2px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.links h5 {
+  color: #0f172a;
+}
+
+.links label {
+  display: block;
+  color: #0f172a !important;
+  font-weight: 500 !important;
+}
+
+.links input {
+  display: block;
+  width: 100%;
+  border: 2px solid #e2e8f0;
+  color: #94a3b8;
+  padding: 15px !important;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+}

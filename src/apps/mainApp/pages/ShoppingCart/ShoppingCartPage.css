@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.container .content {
+  width: 73%;
+}
+
+.container .aside {
+  width: 25%;
+}
+
+.container .content .shopping-cart-page {
+  min-height: 1000px;
+}
+
+.container .content .shopping-cart-page .links .shopping {
+  color: #2563eb;
+}
+
+.container .content .shopping-cart-page p {
+  color: #334155;
+}
+
+.container .content .shopping-cart-page .theCourse {
+  display: flex;
+}
+.container .content .shopping-cart-page .theCourse .theCourseImg {
+  width: 25%;
+}
+
+.container .content .shopping-cart-page .theCourse .theCourseContent {
+  width: 75%;
+  line-height: 2;
+}
+
+.container .content .shopping-cart-page .theCourse .theCourseContent .details i,
+.rate {
+  color: #fec84b;
+}
+
+.container
+  .content
+  .shopping-cart-page
+  .theCourse
+  .theCourseContent
+  .details
+  .rateDetails {
+  color: #64748b;
+}
+
+.container
+  .content
+  .shopping-cart-page
+  .theCourse
+  .theCourseContent
+  .details
+  .courseDetails {
+  color: #020617;
+}
+
+.container
+  .content
+  .shopping-cart-page
+  .theCourse
+  .theCourseContent
+  .courseBtn
+  .btn1 {
+  color: #3b82f6;
+}
+
+.aside .details .orderDetails {
+  border: thin solid #e2e8f0;
+}
+
+.aside .details .orderDetails .orderPrice .num {
+  color: #0f172a;
+  font-weight: bolder;
+}
+
+.aside .details button {
+  background-color: #020617;
+  color: #fff;
+  padding: 10px;
+}
