@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
 import Communication from "./pages/Communication/components/CommunicationPage";
@@ -17,10 +17,23 @@ import SettingsTab from "./pages/Course/components/SettingsTab/ReviewsTab";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ChaptersTabResourcesTab from "./pages/Course/components/ChaptersTab/ChaptersTabResourcesTab/ChaptersTabResourcesTab";
 import ChaptersTabDetailsTab from "./pages/Course/components/ChaptersTab/ChaptersTabDetailsTab/ChaptersTabDetailsTab";
+import SignupPage from "./pages/Signup/SignupPage";
+import LoginPage from "./pages/Login/LoginPage";
 
 export default function DashboardApp() {
+  const location = useLocation();
   return (
-    <div className="dashboard-app">
+    <div
+      className="dashboard-app"
+      style={
+        location.pathname.includes("signup") ||
+        location.pathname.includes("login")
+          ? {
+              gridTemplateColumns: "1fr",
+            }
+          : {}
+      }
+    >
       <Sidebar />
       <Routes>
         <Route index element={<HomePage />} />
@@ -42,8 +55,8 @@ export default function DashboardApp() {
         <Route path="communication" element={<Communication />} />
         <Route path="revenue" element={<RevenuePage />} />
         <Route path="settings" element={<SettingsPage />} />
-        <Route path="login" element={""} />
-        <Route path="signup" element={""} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<SignupPage />} />
         <Route path="*" element={"NotFound on dashboard app !!"} />
       </Routes>
     </div>

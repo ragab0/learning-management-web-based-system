@@ -1,8 +1,12 @@
 import React from "react";
 import "./AuthMoreOptions.css";
-import GoogleIcon from "../../../../assets/svgsComps/GoogleIcon";
+import GoogleIcon from "../../assets/svgsComps/GoogleIcon";
 
-export default function AuthMoreOptions({ title }) {
+export default function AuthMoreOptions({
+  title,
+  role = "student",
+  type = "login",
+}) {
   return (
     <div className="auth-more-options">
       <p>
@@ -12,7 +16,7 @@ export default function AuthMoreOptions({ title }) {
         <li>
           <button className="btn btn-outline-danger">
             <GoogleIcon width={24} height={24} />
-            <span>Google</span>
+            <span className=" ms-1">Google</span>
           </button>
         </li>
       </ul>

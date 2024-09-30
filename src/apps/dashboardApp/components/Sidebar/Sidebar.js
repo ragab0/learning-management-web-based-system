@@ -1,10 +1,21 @@
 import React from "react";
 import "./Sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
+  const location = useLocation();
   return (
-    <aside className="sidebar">
+    <aside
+      className="sidebar"
+      style={
+        location.pathname.includes("login") ||
+        location.pathname.includes("signup")
+          ? {
+              display: "none",
+            }
+          : {}
+      }
+    >
       <nav>
         <ul>
           <li>
