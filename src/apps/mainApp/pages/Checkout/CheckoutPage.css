@@ -1,14 +1,14 @@
-aside .details button {
+.checkout-page aside .details button {
   background-color: #020617;
   color: #fff;
   padding: 10px;
 }
 
-aside .details .orderDetails {
+.checkout-page aside .details .orderDetails {
   border: thin solid #e2e8f0;
 }
 
-aside .details .orderDetails .orderPrice .num {
+.checkout-page aside .details .orderDetails .orderPrice .num {
   color: #0f172a;
   font-weight: bolder;
 }

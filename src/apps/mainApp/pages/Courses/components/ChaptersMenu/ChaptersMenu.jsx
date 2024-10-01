@@ -13,14 +13,13 @@ export default function ChaptersMenu() {
         onClick={toggleChaptersMenu}
         className="d-flex justify-content-between w-100 cursor-pointer"
       >
-        <p>Number of Chapters</p>
+        <p className="mb-0">Number of Chapters</p>
         <i
           className={`ps-2 align-items-center ${
             isMenuVisible ? "fa-solid fa-angle-up " : "fa-solid fa-angle-down "
           }`}
         ></i>
       </div>
-      <hr />
       {isMenuVisible && (
         <div className="">
           <div className="d-flex align-items-center mb-2">

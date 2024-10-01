@@ -14,7 +14,7 @@ export default function AuthMoreOptions({
       </p>
       <ul className="d-flex">
         <li>
-          <button className="btn btn-outline-danger">
+          <button className="btn btn-outline-success">
             <GoogleIcon width={24} height={24} />
             <span className=" ms-1">Google</span>
           </button>

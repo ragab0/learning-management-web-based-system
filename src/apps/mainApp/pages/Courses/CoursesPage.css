@@ -1,3 +1,19 @@
-.checkbox {
-  width: 50px;
+.courses-page {
+  margin-block: var(--main-margin);
+}
+
+.courses-page .checkbox {
+  width: fit-content;
+  margin-inline-end: 1rem;
+}
+
+.courses-page .filter-optoins > *:not(:last-of-type) {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid black;
+}
+
+.courses-page .filter-optoins > * > * {
+  align-items: center;
+  cursor: pointer;
 }

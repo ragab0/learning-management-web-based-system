@@ -6,8 +6,8 @@ const { HomeIntro } = imgsSrcs;
 
 export default function Header() {
   return (
-    <header className="header">
-      <div className="container header-body">
+    <header className="home-header">
+      <div className="container header-body d-flex justify-content-between align-items-center">
         <div className="header-content">
           <h1>Unlock Your Potential with LMS Depi 👋.</h1>
           <p>

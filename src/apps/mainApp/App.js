@@ -18,6 +18,7 @@ import TabTeachers from "./pages/Profile/Components/TabTeachers/TabTeachers";
 import TabMessage from "./pages/Profile/Components/TabMessage/TabMessage";
 import TabMyReviews from "./pages/Profile/Components/TabMyReviews/TabMyReviews";
 import CourseContent from "./pages/CourseContent/CourseContent";
+import MentorPage from "./pages/Mentor/MentorPage";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
       <Navbar />
       <div className="app-wrapper">
         <Routes>
-          <Route path="" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="courses">
             <Route index element={<CoursesPage />} />
             <Route path=":id" element={<CoursePage />} />
@@ -35,14 +36,14 @@ function App() {
             <Route path="checkout" element={<CheckoutPage />} />
           </Route>
           <Route path="profile" element={<ProfilePage />}>
-            <Route path="" element={<TabProfile />} />
+            <Route index element={<TabProfile />} />
             <Route path="my-courses" element={<TabMyCourses />} />
             <Route path="teachers" element={<TabTeachers />} />
             <Route path="message" element={<TabMessage />} />
             <Route path="my-reviews" element={<TabMyReviews />} />
           </Route>
           <Route path="coursecontent" element={<CourseContent />} />
-
+          <Route path="mentor/:mentorId" element={<MentorPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route path="*" element={<NotfoundPage />} />

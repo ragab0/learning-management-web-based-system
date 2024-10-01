@@ -1,0 +1,4 @@
+.courses-page .filter-header select {
+  padding-inline-end: 2rem !important;
+  text-transform: capitalize;
+}

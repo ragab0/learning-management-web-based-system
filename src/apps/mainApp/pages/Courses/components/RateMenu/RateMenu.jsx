@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./RateMenu.css";
 
 export default function RateMenu() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -13,14 +14,13 @@ export default function RateMenu() {
         onClick={toggleChaptersMenu}
         className="d-flex justify-content-between w-100"
       >
-        <p>Rating</p>
+        <p className="mb-0">Rating</p>
         <i
           className={`ps-2 align-items-center ${
             isMenuVisible ? "fa-solid fa-angle-up " : "fa-solid fa-angle-down "
           }`}
         ></i>
       </div>
-      <hr />
       {isMenuVisible && (
         <div className="rate">
           <div className="stars5">

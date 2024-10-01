@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import { imgsComps } from "../../../../assets";
 import Logo from "../Logo/Logo";
-import "./Navbar.css";
 
 const { SearchIcon, ShoppingIcon } = imgsComps;
 
 export default function Navbar() {
+  const [searchVal, setSearchVal] = useState("");
   function submitHandler(e) {
     e.preventDefault();
   }
@@ -23,13 +24,32 @@ export default function Navbar() {
           <li className="form-item">
             <form onSubmit={submitHandler}>
               <input
+                className="form-control"
                 type="search"
                 name="search"
                 placeholder="Search on courses..."
+                value={searchVal}
+                onChange={(e) => setSearchVal(e.target.value)}
               />
-              <button type="submit" className="btn">
-                <SearchIcon />
-              </button>
+              <div
+                className="button-wrapper d-flex align-items-center"
+                style={
+                  searchVal === ""
+                    ? {
+                        cursor: "not-allowed",
+                      }
+                    : {}
+                }
+              >
+                <button
+                  type="submit"
+                  className={`btn d-flex align-items-center ${
+                    searchVal === "" ? "disabled" : ""
+                  }`}
+                >
+                  <SearchIcon />
+                </button>
+              </div>
             </form>
           </li>
           <li>

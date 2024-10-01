@@ -4,7 +4,7 @@ import "./InstructorTab.css";
 
 export default function InstructorTab() {
   return (
-    <div className="instructor mt-5">
+    <div className="instructor-tab mt-5">
       <h4 className=" text-dark fw-bold">Instructor</h4>
       <h3 className=" mt-4 fw-bolder text-primary fs-5">Ronald Richards</h3>
       <h5 className=" fs-6">UI/UX Designer</h5>

@@ -20,7 +20,6 @@ export default function PriceMenu() {
           }`}
         ></i>
       </div>
-      <hr />
       {isMenuVisible && (
         <div className="">
           <div className="d-flex align-items-center mb-2">

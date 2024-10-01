@@ -3,44 +3,47 @@ import inst1 from "../../../../../../assets/mentorsImgs/mentor10.png";
 import inst2 from "../../../../../../assets/mentorsImgs/mentor11.png";
 import "./InstructorsOverview.css";
 
+const instructorsOverviews = [
+  {
+    img: inst1,
+    title: "Become an Instructor",
+    desc: "Instructors from around the world teach millions of students on LMS-Depi. We provide the tools and skills to teach what you love.",
+    more: "Start Your Instructor Journey",
+  },
+  {
+    img: inst2,
+    title: "Transform your life through education",
+    desc: "Learners around the world are launching new careers, advancing in their fields, and enriching their lives.",
+    more: "Checkout Courses",
+  },
+];
+
 export default function InstructorsOverview() {
   return (
-    <div>
-      <header className="d-flex justify-content-between align-items-center">
-        <div className="container d-flex align-items-center justify-content-between">
-          <div className="ps-5 ms-5">
-            <img src={inst1} alt="" />
-          </div>
-          <div className="header-content">
-            <h2>Become an Instructor</h2>
-            <p>
-              Instructors from around the world teach millions of students on
-              Byway. We provide the tools and skills to teach what you love.
-            </p>
-            <button className="btn btn-dark p-3 ps-4 pe-4">
-              Start Your Instructor Journey
-              <i className="fa-solid fa-arrow-right ps-2"></i>
-            </button>
-          </div>
-        </div>
-      </header>
-      <header className="d-flex justify-content-between align-items-center">
-        <div className="container d-flex align-items-center justify-content-between">
-          <div className="header-content">
-            <h2>Transform your life through education</h2>
-            <p>
-              Learners around the world are launching new careers, advancing in
-              their fields, and enriching their lives.
-            </p>
-            <button className="btn btn-dark p-3 ps-4 pe-4">
-              Checkout Courses <i className="fa-solid fa-arrow-right ps-2"></i>
-            </button>
-          </div>
-          <div className="pe-5 me-3">
-            <img src={inst2} alt="" />
-          </div>
-        </div>
-      </header>
+    <div className="instructors-overviews">
+      <div className="container">
+        {instructorsOverviews.map(({ img, title, desc, more }, i) => (
+          <section key={i} className="mb-5">
+            <div
+              className={`container row align-items-center justify-content-between ${
+                i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+              }`}
+            >
+              <div className="col-4">
+                <img src={img} alt="instructor-overview" />
+              </div>
+              <div className="header-content">
+                <h2>{title}</h2>
+                <p>{desc}</p>
+                <button className="btn btn-dark p-3 ps-4 pe-4">
+                  {more}
+                  <i className="fa-solid fa-arrow-right ps-2"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

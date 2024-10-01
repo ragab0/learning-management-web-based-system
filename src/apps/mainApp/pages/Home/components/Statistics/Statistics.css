@@ -1,22 +1,32 @@
-.statistics {
-    background: #f8fafc;
+.home-page .statistics-section {
+  margin-block: calc(var(--main-margin) * 2);
 }
-.stat{
-    position: relative;
+
+.home-page .stats {
+  background: #f8fafc;
 }
-.stat::before {
+
+.home-page .stat-card:not(:last-of-type)::before {
+  --height: 60%;
   content: "";
   position: absolute;
-  height: 60px;
-  width: 0;
-  border-width: 0 0 0 5px;
-  border-style: solid;
-  border-color: #e2e8f0;
-  top: 20%;
-  left: 100%;
-  transform: translateX(50%);
+  height: var(--height);
+  width: 3px;
+  background-color: #e2e8f0;
+  top: calc((100% - var(--height)) / 2);
+  right: 0;
+  transform: translate(50%, 0);
 }
-.disc {
-  color:rgb(77, 75, 75);
+
+.home-page .stat-card:first-of-type .stat-card-content {
+  margin-right: auto;
+}
+
+.home-page .stat-card:last-of-type .stat-card-content {
+  margin-left: auto;
+}
+
+.home-page .stat-card-content p {
+  color: rgb(77, 75, 75);
   font-weight: normal;
 }

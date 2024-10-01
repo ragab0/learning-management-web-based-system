@@ -14,14 +14,14 @@
 }
 
 .profile-page-aside .profileImg h5,
-.shareProfile,
-i {
+.profile-page-aside .shareProfile,
+.profile-page-aside i {
   color: #0f172a;
   margin-top: 20px;
 }
 
 .profile-page-aside span,
-i {
+.profile-page-aside i {
   margin: 10px 7px;
   margin-bottom: 50px;
 }

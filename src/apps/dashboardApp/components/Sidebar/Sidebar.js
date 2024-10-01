@@ -16,6 +16,7 @@ export default function Sidebar() {
           : {}
       }
     >
+      <header></header>
       <nav>
         <ul>
           <li>
@@ -35,6 +36,7 @@ export default function Sidebar() {
           </li>
         </ul>
       </nav>
+      <div></div>
     </aside>
   );
 }

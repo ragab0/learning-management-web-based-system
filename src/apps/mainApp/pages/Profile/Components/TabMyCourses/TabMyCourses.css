@@ -1,15 +1,15 @@
-.search {
+.profile-page .search {
   position: relative;
 }
 
-.search-input {
+.profile-page .search-input {
   width: 100%;
   padding-left: 2.5rem;
   height: 40px;
   border-radius: 10px;
 }
 
-.search-icon {
+.profile-page .search-icon {
   position: absolute;
   left: 10px;
   top: 50%;

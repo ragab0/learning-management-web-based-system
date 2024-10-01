@@ -1,32 +1,32 @@
-.box {
+.course-overvew-card .box {
   border-radius: 15px;
   border-color: #e9eef6;
   border: 2px solid #e9eef6;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-img {
+.course-overvew-card img {
   border-radius: 5px;
-  max-width: 100%;
-  height: auto;
 }
-.rate {
+
+.course-overvew-card .rate {
   color: #eab308;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.rate i {
+.course-overvew-card .rate i {
   margin-right: 5px;
 }
 
-.desc h6, .rate h6 {
+.course-overvew-card .desc h6,
+.course-overvew-card .rate h6 {
   font-size: 13px;
   color: #6c757d;
 }
-.price p {
+
+.course-overvew-card .price p {
   color: black;
   font-size: 20px;
   font-weight: bold;
 }
-
