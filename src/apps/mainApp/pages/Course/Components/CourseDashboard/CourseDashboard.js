@@ -2,16 +2,26 @@ import React from "react";
 import LearnerReviews from "../../../../components/LearnerReviews/LearnerReviews";
 import InstructorTab from "../../../../components/InstructorTab/InstructorTab";
 import "./CourseDashboard.css";
+import { Link } from "react-router-dom";
+
+const tabs = ["Description", "Instructor", "Syllabus", "Reviews"];
 
 export default function CourseDashboard() {
   return (
     <div className="section2 mt-5">
-      <div className="pe-3 mb-4">
-        <button className=" mx-4 px-4 py-2 border-0">Description</button>
-        <button className=" mx-4 px-4 py-2">Instructor</button>
-        <button className=" mx-4 px-4 py-2">Syllabus</button>
-        <button className=" mx-4 px-4 py-2">Reviews</button>
-      </div>
+      <ul className="tabs-items mb-4">
+        {tabs.map((name, i) => (
+          <li>
+            <Link
+              key={i}
+              to={"#" + name.toLocaleLowerCase()}
+              className={`btn ${i === 0 ? "active" : ""}`}
+            >
+              {name}
+            </Link>
+          </li>
+        ))}
+      </ul>
       <div className="course_desc">
         <h4 className=" text-dark fw-bold">Course Description</h4>
         <p className=" mb-5">
@@ -33,7 +43,7 @@ export default function CourseDashboard() {
         </p>
       </div>
       <InstructorTab />
-      <div className="syllabus mb-5">
+      <div className="syllabus mb-5" id="syllabus">
         <h4 className=" text-dark fw-bold">Syllabus</h4>
         <div className="ux_design mt-5">
           <select className="">

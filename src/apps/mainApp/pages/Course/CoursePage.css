@@ -1,4 +1,8 @@
+.course-page {
+  margin-block: calc(var(--main-margin) * 0.5);
+}
 .course-page .container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2rem;
 }

@@ -1,32 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import myImage from "../../../../../../assets/customersImgs/cust5Heigh.png";
+import ArrowChevron from "../../../../../../assets/svgsComps/ChevronRightSmall";
 import "./CourseHeader.css";
 
 export default function CourseHeader() {
   return (
     <div className="course-header content">
-      <div className="links mt-4">
-        <Link className=" mx-3 home" to="/">
+      <div className="links">
+        <Link
+          className="btn btn-link text-decoration-none ms-0 ps-0 text-black"
+          to="/"
+        >
           Home
         </Link>
-        <span>&gt;</span>
-        <Link className=" mx-3 category" to="/courses">
+        <ArrowChevron />
+        <Link
+          className="btn btn-link text-decoration-none ms-0 text-black"
+          to="/courses"
+        >
           Categories
         </Link>
-        <span>&gt;</span>
-        <Link className=" mx-3 user" to={"#"}>
+        <ArrowChevron />
+        <Link className="btn btn-link text-decoration-none ms-0 user" to={"#"}>
           Introduction to User Experience Design
         </Link>
       </div>
-      <div className="section1 mt-5 mb-2">
-        <h1 className="">Introduction to User Experience Design</h1>
-        <p className=" mt-3">
+      <div className="section1">
+        <h1>Introduction to User Experience Design</h1>
+        <p className="my-3">
           This course is meticulously crafted to provide you with a foundational
           understanding of the principles, methodologies, and tools that drive
           exceptional user experiences in the digital landscape.
         </p>
-        <div className="rating mb-3">
+        <div className="rating my-3">
           <span className=" rate pe-2">4.6</span>
           <i className="star fa-solid fa-star"></i>
           <i className="star fa-solid fa-star"></i>
@@ -38,10 +45,13 @@ export default function CourseHeader() {
             | 22 Total Hours. 155 Lectures. All levels
           </span>
         </div>
-        <div className="user_details">
+        <div className="my-3 user_details">
           <img src={myImage} alt="user" />
           <span className="userName">
-            Created by <span className="user_name">Ronald Richards</span>
+            Created by
+            <Link to="/mentor/0" className="user_name text-capitalize">
+              Ronald Richards
+            </Link>
           </span>
         </div>
         <div className="lang mt-3">

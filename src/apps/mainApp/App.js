@@ -19,6 +19,7 @@ import TabMessage from "./pages/Profile/Components/TabMessage/TabMessage";
 import TabMyReviews from "./pages/Profile/Components/TabMyReviews/TabMyReviews";
 import CourseContent from "./pages/CourseContent/CourseContent";
 import MentorPage from "./pages/Mentor/MentorPage";
+import OrderComplete from "./components/OrderComplete/OrderComplete";
 
 function App() {
   return (
@@ -31,9 +32,10 @@ function App() {
             <Route index element={<CoursesPage />} />
             <Route path=":id" element={<CoursePage />} />
           </Route>
-          <Route path="cart">
-            <Route index element={<ShoppingCartPage />} />
-            <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="cart" element={<ShoppingCartPage />} />
+          <Route path="payment/checkout">
+            <Route index element={<CheckoutPage />} />
+            <Route path="done" element={<OrderComplete />} />
           </Route>
           <Route path="profile" element={<ProfilePage />}>
             <Route index element={<TabProfile />} />
@@ -57,7 +59,7 @@ function App() {
 function AppDev() {
   return (
     <>
-      {/* <Dev /> */}
+      <Dev />
       <App />
     </>
   );

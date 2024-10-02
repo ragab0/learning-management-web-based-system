@@ -47,7 +47,10 @@ export default function DashboardApp() {
               <Route index element={<ChaptersTabDetailsTab />} />
               <Route path="resources" element={<ChaptersTabResourcesTab />} />
             </Route>
-            <Route path="promotion" element={<PromotionTab />} />
+            <Route path="promotion">
+              <Route index element={<PromotionTab />} />
+              <Route path=":couponId" element={<h1>CouponPage here</h1>} />
+            </Route>
             <Route path="details" element={<DetailsTab />} />
             <Route path="settings" element={<SettingsTab />} />
           </Route>

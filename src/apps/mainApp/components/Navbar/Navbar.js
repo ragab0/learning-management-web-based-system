@@ -19,7 +19,9 @@ export default function Navbar() {
         <Logo />
         <ul className="navbar-items">
           <li>
-            <NavLink to={"/courses"}>courses</NavLink>
+            <NavLink to={"/courses"} end>
+              courses
+            </NavLink>
           </li>
           <li className="form-item">
             <form onSubmit={submitHandler}>
