@@ -1,3 +1,699 @@
+// dummy data for CouponUser
+
+module.exports.couponUsers = [
+  {
+    username: "Jonas",
+    code: "SUMMER20",
+    totalAmount: "$32",
+    discountAmount: "$9"
+  },
+  {
+    username: "Alice",
+    code: "SUMMER20",
+    totalAmount: "$45",
+    discountAmount: "$12"
+  },
+  {
+    username: "Bob",
+    code: "SUMMER20",
+    totalAmount: "$50",
+    discountAmount: "$10"
+  },
+  {
+    username: "Charlie",
+    code: "SUMMER20",
+    totalAmount: "$60",
+    discountAmount: "$15"
+  },
+  {
+    username: "Diana",
+    code: "SUMMER20",
+    totalAmount: "$80",
+    discountAmount: "$20"
+  },
+  {
+    username: "Ethan",
+    code: "SUMMER20",
+    totalAmount: "$25",
+    discountAmount: "$5"
+  },
+  {
+    username: "Fiona",
+    code: "SUMMER20",
+    totalAmount: "$30",
+    discountAmount: "$7"
+  },
+  {
+    username: "George",
+    code: "SUMMER20",
+    totalAmount: "$70",
+    discountAmount: "$18"
+  },
+  {
+    username: "Hannah",
+    code: "SUMMER20",
+    totalAmount: "$55",
+    discountAmount: "$14"
+  },
+  {
+    username: "Isaac",
+    code: "SUMMER20",
+    totalAmount: "$90",
+    discountAmount: "$25"
+  },
+  {
+    username: "Jack",
+    code: "SUMMER20",
+    totalAmount: "$40",
+    discountAmount: "$11"
+  },
+  {
+    username: "Kathy",
+    code: "SUMMER20",
+    totalAmount: "$65",
+    discountAmount: "$16"
+  },
+  {
+    username: "Liam",
+    code: "SUMMER20",
+    totalAmount: "$75",
+    discountAmount: "$20"
+  },
+  {
+    username: "Mia",
+    code: "SUMMER20",
+    totalAmount: "$100",
+    discountAmount: "$30"
+  },
+  {
+    username: "Noah",
+    code: "SUMMER20",
+    totalAmount: "$85",
+    discountAmount: "$22"
+  },
+];
+
+
+// dummy data for Coupons
+
+module.exports.couponsData = [
+  {
+    offerId: 1,
+    offerName: "Summer Sale",
+    code: "SUMMER20",
+    amount: "$20",
+    status: "Active",
+    qty: 150,
+    redemptions: 75,
+  },
+  {
+    offerId: 2,
+    offerName: "Winter Discount",
+    code: "WINTER15",
+    amount: "$15",
+    status: "Expired",
+    qty: 200,
+    redemptions: 120,
+  },
+  {
+    offerId: 3,
+    offerName: "Black Friday Deal",
+    code: "BLACK50",
+    amount: "$50",
+    status: "Scheduled",
+    qty: 500,
+    redemptions: 300,
+  },
+  {
+    offerId: 4,
+    offerName: "Cyber Monday Special",
+    code: "CYBER30",
+    amount: "$30",
+    status: "Draft",
+    qty: 100,
+    redemptions: 80,
+  },
+  {
+    offerId: 5,
+    offerName: "Spring Savings",
+    code: "SPRING25",
+    amount: "$25",
+    status: "Expired",
+    qty: 250,
+    redemptions: 150,
+  },
+  {
+    offerId: 6,
+    offerName: "Holiday Bash",
+    code: "HOLIDAY10",
+    amount: "$10",
+    status: "Active",
+    qty: 300,
+    redemptions: 220,
+  },
+  {
+    offerId: 7,
+    offerName: "New Year Promo",
+    code: "NEWYEAR50",
+    amount: "$50",
+    status: "Expired",
+    qty: 450,
+    redemptions: 400,
+  },
+  {
+    offerId: 8,
+    offerName: "Back to School",
+    code: "SCHOOL15",
+    amount: "$15",
+    status: "Active",
+    qty: 200,
+    redemptions: 160,
+  },
+  {
+    offerId: 9,
+    offerName: "Valentine's Special",
+    code: "LOVE30",
+    amount: "$30",
+    status: "Scheduled",
+    qty: 100,
+    redemptions: 90,
+  },
+  {
+    offerId: 10,
+    offerName: "Weekend Frenzy",
+    code: "WEEKEND5",
+    amount: "$5",
+    status: "Draft",
+    qty: 1000,
+    redemptions: 600,
+  },
+  {
+    offerId: 11,
+    offerName: "Anniversary Bonus",
+    code: "ANNIV40",
+    amount: "$40",
+    status: "Expired",
+    qty: 350,
+    redemptions: 300,
+  },
+  {
+    offerId: 12,
+    offerName: "Festive Offer",
+    code: "FESTIVE20",
+    amount: "$20",
+    status: "Active",
+    qty: 250,
+    redemptions: 180,
+  },
+  {
+    offerId: 13,
+    offerName: "Clearance Discount",
+    code: "CLEARANCE10",
+    amount: "$10",
+    status: "Scheduled",
+    qty: 500,
+    redemptions: 450,
+  },
+  {
+    offerId: 14,
+    offerName: "Flash Sale",
+    code: "FLASH25",
+    amount: "$25",
+    status: "Draft",
+    qty: 700,
+    redemptions: 400,
+  },
+  {
+    offerId: 15,
+    offerName: "Birthday Bash",
+    code: "BIRTHDAY50",
+    amount: "$50",
+    status: "Expired",
+    qty: 120,
+    redemptions: 95,
+  },
+];
+
+
+// dummy data for chapters
+
+module.exports.chapters = [
+  {
+    id: 1,
+    chapter: 1,
+    title: "Introduction to Programming",
+    type: "Video",
+    date: "15 May 2020 9:00 AM",
+    status: "Published",
+    price: "Free",
+  },
+  {
+    id: 2,
+    chapter: 2,
+    title: "Variables and Data Types",
+    type: "PPT",
+    date: "22 May 2020 10:30 AM",
+    status: "Published",
+    price: 100,
+  },
+  {
+    id: 3,
+    chapter: 3,
+    title: "Control Structures",
+    type: "Video + PPT + PDF",
+    date: "01 June 2020 11:15 AM",
+    status: "Draft",
+    price: "Free",
+  },
+  {
+    id: 4,
+    chapter: 4,
+    title: "Functions and Scope",
+    type: "Video",
+    date: "15 June 2020 2:00 PM",
+    status: "Published",
+    price: 50,
+  },
+  {
+    id: 5,
+    chapter: 5,
+    title: "Object-Oriented Programming",
+    type: "PDF",
+    date: "30 June 2020 3:45 PM",
+    status: "Draft",
+    price: "Free",
+  },
+  {
+    id: 6,
+    chapter: 6,
+    title: "Error Handling and Debugging",
+    type: "Video + PPT",
+    date: "15 July 2020 4:30 PM",
+    status: "Published",
+    price: 20,
+  },
+  {
+    id: 7,
+    chapter: 7,
+    title: "Web Development Basics",
+    type: "PPT",
+    date: "01 August 2020 5:00 PM",
+    status: "Published",
+    price: "Free",
+  },
+  {
+    id: 8,
+    chapter: 8,
+    title: "Databases and SQL",
+    type: "Video",
+    date: "15 August 2020 6:15 PM",
+    status: "Draft",
+    price: 150,
+  },
+  {
+    id: 9,
+    chapter: 9,
+    title: "Introduction to Frameworks",
+    type: "PDF",
+    date: "01 September 2020 7:00 AM",
+    status: "Published",
+    price: "Free",
+  },
+  {
+    id: 10,
+    chapter: 10,
+    title: "Final Project Overview",
+    type: "Video + PPT + PDF",
+    date: "15 September 2020 8:30 AM",
+    status: "Published",
+    price: 75,
+  },
+  {
+    id: 11,
+    chapter: 11,
+    title: "API Development",
+    type: "Video + PDF",
+    date: "01 October 2020 9:00 AM",
+    status: "Published",
+    price: 30,
+  },
+  {
+    id: 12,
+    chapter: 12,
+    title: "Introduction to Cloud Computing",
+    type: "PPT + Video",
+    date: "15 October 2020 10:30 AM",
+    status: "Draft",
+    price: "Free",
+  },
+  {
+    id: 13,
+    chapter: 13,
+    title: "Data Structures and Algorithms",
+    type: "Video",
+    date: "01 November 2020 2:00 PM",
+    status: "Published",
+    price: 80,
+  },
+  {
+    id: 14,
+    chapter: 14,
+    title: "Software Testing and Quality Assurance",
+    type: "PDF",
+    date: "15 November 2020 3:45 PM",
+    status: "Published",
+    price: 40,
+  },
+  {
+    id: 15,
+    chapter: 15,
+    title: "Responsive Web Design",
+    type: "Video + PPT",
+    date: "01 December 2020 4:30 PM",
+    status: "Draft",
+    price: 25,
+  },
+  {
+    id: 16,
+    chapter: 16,
+    title: "Machine Learning Basics",
+    type: "Mix",
+    date: "15 December 2020 5:30 PM",
+    status: "Published",
+    price: 120,
+  },
+  {
+    id: 17,
+    chapter: 17,
+    title: "Cybersecurity Fundamentals",
+    type: "PPT",
+    date: "01 January 2021 6:00 PM",
+    status: "Draft",
+    price: "Free",
+  },
+  {
+    id: 18,
+    chapter: 18,
+    title: "Advanced JavaScript Concepts",
+    type: "Video + PDF",
+    date: "15 January 2021 7:00 AM",
+    status: "Published",
+    price: 60,
+  },
+  {
+    id: 19,
+    chapter: 19,
+    title: "DevOps and Continuous Integration",
+    type: "Video + PPT + PDF",
+    date: "01 February 2021 8:30 AM",
+    status: "Draft",
+    price: 95,
+  },
+  {
+    id: 20,
+    chapter: 20,
+    title: "Mobile App Development",
+    type: "Video + PPT",
+    date: "15 February 2021 9:00 AM",
+    status: "Published",
+    price: "Free",
+  },
+];
+
+
+// dummy data for customers
+
+module.exports.customerData = [
+  {
+    id: 1,
+    customer: "Alice Johnson",
+    type: "Student",
+    country: "USA",
+    joined: "15 May 2021 8:00 AM",
+    totalAmount: 1500.75,
+    lastOrderId: "#123456",
+  },
+  {
+    id: 2,
+    customer: "Bob Smith",
+    type: "Teacher",
+    country: "Canada",
+    joined: "19 March 2022 9:30 AM",
+    totalAmount: 2500.00,
+    lastOrderId: "#123457",
+  },
+  {
+    id: 3,
+    customer: "Charlie Brown",
+    type: "Student",
+    country: "UK",
+    joined: "07 January 2023 10:15 AM",
+    totalAmount: 800.50,
+    lastOrderId: "#123458",
+  },
+  {
+    id: 4,
+    customer: "David Wilson",
+    type: "Teacher",
+    country: "Australia",
+    joined: "10 June 2024 11:45 AM",
+    totalAmount: 300.00,
+    lastOrderId: "#123459",
+  },
+  {
+    id: 5,
+    customer: "Eve Davis",
+    type: "Student",
+    country: "Germany",
+    joined: "15 November 2021 7:30 AM",
+    totalAmount: 1200.45,
+    lastOrderId: "#123460",
+  },
+  {
+    id: 6,
+    customer: "Frank Miller",
+    type: "Teacher",
+    country: "France",
+    joined: "22 August 2020 2:00 PM",
+    totalAmount: 3200.10,
+    lastOrderId: "#123461",
+  },
+  {
+    id: 7,
+    customer: "Grace Lee",
+    type: "Student",
+    country: "Italy",
+    joined: "01 December 2022 3:20 PM",
+    totalAmount: 600.25,
+    lastOrderId: "#123462",
+  },
+  {
+    id: 8,
+    customer: "Henry Garcia",
+    type: "Teacher",
+    country: "Spain",
+    joined: "18 July 2023 4:30 PM",
+    totalAmount: 150.00,
+    lastOrderId: "#123463",
+  },
+  {
+    id: 9,
+    customer: "Isabella Martinez",
+    type: "Student",
+    country: "Brazil",
+    joined: "30 April 2021 6:50 PM",
+    totalAmount: 980.00,
+    lastOrderId: "#123464",
+  },
+  {
+    id: 10,
+    customer: "James Rodriguez",
+    type: "Teacher",
+    country: "Mexico",
+    joined: "14 September 2020 5:15 AM",
+    totalAmount: 4500.55,
+    lastOrderId: "#123465",
+  },
+  {
+    id: 11,
+    customer: "James Rodriguez",
+    type: "Teacher",
+    country: "Mexico",
+    joined: "14 September 2020 5:15 AM",
+    totalAmount: 4500.55,
+    lastOrderId: "#123465",
+  },
+  {
+    id: 12,
+    customer: "James Rodriguez",
+    type: "Teacher",
+    country: "Mexico",
+    joined: "14 September 2020 5:15 AM",
+    totalAmount: 4500.55,
+    lastOrderId: "#123465",
+  },
+  {
+    id: 13,
+    customer: "James Rodriguez",
+    type: "Teacher",
+    country: "Mexico",
+    joined: "14 September 2020 5:15 AM",
+    totalAmount: 4500.55,
+    lastOrderId: "#123465",
+  },
+  {
+    id: 14,
+    customer: "James Rodriguez",
+    type: "Teacher",
+    country: "Mexico",
+    joined: "14 September 2020 5:15 AM",
+    totalAmount: 4500.55,
+    lastOrderId: "#123465",
+  },
+];
+
+
+// dummy data for orders
+
+module.exports.orders = [
+  {
+    orderId: "#254841",
+    customer: "John Doe",
+    type: "Student",
+    date: "15 Jun 2024",
+    status: "Received",
+    commission: "50.00",
+  },
+  {
+    orderId: "#254842",
+    customer: "Jane Smith",
+    type: "Teacher",
+    date: "16 Jun 2024",
+    status: "Pending",
+    commission: "35.00",
+  },
+  {
+    orderId: "#254843",
+    customer: "David Johnson",
+    type: "Student",
+    date: "17 Jun 2024",
+    status: "Received",
+    commission: "45.00",
+  },
+  {
+    orderId: "#254844",
+    customer: "Emily Davis",
+    type: "Teacher",
+    date: "18 Jun 2024",
+    status: "Pending",
+    commission: "0.00",
+  },
+  {
+    orderId: "#254845",
+    customer: "Michael Brown",
+    type: "Student",
+    date: "19 Jun 2024",
+    status: "Received",
+    commission: "60.00",
+  },
+  {
+    orderId: "#254846",
+    customer: "Sarah Wilson",
+    type: "Student",
+    date: "20 Jun 2024",
+    status: "Pending",
+    commission: "40.00",
+  },
+  {
+    orderId: "#254847",
+    customer: "Chris Lee",
+    type: "Teacher",
+    date: "21 Jun 2024",
+    status: "Received",
+    commission: "55.00",
+  },
+  {
+    orderId: "#254848",
+    customer: "Laura Garcia",
+    type: "Student",
+    date: "22 Jun 2024",
+    status: "Pending",
+    commission: "48.00",
+  },
+  {
+    orderId: "#254849",
+    customer: "James Martinez",
+    type: "Teacher",
+    date: "23 Jun 2024",
+    status: "Received",
+    commission: "0.00",
+  },
+  {
+    orderId: "#254810",
+    customer: "Anna Hernandez",
+    type: "Student",
+    date: "24 Jun 2024",
+    status: "Received",
+    commission: "65.00",
+  },
+  {
+    orderId: "#254811",
+    customer: "Peter Clark",
+    type: "Teacher",
+    date: "25 Jun 2024",
+    status: "Pending",
+    commission: "30.00",
+  },
+  {
+    orderId: "#254812",
+    customer: "Rachel Moore",
+    type: "Student",
+    date: "26 Jun 2024",
+    status: "Received",
+    commission: "42.00",
+  },
+];
+
+// dummy data for courses list (dashboard)
+module.exports.dummyCourses = [
+  {
+    id: 0,
+    name: "Course A"
+  },
+  {
+    id: 1,
+    name: "Course B"
+  },
+  {
+    id: 2,
+    name: "Course C"
+  },
+  {
+    id: 3,
+    name: "Course D"
+  },
+  {
+    id: 4,
+    name: "Course E"
+  },
+  {
+    id: 5,
+    name: "Course F"
+  },
+  {
+    id: 6,
+    name: "Course G"
+  },
+  {
+    id: 7,
+    name: "Course H"
+  },
+  {
+    id: 8,
+    name: "Course I"
+  },
+];
+
 // dummy data for my courses section
 module.exports.myCourses = [
   {
@@ -246,48 +942,48 @@ module.exports.customers = [
     jobTitle: "Designer",
     imgSrc: "",
     quote:
-      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world, I appreciate the up-to-date content and engaging multimedia.",
+      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world,appreciate the up- to - date content and engaging multimedia.",
   },
   {
     name: "Jane Doe",
     jobTitle: "Designer",
     imgSrc: "",
     quote:
-      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world, I appreciate the up-to-date content and engaging multimedia.",
+      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world,I appreciate the up- to - date content and engaging multimedia.",
   },
   {
     name: "Jane Doe",
     jobTitle: "Designer",
     imgSrc: "",
     quote:
-      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world, I appreciate the up-to-date content and engaging multimedia.",
+      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world,appreciate the up- to - date content and engaging multimedia.",
   },
   {
     name: "Jane Doe",
     jobTitle: "Designer",
     imgSrc: "",
     quote:
-      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world, I appreciate the up-to-date content and engaging multimedia.",
+      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world,appreciate the up- to - date content and engaging multimedia.",
   },
   {
     name: "Jane Doe",
     jobTitle: "Designer",
     imgSrc: "",
     quote:
-      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world, I appreciate the up-to-date content and engaging multimedia.",
+      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world,appreciate the up- to - date content and engaging multimedia.",
   },
   {
     name: "Jane Doe",
     jobTitle: "Designer",
     imgSrc: "",
     quote:
-      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world, I appreciate the up-to-date content and engaging multimedia.",
+      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world,appreciate the up- to - date content and engaging multimedia.",
   },
   {
     name: "Jane Doe",
     jobTitle: "Designer",
     imgSrc: "",
     quote:
-      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world, I appreciate the up-to-date content and engaging multimedia.",
+      "Byway's tech courses are top-notch! As someone who's always looking to stay ahead in the rapidly evolving tech world,appreciate the up- to - date content and engaging multimedia.",
   },
 ];
