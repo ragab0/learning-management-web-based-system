@@ -8,25 +8,3 @@
   background-color: #000;
   color: #fff;
 }
-
-.profile-page-aside .profileImg {
-  text-align: center;
-}
-
-.profile-page-aside .profileImg h5,
-.shareProfile,
-i {
-  color: #0f172a;
-  margin-top: 20px;
-}
-
-.profile-page-aside span,
-i {
-  margin: 10px 7px;
-  margin-bottom: 50px;
-}
-
-.profile-page-aside .profileImg img {
-  width: 160px;
-  height: 160px;
-}

@@ -4,7 +4,7 @@ import ChaptersMenu from "./components/ChaptersMenu/ChaptersMenu";
 import PriceMenu from "./components/PriceMenu/PriceMenu";
 import CategoryMenu from "./components/CategoryMenu/CategoryMenu";
 import Courses from "./components/Courses/Courses";
-import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstructors";
+import LineOfInstructors from "../../components/LineOfMentors/LineOfInstructors";
 import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 import "./CoursesPage.css";
 

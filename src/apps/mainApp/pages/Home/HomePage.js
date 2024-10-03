@@ -1,12 +1,12 @@
 import React from "react";
-import "./HomePage.css";
 import Header from "./components/Header/Header";
 import Statistics from "./components/Statistics/Statistics";
+import "./HomePage.css";
 import TopCategories from "./components/TopCategories/TopCategories";
 import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 import CustomerComments from "../../components/CustomerComments/CustomerComments";
 import InstructorsOverview from "./components/InstructorsOverview/InstructorsOverview";
-import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstructors";
+import LineOfInstructors from "../../components/LineOfMentors/LineOfInstructors";
 
 export default function HomePage() {
   return (

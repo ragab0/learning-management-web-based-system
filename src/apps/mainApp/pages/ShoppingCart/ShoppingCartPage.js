@@ -2,7 +2,7 @@ import React from "react";
 import "./ShoppingCartPage.css";
 import Details from "./Components/Details/Details";
 import { Link } from "react-router-dom";
-import courseImg from "../../assets/course2.png";
+import courseImg from "../../../../assets/course2.png";
 
 const CourseCard = ({
   title,

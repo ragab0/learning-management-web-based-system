@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Courses.css";
+import Pagination from "../../../../../components/Pagination";
 import { courses } from "../../../../../../data/dummyData";
 import courseImage from "../../../../../../assets/course1.png";
 
@@ -12,12 +13,22 @@ export default function Courses() {
   const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(courses.length / coursesPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const totalPages = Math.ceil(courses.length / coursesPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pageNumbers.length) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
   };
 
   const renderCourses = () => {
@@ -61,21 +72,13 @@ export default function Courses() {
   return (
     <div className="container">
       <div className="row">{renderCourses()}</div>
-      <nav className="d-flex justify-content-center my-5">
-        <ul className="pagination pagination-sm">
-          {pageNumbers.map((num) => (
-            <li
-              key={num}
-              onClick={() => handlePageChange(num)}
-              className={`page-item ${currentPage === num ? "active" : ""}`}
-            >
-              <a className="page-link" href="#">
-                {num}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+        handleNextPage={handleNextPage}
+        handlePreviousPage={handlePreviousPage}
+      />
     </div>
   );
 }
