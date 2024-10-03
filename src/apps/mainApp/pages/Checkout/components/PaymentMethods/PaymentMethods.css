@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   border-radius: 16px;
-  border: 1px solid var(--grey-border, #e2e8f0);
+  border: 1px solid var(--grey-border, var(--grey-border));
   background: var(--white, #fff);
   flex-direction: column;
   overflow: hidden;
@@ -40,7 +40,7 @@
 
 .checkout-page .input-field {
   border-radius: 8px;
-  border: 1px solid var(--grey-border, #e2e8f0);
+  border: 1px solid var(--grey-border, var(--grey-border));
   background: var(--white, #fff);
   margin-top: 8px;
   font-size: 16px;
@@ -110,7 +110,7 @@
 .checkout-page .card-input-field {
   width: 100%;
   border-radius: 8px;
-  border: 1px solid var(--grey-border, #e2e8f0);
+  border: 1px solid var(--grey-border, var(--grey-border));
   background: var(--white, #fff);
   margin-top: 8px;
   font-size: 16px;

@@ -1,90 +1,78 @@
 import React from "react";
+import "./CourseDashboard.css";
 import LearnerReviews from "../../../../components/LearnerReviews/LearnerReviews";
 import InstructorTab from "../../../../components/InstructorTab/InstructorTab";
-import "./CourseDashboard.css";
-import { Link } from "react-router-dom";
+import Chapter from "../Chapter/Chapter";
 
 const tabs = ["Description", "Instructor", "Syllabus", "Reviews"];
+const chapter = [
+  { name: "Introduction to UX Design", lessonsCount: 5, long: "1 hour" },
+  { name: "Introduction to UX Design", lessonsCount: 5, long: "1 hour" },
+  { name: "Introduction to UX Design", lessonsCount: 5, long: "1 hour" },
+];
 
 export default function CourseDashboard() {
   return (
-    <div className="section2 mt-5">
+    <div className="course-dashboard mt-5">
       <ul className="tabs-items mb-4">
         {tabs.map((name, i) => (
           <li>
-            <Link
+            <a
               key={i}
-              to={"#" + name.toLocaleLowerCase()}
+              href={"#" + name.toLocaleLowerCase()}
               className={`btn ${i === 0 ? "active" : ""}`}
             >
               {name}
-            </Link>
+            </a>
           </li>
         ))}
       </ul>
-      <div className="course_desc">
-        <h4 className=" text-dark fw-bold">Course Description</h4>
-        <p className=" mb-5">
-          This interactive e-learning course will introduce you to User
-          Experience (UX) design, the art of creating products and services that
-          are intuitive, enjoyable, and user-friendly. Gain a solid foundation
-          in UX principles and learn to apply them in real-world scenarios
-          through engaging modules and interactive exercises.{" "}
-        </p>
-      </div>
-      <div className="certification">
-        <h4 className=" text-dark fw-bold">Certification</h4>
-        <p>
-          At Byway, we understand the significance of formal recognition for
-          your hard work and dedication to continuous learning. Upon successful
-          completion of our courses, you will earn a prestigious certification
-          that not only validates your expertise but also opens doors to new
-          opportunities in your chosen field.
-        </p>
-      </div>
-      <InstructorTab />
-      <div className="syllabus mb-5" id="syllabus">
-        <h4 className=" text-dark fw-bold">Syllabus</h4>
-        <div className="ux_design mt-5">
-          <select className="">
-            <option className=" fw-bolder">Introduction to UX Design</option>
-          </select>
-          <div className="ux_details">
-            <span className=" me-4 fw-medium">5 Lessons</span>
-            <span className="fw-medium">1 hour</span>
+      <div className="course-tabs-content">
+        <div className="course-desc-tab" id={tabs[0].toLocaleLowerCase()}>
+          <div className="course_desc">
+            <h4 className=" text-dark fw-bold">Course Description</h4>
+            <p className="mb-4">
+              This interactive e-learning course will introduce you to User
+              Experience (UX) design, the art of creating products and services
+              that are intuitive, enjoyable, and user-friendly. Gain a solid
+              foundation in UX principles and learn to apply them in real-world
+              scenarios through engaging modules and interactive exercises.{" "}
+            </p>
+          </div>
+          <div className="certification">
+            <h4 className=" text-dark fw-bold">Certification</h4>
+            <p>
+              At Byway, we understand the significance of formal recognition for
+              your hard work and dedication to continuous learning. Upon
+              successful completion of our courses, you will earn a prestigious
+              certification that not only validates your expertise but also
+              opens doors to new opportunities in your chosen field.
+            </p>
           </div>
         </div>
-        <div className="ux_design mt-5">
-          <select className="">
-            <option className=" fw-bolder">
-              Basics of User-Centered Design
-            </option>
-          </select>
-          <div className="ux_details">
-            <span className=" me-4 fw-medium">5 Lessons</span>
-            <span className="fw-medium">1 hour</span>
+        <div className="course-inst-tab" id={tabs[1].toLocaleLowerCase()}>
+          <InstructorTab />
+        </div>
+        <div className="course-syllabus-tab" id={tabs[2].toLocaleLowerCase()}>
+          <h4 className=" text-dark fw-bold mb-4  ">Syllabus</h4>
+          <div className="chapters">
+            {chapter.map(({ name, lessonsCount, long }, i) => (
+              <Chapter
+                key={i}
+                name={name}
+                lessonsCount={lessonsCount}
+                long={long}
+              />
+            ))}
           </div>
         </div>
-        <div className="ux_design mt-5">
-          <select className="">
-            <option className=" fw-bolder">Elements of User Experience</option>
-          </select>
-          <div className="ux_details">
-            <span className=" me-4 fw-medium">5 Lessons</span>
-            <span className="fw-medium">1 hour</span>
-          </div>
-        </div>
-        <div className="ux_design mt-5">
-          <select className="">
-            <option className=" fw-bolder">Visual Design Principles</option>
-          </select>
-          <div className="ux_details">
-            <span className=" me-4 fw-medium">5 Lessons</span>
-            <span className="fw-medium">1 hour</span>
-          </div>
+        <div
+          id={tabs[3].toLocaleLowerCase()}
+          className="course-learner-reviews-tab"
+        >
+          <LearnerReviews />
         </div>
       </div>
-      <LearnerReviews />
     </div>
   );
 }

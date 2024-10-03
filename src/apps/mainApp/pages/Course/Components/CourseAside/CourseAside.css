@@ -1,40 +1,60 @@
-.course-page .container .aside {
-  width: 35%;
+.course-page .aside-content {
+  position: sticky;
+  top: 2rem;
+  left: 0;
+  border: 1px solid var(--grey-border);
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
-.course-page .container .aside .course_image,
-.course-page .container .aside .course_info,
-.course-page .container .aside button,
-.course-page .container .aside .share {
-  width: 356px;
-  margin: 0 auto;
-}
-
-.course-page .container .aside .course_info .price {
+.course-page .aside .course_info .price {
   color: #0f172a;
 }
 
-.course-page .container .aside .course_info strike {
+.course-page .aside .course_info strike {
   color: #94a3b8;
 }
 
-.course-page .container .aside .course_info .discount {
+.course-page .aside .course_info .discount {
   color: #16a34a;
 }
 
-.course-page .container .aside .btn_add {
+.course-page .aside .btn_add {
   background-color: #020617;
   color: #fff;
   text-transform: capitalize;
   padding: 15px;
 }
 
-.course-page .container .aside .btn_buy {
+.course-page .aside .btn_buy {
   padding: 10px;
   font-weight: bold;
   border: #020617 solid thin;
 }
 
-.course-page .container .aside .share h5 {
+.course-page .aside .share {
+  border-top: 1px solid var(--grey-border);
+}
+
+.course-page .aside .share h5 {
   color: #0f172a;
+}
+.course-page .aside .shareLinks,
+.course-page .aside .shareLinks a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.course-page .aside .shareLinks {
+  cursor: not-allowed;
+}
+.course-page .aside .shareLinks a {
+  padding: 0.5rem;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.course-page .aside .shareLinks li:first-of-type a {
+  padding-inline-start: 0;
 }

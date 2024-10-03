@@ -2,8 +2,9 @@
 
 :root {
   --clr-main: #0294e9;
-  --clr-grey-border: #e2e8f0;
+  --clr-grey-border: var(--grey-border);
   --clr-grey-disabled: #94a3b8;
+  --grey-border: #e2e8f0;
 
   --clr-grey-white: #f8fafc;
   --clr-grey-lighter: #f1f5f9; /* 100 */

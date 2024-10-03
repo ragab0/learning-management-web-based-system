@@ -4,11 +4,11 @@
   margin-top: 4rem;
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--grey-border);
 }
 
 .course-page .tabs-items a {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--grey-border);
   border-radius: 5px;
   padding: 0.75rem 2rem;
 }
@@ -18,44 +18,22 @@
   background-color: #eff6ff;
 }
 
-.course-page .section2 .instructor .ins_info {
-  display: flex;
-  margin-top: 30px;
+.course-page .course-tabs-content p:last-of-type {
+  margin-bottom: 0;
 }
 
-.course-page .section2 .instructor .ins_info img {
-  width: 120px;
-  height: 120px;
+.course-page .course-tabs-content > *:not(:last-of-type) {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--grey-border);
 }
 
-.course-page .section2 .instructor .ins_info .ins_details .review span,
-.course-page .section2 .instructor .ins_info .ins_details .student span,
-.course-page .section2 .instructor .ins_info .ins_details .courses span {
-  color: #0f172a;
-  font-size: 16px;
+.course-page .course-syllabus-tab .chapters {
+  border: 1px solid var(--grey-border);
+}
+.course-page .course-syllabus-tab .chapters .chapter:not(:last-of-type) {
+  border-bottom: 1px solid var(--grey-border);
 }
 
-.course-page .section2 .instructor .ins_info .ins_details .review i,
-.course-page .section2 .instructor .ins_info .ins_details .student i,
-.course-page .section2 .instructor .ins_info .ins_details .courses i {
-  color: #0f172a;
-}
-
-.course-page .section2 .syllabus .ux_design {
-  display: flex;
-  justify-content: space-between;
-}
-
-.course-page .section2 .syllabus .ux_design select {
-  direction: rtl;
-  font-size: 20px;
-  font-weight: 500;
-  color: #0f172a;
-  padding-left: 15px;
-  border: none;
-}
-
-.course-page .section2 .syllabus .ux_design .ux_details span {
-  color: #0f172a;
-  font-size: 18px;
+.course-page .course-learner-reviews-tab {
 }

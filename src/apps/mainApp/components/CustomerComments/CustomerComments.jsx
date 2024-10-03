@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./CustomerComments.css";
 import customerImage from "../../../../assets/customersImgs/cust4.png";
 import { customers } from "../../../../data/dummyData";
-import { Link } from "react-router-dom";
 import QuoteIcon from "../../../../assets/svgsComps/QuoteIcon";
 
 export default function CustomerComments() {

@@ -12,7 +12,7 @@
   position: absolute;
   height: var(--height);
   width: 3px;
-  background-color: #e2e8f0;
+  background-color: var(--grey-border);
   top: calc((100% - var(--height)) / 2);
   right: 0;
   transform: translate(50%, 0);

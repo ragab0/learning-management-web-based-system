@@ -2,6 +2,7 @@ import React from "react";
 import inst1 from "../../../../../../assets/mentorsImgs/mentor10.png";
 import inst2 from "../../../../../../assets/mentorsImgs/mentor11.png";
 import "./InstructorsOverview.css";
+import { Link } from "react-router-dom";
 
 const instructorsOverviews = [
   {
@@ -35,10 +36,13 @@ export default function InstructorsOverview() {
               <div className="header-content">
                 <h2>{title}</h2>
                 <p>{desc}</p>
-                <button className="btn btn-dark p-3 ps-4 pe-4">
+                <Link
+                  to={i / 2 === 0 ? "/dashboard/signup" : "/courses"}
+                  className="btn btn-dark p-3 ps-4 pe-4"
+                >
                   {more}
                   <i className="fa-solid fa-arrow-right ps-2"></i>
-                </button>
+                </Link>
               </div>
             </div>
           </section>

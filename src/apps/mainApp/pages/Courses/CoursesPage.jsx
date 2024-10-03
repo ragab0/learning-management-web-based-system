@@ -1,6 +1,5 @@
 import React from "react";
 import "./CoursesPage.css";
-import { Link } from "react-router-dom";
 import RateMenu from "./components/RateMenu/RateMenu";
 import ChaptersMenu from "./components/ChaptersMenu/ChaptersMenu";
 import PriceMenu from "./components/PriceMenu/PriceMenu";
