@@ -17,6 +17,8 @@ import SettingsTab from "./pages/Course/components/SettingsTab/ReviewsTab";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ChaptersTabResourcesTab from "./pages/Course/components/ChaptersTab/ChaptersTabResourcesTab/ChaptersTabResourcesTab";
 import ChaptersTabDetailsTab from "./pages/Course/components/ChaptersTab/ChaptersTabDetailsTab/ChaptersTabDetailsTab";
+import CouponDetails from "./pages/Course/components/PromotionTab/components/CouponDetails/CouponDetails";
+import EditCoupon from "./pages/Course/components/PromotionTab/components/CouponDetails/components/EditCoupon/EditCoupon";
 
 export default function DashboardApp() {
   return (
@@ -34,7 +36,11 @@ export default function DashboardApp() {
               <Route index element={<ChaptersTabDetailsTab />} />
               <Route path="resources" element={<ChaptersTabResourcesTab />} />
             </Route>
-            <Route path="promotion" element={<PromotionTab />} />
+            <Route path="promotion">
+              <Route index element={<PromotionTab />} />
+              <Route path=":offerid" element={<CouponDetails />} />
+              <Route path=":offerid/editcoupon" element={<EditCoupon />} />
+            </Route>
             <Route path="details" element={<DetailsTab />} />
             <Route path="settings" element={<SettingsTab />} />
           </Route>

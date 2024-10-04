@@ -1,0 +1,9 @@
+.tableData .table th {
+    color: rgb(51, 65, 85);
+    font-weight: normal;
+}
+th span {
+    margin-left: 7px;
+    color: rgb(148, 163, 184);
+}
+
