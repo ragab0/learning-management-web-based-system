@@ -1,6 +1,72 @@
 .sidebar {
+  --pad: 0.5rem;
   background-color: var(--clr-grey-darkest);
   color: var(--clr-grey-white);
   width: 100%;
+  max-width: 100%;
   height: 100%;
+  padding: var(--pad);
+  transition: all 105ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  overflow: hidden;
+}
+
+.sidebar header {
+  border-bottom: 1px solid var(--clr-grey-dark);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar i {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar header i:hover,
+.sidebar nav a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar nav a {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-transform: capitalize;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.sidebar nav a.active {
+  color: #3b82f6;
+  font-weight: unset;
+  background-color: rgb(144 202 249 / 16%);
+}
+
+.sidebar nav a.active svg {
+  fill: #3b82f6;
+}
+
+/* closed sidebar */
+
+.sidebar.closed {
+  max-width: calc(48px + var(--pad) * 2);
+}
+
+.sidebar.closed .logo,
+.sidebar.closed a span {
+  display: none;
+}
+
+.sidebar.closed header,
+.sidebar.closed nav li {
+  margin-bottom: 1rem;
+}
+
+.sidebar.closed a {
+  padding: 0;
 }

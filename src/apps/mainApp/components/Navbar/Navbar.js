@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import { imgsComps } from "../../../../assets";
-import Logo from "../Logo/Logo";
+import Logo from "../../../../components/Logo/Logo";
 
 const { SearchIcon, ShoppingIcon } = imgsComps;
 

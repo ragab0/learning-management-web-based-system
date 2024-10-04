@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { imgsComps } from "../../../../assets";
+import { imgsComps } from "../../assets";
 import "./Logo.css";
 
 const { LogoIcon } = imgsComps;
