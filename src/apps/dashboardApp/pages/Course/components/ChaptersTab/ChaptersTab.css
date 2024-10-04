@@ -1,4 +1,32 @@
-.chapters-tab-tabs {
+.chapters-tab {
+  width: 1140px;
+  margin: 30px auto;
+}
+
+.chapters-tab .chapters-tab-header .chapterNav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chapters-tab .chapters-tab-header .chapterNav h3 {
+  color: #334155;
+}
+
+.chapters-tab .chapters-tab-tabs {
   display: flex;
   gap: 1rem;
+}
+
+.chapters-tab-body h3 {
+  color: #0f172a;
+}
+.chapters-tab-body .chapters-tab-body-content {
+  width: 97%;
+  margin: 0 auto;
+}
+
+.chapters-tab-body .chapters-tab-body-content .title h5,
+.chapters-tab-body .chapters-tab-body-content .subtitle h5,
+.chapters-tab-body .chapters-tab-body-content .description h5 {
+  color: #0f172a;
 }
