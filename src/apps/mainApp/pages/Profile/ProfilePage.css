@@ -1,14 +1,22 @@
-.profile-page .container {
-  display: flex;
-  gap: 2rem;
-  margin-block: 2rem;
+.profile-page {
+  margin-block: calc(var(--main-margin) * 0.5) calc(var(--main-margin) * 2);
 }
 
-.profile-page aside {
-  width: 100%;
-  max-width: 300px;
+.profile-page section {
+  border: 2px solid var(--grey-border);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-.profile-page main {
-  width: 100%;
+.tab-my-courses figure,
+.tab-my-teachers figure {
+  border: 1px solid var(--grey-border);
+  border-radius: 1rem;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.profile-page article {
+  margin-bottom: 1rem;
 }

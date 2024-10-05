@@ -10,7 +10,7 @@ import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstruct
 
 export default function HomePage() {
   return (
-    <div className="HomePage">
+    <div className="home-page">
       <Header />
       <Statistics />
       <TopCategories />

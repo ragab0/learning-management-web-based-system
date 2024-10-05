@@ -1,0 +1,11 @@
+.layout-menu-toggler-content {
+  padding-block: 0.5rem;
+}
+
+.layout-menu-toggler-header {
+  cursor: pointer;
+}
+
+.layout-menu-toggler-header:hover i {
+  opacity: 0.6;
+}

@@ -1,0 +1,30 @@
+/*
+ * Shopping && Payment/checkout pages
+ *
+ */
+.layout-cart h1 {
+  color: #333;
+  margin-block: 2rem;
+}
+
+.layout-cart h3 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(211, 211, 211);
+  margin-bottom: 1.25rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.layout-cart p {
+  color: #334155;
+}
+.layout-cart-body {
+  margin-block: 2rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2rem;
+}
+
+.layout-cart-content > * {
+  margin-bottom: var(--main-margin);
+}

@@ -9,7 +9,7 @@ import "./CoursePage.css";
 export default function CoursePage() {
   return (
     <div className="course-page">
-      <div className="container">
+      <div className="container content-aside-layout">
         <main className="course-page-main">
           <CourseHeader />
           <CourseDashboard />

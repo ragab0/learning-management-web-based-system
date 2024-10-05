@@ -1,3 +1,9 @@
-.checkbox {
-  width: 50px;
+.courses-page {
+  margin-block: var(--main-margin);
+}
+
+.courses-page .filter-optoins > *:not(:last-of-type) {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid black;
 }

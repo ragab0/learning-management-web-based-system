@@ -1,0 +1,9 @@
+.course-content-nav {
+  background-color: #0f172a;
+  padding: 1rem 0;
+  color: #fff;
+}
+
+.course-content-nav button:hover {
+  opacity: 0.8;
+}

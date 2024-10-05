@@ -1,0 +1,53 @@
+.shopping-cart-page .no-content {
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #eeeeee80;
+  border: 1px solid rgb(211, 211, 211);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shopping-cart-page .cards > * {
+  margin-bottom: 1rem;
+}
+
+.shopping-cart-page .theCourse {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 0.5rem;
+  transition: 0.1 ease;
+  cursor: default;
+}
+
+.shopping-cart-page .theCourse:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.shopping-cart-page .theCourse .theCourseImg {
+  width: 25%;
+}
+
+.shopping-cart-page .theCourse .theCourseContent {
+  width: 75%;
+  line-height: 2;
+}
+
+.shopping-cart-page .theCourse .theCourseContent .details i,
+.rate {
+  color: #fec84b;
+}
+
+.shopping-cart-page .theCourse .theCourseContent .details .rateDetails {
+  color: #64748b;
+}
+
+.shopping-cart-page .theCourse .theCourseContent .details .courseDetails {
+  color: #020617;
+}
+
+.shopping-cart-page .theCourse .theCourseContent .courseBtn .btn1 {
+  color: #3b82f6;
+}

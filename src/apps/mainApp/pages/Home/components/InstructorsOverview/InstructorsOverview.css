@@ -1,3 +1,6 @@
-.header-content {
+.home-page .instructors-overviews {
+  margin-block: calc(var(--main-margin) * 2);
+}
+.home-page .instructors-overviews .header-content {
   max-width: 550px;
 }

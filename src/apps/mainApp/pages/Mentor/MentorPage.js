@@ -8,12 +8,14 @@ import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 export default function MentorPage() {
   return (
     <div className="mentor-page">
-      <main className="mentor-page-main">
+      <div className="content-aside-layout container">
         <MentorMainContent />
         <MentorAside />
-      </main>
+      </div>
       <LineOfCourses title={`More Courses by ${"Ronald"}`} />
-      <LearnerReviews />
+      <div className="container">
+        <LearnerReviews />
+      </div>
     </div>
   );
 }

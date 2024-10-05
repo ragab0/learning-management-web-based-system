@@ -1,15 +1,23 @@
 import React from "react";
 import myImage from "../../../../assets/customersImgs/cust5Heigh.png";
 import "./InstructorTab.css";
+import { Link } from "react-router-dom";
 
 export default function InstructorTab() {
   return (
-    <div className="instructor mt-5">
+    <div className="instructor-tab">
       <h4 className=" text-dark fw-bold">Instructor</h4>
-      <h3 className=" mt-4 fw-bolder text-primary fs-5">Ronald Richards</h3>
+      <Link
+        to="/mentors/0"
+        className="d-block mt-3 mb-1 fw-bolder text-primary fs-5"
+      >
+        Ronald Richards
+      </Link>
       <h5 className=" fs-6">UI/UX Designer</h5>
       <div className="ins_info">
-        <img src={myImage} alt="instructor" />
+        <Link to="/mentors/0">
+          <img src={myImage} alt="instructor" />
+        </Link>
         <div className="ins_details ms-4 mt-3">
           <div className="review">
             <i className=" pe-2 fa-brands fa-algolia"></i>

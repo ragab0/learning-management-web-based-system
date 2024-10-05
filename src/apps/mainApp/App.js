@@ -18,6 +18,9 @@ import TabTeachers from "./pages/Profile/Components/TabTeachers/TabTeachers";
 import TabMessage from "./pages/Profile/Components/TabMessage/TabMessage";
 import TabMyReviews from "./pages/Profile/Components/TabMyReviews/TabMyReviews";
 import CourseContent from "./pages/CourseContent/CourseContent";
+import MentorPage from "./pages/Mentor/MentorPage";
+import OrderComplete from "./components/OrderComplete/OrderComplete";
+import TabChat from "./pages/Profile/Components/TabChat/TabChat";
 
 function App() {
   return (
@@ -25,24 +28,28 @@ function App() {
       <Navbar />
       <div className="app-wrapper">
         <Routes>
-          <Route path="" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="courses">
             <Route index element={<CoursesPage />} />
             <Route path=":id" element={<CoursePage />} />
           </Route>
-          <Route path="cart">
-            <Route index element={<ShoppingCartPage />} />
-            <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="cart" element={<ShoppingCartPage />} />
+          <Route path="payment/checkout">
+            <Route index element={<CheckoutPage />} />
+            <Route path="done" element={<OrderComplete />} />
           </Route>
           <Route path="profile" element={<ProfilePage />}>
-            <Route path="" element={<TabProfile />} />
-            <Route path="my-courses" element={<TabMyCourses />} />
-            <Route path="teachers" element={<TabTeachers />} />
-            <Route path="message" element={<TabMessage />} />
-            <Route path="my-reviews" element={<TabMyReviews />} />
+            <Route index element={<TabProfile />} />
+            <Route path="courses" element={<TabMyCourses />} />
+            <Route path="teachers">
+              <Route index element={<TabTeachers />} />
+              <Route path="chat/:teacherId" element={<TabChat />} />
+            </Route>
+            <Route path="messages" element={<TabMessage />} />
+            <Route path="reviews" element={<TabMyReviews />} />
           </Route>
-          <Route path="coursecontent" element={<CourseContent />} />
-
+          <Route path="study/:courseId" element={<CourseContent />} />
+          <Route path="mentors/:mentorId" element={<MentorPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route path="*" element={<NotfoundPage />} />

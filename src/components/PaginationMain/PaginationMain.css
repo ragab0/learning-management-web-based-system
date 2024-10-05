@@ -1,0 +1,3 @@
+.pagination-section li.disabled {
+  cursor: not-allowed;
+}

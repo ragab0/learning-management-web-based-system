@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./CustomerComments.css";
 import customerImage from "../../../../assets/customersImgs/cust4.png";
 import { customers } from "../../../../data/dummyData";
+import QuoteIcon from "../../../../assets/svgsComps/QuoteIcon";
 
 export default function CustomerComments() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,17 +29,11 @@ export default function CustomerComments() {
 
     return displayedCustomers.map((customer, index) => (
       <div className="col-lg-4 col-md-6 col-sm-6 mb-4" key={index}>
-        <div className="box d-flex flex-column align-items-start p-3 pb-0">
-          <div className="text-start">
-            <h3 className="seeAll">
-              <i className="fa-solid fa-quote-left"></i>
-            </h3>
-          </div>
-          <div className="d-flex flex-wrap">
-            <h6 className="mb-0">"{customer.quote}"</h6>
-          </div>
-          <div className="row d-flex flex-row justify-content-between m-2 w-100">
-            <div className="col-3 d-flex">
+        <div className="box d-flex flex-column align-items-start p-4">
+          <QuoteIcon />
+          <h6 className="my-3">"{customer.quote}"</h6>
+          <div className="row d-flex justify-content-between w-100">
+            <div className="col-3">
               <img
                 src={customer.imgSrc ? customer.imgSrc : customerImage}
                 alt={customer.name}
@@ -56,12 +51,10 @@ export default function CustomerComments() {
   };
 
   return (
-    <section className="customer-comments-section container">
-      <div className="container-fluid mt-5 p-5 customer">
-        <div className="row d-flex flex-wrap ps-5 pe-3 pb-3">
-          <div className="col-4">
-            <h2>What Our Customers Say About Us</h2>
-          </div>
+    <section className="customer-comments-section">
+      <div className="container">
+        <header className=" d-flex justify-content-between mb-3">
+          <h2>What Our Customers Say About Us</h2>
           <div className="col-8 d-flex justify-content-end align-items-center">
             <button onClick={prevComment} className="btn btn-secondary">
               <i className="fa-solid fa-chevron-left"></i>
@@ -70,9 +63,8 @@ export default function CustomerComments() {
               <i className="fa-solid fa-chevron-right"></i>
             </button>
           </div>
-        </div>
-
-        <div className="row ps-5 ">{renderCustomers()}</div>
+        </header>
+        <div className="row ">{renderCustomers()}</div>
       </div>
     </section>
   );

@@ -1,0 +1,139 @@
+.reviewProfile {
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid var(--grey-border, #e2e8f0);
+  background: var(--white, #fff);
+  display: flex;
+  max-width: 902px;
+  gap: 40px 46px;
+  overflow: hidden;
+  font-family: Inter, sans-serif;
+  flex-wrap: wrap;
+  padding: 18px 16px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-grow: 1;
+  flex-basis: 0;
+  width: fit-content;
+}
+
+@media (max-width: 991px) {
+  .content {
+    max-width: 100%;
+  }
+}
+
+.courseInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--grey-900, #0f172a);
+  justify-content: flex-start;
+}
+
+.courseLabel {
+  font-size: 14px;
+  font-weight: 400;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.courseTitle {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.ratingContainer {
+  display: flex;
+  margin-top: 16px;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--grey-900, #0f172a);
+  font-weight: 400;
+  white-space: nowrap;
+  justify-content: flex-start;
+}
+
+@media (max-width: 991px) {
+  .ratingContainer {
+    white-space: initial;
+  }
+}
+
+.ratingLabel {
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.ratingStars {
+  aspect-ratio: 5;
+  object-fit: contain;
+  object-position: center;
+  width: 100px;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.reviewContainer {
+  align-self: stretch;
+  display: flex;
+  margin-top: 16px;
+  align-items: flex-start;
+  gap: 8px;
+  font-weight: 400;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .reviewContainer {
+    max-width: 100%;
+  }
+}
+
+.reviewLabel {
+  color: var(--grey-900, #0f172a);
+  font-size: 14px;
+}
+
+.reviewText {
+  color: var(--grey-700, #334155);
+  font-size: 16px;
+  line-height: 26px;
+  width: 740px;
+}
+
+@media (max-width: 991px) {
+  .reviewText {
+    max-width: 100%;
+  }
+}
+
+.profileIcon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 24px;
+  align-self: flex-start;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

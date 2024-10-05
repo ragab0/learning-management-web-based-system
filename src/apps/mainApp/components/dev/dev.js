@@ -10,13 +10,13 @@ export default function Dev() {
           <NavLink to="/courses/1">CoursePage</NavLink>
         </li>
         <li>
-          <NavLink to="/mentor/1">MentorPage</NavLink>
+          <NavLink to="/mentors/1">MentorPage</NavLink>
         </li>
         <li>
           <NavLink to="/profile">ProfilePage</NavLink>
         </li>
         <li>
-          <NavLink to="/coursecontent">CourseContent</NavLink>
+          <NavLink to="/study/0">CourseContent</NavLink>
         </li>
       </ul>
     </div>

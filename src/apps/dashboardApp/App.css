@@ -3,3 +3,38 @@
   grid-template-columns: 300px 1fr;
   min-height: 100vh;
 }
+
+/*
+ * Signup && Login pages;
+ */
+
+.signup-dashpage,
+.login-dashpage {
+  background-color: #040d21;
+  color: #8193b2;
+}
+.signup-dashpage-body,
+.login-dashpage-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 50px 100px;
+}
+.signup-dashpage-body .title,
+.login-dashpage-body .title {
+  font-family: monospace;
+  border-bottom: 1px solid;
+}
+.signup-dashpage-content,
+.login-dashpage-content {
+  background-color: #0c162d;
+  border: 1px solid #202637;
+  padding: 1.5rem;
+  min-width: 400px;
+  min-height: 400px;
+}
+
+.signup-dashpage-content .auth-more-options p span,
+.login-dashpage-content .auth-more-options p span {
+  background-color: hsl(222, 58%, 11%);
+}

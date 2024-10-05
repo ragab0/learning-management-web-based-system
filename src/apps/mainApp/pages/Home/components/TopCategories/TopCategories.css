@@ -1,19 +1,25 @@
-.seeAll, .categ {
-    color: #3b82f6;
+.home-page .top-catgs .top-catgs {
+  margin-block: var(--main-margin);
 }
-.categ {
-    padding: 15px;
-    background: #e0f2fe;
-    border-radius: 50%;
-    font-size: 35px;
-}
-.box {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    border-radius: 40px;
-    border-color: #e9eef6;
-    border: 2px solid #e9eef6;
-    box-shadow: 2px 0px #f9fbfe;
+.home-page .top-catgs .box {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 40px;
+  border-color: #e9eef6;
+  border: 2px solid #e9eef6;
+  box-shadow: 2px 0px #f9fbfe;
+  cursor: default;
 }
 
+.home-page .top-catgs i {
+  padding: 15px;
+  color: #3b82f6;
+  background: #e0f2fe;
+  border-radius: 50%;
+  font-size: 35px;
+  transition: 0.2s ease;
+}
 
+.home-page .top-catgs .box:hover i {
+  transform: scale(1.2);
+}
