@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../../../components/Logo/Logo";
 import CloseArrow from "../../../../assets/svgsComps/CloseArrow";
 import DashboardIcon from "../../../../assets/svgsComps/dashboard/Dashboard";
@@ -8,6 +8,7 @@ import CourseIcon from "../../../../assets/svgsComps/dashboard/Course";
 import ChatIcon from "../../../../assets/svgsComps/dashboard/Chat";
 import DollarIcon from "../../../../assets/svgsComps/dashboard/Dollar";
 import SettingIcon from "../../../../assets/svgsComps/dashboard/Setting";
+import ProfileImg from "../../../../assets/mentorsImgs/profile.png";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -31,7 +32,7 @@ export default function Sidebar() {
     >
       <header className="d-flex justify-content-between  align-items-center">
         <Logo />
-        <i onClick={isSideOpenedHandler}>
+        <i onClick={isSideOpenedHandler} className="open-close-arrow">
           <CloseArrow />
         </i>
       </header>
@@ -79,7 +80,13 @@ export default function Sidebar() {
           </li>
         </ul>
       </nav>
-      <div></div>
+      <Link
+        to={"profile"}
+        className="footer d-flex align-items-center  flex-wrap gap-2"
+      >
+        <img src={ProfileImg} alt="profile-img"></img>
+        <span className=" text-nowrap navbar-text p-0">Hello, world!</span>
+      </Link>
     </aside>
   );
 }

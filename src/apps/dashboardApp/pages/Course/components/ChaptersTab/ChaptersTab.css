@@ -1,8 +1,3 @@
-.chapters-tab {
-  width: 1140px;
-  margin: 30px auto;
-}
-
 .chapters-tab .chapters-tab-header .chapterNav {
   display: flex;
   justify-content: space-between;

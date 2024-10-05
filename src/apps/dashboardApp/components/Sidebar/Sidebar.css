@@ -1,13 +1,18 @@
-.sidebar {
+:root {
   --pad: 0.5rem;
+}
+
+.sidebar {
   background-color: var(--clr-grey-darkest);
   color: var(--clr-grey-white);
-  width: 100%;
-  max-width: 100%;
+  width: 300px;
   height: 100%;
   padding: var(--pad);
-  transition: all 105ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-  overflow: hidden;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-items: end;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .sidebar header {
@@ -16,11 +21,14 @@
   margin-bottom: 1rem;
 }
 
+.sidebar img,
 .sidebar i {
   cursor: pointer;
   border-radius: 50%;
   width: 48px;
   height: 48px;
+}
+.sidebar i {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,10 +59,18 @@
   fill: #3b82f6;
 }
 
+.sidebar .footer span {
+  font-size: 14px;
+}
+
 /* closed sidebar */
 
 .sidebar.closed {
-  max-width: calc(48px + var(--pad) * 2);
+  width: calc(48px + var(--pad) * 2);
+}
+
+.sidebar.closed .open-close-arrow {
+  transform: rotate(180deg);
 }
 
 .sidebar.closed .logo,
@@ -69,4 +85,18 @@
 
 .sidebar.closed a {
   padding: 0;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-app {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+  .dashboard-app .sidebar + div {
+    padding-left: calc(1rem + 48px + var(--pad) * 2);
+  }
 }

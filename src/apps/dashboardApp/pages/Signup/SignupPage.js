@@ -6,7 +6,7 @@ import AuthMoreOptions from "../../../../components/AuthMoreOptions/AuthMoreOpti
 
 export default function SignupPage() {
   return (
-    <div className="signup-dashpage dark">
+    <div className="form-dash-page signup-dash-page dark">
       <header className="container d-flex justify-content-between align-items-center py-3">
         <Link to="../">
           <LogoIcon />
@@ -18,8 +18,8 @@ export default function SignupPage() {
           </Link>
         </div>
       </header>
-      <div className="signup-dashpage-body">
-        <div className="signup-dashpage-content">
+      <div className="form-dash-page-body">
+        <div className="form-dash-page-content">
           <p className="title text-center">Welcome to LMS-DEPI!</p>
           <SignupForm role="mentor" />
           <AuthMoreOptions title={"Sign up with"} role="mentor" type="signup" />

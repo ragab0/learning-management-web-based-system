@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 export default function SortBy({ sortByOptions = [] }) {
   const [currentSort, setCurrentSort] = useState(sortByOptions[0]);
   return (
@@ -25,7 +26,9 @@ export default function SortBy({ sortByOptions = [] }) {
             <li>
               <Link
                 key={i}
-                className={`dropdown-item ${currentSort === s ? "active" : ""}`}
+                className={`dropdown-item text-capitalize ${
+                  currentSort === s ? "active" : ""
+                }`}
                 to="#"
                 onClick={() => setCurrentSort(s)}
               >

@@ -4,9 +4,8 @@ import CoursesList from "./Components/CoursesList/CoursesList";
 
 export default function CoursesPage() {
   return (
-    <div className="courses-page">
-      CoursesPage
-      <h1>Courses list...</h1>
+    <div className="courses-dash-page">
+      <h2>Courses list...</h2>
       <CoursesList />
     </div>
   );

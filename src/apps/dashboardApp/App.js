@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
-import Communication from "./pages/Communication/components/CommunicationPage";
+import Communication from "./pages/Communication/CommunicationPage";
 import RevenuePage from "./pages/Revenue/components/RevenuePage";
 import SettingsPage from "./pages/Settings/components/SettingsPage";
 import CoursePage from "./pages/Course/CoursesPage";
@@ -21,6 +21,8 @@ import CouponDetails from "./pages/Course/components/PromotionTab/components/Cou
 import EditCoupon from "./pages/Course/components/PromotionTab/components/CouponDetails/components/EditCoupon/EditCoupon";
 import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
+import Profile from "./pages/Profile/Profile";
+import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTab";
 
 export default function DashboardApp() {
   const location = useLocation();
@@ -58,9 +60,14 @@ export default function DashboardApp() {
             <Route path="settings" element={<SettingsTab />} />
           </Route>
         </Route>
-        <Route path="communication" element={<Communication />} />
+        <Route path="communication" element={<Communication />}>
+          <Route index element={<ReviewsTab />} />
+          <Route path="reviews" element={<ReviewsTab />} />
+          <Route path="messages" element={<MessagesTab />} />
+        </Route>
         <Route path="revenue" element={<RevenuePage />} />
         <Route path="settings" element={<SettingsPage />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
         <Route path="*" element={"NotFound on dashboard app !!"} />

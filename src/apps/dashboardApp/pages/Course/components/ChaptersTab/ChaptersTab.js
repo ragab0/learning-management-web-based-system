@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./ChaptersTab.css";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Tabs from "../../../../components/Tabs/Tabs";
+
+const tabs = [{ name: "details", to: ".", end: true }, { name: "resources" }];
 
 export default function ChaptersTab() {
-  const [activeTab, setActiveTab] = useState("details");
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
   return (
     <div className="chapters-tab">
       <header className="chapters-tab-header">
@@ -25,35 +23,7 @@ export default function ChaptersTab() {
             </button>
           </div>
         </div>
-        <ul className="chapters-tab-tabs">
-          <li className=" details text-primary">
-            <NavLink
-              style={{
-                color: activeTab === "details" ? "#3b82f6" : "#475569",
-                borderBottom:
-                  activeTab === "details" ? "3px solid #3b82f6" : "none",
-              }}
-              onClick={() => handleTabClick("details")}
-              to=""
-              end
-            >
-              Details
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              style={{
-                color: activeTab === "resources" ? "#3b82f6" : "#475569",
-                borderBottom:
-                  activeTab === "resources" ? "3px solid #3b82f6" : "none",
-              }}
-              onClick={() => handleTabClick("resources")}
-              to="resources"
-            >
-              Resources
-            </NavLink>
-          </li>
-        </ul>
+        <Tabs tabs={tabs} />
       </header>
       <div className="chapters-tab-body">
         <Outlet />

@@ -1,32 +1,42 @@
 .dashboard-app {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: auto 1fr;
   min-height: 100vh;
+}
+
+.dashboard-app > div {
+  padding: 1rem;
+}
+
+.dashboard-app h1,
+.dashboard-app h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: capitalize;
 }
 
 /*
  * Signup && Login pages;
  */
-
-.signup-dashpage,
-.login-dashpage {
+.form-dash-page {
   background-color: #040d21;
   color: #8193b2;
 }
-.signup-dashpage-body,
-.login-dashpage-body {
+
+.form-dash-page-body {
   display: flex;
   align-items: center;
   justify-content: center;
   padding-block: 50px 100px;
 }
-.signup-dashpage-body .title,
-.login-dashpage-body .title {
+
+.form-dash-page-body .title {
   font-family: monospace;
   border-bottom: 1px solid;
 }
-.signup-dashpage-content,
-.login-dashpage-content {
+
+.form-dash-page-content {
   background-color: #0c162d;
   border: 1px solid #202637;
   padding: 1.5rem;
@@ -34,7 +44,6 @@
   min-height: 400px;
 }
 
-.signup-dashpage-content .auth-more-options p span,
-.login-dashpage-content .auth-more-options p span {
+.form-dash-page-content .auth-more-options p span {
   background-color: hsl(222, 58%, 11%);
 }

@@ -6,7 +6,7 @@ import AuthMoreOptions from "../../../../components/AuthMoreOptions/AuthMoreOpti
 
 export default function LoginPage() {
   return (
-    <div className="login-dashpage dark">
+    <div className="form-dash-page login-dash-page dark">
       <header className="container d-flex justify-content-between align-items-center py-3">
         <Link to="../">
           <LogoIcon />
@@ -18,8 +18,8 @@ export default function LoginPage() {
           </Link>
         </div>
       </header>
-      <div className="login-dashpage-body">
-        <div className="login-dashpage-content">
+      <div className="form-dash-page-body">
+        <div className="form-dash-page-content">
           <p className="title text-center">Let’s begin the adventure!</p>
           <LoginForm role="mentor" />
           <AuthMoreOptions title={"Sign in with"} role="mentor" type="login" />

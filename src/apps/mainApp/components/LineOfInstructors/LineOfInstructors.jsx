@@ -11,7 +11,7 @@ export default function LineOfInstructors({ title }) {
       const instructor = instructors[i];
       instructorCards.push(
         <div key={i} className="col-lg-2 col-md-5 col-sm-6" style={{ flex: 1 }}>
-          <Link to={`/instructors/${i}`}>
+          <Link to={`/mentors/${i}`}>
             <figure className="box d-flex flex-column align-items-center p-3 pb-0 mb-0">
               <div className="text-start mb-3 w-100">
                 <img

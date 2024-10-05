@@ -8,7 +8,9 @@ export default function FilterHeader() {
       <button className="btn btn-light border-black p-2 ps-4 pe-4">
         <i className="fa-solid fa-filter"></i> Filter
       </button>
-      <SortBy />
+      <SortBy
+        sortByOptions={["name (a-z)", "name (z-a)", "top rate", "low price"]}
+      />
     </div>
   );
 }
