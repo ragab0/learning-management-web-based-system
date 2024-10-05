@@ -1,6 +1,6 @@
 import React from "react";
 import "./TabTeachers.css";
-import Teacher from "../../../../assets/mentorsImgs/mentor3.png";
+import Teacher from "../../../../../../assets/mentorsImgs/mentor3.png";
 
 const teachersData = [
   { name: "Ronald Richards", role: "UI/UX Designer", img: Teacher },

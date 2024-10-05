@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./Aside.css";
-import profileImg from "../../../../assets/mentorsImgs/mentor1.png";
+import profileImg from "../../../../../../assets/mentorsImgs/mentor1.png";
 
 export default function Aside() {
   const { pathname } = useLocation();

@@ -1,6 +1,6 @@
 import React from "react";
 import "./TabProfile.css";
-import Img from "../../../../assets/svgsComps/image.svg";
+import Img from "../../../../../../assets/svgsComps/image.svg";
 
 export default function TabProfile() {
   const handleSubmit = (e) => {
