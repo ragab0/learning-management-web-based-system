@@ -6,6 +6,7 @@ export default function LayoutCheckboxes({
   showCheckboxes = true,
   staticName = "name",
   reverseCols = false,
+  isLinkable = false,
 }) {
   const [checkInputs, setCheckInputs] = useState({});
 
@@ -28,18 +29,23 @@ export default function LayoutCheckboxes({
     >
       {children.map((child, i) => (
         <label
-          className={`${staticName}${i + 1} d-flex align-items-center gap-2`}
+          className={`${staticName}${
+            i + 1
+          } d-flex align-items-center gap-2 w-100`}
         >
           {showCheckboxes && (
-            <input
-              type="checkbox"
-              className=" form-check-input m-0"
-              name={staticName + (i + 1)}
-              checked={checkInputs[staticName + (i + 1)]}
-              onChange={checkHandler}
-            />
+            <div className="d-flex align-items-center gap-2">
+              <input
+                type="checkbox"
+                className=" form-check-input m-0"
+                name={staticName + (i + 1)}
+                checked={checkInputs[staticName + (i + 1)]}
+                onChange={checkHandler}
+                style={{ width: "20px", height: "20px" }}
+              />
+            </div>
           )}
-          <div>{child} </div>
+          <div className="w-100">{child} </div>
         </label>
       ))}
     </div>

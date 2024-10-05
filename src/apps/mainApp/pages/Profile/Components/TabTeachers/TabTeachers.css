@@ -1,31 +1,3 @@
-.tab-teachers .teachers {
-  display: flex;
-  flex-wrap: wrap;
-}
-.tab-teachers .teacher {
-  width: 23%;
-  margin-right: 15px;
-  margin-top: 15px;
-  border: 2px solid var(--grey-border);
-  text-align: center;
-  padding: 20px;
-  border-radius: 20px;
-}
-
-.tab-teachers .teacher img {
-  width: 177px !important;
-  height: 132px !important;
-}
-
-.tab-teachers .teacher button {
-  height: 45px;
-  padding-left: 10px;
-  background-color: #2563eb !important;
-  color: #fff;
-  outline: none;
-  border-radius: 10px;
-}
-
-.tab-teachers .teacher button i {
+.tab-my-teachers .teacher button i {
   color: #fff;
 }

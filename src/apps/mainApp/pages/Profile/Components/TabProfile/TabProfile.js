@@ -11,15 +11,21 @@ export default function TabProfile() {
   return (
     <div className="tab-profile">
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <TextInput label="First Name" placeholder="Label" />
-          <TextInput label="Last Name" placeholder="Label" />
-        </div>
-        <TextInput label="Heading" placeholder="Label" />
-        <TextArea label="Description" placeholder="Label" />
-        <SelectInput label="Language" options={["Label"]} />
-        <ImageUpload />
-        <LinksSection />
+        <section>
+          <div className="form-group">
+            <TextInput label="First Name" placeholder="Label" />
+            <TextInput label="Last Name" placeholder="Label" />
+          </div>
+          <TextInput label="Heading" placeholder="Label" />
+          <TextArea label="Description" placeholder="Label" />
+          <SelectInput label="Language" options={["English", "Arabic"]} />
+        </section>
+        <section>
+          <ImageUpload />
+        </section>
+        <section>
+          <LinksSection />
+        </section>
       </form>
     </div>
   );
@@ -28,7 +34,11 @@ export default function TabProfile() {
 const TextInput = ({ label, placeholder }) => (
   <label>
     {label}
-    <input className="rounded-2 p-2" type="text" placeholder={placeholder} />
+    <input
+      className="form-control py-2"
+      type="text"
+      placeholder={placeholder}
+    />
   </label>
 );
 
@@ -37,7 +47,7 @@ const TextArea = ({ label, placeholder }) => (
     <label className="w-100">
       {label}
       <input
-        className="rounded-2 p-2 pb-5"
+        className="form-control py-2 pb-5"
         type="text"
         placeholder={placeholder}
       />
@@ -47,12 +57,14 @@ const TextArea = ({ label, placeholder }) => (
 
 const SelectInput = ({ label, options }) => (
   <>
-    <label className="d-block">{label}</label>
-    <select>
-      {options.map((option, index) => (
-        <option key={index}>{option}</option>
-      ))}
-    </select>
+    <label className="d-grid">
+      {label}
+      <select className="form-select">
+        {options.map((option, index) => (
+          <option key={index}>{option}</option>
+        ))}
+      </select>
+    </label>
   </>
 );
 

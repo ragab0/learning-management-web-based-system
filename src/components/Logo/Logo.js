@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { imgsComps } from "../../assets";
+import LogoIcon from "../../assets/svgsComps/LogoIcon";
 import "./Logo.css";
-
-const { LogoIcon } = imgsComps;
 
 export default function Logo() {
   return (

@@ -1,0 +1,76 @@
+.messageContainer {
+  border-radius: 16px;
+  border: 1px solid var(--grey-border, #e2e8f0);
+  background: var(--white, #fff);
+  max-width: 950px;
+  overflow: hidden;
+  font-family: Inter, sans-serif;
+  padding: 16px;
+}
+
+.messageHeader {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 991px) {
+  .messageHeader {
+    max-width: 100%;
+  }
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  color: var(--grey-900, #0f172a);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.userAvatar {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.messageDate {
+  color: var(--grey-700, #334155);
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  margin: auto 0;
+}
+
+.messageContent {
+  color: var(--grey-900, #0f172a);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  align-self: start;
+  margin-top: 16px;
+}
+
+@media (max-width: 991px) {
+  .messageContent {
+    max-width: 100%;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

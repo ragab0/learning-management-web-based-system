@@ -9,10 +9,10 @@ export default function LineOfCourses({ title }) {
     return courses.slice(0, 4).map((course, index) => (
       <div
         key={index}
-        className="col-lg-3 col-md-4 col-sm-6"
+        className="course-card-wrapper col-lg-3 col-md-4 col-sm-6"
         style={{ flex: 1 }}
       >
-        <CourseOvervewCard course={course} />
+        <CourseOvervewCard course={course} courseId={index} />
       </div>
     ));
   };

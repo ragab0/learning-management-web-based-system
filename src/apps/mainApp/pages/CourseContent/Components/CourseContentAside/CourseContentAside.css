@@ -1,0 +1,15 @@
+.course-content-page .aside-content {
+  top: 0;
+  border-radius: 0;
+}
+
+.course-content-page .aside-content .layout-menu-toggler {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-border);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+}
+
+.course-content-page .aside-content label {
+  align-items: flex-start !important;
+}

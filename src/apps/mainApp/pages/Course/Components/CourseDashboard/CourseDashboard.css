@@ -1,39 +1,6 @@
-.course-page .tabs-items {
-  display: flex;
-  gap: 1rem;
-  margin-top: 4rem;
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--grey-border);
-}
-
-.course-page .tabs-items a {
-  border: 1px solid var(--grey-border);
-  border-radius: 5px;
-  padding: 0.75rem 2rem;
-}
-.course-page .tabs-items a:hover,
-.course-page .tabs-items a.active {
-  border-color: var(--clr-grey-disabled) !important;
-  background-color: #eff6ff;
-}
-
-.course-page .course-tabs-content p:last-of-type {
-  margin-bottom: 0;
-}
-
-.course-page .course-tabs-content > *:not(:last-of-type) {
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--grey-border);
-}
-
 .course-page .course-syllabus-tab .chapters {
   border: 1px solid var(--grey-border);
 }
 .course-page .course-syllabus-tab .chapters .chapter:not(:last-of-type) {
   border-bottom: 1px solid var(--grey-border);
-}
-
-.course-page .course-learner-reviews-tab {
 }

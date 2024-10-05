@@ -46,12 +46,12 @@ export default function CourseHeader() {
           </span>
         </div>
         <div className="my-3 user_details">
-          <Link to="/mentor/0">
+          <Link to="/mentors/0">
             <img src={myImage} alt="user" />
           </Link>
           <span className="userName">
             Created by
-            <Link to="/mentor/0" className="ms-1 user_name text-capitalize">
+            <Link to="/mentors/0" className="ms-1 user_name text-capitalize">
               Ronald Richards
             </Link>
           </span>

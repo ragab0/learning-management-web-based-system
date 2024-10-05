@@ -8,14 +8,14 @@ export default function InstructorTab() {
     <div className="instructor-tab">
       <h4 className=" text-dark fw-bold">Instructor</h4>
       <Link
-        to="/mentor/0"
+        to="/mentors/0"
         className="d-block mt-3 mb-1 fw-bolder text-primary fs-5"
       >
         Ronald Richards
       </Link>
       <h5 className=" fs-6">UI/UX Designer</h5>
       <div className="ins_info">
-        <Link to="/mentor/0">
+        <Link to="/mentors/0">
           <img src={myImage} alt="instructor" />
         </Link>
         <div className="ins_details ms-4 mt-3">

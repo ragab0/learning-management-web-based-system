@@ -3,6 +3,7 @@ import "./CourseDashboard.css";
 import LearnerReviews from "../../../../components/LearnerReviews/LearnerReviews";
 import InstructorTab from "../../../../components/InstructorTab/InstructorTab";
 import Chapter from "../Chapter/Chapter";
+import Tabs from "../../../../components/Tabs/Tabs";
 
 const tabs = ["Description", "Instructor", "Syllabus", "Reviews"];
 const chapter = [
@@ -14,23 +15,11 @@ const chapter = [
 export default function CourseDashboard() {
   return (
     <div className="course-dashboard mt-5">
-      <ul className="tabs-items mb-4">
-        {tabs.map((name, i) => (
-          <li>
-            <a
-              key={i}
-              href={"#" + name.toLocaleLowerCase()}
-              className={`btn ${i === 0 ? "active" : ""}`}
-            >
-              {name}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <div className="course-tabs-content">
+      <Tabs tabs={tabs} />
+      <div className="tabs-content">
         <div className="course-desc-tab" id={tabs[0].toLocaleLowerCase()}>
           <div className="course_desc">
-            <h4 className=" text-dark fw-bold">Course Description</h4>
+            <h4 className="text-dark fw-bold">Course Description</h4>
             <p className="mb-4">
               This interactive e-learning course will introduce you to User
               Experience (UX) design, the art of creating products and services

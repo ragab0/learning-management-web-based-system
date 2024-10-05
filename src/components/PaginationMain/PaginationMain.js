@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./Pagination.css";
+import "./PaginationMain.css";
 
 const data = [...new Array(10)];
 
-export default function Pagination() {
+export default function PaginationMain() {
   const [currentPage, setCurrentPage] = useState(1);
 
   function currentPageHandler(curr) {
@@ -17,7 +17,7 @@ export default function Pagination() {
   }
 
   return (
-    <section className="pagination-section my-4">
+    <section className="pagination-section my-4 border-0">
       <nav className="container">
         <ul className="pagination justify-content-center">
           <li class={`page-item ${currentPage === 1 ? "disabled" : ""}`}>

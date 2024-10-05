@@ -10,24 +10,24 @@
   align-items: center;
 }
 
-.navbar-items {
+.main-navbar .navbar-items {
   width: 100%;
   display: flex;
   align-items: center;
   text-transform: capitalize;
 }
 
-.navbar-items .form-item {
+.main-navbar .navbar-items .form-item {
   flex: 1;
   position: relative;
 }
 
-.navbar-items .form-item form {
+.main-navbar .navbar-items .form-item form {
   display: flex;
   flex-direction: row-reverse;
 }
 
-.navbar-items .form-item input {
+.main-navbar .navbar-items .form-item input {
   padding: 0.75rem;
   padding-left: 3rem;
   border-radius: 50px;
@@ -35,7 +35,7 @@
   transition: 0.2s ease;
 }
 
-.navbar-items .form-item .button-wrapper {
+.main-navbar .navbar-items .form-item .button-wrapper {
   position: absolute;
   left: 0;
   top: 0;
@@ -43,30 +43,30 @@
   border-radius: 50px;
 }
 
-.navbar-items .form-item button {
+.main-navbar .navbar-items .form-item button {
   border-color: transparent;
 }
 
-.navbar-items .form-item button:active {
+.main-navbar .navbar-items .form-item button:active {
   border-color: transparent;
 }
 
-.navbar-items a {
+.main-navbar .navbar-items a {
   display: block;
   padding: 0.75rem 1rem;
   position: relative;
   /* transition: var(--transition-main); */
 }
 
-.navbar-items a.active {
+.main-navbar .navbar-items a.active {
   font-weight: bold;
 }
 
-.navbar-items a:not(.my-btn):hover {
+.main-navbar .navbar-items a:not(.my-btn):hover {
   color: #000;
 }
 
-.navbar-items a:not(.my-btn):hover path {
+.main-navbar .navbar-items a:not(.my-btn):hover path {
   stroke: #000;
 }
 

@@ -1,12 +1,3 @@
-.course-page .aside-content {
-  position: sticky;
-  top: 2rem;
-  left: 0;
-  border: 1px solid var(--grey-border);
-  padding: 1rem;
-  border-radius: 1rem;
-}
-
 .course-page .aside .course_info .price {
   color: #0f172a;
 }

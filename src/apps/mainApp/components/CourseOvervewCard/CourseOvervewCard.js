@@ -3,9 +3,9 @@ import "./CourseOvervewCard.css";
 import courseImage from "../../../../assets/course1.png";
 import { Link } from "react-router-dom";
 
-export default function CourseOvervewCard({ course, i }) {
+export default function CourseOvervewCard({ course, courseId }) {
   return (
-    <Link to={`/courses/${i}`} className="course-overvew-card">
+    <Link to={`/courses/${courseId}`} className="course-overvew-card">
       <figure className="box d-flex flex-column align-items-start p-3 mb-0">
         <div className="text-start w-100" style={{ height: "150px" }}>
           <img

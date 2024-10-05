@@ -6,7 +6,7 @@ import Aside from "./Components/Aside/Aside";
 export default function ProfilePage() {
   return (
     <div className="profile-page">
-      <div className="container">
+      <div className="content-aside-layout content-aside-layout-reverse container">
         <Aside />
         <main className="profile-page-main">
           <Outlet />

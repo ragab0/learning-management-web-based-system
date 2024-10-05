@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { imgsComps } from "../../../../assets";
 import Logo from "../../../../components/Logo/Logo";
 
@@ -12,8 +12,13 @@ export default function Navbar() {
     e.preventDefault();
   }
 
+  const location = useLocation();
+
   return (
-    <nav className="main-navbar">
+    <nav
+      className="main-navbar"
+      style={location.pathname.includes("study") ? { display: "none" } : {}}
+    >
       {/* <div className="container-fluid"> */}
       <div className=" container-fluid px-4">
         <Logo />

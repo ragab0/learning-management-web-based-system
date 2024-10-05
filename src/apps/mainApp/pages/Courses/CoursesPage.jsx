@@ -6,7 +6,7 @@ import PriceMenu from "./components/PriceMenu/PriceMenu";
 import CategoryMenu from "./components/CategoryMenu/CategoryMenu";
 import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstructors";
 import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
-import Pagination from "../../components/Pagination/Pagination";
+import PaginationMain from "../../../../components/PaginationMain/PaginationMain";
 import CoursesList from "./components/CoursesList/CoursesList";
 import FilterHeader from "./components/FilterHeader/FilterHeader";
 
@@ -27,7 +27,7 @@ export default function CoursesPage() {
         </div>
         <div className="col-lg-9 col-md-9">
           <CoursesList />
-          <Pagination />
+          <PaginationMain />
         </div>
         <LineOfInstructors title="Popular Mentors" />
         <LineOfCourses title="Featured Courses" />
