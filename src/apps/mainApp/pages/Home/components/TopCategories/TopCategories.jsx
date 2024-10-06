@@ -36,11 +36,11 @@ export default function TopCategories() {
           </Link>
         </header>
         <div className="row d-flex justify-content-between">
-          {catgs.map(({ brandClass, title, coursesCount }) => (
-            <div className="col-lg-3 col-md-6 col-sm-6">
+          {catgs.map(({ brandClass, title, coursesCount }, i) => (
+            <div key={i} className="col-lg-3 col-md-6 col-sm-6">
               <div className="box d-flex justify-content-center align-content-center flex-wrap">
                 <div className="brand-img col-12 text-center">
-                  <i class={brandClass}></i>
+                  <i className={brandClass}></i>
                 </div>
                 <div className="col-12 text-center">
                   <h4 className="text-dark pt-2">{title}</h4>

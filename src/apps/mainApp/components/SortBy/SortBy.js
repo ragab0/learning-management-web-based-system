@@ -23,9 +23,8 @@ export default function SortBy({ sortByOptions = [] }) {
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {sortByOptions.map((s, i) => (
-            <li>
+            <li key={i}>
               <Link
-                key={i}
                 className={`dropdown-item text-capitalize ${
                   currentSort === s ? "active" : ""
                 }`}

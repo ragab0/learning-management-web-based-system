@@ -24,27 +24,27 @@ export default function CourseAside() {
           <ul className="shareLinks mt-4">
             <li>
               <Link to={"#"}>
-                <i class=" text-primary fs-4 fa-brands fa-facebook"></i>
+                <i className=" text-primary fs-4 fa-brands fa-facebook"></i>
               </Link>
             </li>
             <li>
               <Link to={"#"}>
-                <i class=" text-black fs-4 fa-brands fa-github"></i>
+                <i className=" text-black fs-4 fa-brands fa-github"></i>
               </Link>
             </li>
             <li>
               <Link to={"#"}>
-                <i class=" text-danger fs-4 fa-brands fa-google"></i>
+                <i className=" text-danger fs-4 fa-brands fa-google"></i>
               </Link>
             </li>
             <li>
               <Link to={"#"}>
-                <i class=" text-black fs-4 fa-brands fa-x-twitter"></i>
+                <i className=" text-black fs-4 fa-brands fa-x-twitter"></i>
               </Link>
             </li>
             <li>
               <Link to={"#"}>
-                <i class=" text-success fs-4 fa-brands fa-microsoft"></i>
+                <i className=" text-success fs-4 fa-brands fa-microsoft"></i>
               </Link>
             </li>
           </ul>

@@ -12,10 +12,10 @@ export default function Rates({ showCheckboxes = true, hasRatsioArray = [] }) {
       showCheckboxes={showCheckboxes}
     >
       {[...new Array(5)].map((_, i) => (
-        <div className="rate-wrapper d-flex align-items-center gap-2">
+        <div key={i} className="rate-wrapper d-flex align-items-center gap-2">
           <span className="rate d-flex gap-1 align-items-center">
             {[...new Array(5)].map((_, j) =>
-              j <= i ? <StarLight /> : <StarDark />
+              j <= i ? <StarLight key={j} /> : <StarDark key={j} />
             )}
           </span>
           {hasRatsioArray.length > 0 && (

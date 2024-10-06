@@ -61,7 +61,9 @@ const SelectInput = ({ label, options }) => (
       {label}
       <select className="form-select">
         {options.map((option, index) => (
-          <option key={index}>{option}</option>
+          <option key={index} value={option}>
+            {option}
+          </option>
         ))}
       </select>
     </label>

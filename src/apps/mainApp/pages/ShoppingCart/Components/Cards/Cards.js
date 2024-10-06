@@ -1,7 +1,6 @@
 import React from "react";
 import "./Cards.css";
 import courseImg from "../../../../../../assets/course2.png";
-import pc from "../../../../../../assets/Pc.png";
 import { Link } from "react-router-dom";
 
 export default function Cards({ cards = [] }) {

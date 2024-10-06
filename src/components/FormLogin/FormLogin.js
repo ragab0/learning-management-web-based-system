@@ -56,7 +56,7 @@ export default function LoginForm({ role = "student" }) {
           />
         </label>
         <button
-          class="btn btn-dark px-3 w-100"
+          className="btn btn-dark px-3 w-100"
           style={{ paddingBlock: ".75rem" }}
         >
           Sign in

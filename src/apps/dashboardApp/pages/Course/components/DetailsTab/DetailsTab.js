@@ -17,7 +17,7 @@ export default function DetailsTab() {
           <div className="upload">
             <h6 className=" mt-5">Upload Intro Video</h6>
             <div className="uploadVideo text-center my-5">
-              <i class="fa-solid fa-upload"></i>
+              <i className="fa-solid fa-upload"></i>
               <h3 className=" fs-4 my-4">
                 Drag and drop files, or{" "}
                 <span className=" text-primary">Browse</span>
@@ -26,7 +26,7 @@ export default function DetailsTab() {
             </div>
             <h6 className=" mt-5">Upload Intro Image</h6>
             <div className="uploadThumbnail text-center my-5">
-              <i class="fa-solid fa-upload"></i>
+              <i className="fa-solid fa-upload"></i>
               <h3 className=" fs-4 my-4">
                 Drag and drop files, or{" "}
                 <span className=" text-primary">Browse</span>

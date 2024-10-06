@@ -5,9 +5,8 @@ export default function Tabs({ tabs = [] }) {
   return (
     <ul className="tabs-items">
       {tabs.map((name, i) => (
-        <li>
+        <li key={i}>
           <a
-            key={i}
             href={"#" + name.toLocaleLowerCase()}
             className={`btn ${i === 0 ? "active" : ""}`}
           >

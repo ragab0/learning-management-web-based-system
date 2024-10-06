@@ -24,14 +24,14 @@ export default function Aside() {
               className="btn btn-link mt-3 mb-4 pb-4 text-decoration-none d-flex align-items-center justify-content-center gap-2 disabled"
             >
               <span className="shareProfile">Share Profile</span>
-              <i class="fa-solid fa-share-nodes fs-5 mb-0"></i>
+              <i className="fa-solid fa-share-nodes fs-5 mb-0"></i>
             </Link>
           </div>
         </header>
         <ul>
           {links.map(({ name, to }, i) => (
-            <li>
-              <NavLink key={i} to={to ? to : name} end>
+            <li key={i}>
+              <NavLink to={to ? to : name} end>
                 {name}
               </NavLink>
             </li>

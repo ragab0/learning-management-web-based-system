@@ -11,7 +11,7 @@ export default function LoginPage() {
         <Link to="../">
           <LogoIcon />
         </Link>
-        <div class="d-flex align-items-center">
+        <div className="d-flex align-items-center">
           <span>Doesn't have an account?</span>
           <Link to="../signup" className="btn btn-link text-decoration-none">
             Sign up <span>&rArr;</span>

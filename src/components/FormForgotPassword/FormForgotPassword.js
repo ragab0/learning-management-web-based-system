@@ -37,7 +37,7 @@ export default function ForgotPasswordForm({ role, label }) {
         </label>
         <FormError errors={errors} />
         <button
-          class={`btn btn-dark px-3 w-100 ${
+          className={`btn btn-dark px-3 w-100 ${
             errors.lengtn > 0 ? "disabled" : ""
           }`}
           style={{ paddingBlock: ".75rem" }}

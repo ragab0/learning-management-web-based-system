@@ -29,6 +29,7 @@ export default function LayoutCheckboxes({
     >
       {children.map((child, i) => (
         <label
+          key={i}
           className={`${staticName}${
             i + 1
           } d-flex align-items-center gap-2 w-100`}

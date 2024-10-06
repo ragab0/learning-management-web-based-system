@@ -57,7 +57,7 @@ export default function CourseHeader() {
           </span>
         </div>
         <div className="lang mt-3">
-          <i class="globe fa-solid fa-globe fs-5"></i>
+          <i className="globe fa-solid fa-globe fs-5"></i>
           <span className="language ms-2">
             English, Spanish, Italian, German
           </span>

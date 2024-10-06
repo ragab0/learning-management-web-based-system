@@ -9,7 +9,7 @@ import StarLight from "../../../../../../assets/svgsComps/StarLight";
 import StarDark from "../../../../../../assets/svgsComps/StarDark";
 
 export default function TabMyCourses() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const coursesPerPage = 6;
 
   const indexOfLastCourse = currentPage * coursesPerPage;
@@ -20,14 +20,6 @@ export default function TabMyCourses() {
   for (let i = 1; i <= Math.ceil(myCourses.length / coursesPerPage); i++) {
     pageNumbers.push(i);
   }
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const renderCourses = () => {
-    return;
-  };
 
   return (
     <div className="tab-my-courses">
@@ -74,9 +66,9 @@ export default function TabMyCourses() {
                     <>
                       {[...Array(5)].map((_, i) =>
                         course.ratingCount && Math.ceil(course.rating) ? (
-                          <StarLight />
+                          <StarLight key={i} />
                         ) : (
-                          <StarDark />
+                          <StarDark key={i} />
                         )
                       )}
                       <h6 className="mb-0 ms-2">

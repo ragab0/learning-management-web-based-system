@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Pagination({
   currentPage,
@@ -17,14 +18,14 @@ export default function Pagination({
       <nav className="d-flex justify-content-center my-5">
         <ul className="pagination pagination-sm">
           <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <a
+            <Link
               className="page-link"
-              href="#"
+              to="#"
               onClick={handlePreviousPage}
               aria-label="Previous"
             >
               <span aria-hidden="true">&laquo;</span>
-            </a>
+            </Link>
           </li>
           {pageNumbers.map((num) => (
             <li
@@ -32,9 +33,9 @@ export default function Pagination({
               onClick={() => handlePageChange(num)}
               className={`page-item ${currentPage === num ? "active" : ""}`}
             >
-              <a className="page-link" href="#">
+              <Link className="page-link" to="#">
                 {num}
-              </a>
+              </Link>
             </li>
           ))}
           <li
@@ -42,14 +43,14 @@ export default function Pagination({
               currentPage === pageNumbers.length ? "disabled" : ""
             }`}
           >
-            <a
+            <Link
               className="page-link"
-              href="#"
+              to="#"
               onClick={handleNextPage}
               aria-label="Next"
             >
               <span aria-hidden="true">&raquo;</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

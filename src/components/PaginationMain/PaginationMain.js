@@ -20,8 +20,12 @@ export default function PaginationMain() {
     <section className="pagination-section my-4 border-0">
       <nav className="container">
         <ul className="pagination justify-content-center">
-          <li class={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <button class="page-link" tabindex="-1" onClick={prevPageHandler}>
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              tabindex="-1"
+              onClick={prevPageHandler}
+            >
               Previous
             </button>
           </li>
@@ -35,9 +39,11 @@ export default function PaginationMain() {
             </li>
           ))}
           <li
-            class={`page-item ${currentPage === data.length ? "disabled" : ""}`}
+            className={`page-item ${
+              currentPage === data.length ? "disabled" : ""
+            }`}
           >
-            <button class="page-link" onClick={nextPageHandler}>
+            <button className="page-link" onClick={nextPageHandler}>
               Next
             </button>
           </li>
