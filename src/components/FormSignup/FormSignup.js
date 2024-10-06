@@ -1,6 +1,7 @@
 import React from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
+import FormError from "../FormError/FormError";
 
 export default function SignupForm({ role = "student" }) {
   const {
@@ -16,11 +17,7 @@ export default function SignupForm({ role = "student" }) {
 
   return (
     <>
-      <div className="error">
-        {Object.values(errors).map((e) => (
-          <p className="text-danger mb-0">* {e.message}</p>
-        ))}
-      </div>
+      <FormError errors={errors} />
       <form
         className="auth-form signup-form needs-validation "
         onSubmit={handleSubmit(submitHandler)}

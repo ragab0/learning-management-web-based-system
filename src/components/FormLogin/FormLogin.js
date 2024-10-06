@@ -1,6 +1,8 @@
 import React from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
+import FormError from "../FormError/FormError";
+import { Link } from "react-router-dom";
 
 export default function LoginForm({ role = "student" }) {
   const {
@@ -16,11 +18,7 @@ export default function LoginForm({ role = "student" }) {
 
   return (
     <>
-      <div className="error">
-        {Object.values(errors).map((e) => (
-          <p className="text-danger mb-0">* {e.message}</p>
-        ))}
-      </div>
+      <FormError errors={errors} />
       <form
         className="auth-form login-form"
         onSubmit={handleSubmit(submitHandler)}
@@ -40,7 +38,12 @@ export default function LoginForm({ role = "student" }) {
           />
         </label>
         <label>
-          <span>Password</span>
+          <span className="d-flex justify-content-between align-items-center ">
+            Password{" "}
+            <Link to="../reset-password" className="h6 fw-light btn-link ">
+              Forgot password?
+            </Link>
+          </span>
           <input
             className={`form-control ${
               errors?.password ? "is-invalid border-danger" : ""

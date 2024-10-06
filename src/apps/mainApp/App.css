@@ -55,20 +55,17 @@ figure:hover {
  * Signup && login pages:
  *
  */
-.signup-page,
-.login-page {
+.form-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.signup-page-content,
-.login-page-content {
+.form-page-content {
   padding-block: 150px;
   padding-inline: 1.5rem;
 }
 
-.signup-img-wrapper,
-.login-img-wrapper {
+.form-img-wrapper {
   background-color: #0f1d36;
   background-image: url("../../assets/signup.png");
   background-repeat: no-repeat;

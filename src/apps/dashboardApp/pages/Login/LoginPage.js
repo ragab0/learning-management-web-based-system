@@ -1,7 +1,7 @@
 import React from "react";
 import LogoIcon from "../../../../assets/svgsComps/LogoIcon";
 import { Link } from "react-router-dom";
-import LoginForm from "../../../../components/LoginForm/LoginForm";
+import LoginForm from "../../../../components/FormLogin/FormLogin";
 import AuthMoreOptions from "../../../../components/AuthMoreOptions/AuthMoreOptions";
 
 export default function LoginPage() {

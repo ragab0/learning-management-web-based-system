@@ -10,6 +10,8 @@ import DollarIcon from "../../../../assets/svgsComps/dashboard/Dollar";
 import SettingIcon from "../../../../assets/svgsComps/dashboard/Setting";
 import ProfileImg from "../../../../assets/mentorsImgs/profile.png";
 
+const hiddenPages = ["signup", "login", "reset-password"];
+
 export default function Sidebar() {
   const location = useLocation();
   const [isSideOpened, setIsSideOpened] = useState(true);
@@ -22,8 +24,9 @@ export default function Sidebar() {
     <aside
       className={`sidebar ${isSideOpened ? "" : "closed"}`}
       style={
-        location.pathname.includes("login") ||
-        location.pathname.includes("signup")
+        hiddenPages
+          .map((h) => location.pathname.includes(h))
+          .find((result) => result)
           ? {
               display: "none",
             }

@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
+import Sidebar from "./components/Sidebar/Sidebar";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
 import Communication from "./pages/Communication/CommunicationPage";
@@ -14,15 +15,17 @@ import ChaptersTab from "./pages/Course/components/ChaptersTab/ChaptersTab";
 import PromotionTab from "./pages/Course/components/PromotionTab/PromotionTab";
 import DetailsTab from "./pages/Course/components/DetailsTab/DetailsTab";
 import SettingsTab from "./pages/Course/components/SettingsTab/ReviewsTab";
-import Sidebar from "./components/Sidebar/Sidebar";
 import ChaptersTabResourcesTab from "./pages/Course/components/ChaptersTab/ChaptersTabResourcesTab/ChaptersTabResourcesTab";
 import ChaptersTabDetailsTab from "./pages/Course/components/ChaptersTab/ChaptersTabDetailsTab/ChaptersTabDetailsTab";
 import CouponDetails from "./pages/Course/components/PromotionTab/components/CouponDetails/CouponDetails";
 import EditCoupon from "./pages/Course/components/PromotionTab/components/CouponDetails/components/EditCoupon/EditCoupon";
 import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
-import Profile from "./pages/Profile/Profile";
+import ProfilePage from "./pages/Profile/ProfilePage";
 import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTab";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";
+
+const oneSidePages = ["signup", "login", "reset-password"];
 
 export default function DashboardApp() {
   const location = useLocation();
@@ -30,8 +33,9 @@ export default function DashboardApp() {
     <div
       className="dashboard-app"
       style={
-        location.pathname.includes("signup") ||
-        location.pathname.includes("login")
+        oneSidePages
+          .map((o) => location.pathname.includes(o))
+          .find((result) => result)
           ? {
               gridTemplateColumns: "1fr",
             }
@@ -67,9 +71,10 @@ export default function DashboardApp() {
         </Route>
         <Route path="revenue" element={<RevenuePage />} />
         <Route path="settings" element={<SettingsPage />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
+        <Route path="reset-password" element={<ForgotPassword />} />
         <Route path="*" element={"NotFound on dashboard app !!"} />
       </Routes>
     </div>
