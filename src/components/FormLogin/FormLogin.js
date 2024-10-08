@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import FormError from "../FormError/FormError";
 import { Link } from "react-router-dom";
+import myAxios from "../../utils/myAxios";
 
 export default function LoginForm({ role = "student" }) {
+  const [initialDataForm, setInitialDataForm] = useState({});
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    watch,
+  } = useForm({ values: initialDataForm });
 
-  function submitHandler(data) {
+  useEffect(() => {
+    setInitialDataForm(JSON.parse(localStorage.getItem("loginForm")) || {});
+  }, []);
+
+  useEffect(() => {
+    const subscriberWatch = watch(function (formState) {
+      localStorage.setItem(
+        "loginForm",
+        JSON.stringify({
+          email: formState.email,
+        })
+      );
+    });
+    return function () {
+      subscriberWatch.unsubscribe();
+    };
+  }, [watch]);
+
+  async function submitHandler(data) {
     console.log("data is", data);
+    try {
+      await myAxios.post("/login", data);
+    } catch (error) {
+      console.log("ERR:", error);
+    }
   }
 
   return (
@@ -23,7 +49,7 @@ export default function LoginForm({ role = "student" }) {
         className="auth-form login-form"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <input type="hidden" name="role" value={role} />
+        <input type="hidden" value={role} {...register("role")} />
         <label>
           <span>Email</span>
           <input

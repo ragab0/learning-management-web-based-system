@@ -1,18 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import FormError from "../FormError/FormError";
+import myAxios from "../../utils/myAxios";
+import { toast } from "react-toastify";
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function SignupForm({ role = "student" }) {
+  const [initialDataForm, setInitialDataForm] = useState({});
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    watch,
+  } = useForm({ values: initialDataForm });
 
-  function submitHandler(data) {
+  useEffect(() => {
+    setInitialDataForm(JSON.parse(localStorage.getItem("signupForm")) || {});
+  }, []);
+
+  useEffect(() => {
+    const subscriberWatch = watch(function (formState) {
+      localStorage.setItem(
+        "signupForm",
+        JSON.stringify({
+          fname: formState.fname,
+          lname: formState.lname,
+          username: formState.username,
+          email: formState.email,
+        })
+      );
+    });
+    return function () {
+      subscriberWatch.unsubscribe();
+    };
+  }, [watch]);
+
+  async function submitHandler(data) {
+    await sleep(2000);
     console.log("data is", data);
+    try {
+      await myAxios.post("/signup", data);
+    } catch (error) {
+      console.log("ERR:", error);
+    }
   }
 
   return (
@@ -23,7 +56,7 @@ export default function SignupForm({ role = "student" }) {
         onSubmit={handleSubmit(submitHandler)}
         noValidate
       >
-        <input type="hidden" name="role" value={role} required />
+        <input type="hidden" value={role} {...register("role")} />
         <div>
           <label htmlFor="fname">Full name</label>
           <div className="has-validation d-flex gap-4">
