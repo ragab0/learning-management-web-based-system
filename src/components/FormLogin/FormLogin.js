@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../store/slices/authSlice";
+import AuthMoreOptions from "../AuthMoreOptions/AuthMoreOptions";
 import FormError from "../FormError/FormError";
-import { Link } from "react-router-dom";
-import myAxios from "../../utils/myAxios";
 
 export default function LoginForm({ role = "student" }) {
+  const dispatch = useDispatch();
+  const { loading, isAuth } = useSelector((state) => state.auth.login);
+  const navigate = useNavigate();
+
   const [initialDataForm, setInitialDataForm] = useState({});
   const {
     register,
@@ -33,13 +39,14 @@ export default function LoginForm({ role = "student" }) {
     };
   }, [watch]);
 
-  async function submitHandler(data) {
-    console.log("data is", data);
-    try {
-      await myAxios.post("/login", data);
-    } catch (error) {
-      console.log("ERR:", error);
+  useEffect(() => {
+    if (isAuth) {
+      navigate("../");
     }
+  }, [isAuth, navigate]);
+
+  async function submitHandler(data) {
+    dispatch(login(data));
   }
 
   return (
@@ -82,12 +89,15 @@ export default function LoginForm({ role = "student" }) {
           />
         </label>
         <button
-          className="btn btn-dark px-3 w-100"
-          style={{ paddingBlock: ".75rem" }}
+          className={`btn btn-dark px-3 w-100 ${loading ? "disabled" : ""}`}
+          style={{
+            paddingBlock: ".75rem",
+          }}
         >
-          Sign in
+          {loading && <i className="fa fa-refresh fa-spin"></i>} Sign in
         </button>
       </form>
+      <AuthMoreOptions role={role} type="login" loading={loading} />
       <DevTool control={control} />
     </>
   );

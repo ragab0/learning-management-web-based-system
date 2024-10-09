@@ -9,4 +9,3 @@ const coursesSlice = createSlice({
 });
 
 export default coursesSlice.reducer;
-module.exports.authActions = coursesSlice.actions;

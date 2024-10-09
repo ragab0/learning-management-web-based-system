@@ -1,45 +1,72 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import myAxios from "../../utils/myAxios";
+import { toast } from "react-toastify";
 
 const NAME = "auth";
 const initialState = {
   login: {
-    isAuthenticated: false,
-    user: null,
     loading: false,
-    error: null,
+    user: null,
+    isAuth: false,
   },
   signup: {
-    formData: null,
     loading: false,
-    error: null,
   },
   logout: {
     loading: false,
-    error: false,
   },
 };
 
-function login(formData) {
-  return createAsyncThunk(`${NAME}/login`, async () => {
-    const res = await myAxios.post("/login", formData);
-    return res.data;
-  });
-}
+const fixedToastOptions = {
+  autoClose: false,
+  draggable: true,
+  closeOnClick: true,
+};
 
-function signup(formData) {
-  return createAsyncThunk(`${NAME}/signup`, async () => {
-    const res = await myAxios.post("/signup");
-    return res.data;
-  });
-}
+const login = createAsyncThunk(
+  `${NAME}/login`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await toast.promise(myAxios.post("/login", data), {
+        pending: "Login in...",
+        success: "Login in successful! 🎉",
+        error: {
+          render(data) {
+            return data.data.message || "An error occur!";
+          },
+        },
+      });
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
-function logout() {
-  return createAsyncThunk(`${NAME}/logout`, async () => {
-    const res = await myAxios.post("/logout");
-    return res.data;
-  });
-}
+const signup = createAsyncThunk(
+  `${NAME}/signup`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await toast.promise(myAxios.post("/signup", data), {
+        pending: "Signing up...",
+        success: "Signing up successful! 🎉",
+        error: {
+          render(data) {
+            return data.data.message || "An error occur!";
+          },
+        },
+      });
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+const logout = createAsyncThunk(`${NAME}/logout`, async () => {
+  const res = await myAxios.post("/logout");
+  return res.data;
+});
 
 const authSlice = createSlice({
   name: NAME,
@@ -47,45 +74,65 @@ const authSlice = createSlice({
   extraReducers(builder) {
     // 01) login
     builder.addCase(login.pending, (state) => {
-      state.loading = true;
+      state.login.loading = true;
+      state.login.user = null;
+      state.login.isAuth = false;
+      toast.dismiss();
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      state.loading = false;
-      state.user = action.payload;
+      state.login.loading = false;
+      state.login.user = action.payload?.user;
+      state.login.isAuth = true;
     });
     builder.addCase(login.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
+      state.login.loading = false;
+      state.login.user = null;
+      state.login.isAuth = false;
+      if (action.payload?.result) {
+        toast.error(action.payload?.result, fixedToastOptions);
+      } else {
+        action.payload?.results?.map((obj) =>
+          Object.entries(obj).map(([k, v]) =>
+            toast.error(`${k}: ${v}`, fixedToastOptions)
+          )
+        );
+      }
     });
 
     // 02) signup
     builder.addCase(signup.pending, (state) => {
-      state.loading = true;
+      state.signup.loading = true;
+      toast.dismiss();
     });
-    builder.addCase(signup.fulfilled, (state, action) => {
-      state.loading = false;
-      state.formData = action.payload;
+    builder.addCase(signup.fulfilled, (state) => {
+      state.signup.loading = false;
     });
     builder.addCase(signup.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
+      state.signup.loading = false;
+      if (action.payload?.result) {
+        toast.error(action.payload?.result, fixedToastOptions);
+      } else {
+        action.payload?.results?.map((obj) =>
+          Object.entries(obj).map(([k, v]) =>
+            toast.error(`${k}: ${v}`, fixedToastOptions)
+          )
+        );
+      }
     });
 
     // 03) logout
-    builder.logout(logout.pending, (state) => {
-      state.loading = true;
+    builder.addCase(logout.pending, (state) => {
+      state.logout.loading = true;
+      state.logout.error = null;
     });
-    builder.logout(logout.fulfilled, (state) => {
-      state.loading = false;
+    builder.addCase(logout.fulfilled, (state) => {
+      state.logout.loading = false;
     });
-    builder.logout(logout.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
+    builder.addCase(logout.rejected, (state, action) => {
+      state.logout.loading = false;
     });
   },
 });
 
 export default authSlice.reducer;
-module.exports.authActions = authSlice.actions;
-
-console.log(authSlice.actions);
+export { login, signup, logout };

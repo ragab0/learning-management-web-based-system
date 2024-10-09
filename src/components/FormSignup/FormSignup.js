@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../store/slices/authSlice";
+import AuthMoreOptions from "../AuthMoreOptions/AuthMoreOptions";
 import FormError from "../FormError/FormError";
-import myAxios from "../../utils/myAxios";
-import { toast } from "react-toastify";
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function SignupForm({ role = "student" }) {
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth.signup);
   const [initialDataForm, setInitialDataForm] = useState({});
   const {
     register,
@@ -39,13 +40,7 @@ export default function SignupForm({ role = "student" }) {
   }, [watch]);
 
   async function submitHandler(data) {
-    await sleep(2000);
-    console.log("data is", data);
-    try {
-      await myAxios.post("/signup", data);
-    } catch (error) {
-      console.log("ERR:", error);
-    }
+    dispatch(signup(data));
   }
 
   return (
@@ -124,19 +119,22 @@ export default function SignupForm({ role = "student" }) {
                 errors?.passwordCheck ? "is-invalid border-danger" : ""
               }`}
               placeholder="password check"
-              {...register("passwordCheck", {
-                required: " Password check must not be empty!",
+              {...register("passwordConfirm", {
+                required: " Password confirm must not be empty!",
               })}
             />
           </div>
         </div>
         <button
-          className="btn btn-dark px-3 w-100"
-          style={{ paddingBlock: ".75rem" }}
+          className={`btn btn-dark px-3 w-100 ${loading ? "disabled" : ""}`}
+          style={{
+            paddingBlock: ".75rem",
+          }}
         >
-          Create Account
+          {loading && <i className="fa fa-refresh fa-spin"></i>} Create Account
         </button>
       </form>
+      <AuthMoreOptions role={role} type="signup" loading={loading} />
       <DevTool control={control} />
     </>
   );

@@ -2,7 +2,6 @@ import React from "react";
 import LogoIcon from "../../../../assets/svgsComps/LogoIcon";
 import { Link } from "react-router-dom";
 import SignupForm from "../../../../components/FormSignup/FormSignup";
-import AuthMoreOptions from "../../../../components/AuthMoreOptions/AuthMoreOptions";
 
 export default function SignupPage() {
   return (
@@ -22,7 +21,6 @@ export default function SignupPage() {
         <div className="form-dash-page-content">
           <p className="title text-center">Welcome to LMS-DEPI!</p>
           <SignupForm role="mentor" />
-          <AuthMoreOptions title={"Sign up with"} role="mentor" type="signup" />
         </div>
       </div>
     </div>

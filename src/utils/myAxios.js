@@ -1,7 +1,10 @@
 import axios from "axios";
 
+const REACT_APP_ENV = process.env.REACT_APP_ENV;
+
 const myAxios = axios.create({
-  baseURL: "http://localhost:5500/api/v1",
+  baseURL:
+    REACT_APP_ENV === "development" ? "http://localhost:3500/api/v1" : "",
   withCredentials: true,
   timeout: 8000,
   headers: {

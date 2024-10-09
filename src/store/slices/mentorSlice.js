@@ -9,4 +9,3 @@ const mentorSlice = createSlice({
 });
 
 export default mentorSlice.reducer;
-module.exports.authActions = mentorSlice.actions;

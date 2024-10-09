@@ -17,6 +17,19 @@
  * 2. combining the all "actions" into one which consists of the sliceName/reducerFieldName;
  * 3. combining the all "middleware" into one by the middlware prop method which accepts by default:
  *    a function that returns the list of all middlware so that we can add ours to (concat);
+ */
+
+/*
+ * the extraReducers:
+ * 1. in redux the action was go through the all reducer/slice or the all reducers was recieve the same action,
+ *    so that they can response to it, but with rtk that isn't allowed, as each reducer only response to actions that are generated from it;
+ * 2. with extra we can response to external actions && handle the CURRENT stae based on that;
+ * ~~ they are not shown into the generated action of the slice;
+ * ~~ there are two ways to define it:
+ *    1. we have to write the name of the external slice that will go through or recieved by, before the action name,
+ *       && all as a computed string name takes a function like `{["cake/order"] : (stateOfCurrentSlice, action) => {}}`;
+ *    2. using the builder function like `builder => {}`
+ *
  *
  * the asyncThunk is automatically will:
  * 1. instead of creating a parent actionCreator that returns a function with one argument so that get catched by the thunk middler,
@@ -28,15 +41,19 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
-import authReducer from "./slices/authSlice";
+import authSlice from "./slices/authSlice";
+import studentSlice from "./slices/studentSlice";
 
 const logger = createLogger();
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
+    auth: authSlice,
+    student: studentSlice,
   },
-  middleware(getDefaultMiddles) {
-    getDefaultMiddles().concat(logger);
+  middleware: function (getDefaultMiddles) {
+    return getDefaultMiddles().concat(logger);
   },
 });
+
+export default store;
