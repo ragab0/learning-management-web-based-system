@@ -24,10 +24,12 @@ import LoginPage from "./pages/Login/LoginPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTab";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";
+import useLoginCheck from "../../hooks/useLoginCheck";
 
 const oneSidePages = ["signup", "login", "reset-password"];
 
 export default function DashboardApp() {
+  useLoginCheck();
   const location = useLocation();
   return (
     <div

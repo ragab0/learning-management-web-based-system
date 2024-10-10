@@ -26,6 +26,8 @@ import Course2 from "./course2.png";
 import HomeIntro from "./home-intro.png";
 import Login from "./login.png";
 import Signup from "./signup.png";
+import Heart from "./svgsComps/Heart";
+import Notification from "./svgsComps/Notification";
 
 /**
  * exporting the imgs sources that will apply on the src tag inside the <img /> elements;
@@ -68,6 +70,8 @@ export const imgsSrcs = {
  */
 
 export const imgsComps = {
+  HeartIcon: Heart,
+  NotificationIcon: Notification,
   LogoIcon,
   QuoteIcon,
   SearchIcon,

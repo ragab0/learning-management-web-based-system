@@ -9,7 +9,7 @@ import FormError from "../FormError/FormError";
 
 export default function LoginForm({ role = "student" }) {
   const dispatch = useDispatch();
-  const { loading, isAuth } = useSelector((state) => state.auth.login);
+  const { loading, isAuthRole } = useSelector((state) => state.auth.login);
   const navigate = useNavigate();
 
   const [initialDataForm, setInitialDataForm] = useState({});
@@ -40,10 +40,10 @@ export default function LoginForm({ role = "student" }) {
   }, [watch]);
 
   useEffect(() => {
-    if (isAuth) {
+    if (isAuthRole) {
       navigate("../");
     }
-  }, [isAuth, navigate]);
+  }, [isAuthRole, navigate]);
 
   async function submitHandler(data) {
     dispatch(login(data));

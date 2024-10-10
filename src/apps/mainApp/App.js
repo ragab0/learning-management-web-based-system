@@ -22,8 +22,10 @@ import CourseContentPage from "./pages/CourseContent/CourseContent";
 import MentorPage from "./pages/Mentor/MentorPage";
 import TabChat from "./pages/Profile/Components/TabChat/TabChat";
 import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
+import useLoginCheck from "../../hooks/useLoginCheck";
 
 function App() {
+  useLoginCheck();
   return (
     <div className="main-app">
       <Navbar />
@@ -65,7 +67,7 @@ function App() {
 function AppDev() {
   return (
     <>
-      <Dev />
+      {/* <Dev /> */}
       <App />
     </>
   );

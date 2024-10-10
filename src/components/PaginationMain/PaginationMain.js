@@ -1,48 +1,62 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PaginationMain.css";
 
-const data = [...new Array(10)];
-
-export default function PaginationMain() {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  function currentPageHandler(curr) {
-    setCurrentPage(curr);
-  }
+export default function PaginationMain({
+  totalPages,
+  page,
+  paginationDispather,
+}) {
+  const shownPages = [
+    1,
+    page - 2,
+    page - 1,
+    page,
+    page + 1,
+    page + 2,
+    totalPages,
+  ];
   function prevPageHandler() {
-    setCurrentPage((old) => old - 1);
+    paginationDispather(page - 1);
   }
   function nextPageHandler() {
-    setCurrentPage((old) => old + 1);
+    paginationDispather(page + 1);
+  }
+  function currentPageHandler(c) {
+    paginationDispather(c);
   }
 
   return (
     <section className="pagination-section my-4 border-0">
       <nav className="container">
         <ul className="pagination justify-content-center">
-          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <button
-              className="page-link"
-              tabindex="-1"
-              onClick={prevPageHandler}
-            >
+          <li className={`page-item ${page === 1 ? "disabled" : ""}`}>
+            <button className="page-link" onClick={prevPageHandler}>
               Previous
             </button>
           </li>
-          {data.map((_, i) => (
-            <li
-              key={i}
-              onClick={() => currentPageHandler(i + 1)}
-              className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
-            >
-              <button className="page-link">{i + 1}</button>
-            </li>
-          ))}
-          <li
-            className={`page-item ${
-              currentPage === data.length ? "disabled" : ""
-            }`}
-          >
+          {Array.from({ length: totalPages }, (_, i) => {
+            const virtualPage = i + 1;
+            const shouldShowEllipsis =
+              virtualPage === page - 3 || virtualPage === page + 3;
+            return shownPages.includes(virtualPage) ? (
+              <li
+                className={`page-item ${virtualPage === page ? "active" : ""}`}
+                key={i}
+              >
+                <button
+                  className="page-link"
+                  onClick={() => currentPageHandler(virtualPage)}
+                >
+                  {virtualPage}
+                </button>
+              </li>
+            ) : shouldShowEllipsis ? (
+              <li key={i} className="page-item elipsed">
+                <button className="page-link">...</button>
+              </li>
+            ) : null;
+          })}
+          <li className={`page-item ${page === totalPages ? "disabled" : ""}`}>
             <button className="page-link" onClick={nextPageHandler}>
               Next
             </button>

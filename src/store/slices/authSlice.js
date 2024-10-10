@@ -1,13 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import myAxios from "../../utils/myAxios";
 import { toast } from "react-toastify";
+import { delay } from "../../utils/delay";
+import { fixedToastOptions } from "../../utils/fixedToast";
 
 const NAME = "auth";
 const initialState = {
   login: {
     loading: false,
     user: null,
-    isAuth: false,
+    isAuthRole: false,
+    isInitialized: false,
   },
   signup: {
     loading: false,
@@ -15,12 +18,6 @@ const initialState = {
   logout: {
     loading: false,
   },
-};
-
-const fixedToastOptions = {
-  autoClose: false,
-  draggable: true,
-  closeOnClick: true,
 };
 
 const login = createAsyncThunk(
@@ -42,6 +39,14 @@ const login = createAsyncThunk(
     }
   }
 );
+
+const isLogin = createAsyncThunk(`${NAME}/isLogin`, async () => {
+  const [res] = await Promise.allSettled([
+    myAxios.get("/is-login"),
+    delay(2000),
+  ]);
+  return res?.value?.data || {};
+});
 
 const signup = createAsyncThunk(
   `${NAME}/signup`,
@@ -76,18 +81,18 @@ const authSlice = createSlice({
     builder.addCase(login.pending, (state) => {
       state.login.loading = true;
       state.login.user = null;
-      state.login.isAuth = false;
+      state.login.isAuthRole = false;
       toast.dismiss();
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.login.loading = false;
       state.login.user = action.payload?.user;
-      state.login.isAuth = true;
+      state.login.isAuthRole = action.payload?.user?.role;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.login.loading = false;
       state.login.user = null;
-      state.login.isAuth = false;
+      state.login.isAuthRole = false;
       if (action.payload?.result) {
         toast.error(action.payload?.result, fixedToastOptions);
       } else {
@@ -97,6 +102,28 @@ const authSlice = createSlice({
           )
         );
       }
+    });
+
+    // 01 - 02) isLogin
+    builder.addCase(isLogin.pending, (state) => {
+      state.login.loading = true;
+      state.login.user = null;
+      state.login.isAuthRole = false;
+      state.login.isInitialized = false;
+    });
+    builder.addCase(isLogin.fulfilled, (state, action) => {
+      state.login.loading = false;
+      state.login.user = action.payload?.user;
+      state.login.isAuthRole = action.payload?.user?.role;
+      state.login.isInitialized = true;
+
+      // toast.success(`Auto login done!`);
+    });
+    builder.addCase(isLogin.rejected, (state, action) => {
+      state.login.loading = false;
+      state.login.user = null;
+      state.login.isAuthRole = false;
+      state.login.isInitialized = true;
     });
 
     // 02) signup
@@ -135,4 +162,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export { login, signup, logout };
+export { login, isLogin, signup, logout };

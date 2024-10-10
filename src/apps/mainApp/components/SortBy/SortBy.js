@@ -11,7 +11,7 @@ export default function SortBy({ sortByOptions = [] }) {
       <div className="dropdown">
         <button
           type="button"
-          className="btn btn-light border-black p-2 ps-4 pe-4"
+          className="btn btn-light border-black p-2 ps-4 pe-4 text-capitalize"
           id="dropdownMenuButton"
           data-bs-toggle="dropdown"
           aria-haspopup="true"

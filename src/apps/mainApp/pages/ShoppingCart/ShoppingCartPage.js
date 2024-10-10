@@ -17,7 +17,7 @@ export default function ShoppingCartPage() {
           )}
         </section>
         <section>
-          <h3>Wishlisted Courses</h3>
+          <h3 id="wishlist">Wishlisted Courses</h3>
           <Cards cards={[]} />
         </section>
       </LayoutCart>
