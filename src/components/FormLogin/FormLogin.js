@@ -9,9 +9,8 @@ import FormError from "../FormError/FormError";
 
 export default function LoginForm({ role = "student" }) {
   const dispatch = useDispatch();
-  const { loading, isAuthRole } = useSelector((state) => state.auth.login);
   const navigate = useNavigate();
-
+  const { loading, isAuthRole } = useSelector((state) => state.auth.login);
   const [initialDataForm, setInitialDataForm] = useState({});
   const {
     register,
@@ -22,13 +21,15 @@ export default function LoginForm({ role = "student" }) {
   } = useForm({ values: initialDataForm });
 
   useEffect(() => {
-    setInitialDataForm(JSON.parse(localStorage.getItem("loginForm")) || {});
-  }, []);
+    setInitialDataForm(
+      JSON.parse(localStorage.getItem(role + "LoginForm")) || {}
+    );
+  }, [role]);
 
   useEffect(() => {
     const subscriberWatch = watch(function (formState) {
       localStorage.setItem(
-        "loginForm",
+        role + "LoginForm",
         JSON.stringify({
           email: formState.email,
         })
@@ -37,10 +38,10 @@ export default function LoginForm({ role = "student" }) {
     return function () {
       subscriberWatch.unsubscribe();
     };
-  }, [watch]);
+  }, [watch, role]);
 
   useEffect(() => {
-    if (isAuthRole) {
+    if (isAuthRole && isAuthRole === role) {
       navigate("../");
     }
   }, [isAuthRole, navigate]);
@@ -78,6 +79,7 @@ export default function LoginForm({ role = "student" }) {
             </Link>
           </span>
           <input
+            type="password"
             className={`form-control ${
               errors?.password ? "is-invalid border-danger" : ""
             }`}

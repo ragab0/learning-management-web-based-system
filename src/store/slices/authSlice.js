@@ -14,6 +14,7 @@ const initialState = {
   },
   signup: {
     loading: false,
+    isNewUser: false,
   },
   logout: {
     loading: false,
@@ -41,10 +42,7 @@ const login = createAsyncThunk(
 );
 
 const isLogin = createAsyncThunk(`${NAME}/isLogin`, async () => {
-  const [res] = await Promise.allSettled([
-    myAxios.get("/is-login"),
-    delay(2000),
-  ]);
+  const [res] = await Promise.allSettled([myAxios.get("/is-login"), delay(0)]);
   return res?.value?.data || {};
 });
 
@@ -129,13 +127,16 @@ const authSlice = createSlice({
     // 02) signup
     builder.addCase(signup.pending, (state) => {
       state.signup.loading = true;
+      state.signup.isNewUser = false;
       toast.dismiss();
     });
     builder.addCase(signup.fulfilled, (state) => {
       state.signup.loading = false;
+      state.signup.isNewUser = true;
     });
     builder.addCase(signup.rejected, (state, action) => {
       state.signup.loading = false;
+      state.signup.isNewUser = false;
       if (action.payload?.result) {
         toast.error(action.payload?.result, fixedToastOptions);
       } else {

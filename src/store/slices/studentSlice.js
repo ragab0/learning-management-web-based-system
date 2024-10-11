@@ -1,16 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import myAxios from "../../utils/myAxios";
+import { toast } from "react-toastify";
+import { fixedToastOptions } from "../../utils/fixedToast";
+
+/**
+ *  student courses [
+ *     getEnrolledCourses, enrollNewCourse, archiveEnrolledCourse, getEnrolledCourseContent, getArchivedCourses, unArchiveCourse,
+ *     getCartCourses, addCartCourse, removeCartCourse, getWishlistCourses, addWishlistCourse, removeCourseFromWishlist, getAssignedTeachers,
+ *  ]
+ *
+ */
 
 const NAME = "student";
 const initialState = {
-  basicProfile: { data: null, loading: false, error: null },
-  mentors: { data: [], loading: false, error: null },
-  enrolledCourses: { data: [], loading: false, error: null },
-  archivedCourses: { data: [], loading: false, error: null },
-  cartCourses: { data: [], loading: false, error: null },
-  wishlistCourses: { data: [], loading: false, error: null },
-  messages: { data: [], loading: false, error: null },
-  chats: { data: [], loading: false, error: null },
+  basicProfile: { loading: false },
+  enrolledCourses: { apiData: [], loading: false, error: null },
+  archivedCourses: { apiData: [], loading: false, error: null },
+  cartCourses: { apiData: [], loading: false, error: null },
+  wishlistCourses: { apiData: [], loading: false, error: null },
+  mentors: { apiData: [], loading: false, error: null },
+  messages: { apiData: [], loading: false, error: null },
+  chats: { apiData: [], loading: false, error: null },
 };
 
 const fetchBasicProfile = createAsyncThunk(
@@ -18,6 +28,28 @@ const fetchBasicProfile = createAsyncThunk(
   async () => {
     const res = await myAxios.get("/student/profile");
     return res.data;
+  }
+);
+
+const updateBasicProfile = createAsyncThunk(
+  `${NAME}/updateBasicProfile`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await toast.promise(myAxios.put("/student/profile", data), {
+        pending: "Updating profile...",
+        success: "Updating done! 🎉",
+        error: {
+          render(data) {
+            return data.data.message || "An error occur!";
+          },
+        },
+      });
+      return res.data;
+    } catch (error) {
+      console.log("##################", error);
+
+      return rejectWithValue(error.response.data);
+    }
   }
 );
 
@@ -84,6 +116,27 @@ const studentSlice = createSlice({
     builder.addCase(fetchBasicProfile.rejected, (state, action) => {
       state.basicProfile.loading = false;
       state.basicProfile.error = action.error.message;
+    });
+
+    // 02) updateBasicProfile
+    builder.addCase(updateBasicProfile.pending, (state) => {
+      state.basicProfile.loading = true;
+      toast.dismiss();
+    });
+    builder.addCase(updateBasicProfile.fulfilled, (state) => {
+      state.basicProfile.loading = false;
+    });
+    builder.addCase(updateBasicProfile.rejected, (state, action) => {
+      state.basicProfile.loading = false;
+      if (action.payload?.result) {
+        toast.error(action.payload?.result, fixedToastOptions);
+      } else {
+        action.payload?.results?.map((obj) =>
+          Object.entries(obj).map(([k, v]) =>
+            toast.error(`${k}: ${v}`, fixedToastOptions)
+          )
+        );
+      }
     });
 
     // 02) mentors
@@ -187,3 +240,4 @@ const studentSlice = createSlice({
 });
 
 export default studentSlice.reducer;
+export { fetchBasicProfile, updateBasicProfile };

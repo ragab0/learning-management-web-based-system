@@ -44,6 +44,7 @@ import { createLogger } from "redux-logger";
 import authSlice from "./slices/authSlice";
 import studentSlice from "./slices/studentSlice";
 import coursesSlice from "./slices/coursesSlice";
+import courseSlice from "./slices/courseSlice";
 
 const logger = createLogger();
 
@@ -52,6 +53,7 @@ const store = configureStore({
     auth: authSlice,
     student: studentSlice,
     courses: coursesSlice,
+    course: courseSlice,
   },
   middleware: function (getDefaultMiddles) {
     return getDefaultMiddles().concat(logger);

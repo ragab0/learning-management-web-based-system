@@ -1,6 +1,6 @@
 import React from "react";
 import "./FilterOptions.css";
-import SortBy from "../../../../components/SortBy/SortBy";
+import Select from "../../../../components/Select/Select";
 
 const sortByOptions = ["Relevance", "Popularity", "Rating"];
 
@@ -15,7 +15,7 @@ export default function FilterOptions() {
           />
           <i className="fa fa-search search-icon"></i>
         </div>
-        <SortBy sortByOptions={sortByOptions} />
+        <Select label="sort by" options={sortByOptions} />
       </div>
     </div>
   );

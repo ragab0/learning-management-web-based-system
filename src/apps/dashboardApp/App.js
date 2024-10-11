@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
@@ -25,12 +25,15 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTab";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";
 import useLoginCheck from "../../hooks/useLoginCheck";
+import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 
+const ROLE = "mentor";
 const oneSidePages = ["signup", "login", "reset-password"];
 
 export default function DashboardApp() {
   useLoginCheck();
   const location = useLocation();
+
   return (
     <div
       className="dashboard-app"
@@ -46,8 +49,17 @@ export default function DashboardApp() {
     >
       <Sidebar />
       <Routes>
-        <Route index element={<HomePage />} />
-        <Route path="courses">
+        {/* protected (full - with children) */}
+        <Route
+          index
+          element={
+            <ProtectedRoute roleOfRoute={ROLE}>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        {/* protected (full - with nested routes) */}
+        <Route path="courses" element={<ProtectedRoute roleOfRoute={ROLE} />}>
           <Route index element={<CoursesPage />} />
           <Route path=":courseId" element={<CoursePage />}>
             <Route index element={<CommissionTab />} />
@@ -66,14 +78,48 @@ export default function DashboardApp() {
             <Route path="settings" element={<SettingsTab />} />
           </Route>
         </Route>
-        <Route path="communication" element={<Communication />}>
+
+        {/* protected (full - with children) */}
+        <Route
+          path="communication"
+          element={
+            <ProtectedRoute roleOfRoute={ROLE}>
+              <Communication />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<ReviewsTab />} />
           <Route path="reviews" element={<ReviewsTab />} />
           <Route path="messages" element={<MessagesTab />} />
         </Route>
-        <Route path="revenue" element={<RevenuePage />} />
-        <Route path="settings" element={<SettingsPage />} />
-        <Route path="profile" element={<ProfilePage />} />
+        {/* protected (full - with children) */}
+        <Route
+          path="revenue"
+          element={
+            <ProtectedRoute roleOfRoute={ROLE}>
+              <RevenuePage />
+            </ProtectedRoute>
+          }
+        />
+        {/* protected (full - with children) */}
+        <Route
+          path="settings"
+          element={
+            <ProtectedRoute roleOfRoute={ROLE}>
+              <SettingsPage />
+            </ProtectedRoute>
+          }
+        />
+        {/* protected (full - with children) */}
+        <Route
+          path="profile"
+          element={
+            <ProtectedRoute roleOfRoute={ROLE}>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
         <Route path="reset-password" element={<ForgotPassword />} />

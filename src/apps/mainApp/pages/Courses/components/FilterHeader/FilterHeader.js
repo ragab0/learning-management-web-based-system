@@ -1,6 +1,6 @@
 import React from "react";
 import "./FilterHeader.css";
-import SortBy from "../../../../components/SortBy/SortBy";
+import Select from "../../../../components/Select/Select";
 
 export default function FilterHeader() {
   return (
@@ -8,8 +8,9 @@ export default function FilterHeader() {
       <button className="btn btn-light border-black p-2 ps-4 pe-4">
         <i className="fa-solid fa-filter"></i> Filter
       </button>
-      <SortBy
-        sortByOptions={["name (a-z)", "name (z-a)", "top rate", "low price"]}
+      <Select
+        label="sort by"
+        options={["name (a-z)", "name (z-a)", "top rate", "low price"]}
       />
     </div>
   );

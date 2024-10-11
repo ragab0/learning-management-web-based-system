@@ -1,0 +1,43 @@
+.tab-profile form label {
+  width: 100%;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.tab-profile form label span {
+  text-transform: capitalize;
+}
+
+.tab-profile form label input {
+  border-width: 2px;
+}
+
+.tab-profile .profile-preview .img-wrapper {
+  border-radius: 0.5rem;
+  background: var(--grey-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-profile form .profile-preview .selectImage .saveImg {
+  display: block;
+  width: 20%;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #0f172a;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.tab-profile .select {
+  display: block !important;
+  width: fit-content;
+  color: #000;
+}
+
+.tab-profile .select button {
+  border-color: var(--grey-border) !important;
+  border-width: 2px;
+}

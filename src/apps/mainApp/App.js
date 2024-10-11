@@ -3,7 +3,8 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import OrderComplete from "./components/OrderComplete/OrderComplete";
-import Dev from "./components/dev/dev";
+import FormProfile from "../../components/FormProfile/FormProfile";
+// import Dev from "./components/dev/dev";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
 import NotfoundPage from "./pages/Notfound/NotfoundPage";
@@ -13,7 +14,6 @@ import CheckoutPage from "./pages/Checkout/CheckoutPage";
 import ShoppingCartPage from "./pages/ShoppingCart/ShoppingCartPage";
 import CoursePage from "./pages/Course/CoursePage";
 import ProfilePage from "./pages/Profile/ProfilePage";
-import TabProfile from "./pages/Profile/Components/TabProfile/TabProfile";
 import TabMyCourses from "./pages/Profile/Components/TabMyCourses/TabMyCourses";
 import TabTeachers from "./pages/Profile/Components/TabTeachers/TabTeachers";
 import TabMessage from "./pages/Profile/Components/TabMessage/TabMessage";
@@ -23,6 +23,9 @@ import MentorPage from "./pages/Mentor/MentorPage";
 import TabChat from "./pages/Profile/Components/TabChat/TabChat";
 import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
 import useLoginCheck from "../../hooks/useLoginCheck";
+import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
+
+const ROLE = "student";
 
 function App() {
   useLoginCheck();
@@ -37,12 +40,38 @@ function App() {
             <Route path=":id" element={<CoursePage />} />
           </Route>
           <Route path="cart" element={<ShoppingCartPage />} />
-          <Route path="payment/checkout">
-            <Route index element={<CheckoutPage />} />
-            <Route path="done" element={<OrderComplete />} />
+          {/* 01) protected route (full - with nested) */}
+          <Route
+            path="payment/checkout"
+            element={<ProtectedRoute roleOfRoute={ROLE} />}
+          >
+            <Route
+              index
+              element={
+                <ProtectedRoute roleOfRoute={ROLE}>
+                  <CheckoutPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="done"
+              element={
+                <ProtectedRoute roleOfRoute={ROLE}>
+                  <OrderComplete />
+                </ProtectedRoute>
+              }
+            />
           </Route>
-          <Route path="profile" element={<ProfilePage />}>
-            <Route index element={<TabProfile />} />
+          {/* 02) protected route (full - with children) */}
+          <Route
+            path="profile"
+            element={
+              <ProtectedRoute roleOfRoute={ROLE}>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<FormProfile />} />
             <Route path="courses" element={<TabMyCourses />} />
             <Route path="teachers">
               <Route index element={<TabTeachers />} />
@@ -51,7 +80,17 @@ function App() {
             <Route path="messages" element={<TabMessage />} />
             <Route path="reviews" element={<TabMyReviews />} />
           </Route>
-          <Route path="study/:courseId" element={<CourseContentPage />} />
+
+          {/* 03) protected route (full - with children) */}
+          <Route
+            path="study/:courseId"
+            element={
+              <ProtectedRoute roleOfRoute={ROLE}>
+                <CourseContentPage />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="mentors/:mentorId" element={<MentorPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />

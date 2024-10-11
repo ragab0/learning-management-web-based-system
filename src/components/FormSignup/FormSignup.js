@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/slices/authSlice";
 import AuthMoreOptions from "../AuthMoreOptions/AuthMoreOptions";
@@ -8,7 +9,8 @@ import FormError from "../FormError/FormError";
 
 export default function SignupForm({ role = "student" }) {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth.signup);
+  const navigate = useNavigate();
+  const { loading, isNewUser } = useSelector((state) => state.auth.signup);
   const [initialDataForm, setInitialDataForm] = useState({});
   const {
     register,
@@ -19,13 +21,15 @@ export default function SignupForm({ role = "student" }) {
   } = useForm({ values: initialDataForm });
 
   useEffect(() => {
-    setInitialDataForm(JSON.parse(localStorage.getItem("signupForm")) || {});
-  }, []);
+    setInitialDataForm(
+      JSON.parse(localStorage.getItem(role + "SignupForm")) || {}
+    );
+  }, [role]);
 
   useEffect(() => {
     const subscriberWatch = watch(function (formState) {
       localStorage.setItem(
-        "signupForm",
+        role + "SignupForm",
         JSON.stringify({
           fname: formState.fname,
           lname: formState.lname,
@@ -37,7 +41,13 @@ export default function SignupForm({ role = "student" }) {
     return function () {
       subscriberWatch.unsubscribe();
     };
-  }, [watch]);
+  }, [watch, role]);
+
+  useEffect(() => {
+    if (isNewUser) {
+      navigate("../");
+    }
+  }, [isNewUser, navigate]);
 
   async function submitHandler(data) {
     dispatch(signup(data));
@@ -105,6 +115,7 @@ export default function SignupForm({ role = "student" }) {
           <label htmlFor="password">Password</label>
           <div className="d-flex gap-4">
             <input
+              type="password"
               className={`form-control ${
                 errors?.password ? "is-invalid border-danger" : ""
               }`}
