@@ -45,7 +45,7 @@ export default function SignupForm({ role = "student" }) {
 
   useEffect(() => {
     if (isNewUser) {
-      navigate("../");
+      navigate("../login");
     }
   }, [isNewUser, navigate]);
 
@@ -126,6 +126,7 @@ export default function SignupForm({ role = "student" }) {
               })}
             />
             <input
+              type="password"
               className={`form-control ${
                 errors?.passwordCheck ? "is-invalid border-danger" : ""
               }`}

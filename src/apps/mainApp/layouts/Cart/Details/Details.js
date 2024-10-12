@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Details.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  checkoutCartCourses,
+  fetchCartCourses,
+} from "../../../../../store/slices/studentSlice";
+import OrderComplete from "../../../components/OrderComplete/OrderComplete";
 
 export default function Details({ isCheckoutPage = false }) {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isPaymentCompleted, setIsPaymentCompleted] = useState(false);
+  const {
+    apiData: { results },
+    loading,
+  } = useSelector((state) => state.student.cartCourses);
+
+  useEffect(
+    function () {
+      dispatch(fetchCartCourses());
+    },
+    [dispatch]
+  );
 
   function completeHandler() {
-    setIsPaymentCompleted(true);
-    navigate("done");
+    dispatch(checkoutCartCourses());
+    return <OrderComplete />;
+  }
+
+  if (loading) {
+    return <h1>Loading</h1>;
   }
 
   return (

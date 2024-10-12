@@ -29,7 +29,7 @@ export default function PaginationMain({
     <section className="pagination-section my-4 border-0">
       <nav className="container">
         <ul className="pagination justify-content-center">
-          <li className={`page-item ${page === 1 ? "disabled" : ""}`}>
+          <li className={`page-item ${!page || page === 1 ? "disabled" : ""}`}>
             <button className="page-link" onClick={prevPageHandler}>
               Previous
             </button>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./CoursesPage.css";
 import RateMenu from "./components/RateMenu/RateMenu";
 import ChaptersMenu from "./components/ChaptersMenu/ChaptersMenu";
@@ -15,10 +15,7 @@ import usePaginationDispatch from "../../../../hooks/usePaginationDispatch";
 
 export default function CoursesPage() {
   const {
-    apiData: { results, totalPages, page: activePage },
-    initialState,
-    isInitialized,
-    loading,
+    apiData: { totalPages, page: activePage },
   } = useSelector((state) => state.courses);
 
   const getCoursesPaginationDispatchor = usePaginationDispatch(getCourses);
@@ -38,7 +35,7 @@ export default function CoursesPage() {
           </div>
         </div>
         <div className="col-lg-9 col-md-9">
-          <CoursesList list={results} />
+          <CoursesList />
           <PaginationMain
             totalPages={totalPages}
             page={activePage}

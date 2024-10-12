@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import NonAuth from "../NonAuth/NonAuth";
 import { Outlet, useNavigate } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 /**
  * MY BEST PART ^_^;
@@ -11,7 +12,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 const roles = ["student", "mentor", "admin"];
 export default function ProtectedRoute({ children, roleOfRoute }) {
   const navigate = useNavigate();
-  const { isAuthRole, isInitialized } = useSelector(
+  const { isAuthRole, isInitialized, loading } = useSelector(
     (state) => state.auth.login
   );
 
@@ -27,5 +28,9 @@ export default function ProtectedRoute({ children, roleOfRoute }) {
   if (roles.includes(isAuthRole) && isAuthRole === roleOfRoute)
     return children || <Outlet />;
 
-  return <NonAuth />;
+  if (!isInitialized || loading) {
+    return <Loader />;
+  } else {
+    return <NonAuth />;
+  }
 }

@@ -42,7 +42,10 @@ const login = createAsyncThunk(
 );
 
 const isLogin = createAsyncThunk(`${NAME}/isLogin`, async () => {
-  const [res] = await Promise.allSettled([myAxios.get("/is-login"), delay(0)]);
+  const [res] = await Promise.allSettled([
+    myAxios.get("/is-login"),
+    delay(1000),
+  ]);
   return res?.value?.data || {};
 });
 

@@ -1,4 +1,9 @@
 .checkout-page .payment-container {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.checkout-page .payment-container {
   display: flex;
   justify-content: center;
   border-radius: 16px;

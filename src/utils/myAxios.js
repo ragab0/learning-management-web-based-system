@@ -6,7 +6,7 @@ const myAxios = axios.create({
   baseURL:
     REACT_APP_ENV === "development" ? "http://localhost:3500/api/v1" : "",
   withCredentials: true,
-  timeout: 8000,
+  // timeout: 8000,
   headers: {
     Accept: "application/json",
   },
