@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import myAxios from "../../utils/myAxios";
-import { delay } from "framer-motion";
 import { toast } from "react-toastify";
 import { fixedToastOptions } from "../../utils/fixedToast";
 
@@ -18,11 +17,8 @@ const getCourses = createAsyncThunk(
       const res = await myAxios.get(
         `/courses?page=${page}&pageSize=${pageSize}`
       );
-
-      console.log("####", res);
       return res.data || {};
     } catch (axiosError) {
-      console.log("##########33", axiosError);
       return rejectWithValue(axiosError.response.data);
     }
   }

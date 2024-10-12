@@ -1,9 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import asideImage from "../../../../../../assets/course2.png";
 import "./CourseAside.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCartCourse,
+  addWishlistCourse,
+} from "../../../../../../store/slices/studentSlice";
 
 export default function CourseAside() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { cartCourses, wishlistCourses } = useSelector(
+    (state) => state.student
+  );
+
+  function addToCartHandler() {
+    dispatch(addCartCourse({ id }));
+  }
+
+  function addToWishlistHandler() {
+    dispatch(addWishlistCourse({ id }));
+  }
+
   return (
     <aside className="aside">
       <div className="aside-content">
@@ -15,10 +34,18 @@ export default function CourseAside() {
           <strike className=" mx-3">$99.5</strike>
           <span className="discount">50% Off</span>
         </div>
-        <button className=" btn_add mt-4 form-control border-0">
+        <button
+          className=" btn_add mt-4 form-control border-0"
+          onClick={addToCartHandler}
+        >
           Add to cart
         </button>
-        <button className=" btn_buy mt-4 form-control">Buy Now</button>
+        <button
+          className=" btn_buy mt-4 form-control"
+          onClick={addToWishlistHandler}
+        >
+          Add to wishlist
+        </button>
         <div className="share mt-4 pt-4">
           <h5>Share</h5>
           <ul className="shareLinks mt-4">

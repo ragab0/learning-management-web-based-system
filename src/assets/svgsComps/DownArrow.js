@@ -13,9 +13,9 @@ export default function DownArrow(props) {
       <path
         d="M1 1.5L7 7.5L13 1.5"
         stroke="#0F172A"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
