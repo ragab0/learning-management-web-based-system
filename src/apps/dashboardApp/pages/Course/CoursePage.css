@@ -1,10 +1,2 @@
-.course-page-tabs {
-  display: flex;
-  gap: 1rem;
-}
-.course-page-tabs a {
-  padding: 0.5rem;
-}
-.course-page-tabs a.active {
-  font-weight: bold;
+.course-dash-page h2 {
 }

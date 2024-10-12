@@ -1,0 +1,26 @@
+.instructor-tab {
+  cursor: default;
+}
+.instructor-tab .ins_info {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.instructor-tab .ins_info img {
+  width: 120px;
+  height: 120px;
+}
+
+.instructor-tab .ins_info .ins_details .review span,
+.instructor-tab .ins_info .ins_details .student span,
+.instructor-tab .ins_info .ins_details .courses span {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.instructor-tab .ins_info .ins_details .review i,
+.instructor-tab .ins_info .ins_details .student i,
+.instructor-tab .ins_info .ins_details .courses i {
+  color: #0f172a;
+}

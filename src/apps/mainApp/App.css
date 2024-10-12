@@ -1,10 +1,39 @@
+:root {
+  --main-margin: 60px;
+}
+
 .main-app {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
 
+.main-app .app-wrapper > *:nth-child(1) {
+  height: 100%;
+}
+
 /* Global classes */
+
+.content-aside-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2rem;
+}
+.content-aside-layout-reverse {
+  grid-template-columns: 1fr 3fr;
+}
+
+.content-aside-layout aside {
+  margin-bottom: 5rem;
+}
+.content-aside-layout .aside-content {
+  position: sticky;
+  top: 1rem;
+  left: 0;
+  border: 1px solid var(--grey-border);
+  padding: 1rem;
+  border-radius: 1rem;
+}
 
 .btn--squared {
   padding: 10px;
@@ -13,4 +42,35 @@
 .btn--flatted {
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
+}
+
+figure:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
+  transition: 0.2s ease;
+}
+
+/*
+ * Signup && login pages:
+ *
+ */
+.signup-page,
+.login-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.signup-page-content,
+.login-page-content {
+  padding-block: 150px;
+  padding-inline: 1.5rem;
+}
+
+.signup-img-wrapper,
+.login-img-wrapper {
+  background-color: #0f1d36;
+  background-image: url("../../assets/signup.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }

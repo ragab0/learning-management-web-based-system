@@ -2,8 +2,9 @@
 
 :root {
   --clr-main: #0294e9;
-  --clr-grey-border: #e2e8f0;
+  --clr-grey-border: var(--grey-border);
   --clr-grey-disabled: #94a3b8;
+  --grey-border: #e2e8f0;
 
   --clr-grey-white: #f8fafc;
   --clr-grey-lighter: #f1f5f9; /* 100 */
@@ -79,5 +80,35 @@ img {
 }
 
 input {
+  width: 100%;
+}
+
+/**/
+.auth-form > * {
+  margin-top: 1.1rem;
+}
+
+.auth-form label {
+  font-weight: bold;
+  font-size: 18px;
+  display: block;
+  text-transform: capitalize;
+}
+
+.auth-form input::placeholder {
+  text-transform: capitalize;
+  font-size: 0.75rem;
+}
+
+.dark .auth-form input {
+  background-color: transparent;
+  color: white;
+  border-color: #202637;
+}
+.dark .auth-form input::placeholder {
+  color: #8193b2;
+}
+.dark .auth-form button {
+  background-color: #202637;
   width: 100%;
 }

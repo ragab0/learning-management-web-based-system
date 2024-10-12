@@ -1,0 +1,33 @@
+.course-page .chapter,
+.course-page .chapter div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.course-page .chapter {
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+}
+
+.course-page .chapter-name {
+  cursor: pointer;
+}
+
+.course-page .chapter i {
+  transition: all 0.2 ease;
+}
+
+.course-page .chapter.opened i {
+  transform: rotate(0.5turn);
+}
+
+.course-page .chapter-name:hover i {
+  opacity: 0.6;
+}
+
+.course-page .chapter span {
+  color: var(--clr-grey-dark);
+  font-weight: 14px;
+}

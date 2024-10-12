@@ -19,6 +19,7 @@ import LogoIcon from "./svgsComps/LogoIcon";
 import QuoteIcon from "./svgsComps/QuoteIcon";
 import SearchIcon from "./svgsComps/SearchIcon";
 import ShoppingIcon from "./svgsComps/ShoppingIcon";
+import GoogleIcon from "./svgsComps/GoogleIcon";
 
 import Course1 from "./course1.png";
 import Course2 from "./course2.png";
@@ -71,4 +72,5 @@ export const imgsComps = {
   QuoteIcon,
   SearchIcon,
   ShoppingIcon,
+  GoogleIcon,
 };

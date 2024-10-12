@@ -1,0 +1,10 @@
+.logo {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.logo span {
+  font-weight: 500;
+}

@@ -1,15 +1,8 @@
+.course-page h1 {
+  margin-block: 2rem 1rem;
+}
 .course-page .container .content {
   width: 70%;
-}
-
-.course-page .container .content span {
-  color: #000;
-  font-size: 20px;
-}
-
-.course-page .container .content .home,
-.course-page .category {
-  color: #334155;
 }
 
 .course-page .container .content .user {

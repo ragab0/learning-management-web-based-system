@@ -1,0 +1,11 @@
+.mentor-page .aside-content {
+  border: none;
+}
+.mentor-aside .img-wrapper {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #eee;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+}

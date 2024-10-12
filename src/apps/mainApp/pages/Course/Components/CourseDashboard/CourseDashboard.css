@@ -1,46 +1,6 @@
-.course-page .section2 .btn button {
-  border: thin solid #e2e8f0;
-  border-radius: 5px;
+.course-page .course-syllabus-tab .chapters {
+  border: 1px solid var(--grey-border);
 }
-
-.course-page .section2 .instructor .ins_info {
-  display: flex;
-  margin-top: 30px;
-}
-
-.course-page .section2 .instructor .ins_info img {
-  width: 120px;
-  height: 120px;
-}
-
-.course-page .section2 .instructor .ins_info .ins_details .review span,
-.course-page .section2 .instructor .ins_info .ins_details .student span,
-.course-page .section2 .instructor .ins_info .ins_details .courses span {
-  color: #0f172a;
-  font-size: 16px;
-}
-
-.course-page .section2 .instructor .ins_info .ins_details .review i,
-.course-page .section2 .instructor .ins_info .ins_details .student i,
-.course-page .section2 .instructor .ins_info .ins_details .courses i {
-  color: #0f172a;
-}
-
-.course-page .section2 .syllabus .ux_design {
-  display: flex;
-  justify-content: space-between;
-}
-
-.course-page .section2 .syllabus .ux_design select {
-  direction: rtl;
-  font-size: 20px;
-  font-weight: 500;
-  color: #0f172a;
-  padding-left: 15px;
-  border: none;
-}
-
-.course-page .section2 .syllabus .ux_design .ux_details span {
-  color: #0f172a;
-  font-size: 18px;
+.course-page .course-syllabus-tab .chapters .chapter:not(:last-of-type) {
+  border-bottom: 1px solid var(--grey-border);
 }

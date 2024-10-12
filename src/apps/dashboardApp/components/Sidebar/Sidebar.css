@@ -1,9 +1,121 @@
+:root {
+  --pad: 0.5rem;
+}
+
 .sidebar {
   background-color: var(--clr-grey-darkest);
   color: var(--clr-grey-white);
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: 300px;
   height: 100%;
+  padding: var(--pad);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-items: end;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.sidebar header {
+  border-bottom: 1px solid var(--clr-grey-dark);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar img,
+.sidebar i {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+}
+.sidebar i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar header i:hover,
+.sidebar nav a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar nav a {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-transform: capitalize;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.sidebar nav a.active {
+  color: #3b82f6;
+  font-weight: unset;
+  background-color: rgb(144 202 249 / 16%);
+}
+
+.sidebar nav a.active svg {
+  fill: #3b82f6;
+}
+
+.sidebar .footer span {
+  font-size: 14px;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed .logo,
+.sidebar.collapsed a span {
+  display: none;
+}
+
+.sidebar.collapsed .footer img {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar.collapsed .open-close-arrow {
+  transform: rotate(180deg);
+}
+
+.sidebar.collapsed a {
+  padding: 0.5rem;
+}
+
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+  }
+
+  .sidebar.collapsed {
+    width: 80px;
+  }
+
+  .dashboard-app .sidebar + div {
+    padding-left: 60px;
+  }
 }

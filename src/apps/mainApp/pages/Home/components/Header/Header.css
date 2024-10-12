@@ -1,11 +1,5 @@
-.home-page header {
-  padding-block: 50px 85px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header-body {
+.home-page .home-header {
+  margin-block: 50px 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;

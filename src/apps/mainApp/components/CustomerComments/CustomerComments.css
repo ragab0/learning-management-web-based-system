@@ -1,9 +1,15 @@
-.box {
+.customer-comments-section {
+  margin-block: calc(var(--main-margin) * 2);
+}
+
+.customer-comments-section .box {
   border-radius: 15px;
   border-color: #e9eef6;
   border: 2px solid #e9eef6;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: default;
 }
-.customer {
+
+.customer-comments-section .customer {
   background: #f8fafc;
 }

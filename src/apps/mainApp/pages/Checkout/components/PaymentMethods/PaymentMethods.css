@@ -1,0 +1,135 @@
+.checkout-page .payment-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid var(--grey-border, var(--grey-border));
+  background: var(--white, #fff);
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Inter, sans-serif;
+  padding: 16px;
+}
+
+.checkout-page .form-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.checkout-page .input-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+  line-height: 1.6;
+  flex-wrap: wrap;
+}
+
+.checkout-page .input-container {
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  width: 390px;
+}
+
+.checkout-page .input-label {
+  color: var(--grey-900, #0f172a);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.checkout-page .input-field {
+  border-radius: 8px;
+  border: 1px solid var(--grey-border, var(--grey-border));
+  background: var(--white, #fff);
+  margin-top: 8px;
+  font-size: 16px;
+  color: var(--grey-disable-color, #94a3b8);
+  font-weight: 400;
+  padding: 1rem !important;
+}
+
+.checkout-page .payment-method-section {
+  margin-top: 17px;
+  width: 100%;
+}
+
+.checkout-page .payment-option {
+  border-radius: 8px;
+  background: var(--grey-background, #f8fafc);
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.checkout-page .payment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  color: var(--grey-900, #0f172a);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.checkout-page .payment-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.checkout-page .payment-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.checkout-page .card-logo {
+  width: 73px;
+  height: auto;
+}
+
+.checkout-page .card-details {
+  margin-top: 16px;
+}
+
+.checkout-page .card-input-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.checkout-page .card-input-container {
+  flex: 1;
+  min-width: 240px;
+}
+
+.checkout-page .card-input-label {
+  color: var(--grey-900, #0f172a);
+  font-size: 14px;
+}
+
+.checkout-page .card-input-field {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--grey-border, var(--grey-border));
+  background: var(--white, #fff);
+  margin-top: 8px;
+  font-size: 16px;
+  color: var(--grey-disable-color, #94a3b8);
+  line-height: 1.6;
+  padding: 16px;
+}
+
+@media (max-width: 991px) {
+  .checkout-page .form-wrapper,
+  .checkout-page .input-group,
+  .checkout-page .payment-option,
+  .checkout-page .card-details,
+  .checkout-page .card-input-group {
+    max-width: 100%;
+  }
+
+  .checkout-page .input-field,
+  .checkout-page .card-input-field {
+    max-width: 100%;
+  }
+}

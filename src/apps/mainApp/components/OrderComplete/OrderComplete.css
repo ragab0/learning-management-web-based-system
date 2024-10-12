@@ -1,0 +1,21 @@
+.order-complete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-complete-content {
+  text-align: center;
+  margin-block: var(--main-margin);
+}
+
+.order-complete h1 {
+  margin-block: 1rem 0.5rem;
+}
+
+.order-complete img {
+  width: unset;
+  height: unset;
+  margin-inline: auto;
+  display: block;
+}

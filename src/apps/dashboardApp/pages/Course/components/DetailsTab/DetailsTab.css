@@ -1,0 +1,29 @@
+.details-tab .details-tab-container {
+  width: 97%;
+  margin: 0 auto;
+}
+
+.details-tab .details-tab-container .details-tab-content .courseName,
+.details-tab .details-tab-container .details-tab-aside .coursePrice,
+.details-tab .details-tab-container .details-tab-aside .courseLanguage {
+  width: 100%;
+  border: 2px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.details-tab .details-tab-container .details-tab-content .upload .uploadVideo,
+.details-tab
+  .details-tab-container
+  .details-tab-content
+  .upload
+  .uploadThumbnail {
+  width: 100%;
+  border: 2px dashed #e2e8f0;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.details-tab .details-tab-container .details-tab-aside .courseLanguage select {
+  color: #64748b;
+}

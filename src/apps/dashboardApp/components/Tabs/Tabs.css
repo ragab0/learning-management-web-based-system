@@ -1,0 +1,16 @@
+.dashboard-app .tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--grey-border);
+}
+.dashboard-app .tabs a {
+  padding: 0.5rem;
+  text-transform: capitalize;
+  border-bottom: 3px solid transparent;
+  display: block;
+}
+.dashboard-app .tabs a.active {
+  font-weight: bold;
+  color: #3b82f6;
+  border-bottom-color: currentColor;
+}

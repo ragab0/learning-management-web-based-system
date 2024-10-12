@@ -1,0 +1,29 @@
+.tabs-items {
+  display: flex;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--grey-border);
+}
+
+.tabs-items a {
+  border: 1px solid var(--grey-border);
+  border-radius: 5px;
+  padding: 0.75rem 2rem;
+}
+.tabs-items a:hover,
+.tabs-items a.active {
+  border-color: var(--clr-grey-disabled) !important;
+  background-color: #eff6ff;
+}
+
+.tabs-content p:last-of-type {
+  margin-bottom: 0;
+}
+
+.tabs-content > *:not(:last-of-type) {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--grey-border);
+}
