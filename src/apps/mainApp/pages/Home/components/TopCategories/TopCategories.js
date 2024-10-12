@@ -1,10 +1,11 @@
 import React from "react";
 import "./TopCategories.css";
 import { Link } from "react-router-dom";
+import Telescope from "../../../../../../assets/svgsComps/Telescope";
 
 const catgs = [
   {
-    brandClass: "fa-brands fa-telegram",
+    brandClass: <Telescope style={{ margin: "10px" }} />,
     title: "Astrology",
     coursesCount: 11,
   },
@@ -37,7 +38,7 @@ export default function TopCategories() {
         </header>
         <div className="row d-flex justify-content-between">
           {catgs.map(({ brandClass, title, coursesCount }) => (
-            <div className="col-lg-3 col-md-6 col-sm-6">
+            <div className="col-lg-3 col-md-3 col-sm-6">
               <div className="box d-flex justify-content-center align-content-center flex-wrap">
                 <div className="brand-img col-12 text-center">
                   <i class={brandClass}></i>

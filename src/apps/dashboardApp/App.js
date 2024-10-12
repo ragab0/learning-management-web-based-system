@@ -13,7 +13,7 @@ import CustomerTab from "./pages/Course/components/CustomerTab/CustomerTab";
 import ChaptersTab from "./pages/Course/components/ChaptersTab/ChaptersTab";
 import PromotionTab from "./pages/Course/components/PromotionTab/PromotionTab";
 import DetailsTab from "./pages/Course/components/DetailsTab/DetailsTab";
-import SettingsTab from "./pages/Course/components/SettingsTab/ReviewsTab";
+import SettingsTab from "./pages/Course/components/SettingsTab/SettingsTab";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ChaptersTabResourcesTab from "./pages/Course/components/ChaptersTab/ChaptersTabResourcesTab/ChaptersTabResourcesTab";
 import ChaptersTabDetailsTab from "./pages/Course/components/ChaptersTab/ChaptersTabDetailsTab/ChaptersTabDetailsTab";

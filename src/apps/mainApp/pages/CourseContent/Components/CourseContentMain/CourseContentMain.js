@@ -5,12 +5,63 @@ import Tabs from "../../../../components/Tabs/Tabs";
 import InstructorTab from "../../../../components/InstructorTab/InstructorTab";
 import LearnerReviews from "../../../../components/LearnerReviews/LearnerReviews";
 import LineOfCourses from "../../../../components/LineOfCourses/LineOfCourses";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const tabs = ["Details", "Instructor", "Courses", "Reviews"];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const ScrollAnimatedSection = ({ children, animationVariants }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={animationVariants}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 export default function CourseContentMain() {
   return (
-    <div className="course-content-main">
+    <div className="course-content-main container p-5">
       <header className="flex">
         <video src={"courseVideo"} className="w-100" controls />
       </header>
@@ -57,12 +108,16 @@ export default function CourseContentMain() {
         <div className="tab-content" id={tabs[1].toLocaleLowerCase()}>
           <InstructorTab />
         </div>
-        <div className="tab-content" id={tabs[2].toLocaleLowerCase()}>
-          <LineOfCourses title={`More Courses`} />
-        </div>
-        <div className="tab-content" id={tabs[3].toLocaleLowerCase()}>
-          <LearnerReviews />
-        </div>
+        <ScrollAnimatedSection animationVariants={fadeUp}>
+          <div className="tab-content" id={tabs[2].toLocaleLowerCase()}>
+            <LineOfCourses title={`More Courses`} />
+          </div>
+        </ScrollAnimatedSection>
+        <ScrollAnimatedSection animationVariants={scaleIn}>
+          <div className="tab-content" id={tabs[3].toLocaleLowerCase()}>
+            <LearnerReviews />
+          </div>
+        </ScrollAnimatedSection>
       </div>
     </div>
   );

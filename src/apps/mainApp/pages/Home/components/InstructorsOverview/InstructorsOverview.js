@@ -30,7 +30,7 @@ export default function InstructorsOverview() {
                 i % 2 === 0 ? "flex-row" : "flex-row-reverse"
               }`}
             >
-              <div className="col-4">
+              <div className="col-4 mb-4">
                 <img src={img} alt="instructor-overview" />
               </div>
               <div className="header-content">

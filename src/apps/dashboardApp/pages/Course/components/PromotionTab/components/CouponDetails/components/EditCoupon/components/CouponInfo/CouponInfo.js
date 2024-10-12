@@ -43,47 +43,34 @@ export default function CouponInfo() {
   const getStatusColor = (status) => {
     switch (status) {
       case "Active":
-        return "green";
+        return "text-success";
       case "Draft":
-        return "black";
+        return "text-dark";
       case "Scheduled":
-        return "blue";
+        return "text-primary";
       case "Expired":
-        return "red";
+        return "text-danger";
       default:
-        return "black";
+        return "text-dark";
     }
   };
 
   return (
     <div className="mt-5">
       <h5 className="text-dark mb-3">Coupon Information</h5>
-      {["status", "name", "description", "customerGroup"].map((key) => (
-        <div className="mb-4" key={key} style={{ position: "relative" }}>
-          <label
-            className="form-label select-label"
-            htmlFor={key}
-            style={{
-              position: "absolute",
-              top: "-10px",
-              left: "10px",
-              background: "#fff",
-              padding: "0 5px",
-              zIndex: "1",
-            }}
-          >
+      {selectFields.map((key) => (
+        <div className="mb-4" key={key}>
+          <label className="form-label" htmlFor={key}>
             {key}
           </label>
           {selectFields.includes(key) ? (
             <select
               id={key}
-              className="form-select w-100"
+              className="form-select"
               value={formData[key]}
               onChange={(e) => handleInputChange(key, e.target.value)}
               style={{
-                paddingTop: "20px",
-                color:
-                  key === "status" ? getStatusColor(formData.status) : "black", // Dynamic color for status
+                color: key === "status" ? getStatusColor(formData.status) : "",
               }}
             >
               {selectOptions[key].map((option) => (
@@ -92,14 +79,25 @@ export default function CouponInfo() {
                 </option>
               ))}
             </select>
+          ) : key === "description" ? (
+            <textarea
+              id={key}
+              className="form-control"
+              value={formData[key]}
+              onChange={(e) => handleInputChange(key, e.target.value)}
+              style={{
+                height: "200px",
+                whiteSpace: "pre-wrap",
+                overflowY: "scroll",
+              }}
+            />
           ) : (
             <input
               type={typeof formData[key] === "number" ? "number" : "text"}
               id={key}
-              className="form-control w-100"
+              className="form-control"
               value={formData[key]}
               onChange={(e) => handleInputChange(key, e.target.value)}
-              style={{ paddingTop: "20px" }}
             />
           )}
         </div>
@@ -116,28 +114,16 @@ export default function CouponInfo() {
         "type",
         "amount",
       ].map((key) => (
-        <div className="mb-4" key={key} style={{ position: "relative" }}>
-          <label
-            className="form-label select-label"
-            htmlFor={key}
-            style={{
-              position: "absolute",
-              top: "-10px",
-              left: "10px",
-              background: "#fff",
-              padding: "0 5px",
-              zIndex: "1",
-            }}
-          >
+        <div className="mb-4" key={key}>
+          <label className="form-label" htmlFor={key}>
             {key}
           </label>
           {selectFields.includes(key) ? (
             <select
               id={key}
-              className="form-select w-100"
+              className="form-select"
               value={formData[key]}
               onChange={(e) => handleInputChange(key, e.target.value)}
-              style={{ paddingTop: "20px" }}
             >
               {selectOptions[key].map((option) => (
                 <option key={option} value={option}>
@@ -148,11 +134,10 @@ export default function CouponInfo() {
           ) : key === "description" ? (
             <textarea
               id={key}
-              className="form-control w-100"
+              className="form-control"
               value={formData[key]}
               onChange={(e) => handleInputChange(key, e.target.value)}
               style={{
-                paddingTop: "20px",
                 height: "200px",
                 whiteSpace: "pre-wrap",
                 overflowY: "scroll",
@@ -162,63 +147,38 @@ export default function CouponInfo() {
             <input
               type={typeof formData[key] === "number" ? "number" : "text"}
               id={key}
-              className="form-control w-100"
+              className="form-control"
               value={formData[key]}
               onChange={(e) => handleInputChange(key, e.target.value)}
-              style={{ paddingTop: "20px" }}
             />
           )}
         </div>
       ))}
 
       <h5 className="text-dark mb-3">Date and Time</h5>
-      <div className="mb-4" style={{ position: "relative" }}>
-        <label
-          className="form-label select-label"
-          htmlFor="startDate"
-          style={{
-            position: "absolute",
-            top: "-10px",
-            left: "10px",
-            background: "#fff",
-            padding: "0 5px",
-            zIndex: "1",
-          }}
-        >
+      <div className="mb-4">
+        <label className="form-label" htmlFor="startDate">
           Start Date and Time
         </label>
         <input
           type="datetime-local"
           id="startDate"
-          className="form-control w-100"
+          className="form-control"
           value={formData.startDate}
           onChange={(e) => handleInputChange("startDate", e.target.value)}
-          style={{ paddingTop: "20px" }}
         />
       </div>
 
-      <div className="mb-4" style={{ position: "relative" }}>
-        <label
-          className="form-label select-label"
-          htmlFor="endDate"
-          style={{
-            position: "absolute",
-            top: "-10px",
-            left: "10px",
-            background: "#fff",
-            padding: "0 5px",
-            zIndex: "1",
-          }}
-        >
+      <div className="mb-4">
+        <label className="form-label" htmlFor="endDate">
           End Date and Time
         </label>
         <input
           type="datetime-local"
           id="endDate"
-          className="form-control w-100"
+          className="form-control"
           value={formData.endDate}
           onChange={(e) => handleInputChange("endDate", e.target.value)}
-          style={{ paddingTop: "20px" }}
         />
       </div>
     </div>

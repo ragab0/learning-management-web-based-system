@@ -3,32 +3,26 @@ import CouponInfo from "./components/CouponInfo/CouponInfo";
 
 export default function EditCoupon() {
   return (
-    <div className=" container-fluid m-3 ms-0">
+    <div className="container-fluid m-3 ms-0">
       <div className="row">
-        <div className="col-9">
-          <div>
-            <h3 className="text-black">Coupons / Edit coupon</h3>
+        <div className="col-lg-8 col-md-6">
+          <h3 className="text-capitalize">Coupons / Edit coupon</h3>
+        </div>
+        <div className="col-lg-4 col-md-6 text-center mt-3 mt-lg-0">
+          <div className="btn-group" role="group">
+            <button className="btn btn-outline-dark ps-3 pe-3" type="button">
+              Draft
+            </button>
+            <button className="btn btn-success mx-2" type="button">
+              Save
+            </button>
+            <button className="btn btn-primary" type="button">
+              Publish
+            </button>
           </div>
         </div>
-        <div className="col-3">
-          <div className="btns d-flex justify-content-around me-4">
-            <div className="col-3">
-              <button className="btn btn--dark-light btn-outline-dark ps-3 pe-3">
-                Draft
-              </button>
-            </div>
-            <div className="col-3">
-              <button className="btn btn-success ps-3 pe-3"> Save</button>
-            </div>
-            <div className="col-3">
-              <button className="btn btn-primary ps-3 pe-3"> Publish</button>
-            </div>
-          </div>
-        </div>
-        <div className="col-8">
-          <div>
-            <CouponInfo />
-          </div>
+        <div className="col-lg-8 col-md-12 col-sm-9">
+          <CouponInfo />
         </div>
       </div>
     </div>

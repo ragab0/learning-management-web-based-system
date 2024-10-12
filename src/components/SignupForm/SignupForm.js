@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function SignupForm({ role = "student" }) {
   const {
@@ -9,20 +10,48 @@ export default function SignupForm({ role = "student" }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [success, setSuccess] = useState(false);
 
   function submitHandler(data) {
     console.log("data is", data);
+    if (Object.keys(errors).length === 0) {
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 3000);
+    }
   }
+
+  const errorVariants = {
+    hidden: { opacity: 0, y: -20, backgroundColor: "#f8d7da" },
+    visible: { opacity: 1, y: 0, backgroundColor: "#f8d7da" },
+    exit: { opacity: 0, y: -20 },
+  };
+
+  const successVariants = {
+    hidden: { opacity: 0, y: -20, backgroundColor: "#d4edda" },
+    visible: { opacity: 1, y: 0, backgroundColor: "#d4edda" },
+    exit: { opacity: 0, y: -20 },
+  };
 
   return (
     <>
       <div className="error">
-        {Object.values(errors).map((e) => (
-          <p className="text-danger mb-0">* {e.message}</p>
-        ))}
+        <AnimatePresence>
+          {Object.values(errors).map((e, index) => (
+            <motion.p
+              key={index}
+              className="text-danger mb-0 p-2"
+              variants={errorVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              * {e.message}
+            </motion.p>
+          ))}
+        </AnimatePresence>
       </div>
       <form
-        className="auth-form signup-form needs-validation "
+        className="auth-form signup-form needs-validation"
         onSubmit={handleSubmit(submitHandler)}
         noValidate
       >
@@ -107,6 +136,21 @@ export default function SignupForm({ role = "student" }) {
           Create Account
         </button>
       </form>
+
+      <AnimatePresence>
+        {success && (
+          <motion.p
+            className="text-success mt-3 p-2"
+            variants={successVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            Account created successfully!
+          </motion.p>
+        )}
+      </AnimatePresence>
+
       <DevTool control={control} />
     </>
   );

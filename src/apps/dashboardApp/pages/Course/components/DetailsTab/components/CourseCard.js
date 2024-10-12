@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./courseCard.css";
+import "./CourseCard.css";
 
 const CourseCard = () => {
   const [language, setLanguage] = useState("English");
@@ -7,7 +7,7 @@ const CourseCard = () => {
   const [level, setLevel] = useState("Beginner");
 
   return (
-    <div className="course-card">
+    <div className="course-card h-auto">
       <div className="course-price">
         <label>Course Price</label>
         <p>$199.00</p>

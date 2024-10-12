@@ -43,16 +43,23 @@ export default function CustomerTab() {
   ];
 
   return (
-    <div className="commission-tab container-fluid">
-      <Table data={currentCustomerData} columns={customerColumns} />
-
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        handlePageChange={handlePageChange}
-        handleNextPage={handleNextPage}
-        handlePreviousPage={handlePreviousPage}
-      />
+    <div className="container-fluid pb-0 pt-0">
+      <div className="row">
+        <div className="col">
+          <Table data={currentCustomerData} columns={customerColumns} />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handlePageChange={handlePageChange}
+            handleNextPage={handleNextPage}
+            handlePreviousPage={handlePreviousPage}
+          />
+        </div>
+      </div>
     </div>
   );
 }

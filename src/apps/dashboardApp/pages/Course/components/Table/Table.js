@@ -3,16 +3,18 @@ import "./Table.css";
 
 export default function Table({ data, columns, onRowClick }) {
   return (
-    <div className="tableData py-2">
+    <div className="tableData py-2 pb-0 mb-0">
       <table className="table table-hover w-100 text-center">
         <thead>
           <tr>
             {columns.map((col, index) => (
               <th key={index}>
-                {col.header}
-                <span>
-                  <i className="fa-solid fa-sort"></i>
-                </span>
+                <div className="d-flex justify-content-center align-items-center">
+                  <span className="text-dark">{col.header}</span>
+                  <span className="sort-icon">
+                    <i className="fa-solid fa-sort"></i>
+                  </span>
+                </div>
               </th>
             ))}
           </tr>

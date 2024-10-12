@@ -13,10 +13,6 @@ export default function CouponDetails() {
   const queryParams = new URLSearchParams(location.search);
   const offerName = queryParams.get("offerName");
 
-  console.log("Course ID:", courseId);
-  console.log("Offer ID:", offerid);
-  console.log("Offer Name:", offerName);
-
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = couponUsers.slice(indexOfFirstUser, indexOfLastUser);

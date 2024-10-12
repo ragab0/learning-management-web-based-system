@@ -1,6 +1,6 @@
 import React from "react";
 import "./DetailsTab.css";
-import CourseCard from "./courseCard";
+import CourseCard from "./components/CourseCard";
 
 export default function DetailsTab() {
   return (
@@ -28,7 +28,7 @@ export default function DetailsTab() {
             <div className="uploadThumbnail text-center my-5">
               <i class="fa-solid fa-upload"></i>
               <h3 className=" fs-4 my-4">
-                Drag and drop files, or{" "}
+                Drag and drop files, or
                 <span className=" text-primary">Browse</span>
               </h3>
               <h6 className=" fw-light">Upload Thumbnail in JPEG, PNG.</h6>
