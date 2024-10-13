@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
@@ -14,7 +14,7 @@ import CustomerTab from "./pages/Course/components/CustomerTab/CustomerTab";
 import ChaptersTab from "./pages/Course/components/ChaptersTab/ChaptersTab";
 import PromotionTab from "./pages/Course/components/PromotionTab/PromotionTab";
 import DetailsTab from "./pages/Course/components/DetailsTab/DetailsTab";
-import SettingsTab from "./pages/Course/components/SettingsTab/ReviewsTab";
+import SettingsTab from "./pages/Course/components/SettingsTab/SettingsTab";
 import ChaptersTabResourcesTab from "./pages/Course/components/ChaptersTab/ChaptersTabResourcesTab/ChaptersTabResourcesTab";
 import ChaptersTabDetailsTab from "./pages/Course/components/ChaptersTab/ChaptersTabDetailsTab/ChaptersTabDetailsTab";
 import CouponDetails from "./pages/Course/components/PromotionTab/components/CouponDetails/CouponDetails";
@@ -23,7 +23,7 @@ import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTab";
-import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";``
 import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 

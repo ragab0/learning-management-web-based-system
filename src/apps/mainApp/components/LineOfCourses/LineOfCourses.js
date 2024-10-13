@@ -9,8 +9,7 @@ export default function LineOfCourses({ title }) {
     return courses.slice(0, 4).map((course, index) => (
       <div
         key={index}
-        className="course-card-wrapper col-lg-3 col-md-4 col-sm-6"
-        style={{ flex: 1 }}
+        className="course-card-wrapper col-lg-3 col-md-6 col-sm-6 mb-4"
       >
         <CourseOvervewCard course={course} courseId={index} />
       </div>
@@ -18,17 +17,15 @@ export default function LineOfCourses({ title }) {
   };
 
   return (
-    <section className="line-of-courses">
+    <section className="line-of-courses py-4">
       <div className="container">
-        <header className=" d-flex justify-content-between mb-3">
+        <header className="d-flex justify-content-between align-items-center mb-3">
           <h2>{title}</h2>
           <Link to="#" className="btn btn-link text-decoration-none">
             See All
           </Link>
         </header>
-        <div className="row d-flex justify-content-between">
-          {renderCourses()}
-        </div>
+        <div className="row">{renderCourses()}</div>
       </div>
     </section>
   );

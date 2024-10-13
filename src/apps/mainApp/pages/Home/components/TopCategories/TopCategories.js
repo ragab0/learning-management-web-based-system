@@ -1,10 +1,11 @@
 import React from "react";
 import "./TopCategories.css";
 import { Link } from "react-router-dom";
+import Telescope from "../../../../../../assets/svgsComps/Telescope";
 
 const catgs = [
   {
-    brandClass: "fa-brands fa-telegram",
+    brandClass: <Telescope style={{ margin: "10px" }} />,
     title: "Astrology",
     coursesCount: 11,
   },

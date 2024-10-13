@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function CoursesList() {
   return (
-    <div className="courses-list">
+    <div className="courses-list ">
       {dummyCourses.map((course) => (
         <Link to={"" + course.id} key={course.id}>
           {course.name} : {course.id}

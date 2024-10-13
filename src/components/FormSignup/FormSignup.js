@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/slices/authSlice";
+import { motion, AnimatePresence } from "framer-motion";
 import AuthMoreOptions from "../AuthMoreOptions/AuthMoreOptions";
 import FormError from "../FormError/FormError";
 
@@ -51,13 +52,41 @@ export default function SignupForm({ role = "student" }) {
 
   async function submitHandler(data) {
     dispatch(signup(data));
-  }
+  };
+
+  const errorVariants = {
+    hidden: { opacity: 0, y: -20, backgroundColor: "#f8d7da" },
+    visible: { opacity: 1, y: 0, backgroundColor: "#f8d7da" },
+    exit: { opacity: 0, y: -20 },
+  };
+
+  const successVariants = {
+    hidden: { opacity: 0, y: -20, backgroundColor: "#d4edda" },
+    visible: { opacity: 1, y: 0, backgroundColor: "#d4edda" },
+    exit: { opacity: 0, y: -20 },
+  };
 
   return (
     <>
-      <FormError errors={errors} />
+      {/* <FormError errors={errors} /> */}
+      <div className="error">
+        <AnimatePresence>
+          {Object.values(errors).map((e, index) => (
+            <motion.p
+              key={index}
+              className="text-danger mb-0 p-2"
+              variants={errorVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              * {e.message}
+            </motion.p>
+          ))}
+        </AnimatePresence>
+      </div>
       <form
-        className="auth-form signup-form needs-validation "
+        className="auth-form signup-form needs-validation"
         onSubmit={handleSubmit(submitHandler)}
         noValidate
       >
@@ -147,6 +176,20 @@ export default function SignupForm({ role = "student" }) {
         </button>
       </form>
       <AuthMoreOptions role={role} type="signup" loading={loading} />
+      <AnimatePresence>
+        {success && (
+          <motion.p
+            className="text-success mt-3 p-2"
+            variants={successVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            Account created successfully!
+          </motion.p>
+        )}
+      </AnimatePresence>
+
       <DevTool control={control} />
     </>
   );

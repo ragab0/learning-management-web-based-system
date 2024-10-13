@@ -15,7 +15,7 @@ export default function Pagination({
 
   return (
     <div>
-      <nav className="d-flex justify-content-center my-5">
+      <nav className="d-flex justify-content-center my-5 pb-0 mb-0">
         <ul className="pagination pagination-sm">
           <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
             <Link

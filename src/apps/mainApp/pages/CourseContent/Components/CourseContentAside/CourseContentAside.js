@@ -22,7 +22,7 @@ const courseContent = [
 
 export default function CourseContentAside() {
   return (
-    <aside className="aside">
+    <aside className="aside container p-2 pt-5">
       <div className="aside-content p-0">
         <h3 className="m-3 mt-4">Course Content</h3>
         {courseSections.map((section, i) => (

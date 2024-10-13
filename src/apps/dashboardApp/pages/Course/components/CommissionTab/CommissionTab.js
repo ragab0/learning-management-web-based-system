@@ -38,6 +38,7 @@ export default function CommissionTab() {
     { header: "Status", accessor: "status" },
     { header: "Commission", accessor: "commission" },
   ];
+
   const currentOrdersWithStyles = currentOrders.map((order) => ({
     ...order,
     status: (
@@ -53,15 +54,23 @@ export default function CommissionTab() {
 
   return (
     <div className="commission-tab container-fluid">
-      <div className="tableData py-2">
-        <Table columns={orderColumns} data={currentOrdersWithStyles} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
-          handleNextPage={handleNextPage}
-          handlePreviousPage={handlePreviousPage}
-        />
+      <div className="tableData py-2 pb-0 pt-0">
+        <div className="row">
+          <div className="col">
+            <Table columns={orderColumns} data={currentOrdersWithStyles} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              handlePageChange={handlePageChange}
+              handleNextPage={handleNextPage}
+              handlePreviousPage={handlePreviousPage}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

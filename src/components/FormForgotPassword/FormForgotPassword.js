@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import FormError from "../FormError/FormError";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ForgotPasswordForm({ role, label }) {
   const {
@@ -10,13 +11,47 @@ export default function ForgotPasswordForm({ role, label }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [success, setSuccess] = useState(false);
 
   function submitHandler(data) {
     console.log("data is", data);
+    if (Object.keys(errors).length === 0) {
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 3000);
+    }
   }
+
+  const errorVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  };
+
+  const successVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  };
 
   return (
     <>
+      <div className="error">
+        <AnimatePresence>
+          {Object.values(errors).map((e, index) => (
+            <motion.p
+              key={index}
+              className="text-danger mb-0"
+              variants={errorVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              * {e.message}
+            </motion.p>
+          ))}
+        </AnimatePresence>
+      </div>
+
       <form
         className="auth-form forgot-password-form"
         onSubmit={handleSubmit(submitHandler)}
@@ -45,6 +80,20 @@ export default function ForgotPasswordForm({ role, label }) {
           Send password reset email
         </button>
       </form>
+
+      <AnimatePresence>
+        {success && (
+          <motion.p
+            className="text-success mt-3"
+            variants={successVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            Login successful!
+          </motion.p>
+        )}
+      </AnimatePresence>
 
       <DevTool control={control} />
     </>
