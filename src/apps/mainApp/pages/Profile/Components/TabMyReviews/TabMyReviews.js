@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./TabMyReviews.css";
 import { Link } from "react-router-dom";
+import FilterOptions from "../FilterOptions/FilterOptions";
+import NoContent from "../../../../../../components/NoContent/NoContent";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchReviews } from "../../../../../../store/slices/studentSlice";
+import Loader from "../../../../../../components/Loader/Loader";
 
 const reviewsData = [
   {
@@ -40,9 +45,34 @@ const reviewsData = [
   },
 ];
 
-export default function TabMyReviews() {
+export default function TabReviews() {
+  const dispatch = useDispatch();
+  const {
+    apiData: { results, totalPages, page: activePage },
+    loading,
+    isInitialized,
+  } = useSelector((state) => state.student.reviews);
+
+  useEffect(
+    function () {
+      dispatch(fetchReviews());
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  if (loading) return <Loader />;
+
+  if (isInitialized && !(results?.length > 0)) {
+    return <NoContent />;
+  }
+
   return (
     <div className="tab-reviews">
+      <header className="header col-12">
+        <h2>my messages</h2>
+        <FilterOptions />
+      </header>
       <div className="reviews">
         {reviewsData.map(
           ({ courseName, rating, reviewText, profileIconSrc }, i) => (

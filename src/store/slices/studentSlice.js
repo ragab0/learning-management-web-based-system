@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import myAxios from "../../utils/myAxios";
-import { delay } from "../../utils/delay";
 import { toast } from "react-toastify";
 import { fixedToastOptions } from "../../utils/fixedToast";
+import { basicThinker, toastedThinker } from "../../utils/thunks";
 
 /**
  * Student Profile: [get, ^^^update];
@@ -14,40 +13,12 @@ import { fixedToastOptions } from "../../utils/fixedToast";
  * 04) cart: [getAll, ^^^1.addOne, ^^^2.removeOne, ^^^3.wishOne (move)];
  * 05) wishlist: [getAll, ^^^1.addOne, ^^^2.removeOne, ^^^3.cartOne (move)];
  *
- * Student teachers: [getAll];
+ * Student mentors: [getAll];
  * Student messages: [getAll];
+ * Student reviews: [getAll];
  * Student chats: [getAll];
  *
  */
-
-function basicThinker(method, path) {
-  return async (data) => {
-    const res = await myAxios[method](path);
-    return res.data;
-  };
-}
-
-function toastedThinker(method, path, actionName = "Processing") {
-  actionName = actionName[0].toLocaleUpperCase() + actionName.slice(1);
-  return async (data, { rejectWithValue }) => {
-    try {
-      const res = await toast.promise(myAxios[method](path, data), {
-        pending: `${actionName}...`,
-        success: `${actionName} done! 🎉`,
-        error: {
-          render(props) {
-            console.log("DDD", props);
-            return props.data.response.data?.result || "An error occur!";
-          },
-        },
-      });
-      return res.data;
-    } catch (error) {
-      console.log("##################", error);
-      return rejectWithValue(error.response.data);
-    }
-  };
-}
 
 function apiLoadingBuilder(builder, asyncCreator, field) {
   builder.addCase(asyncCreator.pending, (state) => {
@@ -97,6 +68,7 @@ const initialState = {
   checkout: { apiData: {}, isInitialized: false, loading: false, error: null },
   mentors: { apiData: {}, isInitialized: false, loading: false, error: null },
   messages: { apiData: {}, isInitialized: false, loading: false, error: null },
+  reviews: { apiData: {}, isInitialized: false, loading: false, error: null },
   chats: { apiData: {}, isInitialized: false, loading: false, error: null },
 };
 
@@ -194,27 +166,38 @@ const checkoutPath = "/student/cart/checkout";
 
 const checkoutCartCourses = createAsyncThunk(
   `${NAME}/cechkout`,
-  basicThinker("post", checkoutPath)
+  toastedThinker("post", checkoutPath, "Checking our")
 );
 
-// const fetchMentors = createAsyncThunk(`${NAME}/fetchMentors`, async () => {
-//   const res = await myAxios.get("/student/mentors");
-//   return res.data;
-// });
+/****************************************** [Mentors, Messages, Reviews, Chats] **********************/
+const fetchMentors = createAsyncThunk(
+  `${NAME}/fetchMentors`,
+  basicThinker("get", `/student/mentors`)
+);
 
-// const fetchMessages = createAsyncThunk(`${NAME}/fetchMessages`, async () => {
-//   const res = await myAxios.get("/student/messages");
-//   return res.data;
-// });
+const fetchMessages = createAsyncThunk(
+  `${NAME}/fetchMessages`,
+  basicThinker("get", `/student/messages`)
+);
 
-// const fetchChats = createAsyncThunk(`${NAME}/fetchChats`, async () => {
-//   const res = await myAxios.get("/student/chats");
-//   return res.data;
-// });
+const fetchReviews = createAsyncThunk(
+  `${NAME}/fetchReviews`,
+  basicThinker("get", `/student/reviews`)
+);
+
+const fetchChats = createAsyncThunk(
+  `${NAME}/fetchChats`,
+  basicThinker("get", `/student/chats`)
+);
 
 const studentSlice = createSlice({
   name: NAME,
   initialState,
+  reducers: {
+    unInitCheckout(state) {
+      state.checkout = initialState.checkout;
+    },
+  },
   extraReducers(builder) {
     // 01) basicProfile
     builder.addCase(fetchBasicProfile.pending, (state) => {
@@ -249,9 +232,8 @@ const studentSlice = createSlice({
         );
       }
     });
+
     // fetchEnrolledCourseContent
-    // archiveEnrolledCourse
-    // unArchiveEnrolledCourse
 
     // 01) Courses enrolled:
     apiLoadingBuilder(builder, fetchEnrolledCourses, "enrolledCourses");
@@ -269,55 +251,22 @@ const studentSlice = createSlice({
     apiLoadingBuilder(builder, fetchWishlistCourses, "wishlistCourses");
     apiLoadingBuilder(builder, addWishlistCourse, "wishlistCourses");
     apiLoadingBuilder(builder, removeWishlistCourse, "wishlistCourses");
+
     // 05) checkoutCartCourses
     apiLoadingBuilder(builder, checkoutCartCourses, "checkout");
 
-    // // mentors
-    // builder.addCase(fetchMentors.pending, (state) => {
-    //   state.basicProfile.loading = true;
-    //   state.basicProfile.error = null;
-    // });
-    // builder.addCase(fetchMentors.fulfilled, (state, action) => {
-    //   state.mentors.loading = false;
-    //   state.mentors.apiData = action.payload;
-    // });
-    // builder.addCase(fetchMentors.rejected, (state, action) => {
-    //   state.basicProfile.loading = false;
-    //   state.basicProfile.error = action.error.message;
-    // });
-
-    // // messages
-    // builder.addCase(fetchMessages.pending, (state) => {
-    //   state.basicProfile.loading = true;
-    //   state.basicProfile.error = null;
-    // });
-    // builder.addCase(fetchMessages.fulfilled, (state, action) => {
-    //   state.basicProfile.loading = false;
-    //   state.basicProfile.apiData = action.payload;
-    // });
-    // builder.addCase(fetchMessages.rejected, (state, action) => {
-    //   state.basicProfile.loading = false;
-    //   state.basicProfile.error = action.error.message;
-    // });
-
-    // // chats
-    // builder.addCase(fetchChats.pending, (state) => {
-    //   state.basicProfile.loading = true;
-    //   state.basicProfile.error = null;
-    // });
-    // builder.addCase(fetchChats.fulfilled, (state, action) => {
-    //   state.basicProfile.loading = false;
-    //   state.basicProfile.apiData = action.payload;
-    // });
-    // builder.addCase(fetchChats.rejected, (state, action) => {
-    //   state.basicProfile.loading = false;
-    //   state.basicProfile.error = action.error.message;
-    // });
+    /** [Mentors, messages, reviews, chats] */
+    apiLoadingBuilder(builder, fetchMentors, "mentors");
+    apiLoadingBuilder(builder, fetchMessages, "messages");
+    apiLoadingBuilder(builder, fetchReviews, "reviews");
+    apiLoadingBuilder(builder, fetchChats, "chats");
   },
 });
 
 export default studentSlice.reducer;
+const { unInitCheckout } = studentSlice.actions;
 export {
+  unInitCheckout,
   fetchBasicProfile,
   updateBasicProfile,
   fetchEnrolledCourses,
@@ -332,4 +281,8 @@ export {
   addWishlistCourse,
   removeWishlistCourse,
   checkoutCartCourses,
+  fetchMentors,
+  fetchMessages,
+  fetchReviews,
+  fetchChats,
 };

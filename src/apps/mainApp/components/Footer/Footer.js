@@ -11,8 +11,8 @@ export default function Footer() {
           <Logo />
           <p>
             Empowering learners through accessible and engaging online
-            education. Byway is a leading online learning platform dedicated to
-            providing high-quality, flexible, and affordable educational
+            education. LMG-DEPI is a leading online learning platform dedicated
+            to providing high-quality, flexible, and affordable educational
             experiences.
           </p>
         </div>
@@ -20,42 +20,39 @@ export default function Footer() {
           <h4>Get Help</h4>
           <ul>
             <li>
-              <Link to={"#"}>Contact Us</Link>
+              <Link to="/contact">Contact Us</Link>
             </li>
             <li>
-              <Link to={"#"}>Latest Articles</Link>
-            </li>
-            <li>
-              <Link to={"#"}>FAQ</Link>
+              <Link to="/faq">FAQ</Link>
             </li>
           </ul>
         </div>
         <div>
           <h4>Programs</h4>
-          <ul>
+          <ul className=" text-capitalize">
             <li>
-              <Link to={"#"}>Art & Design</Link>
+              <Link to="/courses?catg=art">Art & Design</Link>
             </li>
             <li>
-              <Link to={"#"}>Business</Link>
+              <Link to="/courses?catg=business">Business</Link>
             </li>
             <li>
-              <Link to={"#"}>IT & Software</Link>
+              <Link to="/courses?catg=it,software">IT & Software</Link>
             </li>
             <li>
-              <Link to={"#"}>Languages</Link>
+              <Link to="/courses?catg=languages">Languages</Link>
             </li>
             <li>
-              <Link to={"#"}>Programming</Link>
+              <Link to="/courses?catg=programming">Programming</Link>
             </li>
           </ul>
         </div>
         <div>
           <h4>Contact Us</h4>
           <ul>
-            <li>Address: 123 Main Street, Anytown, CA 12345</li>
-            <li>Tel: +(123) 456-7890</li>
-            <li>Mail: bywayedu@webkul.in</li>
+            <li>Address: Cairo - Egypt</li>
+            <li>Tel: +(20) 109-454-5736-7890</li>
+            <li>Mail: legendragab@gmail.com</li>
           </ul>
           <ul></ul>
         </div>

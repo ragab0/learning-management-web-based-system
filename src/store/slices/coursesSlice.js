@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import myAxios from "../../utils/myAxios";
 import { toast } from "react-toastify";
 import { fixedToastOptions } from "../../utils/fixedToast";
+import { basicThinker } from "../../utils/thunks";
 
 const NAME = "courses";
 const initialState = {
@@ -12,16 +13,7 @@ const initialState = {
 
 const getCourses = createAsyncThunk(
   `${NAME}/getCourses`,
-  async ({ page = 1, pageSize = 10 }, { rejectWithValue }) => {
-    try {
-      const res = await myAxios.get(
-        `/courses?page=${page}&pageSize=${pageSize}`
-      );
-      return res.data || {};
-    } catch (axiosError) {
-      return rejectWithValue(axiosError.response.data);
-    }
-  }
+  basicThinker("get", "/courses")
 );
 
 const coursesSlice = createSlice({

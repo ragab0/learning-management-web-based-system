@@ -1,11 +1,11 @@
 import React from "react";
-import "./TabChat.css";
+import "./TabChats.css";
 
-export default function TabChat() {
+export default function TabChats() {
   return (
     <div className="tab-chat">
       <header className="header col-12">
-        <h2>Messages</h2>
+        <h2>my chats</h2>
       </header>
       <section className="row">
         <header></header>

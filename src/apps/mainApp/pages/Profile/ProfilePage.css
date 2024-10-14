@@ -2,6 +2,10 @@
   margin-block: calc(var(--main-margin) * 0.5) calc(var(--main-margin) * 2);
 }
 
+.profile-page h2 {
+  text-transform: capitalize;
+}
+
 .profile-page section {
   border: 2px solid var(--grey-border);
   padding: 20px;

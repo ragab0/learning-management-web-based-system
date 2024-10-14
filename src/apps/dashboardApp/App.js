@@ -23,7 +23,7 @@ import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTab";
-import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";``
+import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";
 import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 

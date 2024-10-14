@@ -1,9 +1,16 @@
 import React from "react";
 import "./PaymentMethods.css";
+import { motion } from "framer-motion";
 
 export default function PaymentMethods() {
   return (
-    <section className="payment-container">
+    <motion.section
+      className="payment-container"
+      initial={{ opacity: 0, x: -150 }}
+      animate={{ opacity: 0.5, x: 0 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.2 }}
+    >
       <form className="form-wrapper">
         <div className="input-group">
           <div className="input-container">
@@ -104,6 +111,6 @@ export default function PaymentMethods() {
           </div>
         </div>
       </form>
-    </section>
+    </motion.section>
   );
 }

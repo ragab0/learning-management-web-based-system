@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
-import "./Cards.css";
-import Card from "../Card/Card";
 import NoContent from "../../../../../../components/NoContent/NoContent";
+import { fetchWishlistCourses } from "../../../../../../store/slices/studentSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCartCourses } from "../../../../../../store/slices/studentSlice";
+import Card from "../Card/Card";
 
-export default function Cards() {
+export default function WishCards() {
   const dispatch = useDispatch();
   const { apiData, loading, isInitialized } = useSelector(
-    (state) => state.student.cartCourses
+    (state) => state.student.wishlistCourses
   );
   const results = apiData.results;
 
   useEffect(
     function () {
-      dispatch(fetchCartCourses());
+      dispatch(fetchWishlistCourses());
     },
     [dispatch]
   );
@@ -35,7 +34,7 @@ export default function Cards() {
   return (
     <div className="results">
       {results.map((card, index) => (
-        <Card card={card} key={index} />
+        <Card card={card} key={index} isWish={true} />
       ))}
     </div>
   );

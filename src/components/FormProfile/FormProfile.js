@@ -4,7 +4,7 @@ import Img from "../../assets/svgsComps/image.svg";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import Select from "../../apps/mainApp/components/Select/Select";
+import Select from "../SelectForm/SelectForm";
 import { updateBasicProfile } from "../../store/slices/studentSlice";
 import FormError from "../FormError/FormError";
 
@@ -21,7 +21,7 @@ export default function FormProfile({ ofRole }) {
     setValue,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
     watch,
   } = useForm({ values: user });
 
@@ -101,7 +101,15 @@ export default function FormProfile({ ofRole }) {
               />
             </label>
           </div>
-          <Select
+          <label>
+            <span>photo URL</span>
+            <input
+              className="form-control py-2"
+              type="text"
+              {...register("photo")}
+            />
+          </label>
+          {/* <Select
             label="Languages"
             options={
               language && !supportedLanguages.includes(language)
@@ -110,11 +118,13 @@ export default function FormProfile({ ofRole }) {
             }
             value={language}
             setValue={(v) => setValue("language", v)}
-          />
+          /> */}
         </section>
         {/* <section>
           <label className="d-block mb-4">Image Preview</label>
-          <div className="profile-preview"></div>
+          <div className="profile-preview">
+
+          </div>
         </section> */}
         <section className="links-section">
           <h5>Links</h5>
@@ -129,7 +139,11 @@ export default function FormProfile({ ofRole }) {
             </label>
           ))}
         </section>
-        <button className="btn btn-dark w-100 d-block py-3 fw-bold">
+        <button
+          className={`btn btn-dark w-100 d-block py-3 fw-bold ${
+            isDirty ? "" : "disabled"
+          }`}
+        >
           Save
         </button>
       </form>

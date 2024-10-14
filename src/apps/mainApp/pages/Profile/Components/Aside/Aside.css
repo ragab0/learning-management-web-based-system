@@ -13,11 +13,21 @@
   color: #fff;
 }
 
-.profile-page-aside .profileImg img {
+.profile-page-aside header .img-wrapper {
   width: 160px;
   height: 160px;
+  margin-inline: auto;
+  border-radius: 50%;
+  pointer-events: none;
+  overflow: hidden;
+
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  font-size: 3rem;
+  text-transform: uppercase;
 }
 
-.profile-page-aside .profileImg a {
-  border-bottom: 1px solid var(--grey-border);
+.profile-page-aside header a {
+  border-bottom: 2px solid var(--grey-border) !important;
 }

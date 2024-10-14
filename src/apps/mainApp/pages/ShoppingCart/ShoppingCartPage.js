@@ -1,41 +1,31 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./ShoppingCartPage.css";
 import Cards from "./Components/Cards/Cards";
 import LayoutCart from "../../layouts/Cart/Cart";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCartCourses,
-  fetchWishlistCourses,
-} from "../../../../store/slices/studentSlice";
+import { useSelector } from "react-redux";
+import Loader from "../../../../components/Loader/Loader";
+import WishCards from "./Components/WishCards/WishCards";
 
 export default function ShoppingCartPage() {
-  const dispatch = useDispatch();
   const { cartCourses, wishlistCourses } = useSelector(
     (state) => state.student
   );
+  const { isInitialized, loading } = useSelector((state) => state.auth.login);
 
-  useEffect(
-    function () {
-      dispatch(fetchCartCourses());
-      dispatch(fetchWishlistCourses());
-    },
-    [dispatch]
-  );
+  if (!isInitialized || loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="shopping-cart-page">
       <LayoutCart>
         <section>
-          <h3>1 Course in Cart</h3>
-          <Cards apiData={cartCourses.apiData} loading={cartCourses.loading} />
+          <h3>{cartCourses.apiData.results?.length || 0} in Cart!</h3>
+          <Cards />
         </section>
-        <section>
-          <h3 id="wishlist">Wishlisted Courses</h3>
-          <Cards
-            apiData={wishlistCourses.apiData}
-            loading={wishlistCourses.loading}
-            isWish={true}
-          />
+        <section id="wishlist">
+          <h3>{wishlistCourses.apiData.results?.length || 0} in Wishlist!</h3>
+          <WishCards />
         </section>
       </LayoutCart>
     </div>

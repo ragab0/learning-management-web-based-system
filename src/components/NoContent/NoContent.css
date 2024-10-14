@@ -1,0 +1,10 @@
+.main-no-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-no-content > * {
+  width: 150px;
+  height: 150px;
+  opacity: 0.1;
+}

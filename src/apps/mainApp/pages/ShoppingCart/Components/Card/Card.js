@@ -2,35 +2,47 @@ import React from "react";
 import { Link } from "react-router-dom";
 import courseImg from "../../../../../../assets/course2.png";
 import { useDispatch } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 import {
   addCartCourse,
   addWishlistCourse,
-  moveCartCourseToWishlist,
+  fetchCartCourses,
+  fetchWishlistCourses,
   removeCartCourse,
   removeWishlistCourse,
 } from "../../../../../../store/slices/studentSlice";
 
-export default function Card({ card, isWish, loading }) {
+export default function Card({ card, isWish, isSkill }) {
   const dispatch = useDispatch();
-  if (!card) return;
+  if (isSkill) return <Skel />;
 
   const {
     _id,
     photo,
-    title,
-    titleHook,
-    price,
-    author,
-    rating,
-    totalRatings,
+    title = "Untitled",
+    titleHook = "Untitled",
+    price = 0,
+    author = "Anonymous",
+    rating = 0,
+    totalRatings = 0,
     details,
-  } = card._id;
+  } = card?._id || {};
 
-  function addCartHandler() {
-    dispatch(addCartCourse({ id: _id }));
+  async function addCartHandler() {
+    dispatch(addCartCourse({ id: _id })).then(() =>
+      Promise.all([
+        dispatch(fetchWishlistCourses()),
+        dispatch(fetchCartCourses()),
+      ])
+    );
   }
   function addWishHandler() {
-    dispatch(addWishlistCourse({ id: _id }));
+    dispatch(addWishlistCourse({ id: _id })).then(() =>
+      Promise.all([
+        dispatch(fetchCartCourses()),
+        dispatch(fetchWishlistCourses()),
+      ])
+    );
   }
   function removeCartHandler() {
     dispatch(removeCartCourse({ id: _id }));
@@ -61,21 +73,39 @@ export default function Card({ card, isWish, loading }) {
           <span className="courseDetails">{details}</span>
         </div>
         <div className="courseBtn">
-          <button
+          <Link
+            to={"."}
             className="btn1 btn border-0 ps-0"
-            type="button"
             onClick={isWish ? addCartHandler : addWishHandler}
           >
             {isWish ? "Add to cart" : "Save for later"}
-          </button>
-          <button
+          </Link>
+          <Link
+            to={"."}
             className="btn text-danger border-0"
-            type="button"
             onClick={isWish ? removeWishHandler : removeCartHandler}
           >
             Remove
-          </button>
+          </Link>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function Skel() {
+  return (
+    <div className="row">
+      <div className="col-4">
+        <Skeleton height={200} className="" />
+      </div>
+      <div className="col-8">
+        <Skeleton height={30} />
+        <Skeleton height={30} />
+        <Skeleton height={30} />
+        <Skeleton height={30} />
+        <Skeleton height={30} />
+        <Skeleton height={25} />
       </div>
     </div>
   );

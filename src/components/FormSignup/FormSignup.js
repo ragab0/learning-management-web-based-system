@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/slices/authSlice";
 import { motion, AnimatePresence } from "framer-motion";
 import AuthMoreOptions from "../AuthMoreOptions/AuthMoreOptions";
-import FormError from "../FormError/FormError";
 
 export default function SignupForm({ role = "student" }) {
   const dispatch = useDispatch();
@@ -52,7 +51,7 @@ export default function SignupForm({ role = "student" }) {
 
   async function submitHandler(data) {
     dispatch(signup(data));
-  };
+  }
 
   const errorVariants = {
     hidden: { opacity: 0, y: -20, backgroundColor: "#f8d7da" },
@@ -177,7 +176,7 @@ export default function SignupForm({ role = "student" }) {
       </form>
       <AuthMoreOptions role={role} type="signup" loading={loading} />
       <AnimatePresence>
-        {success && (
+        {isNewUser && (
           <motion.p
             className="text-success mt-3 p-2"
             variants={successVariants}

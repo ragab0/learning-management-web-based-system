@@ -3,11 +3,26 @@ import myAxios from "../../utils/myAxios";
 
 const NAME = "top";
 const initialState = {
-  topStats: { data: null, loading: false, error: null },
-  topCategouries: { data: [], loading: false, error: null },
-  topComments: { data: [], loading: false, error: null },
-  topCourses: { data: [], loading: false, error: null },
-  topMentors: { data: [], loading: false, error: null },
+  // topStats: { data: null, loading: false, error: null },
+  // topCategouries: { data: [], loading: false, error: null },
+  topComments: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
+  topCourses: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
+  topMentors: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
 };
 
 const fetchTopStats = createAsyncThunk(`${NAME}/fetchTopStats`, async () => {

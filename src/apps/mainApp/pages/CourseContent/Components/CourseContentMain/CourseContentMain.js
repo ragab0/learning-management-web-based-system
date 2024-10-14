@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CourseContentMain.css";
 import courseVideo from "../../../../../../assets/noxe.mp4";
 import Tabs from "../../../../components/Tabs/Tabs";
@@ -41,7 +41,7 @@ const ScrollAnimatedSection = ({ children, animationVariants }) => {
     threshold: 0.1,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (inView) {
       controls.start("visible");
     }
@@ -61,7 +61,7 @@ const ScrollAnimatedSection = ({ children, animationVariants }) => {
 
 export default function CourseContentMain() {
   return (
-    <div className="course-content-main container p-5">
+    <div className="course-content-main">
       <header className="flex">
         <video src={"courseVideo"} className="w-100" controls />
       </header>

@@ -1,45 +1,35 @@
 import React from "react";
 import "./CoursesPage.css";
-import RateMenu from "./components/RateMenu/RateMenu";
-import ChaptersMenu from "./components/ChaptersMenu/ChaptersMenu";
-import PriceMenu from "./components/PriceMenu/PriceMenu";
-import CategoryMenu from "./components/CategoryMenu/CategoryMenu";
 import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstructors";
 import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 import PaginationMain from "../../../../components/PaginationMain/PaginationMain";
 import CoursesList from "./components/CoursesList/CoursesList";
-import FilterHeader from "./components/FilterHeader/FilterHeader";
 import { useSelector } from "react-redux";
 import { getCourses } from "../../../../store/slices/coursesSlice";
-import usePaginationDispatch from "../../../../hooks/usePaginationDispatch";
+import FilterOptions from "./components/FilterOptions/FilterOptions";
+import SortOptions from "./components/SortOptions/SortOptions";
 
 export default function CoursesPage() {
   const {
     apiData: { totalPages, page: activePage },
   } = useSelector((state) => state.courses);
 
-  const getCoursesPaginationDispatchor = usePaginationDispatch(getCourses);
-
   return (
     <div className="courses-page container">
       <h1>Design Courses</h1>
       <h3 className="mt-4">All Development Courses</h3>
-      <FilterHeader />
       <div className="row">
         <div className="col-lg-3 col-md-3">
-          <div className="filter-optoins d-flex flex-column flex-wrap">
-            <RateMenu />
-            <ChaptersMenu />
-            <PriceMenu />
-            <CategoryMenu />
-          </div>
+          <FilterOptions />
         </div>
         <div className="col-lg-9 col-md-9">
+          <SortOptions />
           <CoursesList />
           <PaginationMain
             totalPages={totalPages}
-            page={activePage}
-            paginationDispather={getCoursesPaginationDispatchor}
+            activePage={activePage}
+            pageSize={10}
+            thunkAction={getCourses}
           />
         </div>
         <LineOfInstructors title="Popular Mentors" />

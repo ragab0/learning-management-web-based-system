@@ -15,15 +15,17 @@ import ShoppingCartPage from "./pages/ShoppingCart/ShoppingCartPage";
 import CoursePage from "./pages/Course/CoursePage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import TabMyCourses from "./pages/Profile/Components/TabMyCourses/TabMyCourses";
-import TabTeachers from "./pages/Profile/Components/TabTeachers/TabTeachers";
-import TabMessage from "./pages/Profile/Components/TabMessage/TabMessage";
+import TabMyMentors from "./pages/Profile/Components/TabMentors/TabMentors";
+import TabMyMessages from "./pages/Profile/Components/TabMessages/TabMessages";
 import TabMyReviews from "./pages/Profile/Components/TabMyReviews/TabMyReviews";
 import CourseContentPage from "./pages/CourseContent/CourseContent";
 import MentorPage from "./pages/Mentor/MentorPage";
-import TabChat from "./pages/Profile/Components/TabChat/TabChat";
+import TabChat from "./pages/Profile/Components/TabChats/TabChats";
 import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
 import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
+import TabMyCoursesEnrolledTab from "./pages/Profile/Components/TabMyCourses/TabMyCoursesEnrolledTab/TabMyCoursesEnrolledTab";
+import TabMyCoursesArchivedTab from "./pages/Profile/Components/TabMyCourses/TabMyCoursesArchivedTab/TabMyCoursesArchivedTab";
 
 const ROLE = "student";
 
@@ -72,12 +74,15 @@ function App() {
             }
           >
             <Route index element={<FormProfile />} />
-            <Route path="courses" element={<TabMyCourses />} />
+            <Route path="courses" element={<TabMyCourses />}>
+              <Route index element={<TabMyCoursesEnrolledTab />} />
+              <Route path="archived" element={<TabMyCoursesArchivedTab />} />
+            </Route>
             <Route path="teachers">
-              <Route index element={<TabTeachers />} />
+              <Route index element={<TabMyMentors />} />
               <Route path="chat/:teacherId" element={<TabChat />} />
             </Route>
-            <Route path="messages" element={<TabMessage />} />
+            <Route path="messages" element={<TabMyMessages />} />
             <Route path="reviews" element={<TabMyReviews />} />
           </Route>
 
