@@ -52,6 +52,8 @@ const store = configureStore({
   reducer: {
     auth: authSlice,
     student: studentSlice,
+    mentor: studentSlice,
+
     courses: coursesSlice,
     course: courseSlice,
   },

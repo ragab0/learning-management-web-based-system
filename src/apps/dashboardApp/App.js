@@ -26,24 +26,35 @@ import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTa
 import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";
 import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
+import { useSelector } from "react-redux";
+import Loader from "../../components/Loader/Loader";
 
 const ROLE = "mentor";
-const oneSidePages = ["signup", "login", "reset-password"];
+const notRequireAuthRoutes = [
+  "/dashboard/login",
+  "/dashboard/signup",
+  "/dashboard/reset-password",
+];
 
 export default function DashboardApp() {
+  const { isInitialized, loading } = useSelector((state) => state.auth.login);
   useLoginCheck();
   const location = useLocation();
+
+  if (
+    !notRequireAuthRoutes.includes(location.pathname) &&
+    !isInitialized &&
+    loading
+  ) {
+    return <Loader />;
+  }
 
   return (
     <div
       className="dashboard-app"
       style={
-        oneSidePages
-          .map((o) => location.pathname.includes(o))
-          .find((result) => result)
-          ? {
-              gridTemplateColumns: "1fr",
-            }
+        notRequireAuthRoutes.includes(location.pathname)
+          ? { gridTemplateColumns: "1fr" }
           : {}
       }
     >

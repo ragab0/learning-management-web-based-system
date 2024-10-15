@@ -2,28 +2,29 @@ import React from "react";
 import "./CoursesList.css";
 import CourseOvervewCard from "../../../../components/CourseOvervewCard/CourseOvervewCard";
 import { useSelector } from "react-redux";
+import NoContent from "../../../../../../components/NoContent/NoContent";
 
-export default function CoursesList({ list, isLoading }) {
+export default function CoursesList() {
   const {
     apiData: { results },
     isInitialized,
     loading,
   } = useSelector((state) => state.courses);
 
-  if (!results?.length && isInitialized) {
-    return <h1 className=" my-5 text-center">There is no courses to show!</h1>;
+  if (isInitialized && !results?.length) {
+    return (
+      <div style={{ marginBlock: "100px 200px" }}>
+        <NoContent />
+      </div>
+    );
   }
-
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
 
   return (
     <div className="row">
       {isInitialized && !loading
         ? results?.map((course, i) => (
             <div className="col-lg-4 col-md-6 mb-4" key={i}>
-              <CourseOvervewCard course={course} isLoading={isLoading} />
+              <CourseOvervewCard course={course} isLoading={loading} />
             </div>
           ))
         : [...Array(10)].map((course, i) => (

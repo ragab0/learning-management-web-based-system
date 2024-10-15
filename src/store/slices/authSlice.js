@@ -3,6 +3,14 @@ import myAxios from "../../utils/myAxios";
 import { toast } from "react-toastify";
 import { delay } from "../../utils/delay";
 import { fixedToastOptions } from "../../utils/fixedToast";
+import {
+  fetchMentorBasicProfile,
+  updateMentorBasicProfile,
+} from "./mentorSlice";
+import {
+  fetchStudentBasicProfile,
+  updateStudentBasicProfile,
+} from "./studentSlice";
 
 const NAME = "auth";
 const initialState = {
@@ -78,6 +86,19 @@ const authSlice = createSlice({
   name: NAME,
   initialState,
   extraReducers(builder) {
+    /************ UPDATE BASIC PROFILE (Student) ************/
+    builder.addCase(updateStudentBasicProfile.fulfilled, (state, action) => {
+      state.login.user = action.payload?.user;
+      state.login.isAuthRole = action.payload?.user?.role;
+    });
+
+    /************ UPDATE BASIC PROFILE (Mentor) ************/
+    builder.addCase(updateMentorBasicProfile.fulfilled, (state, action) => {
+      state.login.user = action.payload?.user;
+      state.login.isAuthRole = action.payload?.user?.role;
+    });
+
+    /************ USER Auth ************/
     // 01) login
     builder.addCase(login.pending, (state) => {
       state.login.loading = true;

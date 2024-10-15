@@ -40,7 +40,7 @@ function apiLoadingBuilder(builder, asyncCreator, field) {
 
 const NAME = "student";
 const initialState = {
-  basicProfile: { loading: false }, // data in auth.login
+  basicProfile: { loading: false, error: false },
   enrolledCourses: {
     apiData: {},
     isInitialized: false,
@@ -72,18 +72,16 @@ const initialState = {
   chats: { apiData: {}, isInitialized: false, loading: false, error: null },
 };
 
-/******************** Profile ******************** */
-/** Student Profile (get, update) */
-const profilePath = "/student/profile";
-
-const fetchBasicProfile = createAsyncThunk(
-  `${NAME}/fetchBasicProfile`,
-  basicThinker("get", profilePath)
+/******************** Studnet basic profile (Fetch && Update) */
+const studentProfilePath = "/student/profile";
+const fetchStudentBasicProfile = createAsyncThunk(
+  `${NAME}/fetchStudentBasicProfile`,
+  basicThinker("get", studentProfilePath)
 );
 
-const updateBasicProfile = createAsyncThunk(
-  `${NAME}/updateBasicProfile`,
-  toastedThinker("put", profilePath, "Saving")
+const updateStudentBasicProfile = createAsyncThunk(
+  `${NAME}/updateStudentBasicProfile`,
+  toastedThinker("put", studentProfilePath, "Saving")
 );
 
 /******************** Courses Enrolled /******************** */
@@ -170,24 +168,29 @@ const checkoutCartCourses = createAsyncThunk(
 );
 
 /****************************************** [Mentors, Messages, Reviews, Chats] **********************/
+const mentorsPath = `/student/mentors`;
+const messagesPath = `/student/messages`;
+const reviewsPath = `/student/reviews`;
+const chatsPath = `/student/chats`;
+
 const fetchMentors = createAsyncThunk(
   `${NAME}/fetchMentors`,
-  basicThinker("get", `/student/mentors`)
+  basicThinker("get", mentorsPath)
 );
 
 const fetchMessages = createAsyncThunk(
   `${NAME}/fetchMessages`,
-  basicThinker("get", `/student/messages`)
+  basicThinker("get", messagesPath)
 );
 
 const fetchReviews = createAsyncThunk(
   `${NAME}/fetchReviews`,
-  basicThinker("get", `/student/reviews`)
+  basicThinker("get", reviewsPath)
 );
 
 const fetchChats = createAsyncThunk(
   `${NAME}/fetchChats`,
-  basicThinker("get", `/student/chats`)
+  basicThinker("get", chatsPath)
 );
 
 const studentSlice = createSlice({
@@ -199,28 +202,30 @@ const studentSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    // 01) basicProfile
-    builder.addCase(fetchBasicProfile.pending, (state) => {
+    /************ BASIC proile (Student) ************/
+    // fetchStudentBasicProfile
+    builder.addCase(fetchStudentBasicProfile.pending, (state) => {
       state.basicProfile.loading = true;
       state.basicProfile.error = null;
     });
-    builder.addCase(fetchBasicProfile.fulfilled, (state, action) => {
+    builder.addCase(fetchStudentBasicProfile.fulfilled, (state) => {
       state.basicProfile.loading = false;
     });
-    builder.addCase(fetchBasicProfile.rejected, (state, action) => {
+    builder.addCase(fetchStudentBasicProfile.rejected, (state, action) => {
       state.basicProfile.loading = false;
       state.basicProfile.error = action.error.message;
     });
 
-    // 02) updateBasicProfile
-    builder.addCase(updateBasicProfile.pending, (state) => {
+    // updateStudentBasicProfile
+    builder.addCase(updateStudentBasicProfile.pending, (state) => {
       state.basicProfile.loading = true;
       toast.dismiss();
     });
-    builder.addCase(updateBasicProfile.fulfilled, (state) => {
+    builder.addCase(updateStudentBasicProfile.fulfilled, (state) => {
       state.basicProfile.loading = false;
+      /** UPDATE login state */
     });
-    builder.addCase(updateBasicProfile.rejected, (state, action) => {
+    builder.addCase(updateStudentBasicProfile.rejected, (state, action) => {
       state.basicProfile.loading = false;
       if (action.payload?.result) {
         toast.error(action.payload?.result, fixedToastOptions);
@@ -232,8 +237,6 @@ const studentSlice = createSlice({
         );
       }
     });
-
-    // fetchEnrolledCourseContent
 
     // 01) Courses enrolled:
     apiLoadingBuilder(builder, fetchEnrolledCourses, "enrolledCourses");
@@ -267,8 +270,8 @@ export default studentSlice.reducer;
 const { unInitCheckout } = studentSlice.actions;
 export {
   unInitCheckout,
-  fetchBasicProfile,
-  updateBasicProfile,
+  fetchStudentBasicProfile,
+  updateStudentBasicProfile,
   fetchEnrolledCourses,
   fetchEnrolledCourseContent,
   archiveEnrolledCourse,

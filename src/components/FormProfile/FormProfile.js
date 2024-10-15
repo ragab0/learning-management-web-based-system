@@ -1,39 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FormProfile.css";
-import Img from "../../assets/svgsComps/image.svg";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import Select from "../SelectForm/SelectForm";
-import { updateBasicProfile } from "../../store/slices/studentSlice";
+import { updateStudentBasicProfile } from "../../store/slices/studentSlice";
 import FormError from "../FormError/FormError";
+import { updateMentorBasicProfile } from "../../store/slices/mentorSlice";
 
-const supportedLanguages = ["english", "arabic"];
+// const supportedLanguages = ["english", "arabic"];
 
-export default function FormProfile({ ofRole }) {
+export default function FormProfile({ ofRole = "student" }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth.login);
-  const { loading } = useSelector((state) => state.student.basicProfile);
   const { language: activeLang, email } = user || {};
 
   const {
     register,
-    setValue,
+    // setValue,
     control,
     handleSubmit,
     formState: { errors, isDirty },
-    watch,
+    // watch,
   } = useForm({ values: user });
 
-  const language = watch("language", activeLang);
+  // const language = watch("language", activeLang);
 
   async function submitHandler(data) {
-    console.log("data is:", data);
-    dispatch(updateBasicProfile(data));
-  }
-
-  if (loading) {
-    <h1>Loading...</h1>;
+    console.log(`data ofRole ${ofRole} is: ${data}`);
+    if (ofRole === "mentor") {
+      dispatch(updateMentorBasicProfile(data));
+    } else if (ofRole === "student") {
+      dispatch(updateStudentBasicProfile(data));
+    } else {
+      console.error("please don't play with role ^_^");
+    }
   }
 
   return (

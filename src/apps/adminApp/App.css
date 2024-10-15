@@ -1,0 +1,16 @@
+:root {
+  --border-100: hsl(50 5.8% 40%);
+  --text-100: hsl(50 23.1% 94.9% / 1);
+  --bg-200: hsl(45 4.9% 16.1%);
+  --from-bg-200: hsl(45 4.9% 16.1% / 1);
+  --to-bg-200: hsl(60 3.3% 17.8% / 1);
+}
+
+.admin-app {
+  min-height: 100vh;
+  background-color: var(--bg-200);
+  color: var(--text-100);
+  font-family: "Courier New", Courier, monospace;
+  background: linear-gradient(to bottom, var(--from-bg-200), var(--to-bg-200));
+  position: relative;
+}
