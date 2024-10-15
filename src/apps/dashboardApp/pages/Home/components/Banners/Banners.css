@@ -1,0 +1,30 @@
+.banners .banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--grey-border, #e2e8f0);
+  box-shadow: 0 0 8px 0 rgba(59, 130, 246, 0.12);
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.banners .banner svg {
+  width: 48px;
+  height: 48px;
+}
+
+.banners .commission-value {
+  gap: 16px;
+  font-size: 24px;
+  color: var(--grey-900, #0f172a);
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.banners .commission-label {
+  color: var(--grey-700, #334155);
+  font-size: 14px;
+  font-weight: 400;
+}

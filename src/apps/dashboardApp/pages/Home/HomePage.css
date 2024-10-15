@@ -1,0 +1,3 @@
+.home-dash-page > *:not(:first-child) {
+  margin-bottom: 2rem;
+}

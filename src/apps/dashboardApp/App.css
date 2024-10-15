@@ -53,3 +53,14 @@
   font-weight: 100 !important;
   font-size: 10px;
 }
+
+.dashboard-box {
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.2s;
+  cursor: default;
+}
+.dashboard-box:hover {
+  background-color: rgba(144, 189, 249, 0.16);
+}

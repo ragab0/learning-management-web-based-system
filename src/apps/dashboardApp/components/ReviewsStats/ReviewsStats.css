@@ -1,0 +1,52 @@
+.review-badge {
+  border-radius: 0.5rem;
+  border: 1px solid var(--grey-border, #e2e8f0);
+  box-shadow: 0 0 8px 0 rgba(59, 130, 246, 0.12);
+  padding: 1.5rem;
+  text-transform: capitalize;
+  cursor: default;
+  flex: 1;
+}
+
+.review-badge .review-label {
+  color: var(--grey-700, #334155);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.review-badge .review-stats {
+  display: flex;
+  margin-top: 4px;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  white-space: nowrap;
+  justify-content: start;
+}
+
+.review-badge .review-count {
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--grey-900, #0f172a);
+}
+
+.review-badge .review-rating {
+  border-radius: 4px;
+  background: #dc2626;
+  font-size: 12px;
+  color: #fef2f2;
+  padding: 0.1rem 0.75rem;
+}
+
+.review-badge:nth-of-type(3) .review-rating {
+  background-color: #ca8a04;
+}
+.review-badge:nth-of-type(4) .review-rating {
+  background-color: #facc15;
+}
+.review-badge:nth-of-type(5) .review-rating {
+  background-color: #4ade80;
+}
+.review-badge:nth-of-type(6) .review-rating {
+  background-color: #16a34a;
+}

@@ -28,6 +28,7 @@ import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader";
+import FullReviewsTab from "./pages/Communication/FullReviewsTab/FullReviewsTab";
 
 const ROLE = "mentor";
 const notRequireAuthRoutes = [
@@ -99,8 +100,7 @@ export default function DashboardApp() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<ReviewsTab />} />
-          <Route path="reviews" element={<ReviewsTab />} />
+          <Route index element={<FullReviewsTab />} />
           <Route path="messages" element={<MessagesTab />} />
         </Route>
         {/* protected (full - with children) */}
@@ -113,14 +113,14 @@ export default function DashboardApp() {
           }
         />
         {/* protected (full - with children) */}
-        <Route
+        {/* <Route
           path="settings"
           element={
             <ProtectedRoute roleOfRoute={ROLE}>
               <SettingsPage />
             </ProtectedRoute>
           }
-        />
+        /> */}
         {/* protected (full - with children) */}
         <Route
           path="profile"

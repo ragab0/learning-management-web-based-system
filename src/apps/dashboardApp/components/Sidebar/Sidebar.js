@@ -9,16 +9,21 @@ import ChatIcon from "../../../../assets/svgsComps/dashboard/Chat";
 import DollarIcon from "../../../../assets/svgsComps/dashboard/Dollar";
 import SettingIcon from "../../../../assets/svgsComps/dashboard/Setting";
 import ProfileImg from "../../../../assets/mentorsImgs/profile.png";
+import { useSelector } from "react-redux";
 
 const hiddenPages = ["signup", "login", "reset-password"];
 
 export default function Sidebar() {
   const location = useLocation();
   const [isSideOpened, setIsSideOpened] = useState(true);
+  const { user, isAuthRole } = useSelector((state) => state.auth.login);
 
   function isSideOpenedHandler() {
     setIsSideOpened(!isSideOpened);
   }
+
+  if (!isAuthRole) return;
+  const { fname, photo } = user;
 
   return (
     <aside
@@ -85,10 +90,12 @@ export default function Sidebar() {
       </nav>
       <Link
         to={"profile"}
-        className="footer d-flex align-items-center  flex-wrap gap-2"
+        className="footer d-flex align-items-center gap-2 w-100 overflow-hidden"
       >
-        <img src={ProfileImg} alt="profile-img"></img>
-        <span className=" text-nowrap navbar-text p-0">Hello, world!</span>
+        <div className="img-wrapper d-flex align-items-center justify-content-center text-capitalize fw-bold flex-shrink-0">
+          {photo ? <img src={photo} alt="profile-img"></img> : fname[0]}
+        </div>
+        <span className=" text-nowrap navbar-text p-0">Hello, {fname}!</span>
       </Link>
     </aside>
   );
