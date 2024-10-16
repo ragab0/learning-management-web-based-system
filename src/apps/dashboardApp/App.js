@@ -7,7 +7,7 @@ import CoursesPage from "./pages/Courses/CoursesPage";
 import Communication from "./pages/Communication/CommunicationPage";
 import RevenuePage from "./pages/Revenue/components/RevenuePage";
 import SettingsPage from "./pages/Settings/components/SettingsPage";
-import CoursePage from "./pages/Course/CoursesPage";
+import CoursePage from "./pages/Course/CoursePage";
 import CommissionTab from "./pages/Course/components/CommissionTab/CommissionTab";
 import ReviewsTab from "./pages/Course/components/ReviewsTab/ReviewsTab";
 import CustomerTab from "./pages/Course/components/CustomerTab/CustomerTab";
@@ -15,8 +15,8 @@ import ChaptersTab from "./pages/Course/components/ChaptersTab/ChaptersTab";
 import PromotionTab from "./pages/Course/components/PromotionTab/PromotionTab";
 import DetailsTab from "./pages/Course/components/DetailsTab/DetailsTab";
 import SettingsTab from "./pages/Course/components/SettingsTab/SettingsTab";
-import ChaptersTabResourcesTab from "./pages/Course/components/ChaptersTab/ChaptersTabResourcesTab/ChaptersTabResourcesTab";
-import ChaptersTabDetailsTab from "./pages/Course/components/ChaptersTab/ChaptersTabDetailsTab/ChaptersTabDetailsTab";
+import ChaptersTabResourcesTab from "./pages/Course/components/ChaptersTab/Chapter/ChapterResourceTab/ChapterResourceTab";
+import ChaptersTabDetailsTab from "./pages/Course/components/ChaptersTab/Chapter/ChapterDetailsTab/ChapterDetailsTab";
 import CouponDetails from "./pages/Course/components/PromotionTab/components/CouponDetails/CouponDetails";
 import EditCoupon from "./pages/Course/components/PromotionTab/components/CouponDetails/components/EditCoupon/EditCoupon";
 import SignupPage from "./pages/Signup/SignupPage";
@@ -29,6 +29,10 @@ import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader";
 import FullReviewsTab from "./pages/Communication/FullReviewsTab/FullReviewsTab";
+import ChapterDetailsTab from "./pages/Course/components/ChaptersTab/Chapter/ChapterDetailsTab/ChapterDetailsTab";
+import ChapterResourceTab from "./pages/Course/components/ChaptersTab/Chapter/ChapterResourceTab/ChapterResourceTab";
+import Chapter from "./pages/Course/components/ChaptersTab/Chapter/Chapter";
+import Lessons from "./pages/Course/components/ChaptersTab/Chapter/Lessons/Lessons";
 
 const ROLE = "mentor";
 const notRequireAuthRoutes = [
@@ -74,12 +78,19 @@ export default function DashboardApp() {
         <Route path="courses" element={<ProtectedRoute roleOfRoute={ROLE} />}>
           <Route index element={<CoursesPage />} />
           <Route path=":courseId" element={<CoursePage />}>
-            <Route index element={<CommissionTab />} />
+            {/* <Route index element={<CommissionTab />} /> */}
+            <Route index element={<CustomerTab />} />
             <Route path="reviews" element={<ReviewsTab />} />
-            <Route path="customer" element={<CustomerTab />} />
-            <Route path="chapters" element={<ChaptersTab />}>
-              <Route index element={<ChaptersTabDetailsTab />} />
-              <Route path="resources" element={<ChaptersTabResourcesTab />} />
+            {/* <Route path="customers" element={<CustomerTab />} /> */}
+            <Route path="chapters">
+              <Route index element={<ChaptersTab />} />
+              <Route path=":chapterId" element={<Chapter />}>
+                <Route index element={<ChapterDetailsTab />} />
+                <Route path="resources" element={<ChapterResourceTab />} />
+                <Route path="lessons">
+                  <Route index element={<Lessons />} />
+                </Route>
+              </Route>
             </Route>
             <Route path="promotion">
               <Route index element={<PromotionTab />} />

@@ -43,6 +43,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
 import authSlice from "./slices/authSlice";
 import studentSlice from "./slices/studentSlice";
+import mentorSlice from "./slices/mentorSlice";
 import coursesSlice from "./slices/coursesSlice";
 import courseSlice from "./slices/courseSlice";
 
@@ -52,7 +53,7 @@ const store = configureStore({
   reducer: {
     auth: authSlice,
     student: studentSlice,
-    mentor: studentSlice,
+    mentor: mentorSlice,
 
     courses: coursesSlice,
     course: courseSlice,

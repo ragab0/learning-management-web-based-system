@@ -95,7 +95,9 @@ export default function Sidebar() {
         <div className="img-wrapper d-flex align-items-center justify-content-center text-capitalize fw-bold flex-shrink-0">
           {photo ? <img src={photo} alt="profile-img"></img> : fname[0]}
         </div>
-        <span className=" text-nowrap navbar-text p-0">Hello, {fname}!</span>
+        <span className=" text-nowrap navbar-text p-0 text-capitalize">
+          Hello, {fname}!
+        </span>
       </Link>
     </aside>
   );

@@ -14,6 +14,7 @@
   align-items: end;
   font-family: "Courier New", Courier, monospace;
   overflow: hidden;
+  z-index: 10000;
 }
 
 .sidebar header {
@@ -94,18 +95,4 @@
 
 .sidebar.closed a {
   padding: 0;
-}
-
-@media (max-width: 1200px) {
-  .dashboard-app {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-  }
-  .dashboard-app .sidebar + div {
-    padding-left: calc(1rem + 48px + var(--pad) * 2);
-  }
 }

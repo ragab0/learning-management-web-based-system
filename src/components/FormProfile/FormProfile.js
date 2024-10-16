@@ -11,7 +11,7 @@ import { updateMentorBasicProfile } from "../../store/slices/mentorSlice";
 
 export default function FormProfile({ ofRole = "student" }) {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth.login);
+  const { user, loading } = useSelector((state) => state.auth.login);
   const { language: activeLang, email } = user || {};
 
   const {
@@ -141,7 +141,7 @@ export default function FormProfile({ ofRole = "student" }) {
         </section>
         <button
           className={`btn btn-dark w-100 d-block py-3 fw-bold ${
-            isDirty ? "" : "disabled"
+            loading || !isDirty ? "disabled" : ""
           }`}
         >
           Save

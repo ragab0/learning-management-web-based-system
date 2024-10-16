@@ -7,6 +7,25 @@
 
 .dashboard-app > div {
   padding: 1rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-app {
+    display: flex;
+  }
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    flex-shrink: 0;
+    height: 100%;
+  }
+  .sidebar.closed {
+    position: relative;
+    height: auto;
+  }
 }
 
 .dashboard-app h1,
@@ -63,4 +82,11 @@
 }
 .dashboard-box:hover {
   background-color: rgba(144, 189, 249, 0.16);
+}
+
+.COMING {
+  opacity: 0.5;
+  pointer-events: none;
+  display: grid;
+  gap: 1rem;
 }
