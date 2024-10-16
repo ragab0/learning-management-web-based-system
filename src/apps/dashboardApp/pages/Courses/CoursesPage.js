@@ -7,6 +7,7 @@ import NoContent from "../../../../components/NoContent/NoContent";
 import { fetchMentorAllCourses } from "../../../../store/slices/mentorSlice";
 import Loader from "../../../../components/Loader/Loader";
 import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
 
 export default function CoursesPage() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function CoursesPage() {
     apiData: { results },
     isInitialized,
     loading,
+    error,
   } = useSelector((state) => state.mentor.taughtCourses);
   const [isNew, setIsNew] = useState(
     useSelector((state) => state.mentor.createMentorCourse.isInitialized)
@@ -43,8 +45,23 @@ export default function CoursesPage() {
     );
   }
 
+  if (isInitialized && error) {
+    return <NoContent />;
+  }
+
   if (!isInitialized || loading) {
-    return <Loader />;
+    return (
+      <section className=" container-fluid">
+        <Skeleton height={40} width={300} />
+        <div className="courses-cards row mt-2">
+          {[...Array(9)].map((course, i) => (
+            <div className="col-4 mb-4" key={i}>
+              <CourseCard isSkel={true} course={course} />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
   }
 
   return (

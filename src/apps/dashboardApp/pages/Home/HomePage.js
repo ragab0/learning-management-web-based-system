@@ -1,11 +1,10 @@
 import React from "react";
 import "./HomePage.css";
 import ReviewsStats from "../../components/ReviewsStats/ReviewsStatas";
-import CourseCard from "../../components/CourseCard/CourseCard";
 import Banners from "./components/Banners/Banners";
 import HomeChart from "./components/HomeChart/HomeChart";
-import { lastCoursesData } from "../../../../data/dashStats";
 import AddCourse from "../../components/AddCourse/AddCourse";
+import LineOfCourses from "./components/LineOfCourses/LineOfCourses";
 
 export default function HomePage() {
   return (
@@ -22,16 +21,7 @@ export default function HomePage() {
         <h2>reviews</h2>
         <ReviewsStats />
       </div>
-      <section>
-        <h2>last courses</h2>
-        <div className="last-courses-cards row">
-          {[...lastCoursesData].map((course, i) => (
-            <div className="col-4 mb-4" key={i}>
-              <CourseCard course={course} />
-            </div>
-          ))}
-        </div>
-      </section>
+      <LineOfCourses />
     </div>
   );
 }

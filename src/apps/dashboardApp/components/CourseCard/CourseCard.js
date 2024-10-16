@@ -1,8 +1,10 @@
 import React from "react";
 import "./CourseCard.css";
 import { Link } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
-export default function CourseCard({ course }) {
+export default function CourseCard({ course, isSkel }) {
+  if (isSkel) return <Skel />;
   const {
     id,
     isFree = true,
@@ -46,6 +48,18 @@ function CourseDetail({ value, label }) {
     <div className="detail-column col-4">
       <div className="detail-value">{value}</div>
       <div className="detail-label">{label}</div>
+    </div>
+  );
+}
+
+function Skel() {
+  return (
+    <div>
+      <div>
+        <Skeleton height={40}></Skeleton>
+        <Skeleton height={40}></Skeleton>
+      </div>
+      <Skeleton height={100}></Skeleton>
     </div>
   );
 }
