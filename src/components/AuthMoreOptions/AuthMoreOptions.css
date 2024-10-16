@@ -4,6 +4,7 @@
   text-align: center;
   color: var(--clr-grey-disabled);
   margin-block: 1.5rem;
+  font-size: 10px;
 }
 
 .auth-more-options > p::after {

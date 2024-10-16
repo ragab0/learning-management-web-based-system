@@ -1,0 +1,52 @@
+/**
+ * SOME beautiful gradiants generated created with help of my eng - claude ai...
+ *
+ */
+
+/* Gradient 1: Vertical gradient using bg-200 colors */
+.gradient-1 {
+  background: linear-gradient(to bottom, var(--from-bg-200), var(--to-bg-200));
+}
+
+/* Gradient 2: Diagonal gradient using all colors */
+.gradient-2 {
+  background: linear-gradient(
+    45deg,
+    var(--border-100),
+    var(--bg-200),
+    var(--text-100)
+  );
+}
+
+/* Gradient 3: Radial gradient */
+.gradient-3 {
+  background: radial-gradient(
+    circle,
+    var(--text-100),
+    var(--bg-200),
+    var(--border-100)
+  );
+}
+
+/* Gradient 4: Conic gradient */
+.gradient-4 {
+  background: conic-gradient(
+    from 0deg,
+    var(--border-100),
+    var(--bg-200),
+    var(--text-100),
+    var(--border-100)
+  );
+}
+
+/* Gradient 5: Multi-stop linear gradient */
+.gradient-5 {
+  background: linear-gradient(
+    to right,
+    var(--border-100) 0%,
+    var(--bg-200) 25%,
+    var(--from-bg-200) 50%,
+    var(--to-bg-200) 75%,
+    var(--text-100) 100%
+  );
+}

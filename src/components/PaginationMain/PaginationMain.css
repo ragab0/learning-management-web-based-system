@@ -1,3 +1,10 @@
+.pagination-section li button {
+  min-width: 48px;
+}
 .pagination-section li.disabled {
   cursor: not-allowed;
+}
+
+.pagination-section li.page-item.elipsed {
+  pointer-events: none;
 }

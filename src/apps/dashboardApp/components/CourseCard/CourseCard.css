@@ -1,0 +1,48 @@
+.course-card {
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5px;
+  box-shadow: 0 0 8px 0 rgba(59, 130, 246, 0.12);
+  overflow: hidden;
+}
+
+.course-card .chip {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+  gap: 4px;
+  font-size: 12px;
+  color: #0f172a;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.course-card .course-title {
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+  font-family: sans-serif;
+}
+
+.course-card .divider {
+  background-color: #e2e8f0;
+  margin-top: 0.5rem;
+}
+
+.course-card .detail-value {
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.course-card .detail-label {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 400;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}

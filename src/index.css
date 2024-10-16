@@ -84,6 +84,11 @@ input {
 }
 
 /**/
+.btn.disabled {
+  cursor: not-allowed !important;
+}
+
+/**/
 .auth-form > * {
   margin-top: 1.1rem;
 }

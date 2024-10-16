@@ -5,16 +5,23 @@
 }
 
 .main-navbar > div {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-items: center;
 }
 
+.main-navbar .navbar-items:first-of-type {
+  flex: 1;
+}
+
 .main-navbar .navbar-items {
-  width: 100%;
   display: flex;
   align-items: center;
   text-transform: capitalize;
+}
+
+.main-navbar .navbar-items svg {
+  height: 22px;
+  width: 22px;
 }
 
 .main-navbar .navbar-items .form-item {
@@ -58,6 +65,10 @@
   /* transition: var(--transition-main); */
 }
 
+.main-navbar.auth .navbar-items a {
+  padding: 0.75rem;
+}
+
 .main-navbar .navbar-items a.active {
   font-weight: bold;
 }
@@ -69,6 +80,39 @@
 .main-navbar .navbar-items a:not(.my-btn):hover path {
   stroke: #000;
 }
+
+/* auth items */
+.main-navbar.auth .navbar-items .profile-link {
+  padding-inline-end: 0;
+  padding-block: 0;
+}
+
+.main-navbar.auth .navbar-items .profile-link > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  padding: 0;
+  font-size: 18px;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--clr-grey-dark);
+}
+
+.main-navbar .navbar-items .profile-link:hover > img {
+  opacity: 0.8;
+}
+
+.main-navbar .navbar-items .profile-link:hover > span {
+  color: var(--clr-grey-lighter);
+  background-color: var(--clr-grey-darkest);
+}
+
+/* Responsive style */
 
 @media (max-width: 991px) {
   .main-navbar .navbar-items li:nth-of-type(4) {

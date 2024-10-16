@@ -1,0 +1,11 @@
+.layout-checkboxes label {
+  cursor: pointer;
+}
+
+.layout-checkboxes label:hover {
+  opacity: 0.8;
+}
+
+.layout-checkboxes .checkbox {
+  width: fit-content;
+}

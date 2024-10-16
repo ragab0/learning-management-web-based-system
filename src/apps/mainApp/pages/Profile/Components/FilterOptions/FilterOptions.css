@@ -1,9 +1,8 @@
-.profile-page .search {
+.profile-page .search-form {
   position: relative;
 }
 
 .profile-page .search-input {
-  width: 100%;
   padding-left: 2.5rem;
   height: 40px;
   border-radius: 10px;

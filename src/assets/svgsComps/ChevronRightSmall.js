@@ -13,9 +13,9 @@ export default function ChevronRightSmall(props) {
       <path
         d="M10 8L14 12L10 16"
         stroke="#0F172A"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

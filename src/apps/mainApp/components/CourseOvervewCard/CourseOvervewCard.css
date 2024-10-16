@@ -3,6 +3,7 @@
   border-color: #e9eef6;
   border: 2px solid #e9eef6;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .course-overvew-card img {

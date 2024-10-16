@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   min-height: 100vh;
+  /* background-color: #040d21; */
 }
 
 .dashboard-app > div {
@@ -22,6 +23,9 @@
 .form-dash-page {
   background-color: #040d21;
   color: #8193b2;
+  background-image: linear-gradient(to bottom, #040d21, #091227);
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: -0.5px;
 }
 
 .form-dash-page-body {
@@ -32,7 +36,6 @@
 }
 
 .form-dash-page-body .title {
-  font-family: monospace;
   border-bottom: 1px solid;
 }
 
@@ -42,8 +45,22 @@
   padding: 1.5rem;
   min-width: 400px;
   min-height: 400px;
+  box-shadow: 0 0 2px #202637;
 }
 
 .form-dash-page-content .auth-more-options p span {
   background-color: hsl(222, 58%, 11%);
+  font-weight: 100 !important;
+  font-size: 10px;
+}
+
+.dashboard-box {
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.2s;
+  cursor: default;
+}
+.dashboard-box:hover {
+  background-color: rgba(144, 189, 249, 0.16);
 }
