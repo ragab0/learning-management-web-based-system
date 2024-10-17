@@ -60,7 +60,7 @@ function NotEnrolled({ course = {} }) {
       </div>
       <div className="desc">
         <h6>
-          {course.totalHours} Total Hours. {course.lecturesCount} Lectures.{" "}
+          {course.totalHours} Total Hours. {course.lecturesCount} Lectures.
           {course.level}
         </h6>
       </div>

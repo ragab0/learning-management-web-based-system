@@ -1,13 +1,13 @@
-.chapters-tab-resources-body {
+.chapters-tab-chapter .chapters-tab-resources-body {
   width: 97%;
   margin: 0 auto;
 }
 
-.section h5 {
+.chapters-tab-chapter .section h5 {
   color: #0f172a;
 }
 
-.section {
+.chapters-tab-chapter .section {
   width: 60%;
   border: 2px solid #e2e8f0;
   padding: 20px;
@@ -15,7 +15,7 @@
   margin-bottom: 20px;
 }
 
-.upload-section {
+.chapters-tab-chapter .upload-section {
   width: 60%;
   border: 2px dashed #e2e8f0;
   padding: 20px;

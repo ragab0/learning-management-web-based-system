@@ -1,0 +1,19 @@
+fieldset {
+  border: 1px solid var(--bs-border-color) !important;
+}
+fieldset legend {
+  all: unset;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+fieldset textarea,
+fieldset select,
+fieldset input {
+  background-color: white;
+}
+
+fieldset select {
+  border: 1px solid var(--bs-border-color) !important;
+  appearance: initial !important;
+}

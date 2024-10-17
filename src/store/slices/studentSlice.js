@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { fixedToastOptions } from "../../utils/fixedToast";
 import { basicThinker, toastedThinker } from "../../utils/thunks";
+import { apiLoadingBuilder } from "../../utils/apiLoadingBuilder";
 
 /**
  * Student Profile: [get, ^^^update];
@@ -19,24 +20,6 @@ import { basicThinker, toastedThinker } from "../../utils/thunks";
  * Student chats: [getAll];
  *
  */
-
-function apiLoadingBuilder(builder, asyncCreator, field) {
-  builder.addCase(asyncCreator.pending, (state) => {
-    state[field].isInitialized = false;
-    state[field].loading = true;
-    state[field].error = null;
-  });
-  builder.addCase(asyncCreator.fulfilled, (state, action) => {
-    state[field].isInitialized = true;
-    state[field].loading = false;
-    state[field].apiData = action.payload;
-  });
-  builder.addCase(asyncCreator.rejected, (state, action) => {
-    state[field].isInitialized = true;
-    state[field].loading = false;
-    state[field].error = action.error.message;
-  });
-}
 
 const NAME = "student";
 const initialState = {

@@ -87,15 +87,29 @@ const authSlice = createSlice({
   initialState,
   extraReducers(builder) {
     /************ UPDATE BASIC PROFILE (Student) ************/
+    builder.addCase(updateStudentBasicProfile.pending, (state) => {
+      state.login.loading = true;
+    });
     builder.addCase(updateStudentBasicProfile.fulfilled, (state, action) => {
       state.login.user = action.payload?.user;
       state.login.isAuthRole = action.payload?.user?.role;
+      state.login.loading = false;
+    });
+    builder.addCase(updateStudentBasicProfile.rejected, (state) => {
+      state.login.loading = false;
     });
 
     /************ UPDATE BASIC PROFILE (Mentor) ************/
+    builder.addCase(updateMentorBasicProfile.pending, (state) => {
+      state.login.loading = true;
+    });
     builder.addCase(updateMentorBasicProfile.fulfilled, (state, action) => {
       state.login.user = action.payload?.user;
       state.login.isAuthRole = action.payload?.user?.role;
+      state.login.loading = false;
+    });
+    builder.addCase(updateMentorBasicProfile.rejected, (state) => {
+      state.login.loading = false;
     });
 
     /************ USER Auth ************/

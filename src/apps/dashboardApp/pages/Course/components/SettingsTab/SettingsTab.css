@@ -1,0 +1,62 @@
+.course-settings-tab {
+}
+
+.course-settings-tab .sectionTitle {
+  color: var(--grey-900, #0f172a);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.course-settings-tab .inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--grey-border, #e2e8f0);
+  background-color: var(--white, #fff);
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.course-settings-tab .inputContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  flex: 1;
+  min-width: 240px;
+}
+
+.course-settings-tab .inputLabel {
+  color: var(--grey-700, #334155);
+  font-size: 14px;
+}
+
+.course-settings-tab .inputValue {
+  font-size: 16px;
+  color: var(--active-600, #16a34a);
+  line-height: 1.6;
+}
+
+.course-settings-tab .addButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--primary-600, #2563eb);
+  font-weight: 500;
+  padding: 8px 24px;
+  margin-top: 20px;
+  min-height: 40px;
+}
+
+.course-settings-tab .addButtonText {
+  margin: auto 0;
+}
+
+.course-settings-tab .addButtonIcon {
+  width: 24px;
+  height: 24px;
+}

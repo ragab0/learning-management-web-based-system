@@ -2,6 +2,7 @@
   display: flex;
   gap: 1rem;
   border-bottom: 1px solid var(--grey-border);
+  overflow-x: auto;
 }
 .dashboard-app .tabs a {
   padding: 0.5rem;

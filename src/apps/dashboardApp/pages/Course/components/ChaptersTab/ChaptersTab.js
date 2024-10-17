@@ -1,37 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ChaptersTab.css";
-import { Outlet } from "react-router-dom";
-import Tabs from "../../../../components/Tabs/Tabs";
+import { useNavigate } from "react-router-dom";
+import { chapters } from "../../../../../../data/dummyData";
+import Table from "../Table/Table";
+import Pagination from "../../../../../../components/Pagination/Pagination";
 
-const tabs = [{ name: "details", to: ".", end: true }, { name: "resources" }];
+const chapterColumns = [
+  { header: "ID", accessor: "id" },
+  { header: "chapter", accessor: "chapter" },
+  { header: "title", accessor: "title" },
+  { header: "type", accessor: "type" },
+  { header: "date", accessor: "date" },
+  { header: "status", accessor: "status" },
+  { header: "price", accessor: "price" },
+];
 
 export default function ChaptersTab() {
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const chaptersPerPage = 10;
+  const indexOfLastChapter = currentPage * chaptersPerPage;
+  const indexOfFirstChapter = indexOfLastChapter - chaptersPerPage;
+  const currentChapters = chapters.slice(
+    indexOfFirstChapter,
+    indexOfLastChapter
+  );
+  const totalPages = Math.ceil(chapters.length / chaptersPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const currentChaptersWithStyles = currentChapters.map((ch) => ({
+    ...ch,
+    status: (
+      <span
+        style={{
+          color:
+            ch.status === "Draft"
+              ? "red"
+              : ch.status === "Published"
+              ? "green"
+              : "black",
+        }}
+      >
+        {ch.status}
+      </span>
+    ),
+  }));
+
+  const handleRowClick = ({ id }) => {
+    navigate(`${id}}`);
+  };
+
   return (
     <div className="container-fluid m-3 ms-0">
-      <div className="row">
-        <div className="col-lg-8 col-md-12">
-          <h3 className="text-capitalize">Chapter 1 - The Solid State</h3>
-        </div>
-        <div className="col-lg-4 col-md-12 text-center mt-3 mt-lg-0">
-          <div className="btn-group" role="group">
-            <button className="btn btn-danger mb-2" type="button">
-              Delete
-            </button>
-            <button className="btn btn-secondary mx-2 mb-2" type="button">
-              Move To Draft
-            </button>
-            <button className="btn btn-primary mb-2" type="button">
-              Add Course
-            </button>
-          </div>
-        </div>
-        <div className="col-lg-8 col-md-12 mt-3">
-          <Tabs tabs={tabs} />
-        </div>
-      </div>
-      <div className="chapters-tab-body">
-        <Outlet />
-      </div>
+      <Table
+        columns={chapterColumns}
+        data={currentChaptersWithStyles}
+        onRowClick={handleRowClick}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+        handleNextPage={handleNextPage}
+        handlePreviousPage={handlePreviousPage}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
-import "./ChaptersTabResourcesTab.css";
+import "./ChapterResourceTab.css";
 
-export default function ChaptersTabResourcesTab() {
+export default function ChapterResourceTab() {
   const renderSection = (title, content) => (
     <div className="section">
       <h6>{title}</h6>

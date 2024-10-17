@@ -5,94 +5,93 @@ module.exports.couponUsers = [
     username: "Jonas",
     code: "SUMMER20",
     totalAmount: "$32",
-    discountAmount: "$9"
+    discountAmount: "$9",
   },
   {
     username: "Alice",
     code: "SUMMER20",
     totalAmount: "$45",
-    discountAmount: "$12"
+    discountAmount: "$12",
   },
   {
     username: "Bob",
     code: "SUMMER20",
     totalAmount: "$50",
-    discountAmount: "$10"
+    discountAmount: "$10",
   },
   {
     username: "Charlie",
     code: "SUMMER20",
     totalAmount: "$60",
-    discountAmount: "$15"
+    discountAmount: "$15",
   },
   {
     username: "Diana",
     code: "SUMMER20",
     totalAmount: "$80",
-    discountAmount: "$20"
+    discountAmount: "$20",
   },
   {
     username: "Ethan",
     code: "SUMMER20",
     totalAmount: "$25",
-    discountAmount: "$5"
+    discountAmount: "$5",
   },
   {
     username: "Fiona",
     code: "SUMMER20",
     totalAmount: "$30",
-    discountAmount: "$7"
+    discountAmount: "$7",
   },
   {
     username: "George",
     code: "SUMMER20",
     totalAmount: "$70",
-    discountAmount: "$18"
+    discountAmount: "$18",
   },
   {
     username: "Hannah",
     code: "SUMMER20",
     totalAmount: "$55",
-    discountAmount: "$14"
+    discountAmount: "$14",
   },
   {
     username: "Isaac",
     code: "SUMMER20",
     totalAmount: "$90",
-    discountAmount: "$25"
+    discountAmount: "$25",
   },
   {
     username: "Jack",
     code: "SUMMER20",
     totalAmount: "$40",
-    discountAmount: "$11"
+    discountAmount: "$11",
   },
   {
     username: "Kathy",
     code: "SUMMER20",
     totalAmount: "$65",
-    discountAmount: "$16"
+    discountAmount: "$16",
   },
   {
     username: "Liam",
     code: "SUMMER20",
     totalAmount: "$75",
-    discountAmount: "$20"
+    discountAmount: "$20",
   },
   {
     username: "Mia",
     code: "SUMMER20",
     totalAmount: "$100",
-    discountAmount: "$30"
+    discountAmount: "$30",
   },
   {
     username: "Noah",
     code: "SUMMER20",
     totalAmount: "$85",
-    discountAmount: "$22"
+    discountAmount: "$22",
   },
 ];
-
 
 // dummy data for Coupons
 
@@ -233,7 +232,6 @@ module.exports.couponsData = [
     redemptions: 95,
   },
 ];
-
 
 // dummy data for chapters
 
@@ -420,6 +418,21 @@ module.exports.chapters = [
   },
 ];
 
+// dummy data for lessons
+module.exports.lessonsData = [
+  {
+    title: "intro",
+    srcVideo: "https://www.youtube.com/watch?v=6xMzJS0AuJ0&t=5424s",
+  },
+  {
+    title: "intro",
+    srcVideo: "https://www.youtube.com/watch?v=y4NOFi0ezdM",
+  },
+  {
+    title: "intro",
+    srcVideo: "https://www.youtube.com/watch?v=wurhF7fbw5A",
+  },
+];
 
 // dummy data for customers
 
@@ -439,7 +452,7 @@ module.exports.customerData = [
     type: "Teacher",
     country: "Canada",
     joined: "19 March 2022 9:30 AM",
-    totalAmount: 2500.00,
+    totalAmount: 2500.0,
     lastOrderId: "#123457",
   },
   {
@@ -448,7 +461,7 @@ module.exports.customerData = [
     type: "Student",
     country: "UK",
     joined: "07 January 2023 10:15 AM",
-    totalAmount: 800.50,
+    totalAmount: 800.5,
     lastOrderId: "#123458",
   },
   {
@@ -457,7 +470,7 @@ module.exports.customerData = [
     type: "Teacher",
     country: "Australia",
     joined: "10 June 2024 11:45 AM",
-    totalAmount: 300.00,
+    totalAmount: 300.0,
     lastOrderId: "#123459",
   },
   {
@@ -475,7 +488,7 @@ module.exports.customerData = [
     type: "Teacher",
     country: "France",
     joined: "22 August 2020 2:00 PM",
-    totalAmount: 3200.10,
+    totalAmount: 3200.1,
     lastOrderId: "#123461",
   },
   {
@@ -493,7 +506,7 @@ module.exports.customerData = [
     type: "Teacher",
     country: "Spain",
     joined: "18 July 2023 4:30 PM",
-    totalAmount: 150.00,
+    totalAmount: 150.0,
     lastOrderId: "#123463",
   },
   {
@@ -502,7 +515,7 @@ module.exports.customerData = [
     type: "Student",
     country: "Brazil",
     joined: "30 April 2021 6:50 PM",
-    totalAmount: 980.00,
+    totalAmount: 980.0,
     lastOrderId: "#123464",
   },
   {
@@ -551,7 +564,6 @@ module.exports.customerData = [
     lastOrderId: "#123465",
   },
 ];
-
 
 // dummy data for orders
 
@@ -658,39 +670,39 @@ module.exports.orders = [
 module.exports.dummyCourses = [
   {
     id: 0,
-    name: "Course A"
+    name: "Course A",
   },
   {
     id: 1,
-    name: "Course B"
+    name: "Course B",
   },
   {
     id: 2,
-    name: "Course C"
+    name: "Course C",
   },
   {
     id: 3,
-    name: "Course D"
+    name: "Course D",
   },
   {
     id: 4,
-    name: "Course E"
+    name: "Course E",
   },
   {
     id: 5,
-    name: "Course F"
+    name: "Course F",
   },
   {
     id: 6,
-    name: "Course G"
+    name: "Course G",
   },
   {
     id: 7,
-    name: "Course H"
+    name: "Course H",
   },
   {
     id: 8,
-    name: "Course I"
+    name: "Course I",
   },
 ];
 
@@ -708,7 +720,7 @@ module.exports.myCourses = [
     level: "Beginner",
     price: 149.9,
     priceCurrency: "$",
-    progress: 20
+    progress: 20,
   },
   {
     category: "Back-end",
@@ -722,7 +734,7 @@ module.exports.myCourses = [
     level: "Intermediate",
     price: 199.9,
     priceCurrency: "$",
-    progress: 75
+    progress: 75,
   },
   {
     category: "Full Stack",
@@ -736,7 +748,7 @@ module.exports.myCourses = [
     level: "All Levels",
     price: 299.9,
     priceCurrency: "$",
-    progress: 50
+    progress: 50,
   },
   {
     category: "Mobile Development",
@@ -750,7 +762,7 @@ module.exports.myCourses = [
     level: "Beginner",
     price: 99.9,
     priceCurrency: "$",
-    progress: 10
+    progress: 10,
   },
   {
     category: "Data Science",
@@ -764,7 +776,7 @@ module.exports.myCourses = [
     level: "Beginner",
     price: 249.9,
     priceCurrency: "$",
-    progress: 0
+    progress: 0,
   },
   {
     category: "DevOps",
@@ -778,8 +790,8 @@ module.exports.myCourses = [
     level: "Intermediate",
     price: 179.9,
     priceCurrency: "$",
-    progress: 100
-  }
+    progress: 100,
+  },
 ];
 
 // dummy data for the courses section
