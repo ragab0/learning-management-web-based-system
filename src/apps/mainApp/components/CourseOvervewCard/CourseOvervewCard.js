@@ -6,6 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import StarLight from "../../../../assets/svgsComps/StarLight";
 import StarDark from "../../../../assets/svgsComps/StarDark";
 
+
 export default function CourseOvervewCard({
   course,
   isEnrolledObj = {},
@@ -14,9 +15,15 @@ export default function CourseOvervewCard({
   if (skeleton) return <Skel />;
   const { _id, photo, title } = course;
 
+  function x(){
+    console.log(course);
+    console.log(course.id)
+  }
+
   return (
     <Link
-      to={`/${isEnrolledObj.length > 0 ? "study" : "courses"}/${_id}`}
+    onClick= {x}
+      to={`/${isEnrolledObj.length > 0 ? "study" : "courses"}/${course.id}`}
       className="course-overvew-card d-block h-100"
     >
       <figure className="box d-flex flex-column align-items-start p-3 mb-0 d-block h-100">

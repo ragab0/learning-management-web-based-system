@@ -1,11 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 import myImage from "../../../../../../assets/customersImgs/cust5Heigh.png";
 import ArrowChevron from "../../../../../../assets/svgsComps/ChevronRightSmall";
 import "./CourseHeader.css";
 
 export default function CourseHeader() {
-  return (
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  const SkeletonLoader = () => (
+    <div className="course-header content">
+      <div className="links">
+        <Skeleton width={80} height={20} />
+        <ArrowChevron />
+        <Skeleton width={80} height={20} />
+        <ArrowChevron />
+        <Skeleton width={150} height={20} />
+      </div>
+      <div className="section1">
+        <Skeleton width={300} height={30} />
+        <Skeleton className="my-3" count={2} />
+        <div className="rating my-3">
+          <Skeleton width={40} height={25} />
+          <Skeleton width={100} height={25} style={{ marginLeft: "10px" }} />
+        </div>
+        <div className="my-3 user_details">
+          <Skeleton circle width={50} height={50} />
+          <Skeleton width={150} height={20} style={{ marginLeft: "10px" }} />
+        </div>
+        <div className="lang mt-3">
+          <Skeleton width={200} height={20} />
+        </div>
+      </div>
+    </div>
+  );
+
+  return loading ? (
+    <SkeletonLoader />
+  ) : (
     <div className="course-header content">
       <div className="links">
         <Link

@@ -4,7 +4,7 @@ const REACT_APP_ENV = process.env.REACT_APP_ENV;
 
 const myAxios = axios.create({
   baseURL:
-    REACT_APP_ENV === "development"
+    REACT_APP_ENV === "production"
       ? "http://localhost:3500/api/v1"
       : "https://lms-depi-d574ce496085.herokuapp.com/api/v1",
   withCredentials: true,

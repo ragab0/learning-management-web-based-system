@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./MentorMainContent.css";
+import Skeleton from "react-loading-skeleton";
 
 const instructorData = {
   name: "Ronald Richards",
@@ -23,43 +24,113 @@ const instructorData = {
 };
 
 export default function MentorMainContent() {
-  return (
-    <main className="mentor-main-content">
-      {/* Ronald Richards */}
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  // Skeleton loader
+  const SkeletonLoader = () => (
+    <div className="mentor-main-content">
       <header className="instructor-header">
-        <span className="instructor-label">Instructor</span>
-        <h1 className="instructorName">{instructorData.name}</h1>
-        <p className="instructorTitle">{instructorData.title}</p>
+        <span className="instructor-label">
+          <Skeleton width={100} />
+        </span>
+        <h1 className="instructorName">
+          <Skeleton height={30} />
+        </h1>
+        <p className="instructorTitle">
+          <Skeleton width={200} />
+        </p>
         <div className="instructor-header-stats">
           <div>
             <span>Total Students</span>
-            <h5>{instructorData.totalStudents}</h5>
+            <h5>
+              <Skeleton width={50} />
+            </h5>
           </div>
           <div>
             <span>Reviews</span>
-            <h5>{instructorData.reviews}</h5>
+            <h5>
+              <Skeleton width={50} />
+            </h5>
           </div>
         </div>
       </header>
-      {/* About Ronald Richard */}
       <section className="instructor-about">
-        <h2>About {instructorData.name}</h2>
-        <p>{instructorData.about}</p>
+        <h2>
+          About <Skeleton width={100} />
+        </h2>
+        <p>
+          <Skeleton count={3} />
+        </p>
       </section>
-      {/* Areas of Expertise */}
       <section className="instructor-expertise">
-        <h2 className="h-4 ">Areas of Expertise</h2>
+        <h2 className="h-4 ">
+          Areas of Expertise
+        </h2>
         <ul>
-          {instructorData.expertise.map((e, i) => (
-            <li key={i}>{e}</li>
+          {Array.from({ length: 8 }).map((_, i) => (
+            <li key={i}>
+              <Skeleton width={200} />
+            </li>
           ))}
         </ul>
       </section>
-      {/* Professional Experience */}
       <section className="instructor-experience">
         <h2 className="h-4 ">Professional Experience</h2>
-        <p>{instructorData.experience}</p>
+        <p>
+          <Skeleton count={3} />
+        </p>
       </section>
+    </div>
+  );
+
+  return (
+    <main className="mentor-main-content">
+      {loading ? (
+        <SkeletonLoader />
+      ) : (
+        <>
+          <header className="instructor-header">
+            <span className="instructor-label">Instructor</span>
+            <h1 className="instructorName">{instructorData.name}</h1>
+            <p className="instructorTitle">{instructorData.title}</p>
+            <div className="instructor-header-stats">
+              <div>
+                <span>Total Students</span>
+                <h5>{instructorData.totalStudents}</h5>
+              </div>
+              <div>
+                <span>Reviews</span>
+                <h5>{instructorData.reviews}</h5>
+              </div>
+            </div>
+          </header>
+          <section className="instructor-about">
+            <h2>About {instructorData.name}</h2>
+            <p>{instructorData.about}</p>
+          </section>
+          <section className="instructor-expertise">
+            <h2 className="h-4 ">Areas of Expertise</h2>
+            <ul>
+              {instructorData.expertise.map((e, i) => (
+                <li key={i}>{e}</li>
+              ))}
+            </ul>
+          </section>
+          <section className="instructor-experience">
+            <h2 className="h-4 ">Professional Experience</h2>
+            <p>{instructorData.experience}</p>
+          </section>
+        </>
+      )}
     </main>
   );
 }

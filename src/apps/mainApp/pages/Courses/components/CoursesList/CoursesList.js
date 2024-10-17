@@ -23,15 +23,15 @@ export default function CoursesList() {
     <div className="row">
       {isInitialized && !loading
         ? results?.map((course, i) => (
-            <div className="col-lg-4 col-md-6 mb-4" key={i}>
-              <CourseOvervewCard course={course} isLoading={loading} />
-            </div>
-          ))
+          <div className="col-lg-4 col-md-6 col-sm-6 mb-4" key={i}>
+            <CourseOvervewCard course={course} isLoading={loading} />
+          </div>
+        ))
         : [...Array(10)].map((course, i) => (
-            <div className="col-lg-4 col-md-6 mb-4" key={i}>
-              <CourseOvervewCard skeleton={true} />
-            </div>
-          ))}
+          <div className="col-lg-4 col-md-6 col-sm-6 mb-4" key={i}>
+            <CourseOvervewCard skeleton={true} />
+          </div>
+        ))}
     </div>
   );
 }
