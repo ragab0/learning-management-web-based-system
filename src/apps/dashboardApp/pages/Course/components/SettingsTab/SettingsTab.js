@@ -26,8 +26,8 @@ export default function SettingsTab() {
 
   return (
     <div className="course-settings-tab">
-      <h1 className="title">Settings</h1>
-      <h2 className="sectionTitle">Basic Settings</h2>
+      <h3 className="title">Settings</h3>
+      <h4 className="sectionTitle">Basic Settings</h4>
       <FieldsetLayout title="Course Status">
         <Controller
           name="isActive"

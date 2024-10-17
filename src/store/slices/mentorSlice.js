@@ -16,6 +16,12 @@ const initialState = {
   createMentorCourse: {
     isInitialized: false,
   },
+  currentCourse: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
 };
 
 /******************** Mentor basic profile (Fetch && Update) */
@@ -56,12 +62,18 @@ const deleteMentorCourse = createAsyncThunk(
 
 const fetchMentorCourse = createAsyncThunk(
   `${NAME}/fetchMentorCourse`,
-  basicThinker("get", mentorCoursesPath)
+  basicThinker("get", mentorCoursesPath, "Getting course")
 );
 
 const mentorSlice = createSlice({
   name: NAME,
   initialState,
+  reducers: {
+    mentorAddNewChapter(state, action) {
+      state.currentCourse.apiData.result?.modules?.push(action.payload) &&
+        toast("New temporary chapter added!");
+    },
+  },
   extraReducers(builder) {
     /************ BASIC proile (Mentor) ************/
     // fetchMentorBasicProfile
@@ -124,12 +136,16 @@ const mentorSlice = createSlice({
 
     apiLoadingBuilder(builder, updateMentorCourse, "taughtCourses");
     apiLoadingBuilder(builder, deleteMentorCourse, "taughtCourses");
-    apiLoadingBuilder(builder, fetchMentorCourse, "taughtCourses");
+    apiLoadingBuilder(builder, fetchMentorCourse, "currentCourse");
   },
 });
 
 export default mentorSlice.reducer;
+const { mentorAddNewChapter } = mentorSlice.actions;
 export {
+  // actions;
+  mentorAddNewChapter,
+  // extraReducers (&thunks)
   fetchMentorBasicProfile,
   updateMentorBasicProfile,
   fetchMentorAllCourses,

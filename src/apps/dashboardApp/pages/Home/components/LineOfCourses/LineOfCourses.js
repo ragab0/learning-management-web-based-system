@@ -22,6 +22,7 @@ export default function LineOfCourses() {
   );
 
   if (isInitialized && error) {
+    <h2>last courses</h2>;
     return <NoContent />;
   }
 

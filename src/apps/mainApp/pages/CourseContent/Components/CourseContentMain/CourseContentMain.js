@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./CourseContentMain.css";
-import courseVideo from "../../../../../../assets/noxe.mp4";
 import Tabs from "../../../../components/Tabs/Tabs";
 import InstructorTab from "../../../../components/InstructorTab/InstructorTab";
 import LearnerReviews from "../../../../components/LearnerReviews/LearnerReviews";

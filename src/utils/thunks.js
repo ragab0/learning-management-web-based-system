@@ -2,10 +2,11 @@ import { toast } from "react-toastify";
 import myAxios from "./myAxios";
 
 export function basicThinker(method, path) {
-  return async (StrSearchParams, { rejectWithValue }) => {
+  // data is either query stirng || object contains id of an items;
+  return async (data, { rejectWithValue }) => {
     try {
       const res = await myAxios[method](
-        StrSearchParams ? `${path}?${StrSearchParams}` : path
+        data && data.id ? `${path}/${data.id}` : data ? `${path}?${data}` : path
       );
       return res.data || {};
     } catch (axiosError) {

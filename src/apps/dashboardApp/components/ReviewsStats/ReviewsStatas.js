@@ -7,9 +7,9 @@ export default function ReviewsStatas({ isSkels }) {
   if (!isSkels) return <Skels />;
 
   return (
-    <section className="dash-reviews-stast d-flex gap-2">
+    <section className="dash-reviews-stast row">
       {reviewsData.map(({ title, count }, i) => (
-        <article className="review-badge dashboard-box">
+        <article className="review-badge dashboard-box col-4">
           <div className="review-content">
             <div className="review-label">{title}</div>
             <div className="review-stats">
