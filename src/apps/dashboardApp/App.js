@@ -33,6 +33,7 @@ import ChapterDetailsTab from "./pages/Course/components/ChaptersTab/Chapter/Cha
 import ChapterResourceTab from "./pages/Course/components/ChaptersTab/Chapter/ChapterResourceTab/ChapterResourceTab";
 import Chapter from "./pages/Course/components/ChaptersTab/Chapter/Chapter";
 import Lessons from "./pages/Course/components/ChaptersTab/Chapter/Lessons/Lessons";
+import NotFound from "../../components/NotFound/NotFound";
 
 const ROLE = "mentor";
 const notRequireAuthRoutes = [
@@ -115,37 +116,45 @@ export default function DashboardApp() {
           <Route path="messages" element={<MessagesTab />} />
         </Route>
         {/* protected (full - with children) */}
-        <Route
+        {/* <Route
           path="revenue"
           element={
             <ProtectedRoute roleOfRoute={ROLE}>
               <RevenuePage />
             </ProtectedRoute>
           }
-        />
-        {/* protected (full - with children) */}
-        {/* <Route
-          path="settings"
-          element={
-            <ProtectedRoute roleOfRoute={ROLE}>
-              <SettingsPage />
-            </ProtectedRoute>
-          }
         /> */}
         {/* protected (full - with children) */}
         <Route
+          path="settings"
+          element={
+            <ProtectedRoute roleOfRoute={ROLE}>
+              {/* <SettingsPage /> */}
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        {/* protected (full - with children) */}
+        {/* <Route
           path="profile"
           element={
             <ProtectedRoute roleOfRoute={ROLE}>
               <ProfilePage />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
         <Route path="reset-password" element={<ForgotPassword />} />
-        <Route path="*" element={"NotFound on dashboard app !!"} />
+        <Route
+          path="*"
+          element={
+            <div className=" fixed-top overflow-auto h-100">
+              <NotFound />
+            </div>
+          }
+        />
       </Routes>
     </div>
   );

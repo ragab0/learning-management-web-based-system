@@ -10,7 +10,11 @@ import Loader from "../Loader/Loader";
  */
 
 const roles = ["student", "mentor", "admin"];
-export default function ProtectedRoute({ children, roleOfRoute }) {
+export default function ProtectedRoute({
+  children,
+  roleOfRoute,
+  isLoaderWhite,
+}) {
   const navigate = useNavigate();
   const { isAuthRole, isInitialized, loading } = useSelector(
     (state) => state.auth.login
@@ -21,6 +25,7 @@ export default function ProtectedRoute({ children, roleOfRoute }) {
     if (isInitialized && isAuthRole !== roleOfRoute) {
       if (roleOfRoute === "mentor") navigate("/dashboard/login");
       else if (roleOfRoute === "student") navigate("/login");
+      else if (roleOfRoute === "admin") navigate("/admin/login");
     }
   }, [isInitialized, isAuthRole, roleOfRoute, navigate]);
 
@@ -29,7 +34,7 @@ export default function ProtectedRoute({ children, roleOfRoute }) {
     return children || <Outlet />;
 
   if (!isInitialized || loading) {
-    return <Loader />;
+    return isLoaderWhite ? <Loader color="white" /> : <Loader />;
   } else {
     return <NonAuth />;
   }

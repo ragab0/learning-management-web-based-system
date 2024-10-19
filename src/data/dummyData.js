@@ -416,6 +416,15 @@ module.exports.chapters = [
     status: "Published",
     price: "Free",
   },
+  {
+    id: 21,
+    chapter: 20,
+    title: "Mobile App Development",
+    type: "Video + PPT",
+    date: "15 February 2021 9:00 AM",
+    status: "Published",
+    price: "Free",
+  },
 ];
 
 // dummy data for lessons

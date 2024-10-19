@@ -73,7 +73,7 @@ export default function PromotionTab() {
   };
 
   return (
-    <div className="promotion-tab container-fluid pb-0 pt-0">
+    <div className="promotion-tab container-fluid pb-0 pt-0 COMING">
       <h3 className="text-black">Coupons</h3>
       <Table
         columns={couponsColumns}

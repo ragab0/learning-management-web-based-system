@@ -1,66 +1,89 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./SettingsTab.css";
-import { useForm, Controller } from "react-hook-form";
 import FieldsetLayout from "../../../../layouts/Fieldset/FieldsetLayout";
-import Select from "react-select";
-
-const options = [
-  { value: true, label: "Active" },
-  { value: false, label: "UnActive" },
-];
+import BtnsAddDelete from "../../../../components/BtnsAddDelete/BtnsAddDelete";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteMentorCourse,
+  updateMentorCourse,
+} from "../../../../../../store/slices/mentorSlice";
+import { useForm } from "react-hook-form";
+import MarkDown from "../../../../components/MarkDown/MarkDown";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function SettingsTab() {
-  const [apiData, setApiData] = useState({ isActive: false });
-  const { control } = useForm();
+  const { courseId } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { result } = useSelector((state) => state.mentor.currentCourse.apiData);
+  const {
+    apiData: { results },
+  } = useSelector((state) => state.mentor.taughtCourses);
+  const { handleSubmit, setValue, watch } = useForm({ defaultValues: result });
 
-  useEffect(() => {
-    const fetchStatus = async () => {
-      const response = await new Promise((resolve) =>
-        setTimeout(() => resolve({ isActive: true }), 500)
-      );
-      setApiData(response);
-    };
+  function saveSettingsHandler(data) {
+    const course = { ...result, ...data };
+    dispatch(updateMentorCourse({ newCourse: course }));
+  }
 
-    fetchStatus();
-  }, []);
+  function deleteHandler() {
+    dispatch(deleteMentorCourse({ data: { id: courseId } })).then(
+      ({ payload }) => {
+        if (!payload.error) {
+          toast.warning("Course has been deleted!");
+          navigate("../..");
+        }
+      }
+    );
+  }
+
+  const status = watch("status");
+  const previewRequirements = watch("requirements", "# Requirements");
+  const previewTargetAudience = watch("targetAudience", "# Target Audience");
 
   return (
     <div className="course-settings-tab">
-      <h1 className="title">Settings</h1>
-      <h2 className="sectionTitle">Basic Settings</h2>
-      <FieldsetLayout title="Course Status">
-        <Controller
-          name="isActive"
-          control={control}
-          defaultValue={options.find(
-            (option) => option.value === apiData.isActive
-          )}
-          render={({ field }) => (
-            <Select
-              {...field}
-              options={options}
-              placeholder="Select status..."
-              isSearchable={false}
-            />
-          )}
+      <header className="my-4 d-flex justify-content-between align-items-center flex-wrap column-gap-2">
+        <h3>Course Settings</h3>
+        <BtnsAddDelete
+          onSave={handleSubmit(saveSettingsHandler)}
+          onDelete={handleSubmit(deleteHandler)}
         />
-      </FieldsetLayout>
-      <FieldsetLayout title={"Requirements"}>
-        <textarea
-          name="description"
-          rows="5"
-          className="form-control"
-          placeholder={`What are the requirements for taking your course? separated with && \nExample: HTML && CSS && JavaScript`}
-        ></textarea>
-      </FieldsetLayout>
-      <FieldsetLayout title="Target Audience">
-        <textarea
-          name="targetsDescription"
-          rows="5"
-          className="form-control"
-          placeholder={`Who is this course for? separated with && \nExample: front-end && back-end`}
-        ></textarea>
-      </FieldsetLayout>
+      </header>
+      <div className="settings-tab-body">
+        <h4 className="sectionTitle">Basic Settings</h4>
+        <FieldsetLayout title="Course Status">
+          <button
+            onClick={() => setValue("status", true)}
+            className={`btn ${status ? "btn-primary" : ""}`}
+          >
+            {status && "Course is "} Active
+          </button>
+          <button
+            onClick={() => setValue("status", false)}
+            className={`btn ${!status ? "btn-danger" : ""}`}
+          >
+            {!status && "Course is "} UnActive
+          </button>
+        </FieldsetLayout>
+        <FieldsetLayout title={"Requirements"}>
+          {/* What are the requirements for taking your course? */}
+          <MarkDown
+            setter={setValue}
+            value={previewRequirements}
+            name="requirements"
+          />
+        </FieldsetLayout>
+        <FieldsetLayout title="Target Audience">
+          {/* placeholder={`Who is this course for?`} */}
+          <MarkDown
+            setter={setValue}
+            value={previewTargetAudience}
+            name="targetAudience"
+          />
+        </FieldsetLayout>
+      </div>
     </div>
   );
 }

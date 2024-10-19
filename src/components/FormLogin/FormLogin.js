@@ -42,12 +42,12 @@ export default function LoginForm({ role = "student" }) {
 
   useEffect(() => {
     if (isAuthRole && isAuthRole === role) {
-      navigate("../");
+      navigate("..");
     }
-  }, [isAuthRole, navigate]);
+  }, [isAuthRole, navigate, role]);
 
   async function submitHandler(data) {
-    dispatch(login(data));
+    !loading && dispatch(login(data));
   }
 
   return (

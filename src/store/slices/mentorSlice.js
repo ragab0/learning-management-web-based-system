@@ -16,6 +16,16 @@ const initialState = {
   createMentorCourse: {
     isInitialized: false,
   },
+  currentCourse: {
+    currentDummyChapters: [],
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
+  extractedChapterInfo: {
+    apiData: {},
+  },
 };
 
 /******************** Mentor basic profile (Fetch && Update) */
@@ -46,22 +56,36 @@ const createMentorCourse = createAsyncThunk(
 
 const updateMentorCourse = createAsyncThunk(
   `${NAME}/updateMentorCourse`,
-  toastedThinker("put", mentorCoursesPath, "Updating")
+  toastedThinker("put", mentorCoursesPath, "Updating Course")
 );
 
 const deleteMentorCourse = createAsyncThunk(
   `${NAME}/deleteMentorCourse`,
-  toastedThinker("delete", mentorCoursesPath, "Deleting")
+  toastedThinker("delete", mentorCoursesPath, "Deleting Course")
 );
 
 const fetchMentorCourse = createAsyncThunk(
   `${NAME}/fetchMentorCourse`,
-  basicThinker("get", mentorCoursesPath)
+  basicThinker("get", mentorCoursesPath, "Getting course")
+);
+
+/** Mentor course chapter */
+const mentorCoursePath = mentorCoursesPath + `/extract-playlist`;
+
+const extractMentorChapterYoutubePlaylist = createAsyncThunk(
+  `${NAME}/extractMentorChapterYoutubePlaylist`,
+  toastedThinker("post", mentorCoursePath, "Extracting a youtube playlist")
 );
 
 const mentorSlice = createSlice({
   name: NAME,
   initialState,
+  reducers: {
+    mentorAddDummyChapter(state, action) {
+      state.currentCourse.currentDummyChapters.push(action.payload) &&
+        toast("New temporary chapter added!");
+    },
+  },
   extraReducers(builder) {
     /************ BASIC proile (Mentor) ************/
     // fetchMentorBasicProfile
@@ -102,6 +126,7 @@ const mentorSlice = createSlice({
     /************ COURSES section (Mentor) ************/
     // 01 Fetch all:
     apiLoadingBuilder(builder, fetchMentorAllCourses, "taughtCourses");
+
     // 02 Create one:
     builder.addCase(createMentorCourse.pending, (state) => {
       state["taughtCourses"].isInitialized = false;
@@ -121,15 +146,64 @@ const mentorSlice = createSlice({
       state["taughtCourses"].error = action.error.message;
       state.createMentorCourse.isInitialized = true;
     });
+    // 03 extract info from a playlist in a chapter;
+    apiLoadingBuilder(
+      builder,
+      extractMentorChapterYoutubePlaylist,
+      "extractedChapterInfo"
+    );
 
-    apiLoadingBuilder(builder, updateMentorCourse, "taughtCourses");
+    // 04 Update metnor course;
+    builder.addCase(updateMentorCourse.pending, (state) => {
+      state["currentCourse"].isInitialized = false;
+      state["currentCourse"].loading = true;
+      state["currentCourse"].error = null;
+      state["currentCourse"].currentDummyChapters = [];
+      toast.dismiss();
+    });
+    builder.addCase(updateMentorCourse.fulfilled, (state, action) => {
+      state["currentCourse"].isInitialized = true;
+      state["currentCourse"].loading = false;
+      state["currentCourse"].apiData = action.payload;
+      state["currentCourse"].currentDummyChapters = [];
+    });
+    builder.addCase(updateMentorCourse.rejected, (state, action) => {
+      state["currentCourse"].isInitialized = true;
+      state["currentCourse"].loading = false;
+      state["currentCourse"].error = action.error.message;
+      state["currentCourse"].currentDummyChapters = [];
+      if (action.payload?.result) {
+        toast.error(action.payload?.result, fixedToastOptions);
+      } else {
+        action.payload?.results?.map((obj) =>
+          Object.entries(obj).map(([k, v]) =>
+            toast.error(`${k}: ${v}`, fixedToastOptions)
+          )
+        );
+      }
+    });
+
+    // apiLoadingBuilder(builder, updateMentorCourse, "currentCourse");
+
     apiLoadingBuilder(builder, deleteMentorCourse, "taughtCourses");
-    apiLoadingBuilder(builder, fetchMentorCourse, "taughtCourses");
+    apiLoadingBuilder(builder, fetchMentorCourse, "currentCourse");
   },
 });
 
 export default mentorSlice.reducer;
+const {
+  mentorAddDummyChapter,
+  mentorUpdateChapter,
+  mentorUpdateDetails,
+  mentorUpdateSettings,
+} = mentorSlice.actions;
 export {
+  // actions;
+  mentorAddDummyChapter,
+  mentorUpdateChapter,
+  mentorUpdateDetails,
+  mentorUpdateSettings,
+  // extraReducers (&thunks)
   fetchMentorBasicProfile,
   updateMentorBasicProfile,
   fetchMentorAllCourses,
@@ -137,4 +211,5 @@ export {
   updateMentorCourse,
   deleteMentorCourse,
   fetchMentorCourse,
+  extractMentorChapterYoutubePlaylist,
 };

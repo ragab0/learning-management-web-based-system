@@ -22,6 +22,7 @@ export default function LineOfCourses() {
   );
 
   if (isInitialized && error) {
+    <h2>last courses</h2>;
     return <NoContent />;
   }
 
@@ -32,7 +33,7 @@ export default function LineOfCourses() {
         <h2>last courses</h2>
         <div className="last-courses-cards row">
           {[...Array(3)].map((course, i) => (
-            <div className="col-4 mb-4" key={i}>
+            <div className="col-lg-4 col-md-6 mb-4" key={i}>
               <CourseCard isSkel={true} course={course} />
             </div>
           ))}
@@ -46,7 +47,7 @@ export default function LineOfCourses() {
       <h2>last courses</h2>
       <div className="last-courses-cards row">
         {results?.slice(0, 3).map((course, i) => (
-          <div className="col-4 mb-4" key={i}>
+          <div className="col-lg-4 col-md-6 mb-4" key={i}>
             <CourseCard course={course} />
           </div>
         ))}

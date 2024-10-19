@@ -8,7 +8,7 @@ export default function AuthMoreOptions({
   loading = false,
 }) {
   return (
-    <div className="auth-more-options">
+    <div className="auth-more-options COMING">
       <p>
         <span>Sign {type === "login" ? "in" : "up"} with</span>
       </p>

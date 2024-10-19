@@ -26,7 +26,6 @@ export default function FormProfile({ ofRole = "student" }) {
   // const language = watch("language", activeLang);
 
   async function submitHandler(data) {
-    console.log(`data ofRole ${ofRole} is: ${data}`);
     if (ofRole === "mentor") {
       dispatch(updateMentorBasicProfile(data));
     } else if (ofRole === "student") {

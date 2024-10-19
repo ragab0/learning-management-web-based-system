@@ -13,8 +13,10 @@ export default function HomePage() {
         <h1>Dashboard</h1>
         <AddCourse />
       </header>
-      <section className=" d-flex gap-4">
-        <Banners />
+      <section className=" d-flex flex-column-reverse flex-lg-row gap-4">
+        <div className="flex-shrink-0">
+          <Banners />
+        </div>
         <HomeChart />
       </section>
       <div>

@@ -26,6 +26,7 @@ import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import TabMyCoursesEnrolledTab from "./pages/Profile/Components/TabMyCourses/TabMyCoursesEnrolledTab/TabMyCoursesEnrolledTab";
 import TabMyCoursesArchivedTab from "./pages/Profile/Components/TabMyCourses/TabMyCoursesArchivedTab/TabMyCoursesArchivedTab";
+import NotFound from "../../components/NotFound/NotFound";
 
 const ROLE = "student";
 
@@ -100,7 +101,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route path="reset-password" element={<ForgotPasswordPage />} />
-          <Route path="*" element={<NotfoundPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <Footer />

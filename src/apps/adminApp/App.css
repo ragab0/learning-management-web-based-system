@@ -4,13 +4,51 @@
   --bg-200: hsl(45 4.9% 16.1%);
   --from-bg-200: hsl(45 4.9% 16.1% / 1);
   --to-bg-200: hsl(60 3.3% 17.8% / 1);
+  --bg-000: 60 1.8% 22%;
+  --bg-100: hsl(60 3.3% 17.8%);
 }
 
 .admin-app {
   min-height: 100vh;
+  display: grid;
   background-color: var(--bg-200);
   color: var(--text-100);
   font-family: "Courier New", Courier, monospace;
-  background: linear-gradient(to bottom, var(--from-bg-200), var(--to-bg-200));
   position: relative;
+}
+
+.admin-app > * {
+  background-color: radial-gradient(
+    ellipse at left top,
+    hsla(var(--bg-000) / 0.5) 0,
+    hsla(var(--bg-000) / 0.3) 60%
+  );
+}
+
+.admin-app h2,
+.admin-app h3,
+.admin-app h4 {
+  color: var(--text-100);
+}
+
+.admin-container-card {
+  background-color: #31312e;
+  border: 1px solid hsl(50 5.8% 40% / 0.15);
+  background-image: radial-gradient(
+    ellipse at left top,
+    hsla(var(--bg-000) / 0.5) 0,
+    hsla(var(--bg-000) / 0.3) 60%
+  );
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+.admin-card {
+  border-color: hsl(50 5.8% 40% / 0.15) !important;
+  background-color: #2f2f2c !important;
+  color: var(--text-100);
+  border: 1px solid currentColor;
+}
+
+.admin-card:hover {
+  border-color: hsl(50 5.8% 40% / 0.55) !important;
 }

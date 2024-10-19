@@ -8,7 +8,7 @@ export default function CourseCard({ course, isSkel }) {
   const {
     id,
     isFree = true,
-    isActive = false,
+    status = false,
     title = "untitled!",
     price = 0,
     certificates = 0,
@@ -25,8 +25,12 @@ export default function CourseCard({ course, isSkel }) {
     >
       <div className="chips d-flex gap-2">
         <div className="chip">{isFree ? "Free" : "Paid"}</div>
-        <div className={`chip ${isActive ? "" : " bg-danger text-white"}`}>
-          {isActive ? "Active" : "UnActive"}
+        <div
+          className={`chip ${
+            status ? " bg-primary px-5" : " bg-danger"
+          } text-white`}
+        >
+          {status ? "Active" : "UnActive"}
         </div>
       </div>
       <h2 className="course-title">{title}</h2>

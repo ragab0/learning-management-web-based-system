@@ -5,7 +5,7 @@
   /* background-color: #040d21; */
 }
 
-.dashboard-app > div {
+.dashboard-app > .sidebar + * {
   padding: 1rem;
   width: 100%;
   overflow: hidden;

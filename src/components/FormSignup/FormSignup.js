@@ -50,7 +50,7 @@ export default function SignupForm({ role = "student" }) {
   }, [isNewUser, navigate]);
 
   async function submitHandler(data) {
-    dispatch(signup(data));
+    !loading && dispatch(signup(data));
   }
 
   const errorVariants = {

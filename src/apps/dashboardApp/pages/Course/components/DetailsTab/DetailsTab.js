@@ -2,47 +2,82 @@ import React from "react";
 import "./DetailsTab.css";
 import DetailsTabAside from "./components/DetailsTabAside";
 import FieldsetLayout from "../../../../layouts/Fieldset/FieldsetLayout";
+import BtnsAddDelete from "../../../../components/BtnsAddDelete/BtnsAddDelete";
+import MDEditor from "@uiw/react-md-editor";
+import { FormProvider, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMentorCourse } from "../../../../../../store/slices/mentorSlice";
+import MarkDown from "../../../../components/MarkDown/MarkDown";
 
 export default function DetailsTab() {
+  const dispatch = useDispatch();
+  const { result } = useSelector((state) => state.mentor.currentCourse.apiData);
+  const methods = useForm({
+    defaultValues: result,
+  });
+
+  function saveHandler(data) {
+    const course = { ...result, ...data };
+    dispatch(updateMentorCourse({ newCourse: course }));
+  }
+
+  const preview = methods.watch("description", "# Description...");
+
   return (
-    <div className="details-tab">
-      <header>
-        <h3 className="ps-1 my-4">Course Details</h3>
-      </header>
-      <div className="details-tab-body row">
-        <div className="details-tab-content col-lg-8">
-          <FieldsetLayout title="Course Name">
-            <input
-              type="text"
-              className="form-control bg-white"
-              name="name"
-              placeholder="UnTitled Course!"
-            />
-          </FieldsetLayout>
-          <FieldsetLayout title="Course Hook Title">
-            <input
-              type="text"
-              className="form-control bg-white"
-              name="name"
-              placeholder="UnTitled Course!"
-            />
-          </FieldsetLayout>
-          <FieldsetLayout title="Course Description">
-            <textarea className="form-control" rows={10}></textarea>
-          </FieldsetLayout>
-          <FieldsetLayout title="Course Image source">
-            <input
-              type="url"
-              className="form-control bg-white"
-              name="name"
-              placeholder="Image source (URL)"
-            />
-          </FieldsetLayout>
-        </div>
-        <div className="details-tab-aside col-lg-4">
-          <DetailsTabAside />
+    <FormProvider {...methods}>
+      <div className="details-tab">
+        <header className="my-4 d-flex justify-content-between align-items-center flex-wrap gap-x-2 column-gap-2">
+          <h3>Course Details</h3>
+          <BtnsAddDelete
+            onSave={methods.handleSubmit(saveHandler)}
+            hideDeleteBtn={true}
+          />
+        </header>
+        <div className="details-tab-body row">
+          <div className="details-tab-content col-lg-8">
+            <FieldsetLayout title="Course Title">
+              <input
+                {...methods.register("title")}
+                type="text"
+                className="form-control bg-white"
+                placeholder="UnTitled Course!"
+              />
+            </FieldsetLayout>
+            <FieldsetLayout title="Course Hook Title">
+              <input
+                {...methods.register("titleHook")}
+                type="text"
+                className="form-control bg-white"
+                placeholder="UnTitled Course!"
+              />
+            </FieldsetLayout>
+            <FieldsetLayout title="Course Image source">
+              <input
+                {...methods.register("photo")}
+                type="url"
+                className="form-control bg-white"
+                placeholder="Image source (URL)"
+              />
+            </FieldsetLayout>
+            <FieldsetLayout title="Course Description">
+              {/* <textarea
+                {...methods.register("description")}
+                className="form-control"
+                rows={10}
+                placeholder="UnDescripted Course!"
+              ></textarea> */}
+              <MarkDown
+                setter={methods.setValue}
+                value={preview}
+                name="description"
+              />
+            </FieldsetLayout>
+          </div>
+          <div className="details-tab-aside col-lg-4">
+            <DetailsTabAside result={result} />
+          </div>
         </div>
       </div>
-    </div>
+    </FormProvider>
   );
 }

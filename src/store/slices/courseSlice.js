@@ -15,11 +15,9 @@ const addCourseToWishlist = createAsyncThunk(
   async ({ courseId }, { rejectWithValue }) => {
     try {
       const res = await myAxios.post(`/student/courses/courseId`);
-
-      console.log("####", res);
       return res.data || {};
     } catch (axiosError) {
-      console.log("##########33", axiosError);
+      console.log("##########MyAxiosError:", axiosError);
       return rejectWithValue(axiosError.response.data);
     }
   }

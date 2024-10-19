@@ -17,7 +17,7 @@ const initialState = {
   login: {
     loading: false,
     user: null,
-    isAuthRole: false,
+    isAuthRole: null,
     isInitialized: false,
   },
   signup: {
@@ -117,7 +117,7 @@ const authSlice = createSlice({
     builder.addCase(login.pending, (state) => {
       state.login.loading = true;
       state.login.user = null;
-      state.login.isAuthRole = false;
+      state.login.isAuthRole = null;
       toast.dismiss();
     });
     builder.addCase(login.fulfilled, (state, action) => {
@@ -128,7 +128,7 @@ const authSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.login.loading = false;
       state.login.user = null;
-      state.login.isAuthRole = false;
+      state.login.isAuthRole = null;
       if (action.payload?.result) {
         toast.error(action.payload?.result, fixedToastOptions);
       } else {
@@ -144,7 +144,7 @@ const authSlice = createSlice({
     builder.addCase(isLogin.pending, (state) => {
       state.login.loading = true;
       state.login.user = null;
-      state.login.isAuthRole = false;
+      state.login.isAuthRole = null;
       state.login.isInitialized = false;
     });
     builder.addCase(isLogin.fulfilled, (state, action) => {
@@ -158,7 +158,7 @@ const authSlice = createSlice({
     builder.addCase(isLogin.rejected, (state, action) => {
       state.login.loading = false;
       state.login.user = null;
-      state.login.isAuthRole = false;
+      state.login.isAuthRole = null;
       state.login.isInitialized = true;
     });
 
