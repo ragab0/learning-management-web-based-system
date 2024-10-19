@@ -7,6 +7,7 @@ import { fetchMentorCourse } from "../../../../store/slices/mentorSlice";
 import { useParams } from "react-router-dom";
 import NoContent from "../../../../components/NoContent/NoContent";
 import Skeleton from "react-loading-skeleton";
+import { FormProvider, useForm } from "react-hook-form";
 
 const tabs = [
   // { name: "commission", to: ".", end: true },
@@ -21,20 +22,16 @@ const tabs = [
 export default function CoursePage() {
   const { courseId } = useParams();
   const dispatch = useDispatch();
-  const { apiData, loading, error, isInitialized } = useSelector(
+  const { loading, isInitialized } = useSelector(
     (state) => state.mentor.currentCourse
   );
+
   useEffect(
     function () {
       dispatch(fetchMentorCourse({ id: courseId }));
     },
     [dispatch, courseId]
   );
-
-  if (isInitialized && error) {
-    return <NoContent />;
-  }
-
   if (!isInitialized || loading) {
     return (
       <div>

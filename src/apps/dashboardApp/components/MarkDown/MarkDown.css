@@ -1,0 +1,6 @@
+@media (max-width: 600) {
+  .my-marker .w-md-editor-content {
+    display: flex !important;
+    flex-flow: column wrap !important;
+  }
+}

@@ -1,8 +1,13 @@
 import React from "react";
-import "./Table.css";
 import { motion } from "framer-motion";
 
-export default function Table({ data, columns, onRowClick, isNew }) {
+export default function Table({
+  data,
+  columns,
+  onRowClick,
+  isNew,
+  isClickIndexable,
+}) {
   return (
     <div className="tableData py-2 pb-0 mb-0">
       <table className="table table-hover w-100">
@@ -25,7 +30,11 @@ export default function Table({ data, columns, onRowClick, isNew }) {
             isNew && index === data.length - 1 ? (
               <motion.tr
                 key={index}
-                onClick={() => onRowClick && onRowClick(row)}
+                onClick={() =>
+                  onRowClick && isClickIndexable
+                    ? onRowClick(index)
+                    : onRowClick(row)
+                }
                 style={{ cursor: onRowClick ? "pointer" : "default" }}
                 className="col-4 mb-4"
                 initial={{ scale: 0.9 }}
@@ -58,7 +67,11 @@ export default function Table({ data, columns, onRowClick, isNew }) {
             ) : (
               <tr
                 key={index}
-                onClick={() => onRowClick && onRowClick(row)}
+                onClick={() =>
+                  onRowClick && isClickIndexable
+                    ? onRowClick(index)
+                    : onRowClick(row)
+                }
                 style={{ cursor: onRowClick ? "pointer" : "default" }}
               >
                 {columns.map((col, colIndex) => (

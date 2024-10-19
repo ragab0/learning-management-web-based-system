@@ -17,10 +17,14 @@ const initialState = {
     isInitialized: false,
   },
   currentCourse: {
+    currentDummyChapters: [],
     apiData: {},
     isInitialized: false,
     loading: false,
     error: null,
+  },
+  extractedChapterInfo: {
+    apiData: {},
   },
 };
 
@@ -52,12 +56,12 @@ const createMentorCourse = createAsyncThunk(
 
 const updateMentorCourse = createAsyncThunk(
   `${NAME}/updateMentorCourse`,
-  toastedThinker("put", mentorCoursesPath, "Updating")
+  toastedThinker("put", mentorCoursesPath, "Updating Course")
 );
 
 const deleteMentorCourse = createAsyncThunk(
   `${NAME}/deleteMentorCourse`,
-  toastedThinker("delete", mentorCoursesPath, "Deleting")
+  toastedThinker("delete", mentorCoursesPath, "Deleting Course")
 );
 
 const fetchMentorCourse = createAsyncThunk(
@@ -65,12 +69,20 @@ const fetchMentorCourse = createAsyncThunk(
   basicThinker("get", mentorCoursesPath, "Getting course")
 );
 
+/** Mentor course chapter */
+const mentorCoursePath = mentorCoursesPath + `/extract-playlist`;
+
+const extractMentorChapterYoutubePlaylist = createAsyncThunk(
+  `${NAME}/extractMentorChapterYoutubePlaylist`,
+  toastedThinker("post", mentorCoursePath, "Extracting a youtube playlist")
+);
+
 const mentorSlice = createSlice({
   name: NAME,
   initialState,
   reducers: {
-    mentorAddNewChapter(state, action) {
-      state.currentCourse.apiData.result?.modules?.push(action.payload) &&
+    mentorAddDummyChapter(state, action) {
+      state.currentCourse.currentDummyChapters.push(action.payload) &&
         toast("New temporary chapter added!");
     },
   },
@@ -114,6 +126,7 @@ const mentorSlice = createSlice({
     /************ COURSES section (Mentor) ************/
     // 01 Fetch all:
     apiLoadingBuilder(builder, fetchMentorAllCourses, "taughtCourses");
+
     // 02 Create one:
     builder.addCase(createMentorCourse.pending, (state) => {
       state["taughtCourses"].isInitialized = false;
@@ -133,18 +146,63 @@ const mentorSlice = createSlice({
       state["taughtCourses"].error = action.error.message;
       state.createMentorCourse.isInitialized = true;
     });
+    // 03 extract info from a playlist in a chapter;
+    apiLoadingBuilder(
+      builder,
+      extractMentorChapterYoutubePlaylist,
+      "extractedChapterInfo"
+    );
 
-    apiLoadingBuilder(builder, updateMentorCourse, "taughtCourses");
+    // 04 Update metnor course;
+    builder.addCase(updateMentorCourse.pending, (state) => {
+      state["currentCourse"].isInitialized = false;
+      state["currentCourse"].loading = true;
+      state["currentCourse"].error = null;
+      state["currentCourse"].currentDummyChapters = [];
+      toast.dismiss();
+    });
+    builder.addCase(updateMentorCourse.fulfilled, (state, action) => {
+      state["currentCourse"].isInitialized = true;
+      state["currentCourse"].loading = false;
+      state["currentCourse"].apiData = action.payload;
+      state["currentCourse"].currentDummyChapters = [];
+    });
+    builder.addCase(updateMentorCourse.rejected, (state, action) => {
+      state["currentCourse"].isInitialized = true;
+      state["currentCourse"].loading = false;
+      state["currentCourse"].error = action.error.message;
+      state["currentCourse"].currentDummyChapters = [];
+      if (action.payload?.result) {
+        toast.error(action.payload?.result, fixedToastOptions);
+      } else {
+        action.payload?.results?.map((obj) =>
+          Object.entries(obj).map(([k, v]) =>
+            toast.error(`${k}: ${v}`, fixedToastOptions)
+          )
+        );
+      }
+    });
+
+    // apiLoadingBuilder(builder, updateMentorCourse, "currentCourse");
+
     apiLoadingBuilder(builder, deleteMentorCourse, "taughtCourses");
     apiLoadingBuilder(builder, fetchMentorCourse, "currentCourse");
   },
 });
 
 export default mentorSlice.reducer;
-const { mentorAddNewChapter } = mentorSlice.actions;
+const {
+  mentorAddDummyChapter,
+  mentorUpdateChapter,
+  mentorUpdateDetails,
+  mentorUpdateSettings,
+} = mentorSlice.actions;
 export {
   // actions;
-  mentorAddNewChapter,
+  mentorAddDummyChapter,
+  mentorUpdateChapter,
+  mentorUpdateDetails,
+  mentorUpdateSettings,
   // extraReducers (&thunks)
   fetchMentorBasicProfile,
   updateMentorBasicProfile,
@@ -153,4 +211,5 @@ export {
   updateMentorCourse,
   deleteMentorCourse,
   fetchMentorCourse,
+  extractMentorChapterYoutubePlaylist,
 };

@@ -1,2 +1,7 @@
-.course-dash-page h2 {
+.course-dash-page table {
+  min-width: 700px;
+}
+
+.course-dash-page .tableData {
+  overflow: auto;
 }

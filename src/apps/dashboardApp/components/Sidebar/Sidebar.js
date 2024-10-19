@@ -71,14 +71,6 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/revenue"}>
-              <i>
-                <DollarIcon />
-              </i>
-              <span>revenue</span>
-            </NavLink>
-          </li>
-          <li>
             <NavLink to={"/dashboard/settings"}>
               <i>
                 <SettingIcon />
@@ -89,7 +81,7 @@ export default function Sidebar() {
         </ul>
       </nav>
       <Link
-        to={"profile"}
+        to={"settings"}
         className="footer d-flex align-items-center gap-2 w-100 overflow-hidden"
       >
         <div className="img-wrapper d-flex align-items-center justify-content-center text-capitalize fw-bold flex-shrink-0">

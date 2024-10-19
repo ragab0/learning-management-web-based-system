@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./ChaptersTab.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { mentorAddDummyChapter } from "../../../../../../store/slices/mentorSlice";
 import Table from "../Table/Table";
 import Pagination from "../../../../../../components/Pagination/Pagination";
-import { chapters as dummyChapters } from "../../../../../../data/dummyData";
-import { mentorAddNewChapter } from "../../../../../../store/slices/mentorSlice";
+import TableChapters from "../TableChapters/TableChapters";
 
 const chapterColumns = [
   { header: "chapter", accessor: "chapter" },
@@ -23,8 +23,9 @@ export default function ChaptersTab() {
   const navigate = useNavigate();
   const {
     apiData: { result },
+    currentDummyChapters,
   } = useSelector((state) => state.mentor.currentCourse);
-  const chapters = result?.modules || dummyChapters;
+  const chapters = [...result?.modules, ...currentDummyChapters];
 
   useEffect(
     function () {
@@ -38,6 +39,7 @@ export default function ChaptersTab() {
     [isNew]
   );
 
+  /* PAGINATION start*/
   const [currentPage, setCurrentPage] = useState(1);
   const chaptersPerPage = 10;
   const indexOfLastChapter = currentPage * chaptersPerPage;
@@ -47,7 +49,6 @@ export default function ChaptersTab() {
     indexOfLastChapter
   );
   const totalPages = Math.ceil(chapters.length / chaptersPerPage);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -61,19 +62,19 @@ export default function ChaptersTab() {
       setCurrentPage((prev) => prev - 1);
     }
   };
-
-  const handleRowClick = ({ id }) => {
-    navigate(`${id}}`);
-  };
+  /* PAGINATION end*/
 
   function addHandler() {
     dispatch(
-      mentorAddNewChapter({
+      mentorAddDummyChapter({
         title: "UnTitled Chapter",
-        chapter: chapters.length + 1,
         createdAt: `${new Date().toDateString()} ${
           new Date().toTimeString().split(" ")[0]
         }`,
+        subtitle: "",
+        description: "",
+        lessons: [],
+        isDummy: true,
       })
     );
     setIsNew(true);
@@ -81,11 +82,11 @@ export default function ChaptersTab() {
 
   return (
     <div className="container-fluid m-3 ms-0">
-      <Table
+      <TableChapters
         isNew={isNew}
-        columns={chapterColumns}
         data={currentChapters}
-        onRowClick={handleRowClick}
+        indexOfFirstChapter={indexOfFirstChapter}
+        totalChapters={chapters.length}
       />
       <button
         onClick={addHandler}

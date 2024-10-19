@@ -55,7 +55,7 @@ export default function CoursesPage() {
         <Skeleton height={40} width={300} />
         <div className="courses-cards row mt-2">
           {[...Array(9)].map((course, i) => (
-            <div className="col-4 mb-4" key={i}>
+            <div className="col-lg-4 col-md-6 mb-4" key={i}>
               <CourseCard isSkel={true} course={course} />
             </div>
           ))}
@@ -92,7 +92,7 @@ export default function CoursesPage() {
               <CourseCard course={course} />
             </motion.div>
           ) : (
-            <div className="col-4 mb-4" key={i}>
+            <div className="col-lg-4 col-md-6 mb-4" key={i}>
               <CourseCard course={course} />
             </div>
           )

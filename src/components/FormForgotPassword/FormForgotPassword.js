@@ -14,7 +14,6 @@ export default function ForgotPasswordForm({ role, label }) {
   const [success, setSuccess] = useState(false);
 
   function submitHandler(data) {
-    console.log("data is", data);
     if (Object.keys(errors).length === 0) {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);

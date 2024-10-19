@@ -1,54 +1,54 @@
 import React, { useState } from "react";
 import "./Lessons.css";
-import { useParams } from "react-router-dom";
-import { lessonsData } from "../../../../../../../../data/dummyData";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import FieldsetLayout from "../../../../../../layouts/Fieldset/FieldsetLayout";
 
 export default function Lessons() {
-  const { chapterId } = useParams();
-  const [state, setState] = useState(lessonsData || []);
-  const { control, register } = useForm();
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-    {
-      control, // control props comes from useForm (optional: if you are using FormProvider)
-      name: "test", // unique name for your Field Array
-    }
-  );
-
-  function delHandler(l) {
-    setState((o) => o.filter((_, i) => i !== l));
+  const methods = useFormContext();
+  function deleteLessonHandler(index) {
+    const currentLessons = methods.getValues().lessons || [];
+    const updatedLessons = currentLessons.filter((_, i) => i !== index);
+    methods.setValue("lessons", updatedLessons);
   }
 
-  function addHandler() {
-    setState((o) => [...o, {}]);
+  function addLessonHandler() {
+    const currentLessons = methods.getValues().lessons || [];
+    const newLesson = { title: "", srcVideo: "" };
+    methods.setValue("lessons", [...currentLessons, newLesson]);
   }
 
   return (
     <div className="chapter-lessons">
-      {state.map(({ title, srcVideo }, i) => (
-        <FieldsetLayout title={`Lesson ${i + 1}`}>
+      <h3 className="fs-5 fw-bold mt-3">
+        Lessons ({methods.getValues().lessons?.length || 0})
+      </h3>
+      {methods.watch("lessons")?.map((lesson, index) => (
+        <FieldsetLayout key={index} title={`Lesson ${index + 1}`} sides={3}>
           <input
-            type="text"
             className="form-control"
-            name="title"
-            placeholder="title"
-            value={title}
+            {...methods.register(`lessons.${index}.title`)}
+            placeholder={`Lesson ${index + 1} Name`}
           />
           <input
-            type="text"
             className="form-control"
-            name="title"
-            placeholder="video source"
-            value={srcVideo}
+            {...methods.register(`lessons.${index}.srcVideo`)}
+            placeholder="lesson video source"
           />
-          <button className="btn btn-danger" onClick={() => delHandler(i)}>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => deleteLessonHandler(index)}
+          >
             Delete
           </button>
         </FieldsetLayout>
       ))}
-      <button className="btn btn-primary px-4" onClick={addHandler}>
-        Add new one
+      <button
+        type="button"
+        className="btn btn-primary px-4"
+        onClick={addLessonHandler}
+      >
+        Add new lesson
       </button>
     </div>
   );
