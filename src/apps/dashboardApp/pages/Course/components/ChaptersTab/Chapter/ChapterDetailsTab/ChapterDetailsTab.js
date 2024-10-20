@@ -10,26 +10,30 @@ export default function ChapterDetailsTab() {
     <div className="chapters-tab-details-tab">
       <h3 className="fs-5 fw-bold mt-3">Chapter Details</h3>
       <div className="chapters-tab-body-content">
-        <FieldsetLayout title="title">
-          <input {...register("title")} type="text" className="form-control" />
-        </FieldsetLayout>
-        <FieldsetLayout title="subtitle">
+        <FieldsetLayout title="title" mandatory={true}>
           <input
-            {...register("titleHook")}
+            {...register("title")}
             type="text"
             className="form-control"
+            placeholder="Chapter title"
           />
         </FieldsetLayout>
-        <FieldsetLayout title="description">
+        <FieldsetLayout title="thumbnail">
+          <input
+            {...register("thumbnail")}
+            type="text"
+            className="form-control"
+            placeholder="Chapter thumbnail"
+          />
+        </FieldsetLayout>
+
+        <FieldsetLayout title="description" mandatory={true}>
           <textarea
             {...register("description")}
             type="text"
             className=" form-control"
             rows={10}
-            placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat."
+            placeholder="Chapter description"
           ></textarea>
         </FieldsetLayout>
       </div>

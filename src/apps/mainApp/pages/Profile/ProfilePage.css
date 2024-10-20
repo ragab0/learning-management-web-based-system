@@ -6,13 +6,6 @@
   text-transform: capitalize;
 }
 
-.profile-page section {
-  border: 2px solid var(--grey-border);
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-}
-
 .tab-my-courses figure,
 .tab-my-teachers figure {
   border: 1px solid var(--grey-border);

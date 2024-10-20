@@ -13,11 +13,11 @@ export default function DetailsTab() {
   const dispatch = useDispatch();
   const { result } = useSelector((state) => state.mentor.currentCourse.apiData);
   const methods = useForm({
-    defaultValues: result,
+    defaultValues: async () => result,
   });
 
   function saveHandler(data) {
-    const course = { ...result, ...data };
+    const course = { description: null, ...result, ...data };
     dispatch(updateMentorCourse({ newCourse: course }));
   }
 
@@ -35,7 +35,7 @@ export default function DetailsTab() {
         </header>
         <div className="details-tab-body row">
           <div className="details-tab-content col-lg-8">
-            <FieldsetLayout title="Course Title">
+            <FieldsetLayout title="Course Title" mandatory={true}>
               <input
                 {...methods.register("title")}
                 type="text"
@@ -43,7 +43,7 @@ export default function DetailsTab() {
                 placeholder="UnTitled Course!"
               />
             </FieldsetLayout>
-            <FieldsetLayout title="Course Hook Title">
+            <FieldsetLayout title="Course Hook Title" mandatory={true}>
               <input
                 {...methods.register("titleHook")}
                 type="text"
@@ -59,7 +59,7 @@ export default function DetailsTab() {
                 placeholder="Image source (URL)"
               />
             </FieldsetLayout>
-            <FieldsetLayout title="Course Description">
+            <FieldsetLayout title="Course Description" mandatory={true}>
               {/* <textarea
                 {...methods.register("description")}
                 className="form-control"

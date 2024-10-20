@@ -21,16 +21,20 @@ export default function LineOfCourses() {
     [dispatch]
   );
 
-  if (isInitialized && error) {
-    <h2>last courses</h2>;
-    return <NoContent />;
+  if (isInitialized && (error || !results?.length)) {
+    return (
+      <section>
+        <h2>last courses</h2>
+        <NoContent />
+      </section>
+    );
   }
 
   if (!isInitialized || loading) {
     return (
       <section>
-        {/* <Skeleton width={200} height={30} className="mb-2" /> */}
-        <h2>last courses</h2>
+        <Skeleton width={200} height={30} className="mb-2" />
+        {/* <h2>last courses</h2> */}
         <div className="last-courses-cards row">
           {[...Array(3)].map((course, i) => (
             <div className="col-lg-4 col-md-6 mb-4" key={i}>

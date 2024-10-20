@@ -15,6 +15,7 @@ const initialState = {
   },
   createMentorCourse: {
     isInitialized: false,
+    isNew: false,
   },
   currentCourse: {
     currentDummyChapters: [],
@@ -84,6 +85,9 @@ const mentorSlice = createSlice({
     mentorAddDummyChapter(state, action) {
       state.currentCourse.currentDummyChapters.push(action.payload) &&
         toast("New temporary chapter added!");
+    },
+    createMentorCourseIsSeen(state) {
+      state.createMentorCourse.isNew = false;
     },
   },
   extraReducers(builder) {
@@ -196,6 +200,7 @@ const {
   mentorUpdateChapter,
   mentorUpdateDetails,
   mentorUpdateSettings,
+  createMentorCourseIsSeen,
 } = mentorSlice.actions;
 export {
   // actions;
@@ -203,6 +208,7 @@ export {
   mentorUpdateChapter,
   mentorUpdateDetails,
   mentorUpdateSettings,
+  createMentorCourseIsSeen,
   // extraReducers (&thunks)
   fetchMentorBasicProfile,
   updateMentorBasicProfile,

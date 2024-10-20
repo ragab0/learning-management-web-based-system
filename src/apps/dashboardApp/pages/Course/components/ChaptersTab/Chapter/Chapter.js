@@ -12,6 +12,8 @@ import NoContent from "../../../../../../../components/NoContent/NoContent";
 import FieldsetLayout from "../../../../../layouts/Fieldset/FieldsetLayout";
 import { toast } from "react-toastify";
 import BtnsAddDelete from "../../../../../components/BtnsAddDelete/BtnsAddDelete";
+import { DevTool } from "@hookform/devtools";
+import FormError from "../../../../../../../components/FormError/FormError";
 
 const tabs = [
   { name: "details", to: ".", end: true },
@@ -51,7 +53,7 @@ export default function Chapter() {
   const { chapter, createdAt, title } = chapters[chapterId - 1];
 
   const saveHandler = (chapterData) => {
-    const course = { ...result };
+    const course = { description: null, ...result };
     const chapterIndex = chapterId - 1;
     let isNew;
     if (chapterIndex < course.modules.length) {
@@ -62,13 +64,17 @@ export default function Chapter() {
       course.modules = [...course.modules, chapterData];
       isNew = true;
     }
-    dispatch(updateMentorCourse({ newCourse: course })).then(() => {
-      if (isNew) {
-        navigate(`../${result?.modules.length + 1}`);
-      } else {
-        navigate(`../${chapterId}`);
+    dispatch(updateMentorCourse({ newCourse: course })).then(
+      ({ payload, error }) => {
+        if (!error) {
+          if (isNew) {
+            navigate(`../${result?.modules.length + 1}`);
+          } else {
+            navigate(`../${chapterId}`);
+          }
+        }
       }
-    });
+    );
   };
 
   const deleteHandler = () => {
@@ -79,12 +85,14 @@ export default function Chapter() {
       (_, index) => index !== chapterIndex
     );
 
-    dispatch(updateMentorCourse({ newCourse: course })).then(({ payload }) => {
-      if (!payload.error) {
-        toast.warning("Chapter has been deleted!");
-        navigate("../");
+    dispatch(updateMentorCourse({ newCourse: course })).then(
+      ({ payload, error }) => {
+        if (!error) {
+          toast.warning("Chapter has been deleted!");
+          navigate("../");
+        }
       }
-    });
+    );
   };
 
   async function extractPlaylistHandler() {
@@ -97,79 +105,96 @@ export default function Chapter() {
     ).then(({ payload }) => {
       if (payload.status === "success") {
         methods.reset({
-          ...payload.result,
-          title: payload.result.title || "UnTitled chapter...",
           lessons: [...payload.result.videos].map((vObj) => ({
             ...vObj,
             srcVideo: vObj.url,
           })),
+        });
 
-          srcVideo: payload.result.url,
-          titleHook: payload.result.title || "There is no subtitle yet...",
+        const { title, description, videos, thumbnails } = payload.result;
+        const getThumbnail = (thumbnails) =>
+          (thumbnails?.length > 0 && thumbnails[0]?.url) || null;
+
+        methods.reset({
+          thumbnail: getThumbnail(thumbnails),
+          title: title || "UnTitled chapter...",
           description:
-            payload.result.description ||
-            "There is no description for this course yet...",
+            description || "There is no description for this chapter yet...",
+          lessons:
+            [...(videos || [])].map(({ title, url, thumbnails }) => ({
+              title,
+              srcVideo: url,
+              thumbnail: getThumbnail(thumbnails),
+            })) || [],
         });
       }
     });
   }
 
   return (
-    <FormProvider {...methods}>
-      <div className="container-fluid chapters-tab-chapter m-3 ms-0">
-        <header className="my-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
-          <div>
-            <h3>
-              Chapter {chapter} - {title}
-            </h3>
-            <time>{createdAt}</time>
-          </div>
-          <div>
-            <BtnsAddDelete
-              onSave={methods.handleSubmit(saveHandler)}
-              onDelete={methods.handleSubmit(deleteHandler)}
-            />
-          </div>
-        </header>
-        <Tabs tabs={tabs} />
-        <div className="chapters-tab-body">
-          <FieldsetLayout
-            title={"Extract details/lesssns from a YouTube PlayList"}
-            sides={2}
-          >
-            <input
-              {...methods.register("extractor")}
-              type="text"
-              className="form-control"
-              placeholder="Youtube playlist source"
-            />
-            <div className="w-100">
-              <input
-                {...methods.register("from")}
-                type="number"
-                className="form-control mb-1 py-1"
-                style={{ fontSize: "14px" }}
-                placeholder="From (1)"
-              />
-              <input
-                {...methods.register("to")}
-                type="number"
-                className="form-control py-1"
-                style={{ fontSize: "14px" }}
-                placeholder="To ()"
+    <>
+      <FormProvider {...methods}>
+        <div className="container-fluid chapters-tab-chapter m-3 ms-0">
+          <header className="my-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+              <h3>
+                Chapter {chapter} - {title}
+              </h3>
+              <time>{createdAt}</time>
+            </div>
+            <div>
+              <BtnsAddDelete
+                onSave={methods.handleSubmit(saveHandler)}
+                onDelete={methods.handleSubmit(deleteHandler)}
               />
             </div>
-            <button
-              className="btn btn-primary px-lg-5 flex-1"
-              onClick={methods.handleSubmit(extractPlaylistHandler)}
+          </header>
+          <Tabs tabs={tabs} />
+          <div className="chapters-tab-body">
+            {methods.formState.errors && (
+              <FormError errors={methods.formState.errors} />
+            )}
+            <FieldsetLayout
+              title={"Extract details/lesssns from a YouTube PlayList"}
+              sides={2}
             >
-              Extract
-            </button>
-          </FieldsetLayout>
-          <div className="border-bottom my-4 border-dark-subtitle"></div>
-          <Outlet />
+              <input
+                {...methods.register("extractor")}
+                type="text"
+                className="form-control"
+                placeholder="Youtube playlist source"
+              />
+              <div className="w-100">
+                <input
+                  {...methods.register("from")}
+                  type="number"
+                  className="form-control mb-1 py-1"
+                  style={{ fontSize: "14px" }}
+                  placeholder="From (1)"
+                />
+                <input
+                  {...methods.register("to")}
+                  type="number"
+                  className="form-control py-1"
+                  style={{ fontSize: "14px" }}
+                  placeholder="To ()"
+                />
+              </div>
+              <button
+                className="btn btn-primary px-lg-5 flex-1"
+                onClick={methods.handleSubmit(extractPlaylistHandler)}
+              >
+                Extract
+              </button>
+            </FieldsetLayout>
+            <div className="border-bottom my-4 border-dark-subtitle"></div>
+            <Outlet />
+          </div>
         </div>
+      </FormProvider>
+      <div className="form-divtool-wrapper">
+        {/* <DevTool control={methods.control} /> */}
       </div>
-    </FormProvider>
+    </>
   );
 }

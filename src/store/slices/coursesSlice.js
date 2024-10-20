@@ -3,17 +3,33 @@ import myAxios from "../../utils/myAxios";
 import { toast } from "react-toastify";
 import { fixedToastOptions } from "../../utils/fixedToast";
 import { basicThinker } from "../../utils/thunks";
+import { apiLoadingBuilder } from "../../utils/apiLoadingBuilder";
 
 const NAME = "courses";
 const initialState = {
+  currentCourse: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
   apiData: {},
   isInitialized: false,
   loading: false,
+  error: null,
 };
+
+/** */
+const coursesPath = "/courses";
 
 const getCourses = createAsyncThunk(
   `${NAME}/getCourses`,
-  basicThinker("get", "/courses")
+  basicThinker("get", coursesPath)
+);
+
+const getCourse = createAsyncThunk(
+  `${NAME}/getCourse`,
+  basicThinker("get", coursesPath)
 );
 
 const coursesSlice = createSlice({
@@ -37,8 +53,10 @@ const coursesSlice = createSlice({
       state.loading = false;
       toast.error(action.payload?.result, fixedToastOptions);
     });
+
+    apiLoadingBuilder(builder, getCourse, "currentCourse");
   },
 });
 
 export default coursesSlice.reducer;
-export { getCourses };
+export { getCourses, getCourse };

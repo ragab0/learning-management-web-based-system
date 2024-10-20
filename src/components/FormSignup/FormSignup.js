@@ -45,7 +45,7 @@ export default function SignupForm({ role = "student" }) {
 
   useEffect(() => {
     if (isNewUser) {
-      navigate("../login");
+      navigate("..");
     }
   }, [isNewUser, navigate]);
 

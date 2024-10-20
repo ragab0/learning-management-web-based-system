@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./CoursesPage.css";
-import { lastCoursesData } from "../../../../data/dashStats";
 import CourseCard from "../../components/CourseCard/CourseCard";
-import { useDispatch, useSelector } from "react-redux";
 import NoContent from "../../../../components/NoContent/NoContent";
-import { fetchMentorAllCourses } from "../../../../store/slices/mentorSlice";
-import Loader from "../../../../components/Loader/Loader";
-import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createMentorCourseIsSeen,
+  fetchMentorAllCourses,
+} from "../../../../store/slices/mentorSlice";
 
 export default function CoursesPage() {
   const dispatch = useDispatch();
@@ -17,9 +18,7 @@ export default function CoursesPage() {
     loading,
     error,
   } = useSelector((state) => state.mentor.taughtCourses);
-  const [isNew, setIsNew] = useState(
-    useSelector((state) => state.mentor.createMentorCourse.isInitialized)
-  );
+  const { isNew } = useSelector((state) => state.mentor.createMentorCourse);
 
   useEffect(
     function () {
@@ -28,14 +27,17 @@ export default function CoursesPage() {
     [dispatch]
   );
 
-  useEffect(function () {
-    const timer = setTimeout(function () {
-      setIsNew(false);
-    }, 5000);
-    return function () {
-      clearTimeout(timer);
-    };
-  }, []);
+  useEffect(
+    function () {
+      const timer = setTimeout(function () {
+        dispatch(createMentorCourseIsSeen());
+      }, 5000);
+      return function () {
+        clearTimeout(timer);
+      };
+    },
+    [dispatch]
+  );
 
   if (isInitialized && !results?.length) {
     return (

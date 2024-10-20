@@ -52,14 +52,21 @@ export default function DashboardApp() {
     !isInitialized &&
     loading
   ) {
-    return <Loader />;
+    return (
+      <div
+        className=" d-flex align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Loader />
+      </div>
+    );
   }
 
   return (
     <div
       className="dashboard-app"
       style={
-        notRequireAuthRoutes.includes(location.pathname)
+        !isInitialized || notRequireAuthRoutes.includes(location.pathname)
           ? { gridTemplateColumns: "1fr" }
           : {}
       }
@@ -147,14 +154,7 @@ export default function DashboardApp() {
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
         <Route path="reset-password" element={<ForgotPassword />} />
-        <Route
-          path="*"
-          element={
-            <div className=" fixed-top overflow-auto h-100">
-              <NotFound />
-            </div>
-          }
-        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

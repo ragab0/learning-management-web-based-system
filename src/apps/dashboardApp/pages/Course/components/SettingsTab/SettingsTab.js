@@ -20,10 +20,19 @@ export default function SettingsTab() {
   const {
     apiData: { results },
   } = useSelector((state) => state.mentor.taughtCourses);
-  const { handleSubmit, setValue, watch } = useForm({ defaultValues: result });
+  const { handleSubmit, setValue, watch } = useForm({
+    defaultValues: async () => ({
+      ...result,
+    }),
+  });
 
   function saveSettingsHandler(data) {
-    const course = { ...result, ...data };
+    const course = {
+      requirements: null,
+      targetAudience: null,
+      ...result,
+      ...data,
+    };
     dispatch(updateMentorCourse({ newCourse: course }));
   }
 
@@ -53,7 +62,7 @@ export default function SettingsTab() {
       </header>
       <div className="settings-tab-body">
         <h4 className="sectionTitle">Basic Settings</h4>
-        <FieldsetLayout title="Course Status">
+        <FieldsetLayout title="Course Status" mandatory={true}>
           <button
             onClick={() => setValue("status", true)}
             className={`btn ${status ? "btn-primary" : ""}`}
@@ -67,7 +76,7 @@ export default function SettingsTab() {
             {!status && "Course is "} UnActive
           </button>
         </FieldsetLayout>
-        <FieldsetLayout title={"Requirements"}>
+        <FieldsetLayout title={"Requirements"} mandatory={true}>
           {/* What are the requirements for taking your course? */}
           <MarkDown
             setter={setValue}
@@ -75,7 +84,7 @@ export default function SettingsTab() {
             name="requirements"
           />
         </FieldsetLayout>
-        <FieldsetLayout title="Target Audience">
+        <FieldsetLayout title="Target Audience" mandatory={true}>
           {/* placeholder={`Who is this course for?`} */}
           <MarkDown
             setter={setValue}

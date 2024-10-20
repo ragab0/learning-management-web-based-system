@@ -9,9 +9,11 @@ export default function AddCourse() {
   const navigate = useNavigate();
 
   function addHandler() {
-    dispatch(createMentorCourse()).then((res) =>
-      navigate("/dashboard/courses")
-    );
+    dispatch(createMentorCourse()).then(({ error }) => {
+      if (!error) {
+        navigate("/dashboard/courses");
+      }
+    });
   }
 
   return (

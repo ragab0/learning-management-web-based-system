@@ -23,7 +23,12 @@ export default function Lessons() {
         Lessons ({methods.getValues().lessons?.length || 0})
       </h3>
       {methods.watch("lessons")?.map((lesson, index) => (
-        <FieldsetLayout key={index} title={`Lesson ${index + 1}`} sides={3}>
+        <FieldsetLayout
+          key={index}
+          title={`Lesson ${index + 1}`}
+          sides={3}
+          mandatory={true}
+        >
           <input
             className="form-control"
             {...methods.register(`lessons.${index}.title`)}

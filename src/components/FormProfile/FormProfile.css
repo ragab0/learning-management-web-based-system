@@ -1,8 +1,24 @@
-.tab-profile form label {
+.tab-profile form > * {
+  margin-bottom: 2rem !important;
+}
+
+.tab-profile fieldset section {
   width: 100%;
+}
+
+.tab-profile legend,
+.tab-profile form label {
   color: #000;
   font-weight: 500;
   margin-bottom: 1rem;
+}
+
+.tab-profile form label {
+  width: 100%;
+}
+
+.tab-profile legend {
+  font-size: 1.5rem;
 }
 
 .tab-profile form label span {

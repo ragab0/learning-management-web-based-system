@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import "./CoursePage.css";
 import { Outlet } from "react-router-dom";
-import Tabs from "../../components/Tabs/Tabs";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMentorCourse } from "../../../../store/slices/mentorSlice";
 import { useParams } from "react-router-dom";
-import NoContent from "../../../../components/NoContent/NoContent";
+import Tabs from "../../components/Tabs/Tabs";
 import Skeleton from "react-loading-skeleton";
-import { FormProvider, useForm } from "react-hook-form";
 
 const tabs = [
   // { name: "commission", to: ".", end: true },
@@ -22,9 +20,11 @@ const tabs = [
 export default function CoursePage() {
   const { courseId } = useParams();
   const dispatch = useDispatch();
-  const { loading, isInitialized } = useSelector(
-    (state) => state.mentor.currentCourse
-  );
+  const {
+    loading,
+    isInitialized,
+    apiData: { result },
+  } = useSelector((state) => state.mentor.currentCourse);
 
   useEffect(
     function () {
@@ -47,7 +47,7 @@ export default function CoursePage() {
   return (
     <div className="course-dash-page p-3">
       <header className="course-page-header">
-        <h2>Data structures & Algorithms</h2>
+        <h2>{result?.title || "UnTitled Course.."}</h2>
         <Tabs tabs={tabs} />
       </header>
       <div className="course-page-body">

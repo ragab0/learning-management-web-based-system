@@ -7,7 +7,6 @@ import FormProfile from "../../components/FormProfile/FormProfile";
 // import Dev from "./components/dev/dev";
 import HomePage from "./pages/Home/HomePage";
 import CoursesPage from "./pages/Courses/CoursesPage";
-import NotfoundPage from "./pages/Notfound/NotfoundPage";
 import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
 import CheckoutPage from "./pages/Checkout/CheckoutPage";

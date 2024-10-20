@@ -4,26 +4,26 @@ import FieldsetLayout from "../../../../../layouts/Fieldset/FieldsetLayout";
 import CreatableSelect from "react-select/creatable";
 import { Controller, useFormContext } from "react-hook-form";
 
-const levels = ["Beginner", "Intermediate", "Advanced"];
-const languages = ["Arabic", "English"];
+const levels = ["beginner", "intermediate", "advanced"];
+const languages = ["arabic", "english"];
 const manyValuesSections = [
   {
-    title: "Languages",
+    title: "languages",
     name: "languages",
     options: languages,
   },
   {
-    title: "Course Levels",
+    title: "course levels",
     name: "levels",
     options: levels,
   },
   {
-    title: "CC Languages",
+    title: "CC languages",
     name: "subtitles",
     options: languages,
   },
   {
-    title: "Tags",
+    title: "tags",
     name: "tags",
     options: [
       "programming",
@@ -68,10 +68,10 @@ export default function DetailsTabAside({ result }) {
 
   return (
     <div className="details-tab-aside h-auto">
-      <div className="multi-select-container">
+      <div className="multi-select-container text-capitalize">
         {manyValuesSections.map(
           ({ title, name, options: defaultMenuOptions }) => (
-            <FieldsetLayout title={title} key={name}>
+            <FieldsetLayout title={title} key={name} mandatory={true}>
               <Controller
                 name={name}
                 control={control}
@@ -79,7 +79,9 @@ export default function DetailsTabAside({ result }) {
                   <CreatableSelect
                     value={value?.map((v) => ({ value: v, label: v }))} // Convert strings to objects for react-select ......
                     onChange={(newValue) =>
-                      onChange(newValue.map((v) => v.value))
+                      onChange(
+                        newValue.map((v) => v.value?.toLocaleLowerCase())
+                      )
                     } // Convert back to array of strings
                     inputRef={ref}
                     options={options[name]?.map((option) => ({
