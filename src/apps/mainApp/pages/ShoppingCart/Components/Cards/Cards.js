@@ -34,8 +34,8 @@ export default function Cards() {
 
   return (
     <div className="results">
-      {results.map((card, index) => (
-        <Card card={card} key={index} />
+      {results.map((course, index) => (
+        <Card course={course} key={index} />
       ))}
     </div>
   );

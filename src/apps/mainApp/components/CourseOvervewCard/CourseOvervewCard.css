@@ -5,6 +5,10 @@
   overflow: hidden;
 }
 
+.course-overvew-card .img-wrapper {
+  min-height: 200px;
+}
+
 .course-overvew-card .rate {
   color: #eab308;
   width: 100%;
@@ -25,4 +29,14 @@
   color: black;
   font-size: 20px;
   font-weight: bold;
+}
+
+/** two sides */
+.course-overvew-card.two-sides figure {
+  flex-direction: row !important;
+  gap: 1.5rem;
+}
+
+.course-overvew-card.two-sides figure > * {
+  flex-basis: 50%;
 }

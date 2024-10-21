@@ -33,8 +33,8 @@ export default function WishCards() {
 
   return (
     <div className="results">
-      {results.map((card, index) => (
-        <Card card={card} key={index} isWish={true} />
+      {results.map((course, index) => (
+        <Card course={course} key={index} isWish={true} />
       ))}
     </div>
   );

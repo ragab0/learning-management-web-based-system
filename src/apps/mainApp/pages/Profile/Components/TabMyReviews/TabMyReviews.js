@@ -1,34 +1,35 @@
-import React, { useEffect } from "react";
+import React from "react";
+// import React, { useEffect } from "react";
 import "./TabMyReviews.css";
-import NoContent from "../../../../../../components/NoContent/NoContent";
-import Loader from "../../../../../../components/Loader/Loader";
+// import NoContent from "../../../../../../components/NoContent/NoContent";
+// import Loader from "../../../../../../components/Loader/Loader";
 import FilterOptions from "../FilterOptions/FilterOptions";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchReviews } from "../../../../../../store/slices/studentSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchReviews } from "../../../../../../store/slices/studentSlice";
 import Reviews from "../../../../../../components/Reviews/Reviews";
 import { reviewsData } from "../../../../../../data/reviewsData";
 
 export default function TabReviews() {
-  const dispatch = useDispatch();
-  const {
-    apiData: { results, totalPages, page: activePage },
-    loading,
-    isInitialized,
-  } = useSelector((state) => state.student.reviews);
+  // const dispatch = useDispatch();
+  // const {
+  //   apiData: { results = [] },
+  //   loading,
+  //   isInitialized,
+  // } = useSelector((state) => state.student.reviews);
 
-  useEffect(
-    function () {
-      dispatch(fetchReviews());
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+  // useEffect(
+  //   function () {
+  //     dispatch(fetchReviews());
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   []
+  // );
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
-  if (isInitialized && !(results?.length > 0)) {
-    return <NoContent />;
-  }
+  // if (isInitialized && !results.length) {
+  //   return <NoContent />;
+  // }
 
   return (
     <div className="tab-reviews">

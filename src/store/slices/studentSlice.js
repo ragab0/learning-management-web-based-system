@@ -69,9 +69,10 @@ const updateStudentBasicProfile = createAsyncThunk(
 
 /******************** Courses Enrolled /******************** */
 /** Courses Enrolled (getAll, getContent, archive)  */
-const [enrolledPath, enrolledContentPath] = [
+const [enrolledPath, enrolledContentPath, archivedPath] = [
   "/student/courses/",
   "/student/study",
+  "/student/courses/archived",
 ];
 
 const fetchEnrolledCourses = createAsyncThunk(
@@ -86,7 +87,7 @@ const fetchEnrolledCourseContent = createAsyncThunk(
 
 const archiveEnrolledCourse = createAsyncThunk(
   `${NAME}/archiveEnrolledCourse`,
-  basicThinker("put", enrolledPath)
+  toastedThinker("post", archivedPath, "Archiving")
 );
 
 /******************** Courses archived (get) ********************/
@@ -100,7 +101,7 @@ const fetchArchivedCourses = createAsyncThunk(
 
 const unArchiveEnrolledCourse = createAsyncThunk(
   `${NAME}/unArchiveEnrolledCourse`,
-  toastedThinker("put", archivePath, "Adding")
+  toastedThinker("put", archivePath, "UnArchiving")
 );
 
 /******************** Courses cart ********************/

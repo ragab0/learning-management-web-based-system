@@ -18,12 +18,6 @@
 .layout-cart p {
   color: #334155;
 }
-.layout-cart-body {
-  margin-block: 2rem;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 2rem;
-}
 
 .layout-cart-content > * {
   margin-bottom: var(--main-margin);

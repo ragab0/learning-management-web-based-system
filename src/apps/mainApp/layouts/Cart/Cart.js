@@ -12,7 +12,7 @@ export default function LayoutCart({
     <div className="layout-cart">
       <div className="container">
         <h1>{title}</h1>
-        <div className="layout-cart-body">
+        <div className="content-aside-layout">
           <div className="layout-cart-content">{children}</div>
           <motion.aside
             className="aside"

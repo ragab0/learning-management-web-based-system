@@ -4,7 +4,7 @@ import Select from "../../../../../../components/SelectForm/SelectForm";
 import { fetchEnrolledCourses } from "../../../../../../store/slices/studentSlice";
 
 const sortByOptions = [
-  { name: "progress", value: "progress" },
+  // { name: "progress", value: "progress" },
   { name: "rating", value: "rate" },
   { name: "category", value: "catg" },
 ];

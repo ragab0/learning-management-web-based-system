@@ -1,12 +1,16 @@
 import React from "react";
 import "./CourseOvervewCard.css";
-import courseImage from "../../../../assets/course1.png";
 import { Link } from "react-router-dom";
+import courseImage from "../../../../assets/course1.png";
 import Skeleton from "react-loading-skeleton";
-import StarLight from "../../../../assets/svgsComps/StarLight";
-import StarDark from "../../../../assets/svgsComps/StarDark";
 
-export default function CourseOvervewCard({ course, skeleton }) {
+export default function CourseOvervewCard({
+  course = {},
+  skeleton,
+  isTwoSides,
+  children,
+  isEnrolled,
+}) {
   if (skeleton) return <Skel />;
   const {
     _id,
@@ -16,6 +20,7 @@ export default function CourseOvervewCard({ course, skeleton }) {
     mentor = {},
     rating,
     price,
+    isRemoved,
   } = course;
   const { fname, lname } = mentor;
   const coursePhoto = photo || modules[0]?.thumbnail || courseImage;
@@ -36,11 +41,18 @@ export default function CourseOvervewCard({ course, skeleton }) {
 
   return (
     <Link
-      to={`/${"courses"}/${_id}`}
-      className="course-overvew-card d-block h-100"
+      to={`/${isEnrolled ? "study" : "courses"}/${_id}`}
+      className={`course-overvew-card ${
+        isTwoSides ? "two-sides" : ""
+      } d-block h-100`}
     >
       <figure className="box d-flex flex-column align-items-start p-3 mb-0 d-block h-100">
-        <div className="text-start w-100">
+        <div className="img-wrapper text-start w-100 position-relative">
+          {isRemoved && (
+            <p className="position-absolute top-0 start-0 btn btn-danger w-100">
+              Course has been archvied by owner!
+            </p>
+          )}
           <img src={coursePhoto} alt={title} className=" rounded-2" />
         </div>
         <fieldset className="pt-3">
@@ -72,6 +84,7 @@ export default function CourseOvervewCard({ course, skeleton }) {
               <button className="btn btn-primary py-0">free</button>
             )}
           </div>
+          {children}
         </fieldset>
       </figure>
     </Link>

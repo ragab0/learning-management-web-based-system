@@ -1,9 +1,3 @@
-.tab-my-courses figure {
-  border: 1px solid var(--grey-border);
-  border-radius: 1rem;
-  display: grid;
-  grid-template-rows: 1fr auto;
-}
-
-.filter-tabs a {
+.tab-my-courses .my-courses .price {
+  display: none;
 }

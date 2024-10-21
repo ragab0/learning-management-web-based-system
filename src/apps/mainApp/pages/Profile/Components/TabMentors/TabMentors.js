@@ -8,11 +8,12 @@ import NoContent from "../../../../../../components/NoContent/NoContent";
 import { fetchMentors } from "../../../../../../store/slices/studentSlice";
 import Loader from "../../../../../../components/Loader/Loader";
 import { mentorsData } from "../../../../../../data/mentorsData";
+import MentorOverviewCard from "../../../../components/MentorOverviewCard/MentorOverviewCard";
 
 export default function TabMentors() {
   const dispatch = useDispatch();
   const {
-    apiData: { results, totalPages, page: activePage },
+    apiData: { results = [] },
     loading,
     isInitialized,
   } = useSelector((state) => state.student.mentors);
@@ -21,13 +22,12 @@ export default function TabMentors() {
     function () {
       dispatch(fetchMentors());
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [dispatch]
   );
 
   if (loading) return <Loader />;
 
-  if (isInitialized && !(results?.length > 0)) {
+  if (isInitialized && !results.length) {
     return <NoContent />;
   }
 
@@ -40,29 +40,10 @@ export default function TabMentors() {
         <FilterOptions />
       </header>
       <div className="row">
-        {mentorsData.map((teacher, index) => (
-          <Link
-            to={`/mentors/${index}`}
-            key={index}
-            className="teacher-wrapper col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4"
-          >
-            <figure className="teacher box h-100  p-3 mb-0 text-start">
-              <div>
-                <img
-                  src={teacher.img}
-                  alt={teacher.name}
-                  className="img-fluid mb-3"
-                />
-
-                <h5 className="fw-bold">{teacher.name}</h5>
-                <h6 className=" fs-6">{teacher.role}</h6>
-              </div>
-              <Link to={`chat/${index}`} className="btn btn-primary mt-4">
-                Send Message
-                <i className="fa-regular fa-envelope"></i>
-              </Link>
-            </figure>
-          </Link>
+        {results.map((mentor, i) => (
+          <div className="col-md-4">
+            <MentorOverviewCard mentor={mentor} key={i} />
+          </div>
         ))}
         {/* <PaginationMain /> */}
       </div>
