@@ -105,8 +105,8 @@ export default function CustomerComments() {
   };
 
   return (
-    <section className="customer-comments-section">
-      <div className="container d-flex justify-content-center align-items-center row">
+    <section className="customer-comments-section container">
+      <div className=" d-flex justify-content-center align-items-center row">
         <header className="col-lg-6 col-md-12">
           <h1 className=" fw-semibold text-center">What Our Customers</h1>
           <h1 className=" fw-semibold text-center">Say About Us...</h1>

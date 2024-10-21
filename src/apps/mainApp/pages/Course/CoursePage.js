@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse } from "../../../../store/slices/coursesSlice";
 import NoContent from "../../../../components/NoContent/NoContent";
+import ScrollAnimatedSection from "../../components/ScrollAnimatedFadeup/ScrollAnimatedFadeup";
 
 export default function CoursePage() {
   const { id } = useParams();

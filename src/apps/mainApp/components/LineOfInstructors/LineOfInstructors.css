@@ -35,19 +35,3 @@
   font-size: 20px;
   font-weight: bold;
 }
-
-.line-of-instructors .divide {
-  position: relative;
-}
-
-.line-of-instructors .divide::before {
-  content: "";
-  position: absolute;
-  width: 150px;
-  border-width: 1px 0 0 0;
-  border-style: solid;
-  border-color: #6c757d;
-  top: -70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}

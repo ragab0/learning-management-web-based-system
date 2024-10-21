@@ -79,18 +79,6 @@ export default function Navbar() {
   );
 }
 
-function SkeletonNavbarItems() {
-  return (
-    <div className=" ms-3 d-flex">
-      <div className=" me-2 mt-1">
-        <Skeleton width={200} height={10} />
-        <Skeleton width={200} height={10} />
-      </div>
-      <Skeleton width={45} height={45} className="rounded-circle" />
-    </div>
-  );
-}
-
 function AuthNavbarItems({ user }) {
   return (
     <ul className="navbar-items">
@@ -151,5 +139,17 @@ function DefaultNavbarItems() {
         </Link>
       </li>
     </ul>
+  );
+}
+
+function SkeletonNavbarItems() {
+  return (
+    <div className=" ms-3 d-flex">
+      <div className=" me-2 mt-1">
+        <Skeleton width={200} height={10} />
+        <Skeleton width={200} height={10} />
+      </div>
+      <Skeleton width={45} height={45} className="rounded-circle" />
+    </div>
   );
 }

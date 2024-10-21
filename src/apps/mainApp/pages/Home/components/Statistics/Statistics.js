@@ -19,12 +19,13 @@ const statistics = [
 export default function Statistics() {
   return (
     <section className="statistics-section">
-      <div className="container">
-        <div className="row stats">
+      <div className="container ">
+        <div className="d-flex stats overflow-x-auto">
           {statistics.map(({ title }, i) => (
             <div
               key={i}
               className="stat-card col d-flex justify-content-center text-center position-relative"
+              style={{ minWidth: "200px" }}
             >
               <div className="stat-card-content">
                 <h2>{title}</h2>

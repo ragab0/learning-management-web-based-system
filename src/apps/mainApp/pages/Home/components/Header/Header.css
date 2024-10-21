@@ -9,6 +9,13 @@
   max-width: 550px;
 }
 
+@media (max-width: 1000px) {
+  .header-body {
+    gap: 3rem;
+    flex-direction: column-reverse !important;
+  }
+}
+
 .header-content p {
   margin-block: 1rem 2rem;
 }

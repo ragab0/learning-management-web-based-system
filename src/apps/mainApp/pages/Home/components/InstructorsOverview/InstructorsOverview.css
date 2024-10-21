@@ -1,6 +1,11 @@
 .home-page .instructors-overviews {
-  margin-block: calc(var(--main-margin) * 2);
+  overflow: hidden;
 }
+
+.home-page .instructors-overviews > .container {
+  margin-block: calc(var(--main-margin));
+}
+
 .home-page .instructors-overviews .header-content {
   max-width: 550px;
 }

@@ -3,7 +3,6 @@ import "./CourseHeader.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
-import myImage from "../../../../../../assets/customersImgs/cust5Heigh.png";
 import ArrowChevron from "../../../../../../assets/svgsComps/ChevronRightSmall";
 
 export default function CourseHeader({ course }) {
@@ -16,8 +15,8 @@ export default function CourseHeader({ course }) {
     return <Skel />;
   }
 
-  const { title, titleHook, mentor = {}, modules = [], languages } = result;
-  const { fname, lname, headline, photo, _id: mentorId } = mentor;
+  const { title, mentor = {}, modules = [], languages } = result;
+  const { fname, lname, photo, _id: mentorId } = mentor;
   const chaptersCount = modules.length;
   const lessonsCount = modules.reduce(
     (sum, curr) => sum + curr.lessons.length,
