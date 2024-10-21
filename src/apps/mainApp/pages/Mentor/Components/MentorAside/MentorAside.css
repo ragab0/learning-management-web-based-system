@@ -8,4 +8,5 @@
   background-color: #eee;
   margin-inline: auto;
   margin-bottom: 2rem;
+  pointer-events: none;
 }

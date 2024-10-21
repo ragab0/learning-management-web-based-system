@@ -37,7 +37,7 @@ const coursesSlice = createSlice({
   initialState,
   extraReducers(builder) {
     // 01) login
-    builder.addCase(getCourses.pending, (state, action) => {
+    builder.addCase(getCourses.pending, (state) => {
       state.isInitialized = false;
       state.loading = true;
       state.apiData = {};
@@ -51,6 +51,7 @@ const coursesSlice = createSlice({
     builder.addCase(getCourses.rejected, (state, action) => {
       state.isInitialized = true;
       state.loading = false;
+      state["taughtCourses"].error = action.error.message;
       toast.error(action.payload?.result, fixedToastOptions);
     });
 

@@ -111,20 +111,22 @@ export default function Chapter() {
           })),
         });
 
-        const { title, description, videos, thumbnails } = payload.result;
+        const { title, description, videos, thumbnails, url } = payload.result;
         const getThumbnail = (thumbnails) =>
           (thumbnails?.length > 0 && thumbnails[0]?.url) || null;
 
         methods.reset({
+          extractor: url,
           thumbnail: getThumbnail(thumbnails),
           title: title || "UnTitled chapter...",
           description:
             description || "There is no description for this chapter yet...",
           lessons:
-            [...(videos || [])].map(({ title, url, thumbnails }) => ({
+            [...(videos || [])].map(({ title, url, thumbnails, duration }) => ({
               title,
               srcVideo: url,
               thumbnail: getThumbnail(thumbnails),
+              duration,
             })) || [],
         });
       }

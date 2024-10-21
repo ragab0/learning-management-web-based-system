@@ -33,6 +33,7 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  border-radius: 50%;
 }
 
 .course-page .section1 .user_details .userName {

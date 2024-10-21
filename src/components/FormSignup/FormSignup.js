@@ -3,7 +3,7 @@ import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../store/slices/authSlice";
+import { isLogin, signup } from "../../store/slices/authSlice";
 import { motion, AnimatePresence } from "framer-motion";
 import AuthMoreOptions from "../AuthMoreOptions/AuthMoreOptions";
 
@@ -46,8 +46,9 @@ export default function SignupForm({ role = "student" }) {
   useEffect(() => {
     if (isNewUser) {
       navigate("..");
+      dispatch(isLogin());
     }
-  }, [isNewUser, navigate]);
+  }, [isNewUser, navigate, dispatch]);
 
   async function submitHandler(data) {
     !loading && dispatch(signup(data));

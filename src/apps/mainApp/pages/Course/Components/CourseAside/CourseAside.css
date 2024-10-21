@@ -1,3 +1,10 @@
+.course-page .image-wrapper {
+  height: 200px;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: #eee;
+}
+
 .course-page .aside .course_info .price {
   color: #0f172a;
 }
@@ -13,8 +20,8 @@
 .course-page .aside .btn_add {
   background-color: #020617;
   color: #fff;
-  text-transform: capitalize;
   padding: 15px;
+  font-weight: bold;
 }
 
 .course-page .aside .btn_buy {

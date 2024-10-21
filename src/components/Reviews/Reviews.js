@@ -3,7 +3,7 @@ import "./Reviews.css";
 import StarLight from "../../assets/svgsComps/StarLight";
 import StarDark from "../../assets/svgsComps/StarDark";
 
-export default function Reviews({ list }) {
+export default function Reviews({ list, limit }) {
   return (
     <div className="reviews">
       {list.map(

@@ -1,26 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./MentorAside.css";
 import { Link } from "react-router-dom";
-import MentorImg from "../../../../../../assets/mentorsImgs/mentor2.png";
+import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 
 export default function MentorAside() {
-  const [loading, setLoading] = useState(true);
+  const {
+    loading,
+    apiData: { result = {} },
+  } = useSelector((state) => state.mentor.basicProfile);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2500));
-      setLoading(false);
-    };
+  if (loading) {
+    return <Skel />;
+  }
 
-    fetchData();
-  }, []);
+  const { photo, links = [] } = result;
 
-  const SkeletonLoader = () => (
+  return (
+    <aside className="aside mentor-aside">
+      <div className="aside-content text-center">
+        <div className="img-wrapper rounded-circle overflow-hidden">
+          <img alt="profile-img" src={photo} />
+        </div>
+        <ul className="d-flex flex-column gap-2">
+          {links.map((link, i) => {
+            const [k, v] = Object.entries(link)[0];
+            return (
+              v && (
+                <li>
+                  <Link to={v} className="btn btn-outline-dark py-3 w-100">
+                    {k}
+                  </Link>
+                </li>
+              )
+            );
+          })}
+        </ul>
+      </div>
+    </aside>
+  );
+}
+
+function Skel() {
+  return (
     <aside className="aside mentor-aside">
       <div className="aside-content text-center">
         <div className="img-wrapper">
-          <Skeleton circle height={100} width={100} />
+          <Skeleton className="w-100 h-100 rounded-circle" />
         </div>
         <ul className="d-flex flex-column gap-2">
           {[...Array(3)].map((_, index) => (
@@ -28,35 +54,6 @@ export default function MentorAside() {
               <Skeleton height={50} width="100%" />
             </li>
           ))}
-        </ul>
-      </div>
-    </aside>
-  );
-
-  return loading ? (
-    <SkeletonLoader />
-  ) : (
-    <aside className="aside mentor-aside">
-      <div className="aside-content text-center">
-        <div className="img-wrapper">
-          <img alt="profile-img" src={MentorImg} />
-        </div>
-        <ul className="d-flex flex-column gap-2">
-          <li>
-            <Link to={"#"} className="btn btn-outline-dark py-3 w-100 disabled">
-              Website
-            </Link>
-          </li>
-          <li>
-            <Link to={"#"} className="btn btn-outline-dark py-3 w-100 disabled">
-              Linkedin
-            </Link>
-          </li>
-          <li>
-            <Link to={"#"} className="btn btn-outline-dark py-3 w-100 disabled">
-              Youtube
-            </Link>
-          </li>
         </ul>
       </div>
     </aside>

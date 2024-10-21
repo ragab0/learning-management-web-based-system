@@ -6,6 +6,7 @@
   gap: 1rem;
 }
 
+.course-page .chapter-body,
 .course-page .chapter {
   padding: 1.5rem;
   border-radius: 0.25rem;
@@ -30,4 +31,8 @@
 .course-page .chapter span {
   color: var(--clr-grey-dark);
   font-weight: 14px;
+}
+
+.course-page .chapter-body {
+  cursor: default;
 }

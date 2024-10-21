@@ -3,14 +3,8 @@ import myAxios from "../../utils/myAxios";
 import { toast } from "react-toastify";
 import { delay } from "../../utils/delay";
 import { fixedToastOptions } from "../../utils/fixedToast";
-import {
-  fetchMentorBasicProfile,
-  updateMentorBasicProfile,
-} from "./mentorSlice";
-import {
-  fetchStudentBasicProfile,
-  updateStudentBasicProfile,
-} from "./studentSlice";
+import { updateMentorBasicProfile } from "./mentorSlice";
+import { updateStudentBasicProfile } from "./studentSlice";
 
 const NAME = "auth";
 const initialState = {

@@ -45,7 +45,6 @@ import authSlice from "./slices/authSlice";
 import studentSlice from "./slices/studentSlice";
 import mentorSlice from "./slices/mentorSlice";
 import coursesSlice from "./slices/coursesSlice";
-import courseSlice from "./slices/courseSlice";
 import adminSlice from "./slices/adminSlice";
 
 const logger = createLogger();
@@ -58,7 +57,6 @@ const store = configureStore({
     admin: adminSlice,
 
     courses: coursesSlice,
-    course: courseSlice,
   },
   middleware: function (getDefaultMiddles) {
     return getDefaultMiddles().concat(logger);

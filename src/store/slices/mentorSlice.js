@@ -6,7 +6,13 @@ import { apiLoadingBuilder } from "../../utils/apiLoadingBuilder";
 
 const NAME = "mentor";
 const initialState = {
-  basicProfile: { loading: false, error: false },
+  basicProfile: {
+    // accessed by the public mentorPage of mainApp;
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: false,
+  },
   taughtCourses: {
     apiData: {},
     isInitialized: false,
@@ -93,17 +99,7 @@ const mentorSlice = createSlice({
   extraReducers(builder) {
     /************ BASIC proile (Mentor) ************/
     // fetchMentorBasicProfile
-    builder.addCase(fetchMentorBasicProfile.pending, (state) => {
-      state.basicProfile.loading = true;
-      state.basicProfile.error = null;
-    });
-    builder.addCase(fetchMentorBasicProfile.fulfilled, (state) => {
-      state.basicProfile.loading = false;
-    });
-    builder.addCase(fetchMentorBasicProfile.rejected, (state, action) => {
-      state.basicProfile.loading = false;
-      state.basicProfile.error = action.error.message;
-    });
+    apiLoadingBuilder(builder, fetchMentorBasicProfile, "basicProfile");
 
     // updateMentorBasicProfile
     builder.addCase(updateMentorBasicProfile.pending, (state) => {
@@ -137,18 +133,21 @@ const mentorSlice = createSlice({
       state["taughtCourses"].loading = true;
       state["taughtCourses"].error = null;
       state.createMentorCourse.isInitialized = false;
+      state.createMentorCourse.isNew = false;
     });
     builder.addCase(createMentorCourse.fulfilled, (state, action) => {
       state["taughtCourses"].isInitialized = true;
       state["taughtCourses"].loading = false;
       state["taughtCourses"].apiData = action.payload;
       state.createMentorCourse.isInitialized = true;
+      state.createMentorCourse.isNew = true;
     });
     builder.addCase(createMentorCourse.rejected, (state, action) => {
       state["taughtCourses"].isInitialized = true;
       state["taughtCourses"].loading = false;
       state["taughtCourses"].error = action.error.message;
       state.createMentorCourse.isInitialized = true;
+      state.createMentorCourse.isNew = false;
     });
     // 03 extract info from a playlist in a chapter;
     apiLoadingBuilder(

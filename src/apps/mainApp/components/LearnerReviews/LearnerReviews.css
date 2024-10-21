@@ -1,3 +1,6 @@
+.learner-reviews-body .course-info {
+  display: none !important;
+}
 .learner-reviews-body {
   display: grid;
   grid-template-columns: 1fr 2fr;

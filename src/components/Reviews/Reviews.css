@@ -5,6 +5,10 @@
   padding: 1.5rem;
 }
 
+.reviews .review-container:first-of-type {
+  margin-top: 0 !important;
+}
+
 .reviews .rating-wrapper {
   display: flex;
   align-items: center;

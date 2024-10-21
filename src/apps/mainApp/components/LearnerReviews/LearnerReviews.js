@@ -1,31 +1,8 @@
 import React from "react";
-import learnerOne from "../../../../assets/customersImgs/cust2.png";
 import "./LearnerReviews.css";
 import Rates from "../Rates/Rates";
-
-const reviews = [
-  {
-    name: "Mark Doe",
-    rate: "5",
-    date: "22nd March, 2024",
-    review:
-      "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
-  },
-  {
-    name: "Mark Doe",
-    rate: "5",
-    date: "22nd March, 2024",
-    review:
-      "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
-  },
-  {
-    name: "Mark Doe",
-    rate: "5",
-    date: "22nd March, 2024",
-    review:
-      "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
-  },
-];
+import Reviews from "../../../../components/Reviews/Reviews";
+import { reviewsData } from "../../../../data/reviewsData";
 
 export default function LearnerReviews() {
   return (
@@ -38,37 +15,15 @@ export default function LearnerReviews() {
             <span className=" ms-2 fs-4 fw-bolder">4.6</span>
             <sub className=" ms-2 fs-5">146,951 reviews</sub>
           </div>
-          <div className="mt-3">
+          <div className="mt-3 d-flex flex-column-reverse">
             <Rates
-              showCheckboxes={false}
+              showCheckboxes={true}
               hasRatsioArray={["80%", "10%", "5%", "3%", "2%"].reverse()}
             />
           </div>
         </div>
         <div className="reviews-wrapper">
-          <div className="reviews">
-            {reviews.map(({ name, rate, date, review }, i) => (
-              <div className="review" key={i}>
-                <div className="review-header mb-2">
-                  <img src={learnerOne} alt="learner" />
-                  <div>
-                    <h5 className="fw-bold mb-0">{name}</h5>
-                    <div>
-                      <i className="star fa-solid fa-star"></i>
-                      <span className="fw-bolder me-3">{rate}</span>
-                      <span
-                        className="review_date"
-                        style={{ fontStyle: "italic" }}
-                      >
-                        Reviewed on {date}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <p>{review}</p>
-              </div>
-            ))}
-          </div>
+          <Reviews list={reviewsData.slice(0, 4)} />
           <button className="btn btn-outline-dark py-2 px-4">
             View more Reviews
           </button>
