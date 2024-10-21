@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./FilterOptions.css";
 import LayoutMenuToggler from "../../../../layouts/MenuToggler/MenuToggler";
 import LayoutCheckboxesFilter from "../../../../layouts/CheckboxesFilter/CheckboxesFilter";

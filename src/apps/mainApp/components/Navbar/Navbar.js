@@ -141,12 +141,12 @@ function DefaultNavbarItems() {
         </NavLink>
       </li>
       <li>
-        <Link to={"/login"} className="my-btn btn--squared btn--trans">
+        <Link to={"/login"} className="my-btn p-2 btn--trans">
           login
         </Link>
       </li>
       <li>
-        <Link to={"/signup"} className="my-btn btn--squared btn--dark-light">
+        <Link to={"/signup"} className="my-btn p-2 btn--dark-light">
           signup
         </Link>
       </li>

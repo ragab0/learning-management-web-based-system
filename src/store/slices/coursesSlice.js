@@ -13,10 +13,12 @@ const initialState = {
     loading: false,
     error: null,
   },
-  apiData: {},
-  isInitialized: false,
-  loading: false,
-  error: null,
+  publicCourses: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
 };
 
 /** */
@@ -36,25 +38,7 @@ const coursesSlice = createSlice({
   name: NAME,
   initialState,
   extraReducers(builder) {
-    // 01) login
-    builder.addCase(getCourses.pending, (state) => {
-      state.isInitialized = false;
-      state.loading = true;
-      state.apiData = {};
-      toast.dismiss();
-    });
-    builder.addCase(getCourses.fulfilled, (state, action) => {
-      state.isInitialized = true;
-      state.loading = false;
-      state.apiData = action.payload;
-    });
-    builder.addCase(getCourses.rejected, (state, action) => {
-      state.isInitialized = true;
-      state.loading = false;
-      state["taughtCourses"].error = action.error.message;
-      toast.error(action.payload?.result, fixedToastOptions);
-    });
-
+    apiLoadingBuilder(builder, getCourses, "publicCourses");
     apiLoadingBuilder(builder, getCourse, "currentCourse");
   },
 });

@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CoursesPage.css";
 import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstructors";
 import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 import PaginationMain from "../../../../components/PaginationMain/PaginationMain";
 import CoursesList from "./components/CoursesList/CoursesList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCourses } from "../../../../store/slices/coursesSlice";
 import FilterOptions from "./components/FilterOptions/FilterOptions";
 import SortOptions from "./components/SortOptions/SortOptions";
+import NoContent from "../../../../components/NoContent/NoContent";
 
 export default function CoursesPage() {
+  const dispatch = useDispatch();
   const {
     apiData: { totalPages, page: activePage },
-  } = useSelector((state) => state.courses);
+    error,
+  } = useSelector((state) => state.courses.publicCourses);
+
+  useEffect(
+    function () {
+      dispatch(getCourses());
+    },
+    [dispatch]
+  );
+
+  if (error) {
+    return <NoContent />;
+  }
 
   return (
     <div className="courses-page container">
