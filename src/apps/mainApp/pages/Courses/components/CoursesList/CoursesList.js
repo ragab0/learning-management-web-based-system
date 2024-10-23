@@ -6,9 +6,10 @@ import NoContent from "../../../../../../components/NoContent/NoContent";
 
 export default function CoursesList() {
   const {
-    apiData: { results },
+    apiData: { results = [] },
     isInitialized,
     loading,
+    error,
   } = useSelector((state) => state.courses.publicCourses);
 
   if (!isInitialized || loading) {
@@ -23,7 +24,7 @@ export default function CoursesList() {
     );
   }
 
-  if (isInitialized && !results.length) {
+  if (isInitialized && (!results.length || error)) {
     return (
       <div style={{ marginBlock: "150px 250px" }}>
         <NoContent />

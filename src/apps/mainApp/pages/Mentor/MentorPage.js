@@ -17,7 +17,8 @@ export default function MentorPage() {
   const {
     isInitialized,
     loading,
-    apiData: { result },
+    error,
+    apiData: { result = [] },
   } = useSelector((state) => state.mentor.basicProfile);
 
   useEffect(
@@ -27,16 +28,16 @@ export default function MentorPage() {
     [dispatch, mentorId]
   );
 
-  if (isInitialized && !result) {
-    return <NoContent />;
-  }
-
   return (
     <div className="mentor-page">
-      <div className="content-aside-layout container">
-        <MentorMainContent />
-        <MentorAside />
-      </div>
+      {error ? (
+        <NoContent />
+      ) : (
+        <div className="content-aside-layout container">
+          <MentorMainContent />
+          <MentorAside />
+        </div>
+      )}
       <ScrollAnimatedSection animationVariants={fadeUp}>
         <LineOfCourses title={`More Courses by ${"Ronald"}`} />
       </ScrollAnimatedSection>

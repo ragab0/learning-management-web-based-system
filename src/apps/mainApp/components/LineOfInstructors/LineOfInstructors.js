@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopMentors } from "../../../../store/slices/topSlice";
 import ScrollAnimatedSection from "../ScrollAnimatedFadeup/ScrollAnimatedFadeup";
+import NoContent from "../../../../components/NoContent/NoContent";
 
 export default function LineOfInstructors({ title }) {
   const {
     apiData: { results = [] },
+    error,
   } = useSelector((state) => state.top.topMentors);
 
   const dispatch = useDispatch();
@@ -65,7 +67,7 @@ export default function LineOfInstructors({ title }) {
           </Link>
         </header>
         <div className="row d-flex justify-content-center">
-          {renderInstructors()}
+          {error ? <NoContent /> : renderInstructors()}
         </div>
       </div>
     </section>

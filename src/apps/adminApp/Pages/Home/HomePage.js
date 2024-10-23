@@ -9,6 +9,7 @@ import {
 import NoContent from "../../../../components/NoContent/NoContent";
 import Loader from "../../../../components/Loader/Loader";
 import { isLogin } from "../../../../store/slices/authSlice";
+import HomePageContent from "./components/HomePageContent";
 
 const controllers = [
   {
@@ -23,39 +24,24 @@ const controllers = [
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const { apiData, loading, error, isInitialized } = useSelector(
-    (state) => state.admin.currentUsers
-  );
-  const results = apiData.results || [];
-
-  // if (isInitialized && !results.length) {
-  //   return <NoContent />;
-  // }
-
-  // if (!isInitialized || loading) {
-  //   return <Loader />;
-  // }
-
   function controllerHandler(action) {
     dispatch(action());
   }
 
   return (
     <div className="admin-home-page">
-      <div className="admin-home-page-content p-3 pe-0">
-        {[...Array(30)].map((e, i) => (
-          <div className="admin-card">123</div>
-        ))}
-      </div>
+      <HomePageContent />
+
       <aside className="admin-home-page-aside admin-container-card p-3">
         <section>
           <h2 className=" text-capitalize h4 pb-2 mb-4">admin controlers</h2>
           <div>
-            {controllers.map(({ name, action }, i) => (
+            {controllers?.map(({ name, action }, i) => (
               <div
                 className="admin-card d-flex align-items-center overflow-hidden rounded-4 mb-3"
                 style={{ cursor: "pointer" }}
                 onClick={() => controllerHandler(action)}
+                key={i}
               >
                 <div className="icon-wrapper d-flex justify-content-center align-items-center p-3">
                   <CodingIcon />

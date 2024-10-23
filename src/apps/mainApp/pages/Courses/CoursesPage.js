@@ -14,7 +14,6 @@ export default function CoursesPage() {
   const dispatch = useDispatch();
   const {
     apiData: { totalPages, page: activePage },
-    error,
   } = useSelector((state) => state.courses.publicCourses);
 
   useEffect(
@@ -23,10 +22,6 @@ export default function CoursesPage() {
     },
     [dispatch]
   );
-
-  if (error) {
-    return <NoContent />;
-  }
 
   return (
     <div className="courses-page container">

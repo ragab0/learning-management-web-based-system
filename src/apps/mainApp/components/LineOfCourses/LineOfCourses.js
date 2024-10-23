@@ -5,10 +5,12 @@ import CourseOvervewCard from "../CourseOvervewCard/CourseOvervewCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopCourses } from "../../../../store/slices/topSlice";
 import ScrollAnimatedSection from "../ScrollAnimatedFadeup/ScrollAnimatedFadeup";
+import NoContent from "../../../../components/NoContent/NoContent";
 
 export default function LineOfCourses({ title }) {
   const {
     apiData: { results = [] },
+    error,
   } = useSelector((state) => state.top.topCourses);
 
   const dispatch = useDispatch();
@@ -38,7 +40,9 @@ export default function LineOfCourses({ title }) {
             See All
           </Link>
         </header>
-        <div className="row justify-content-center">{renderCourses()}</div>
+        <div className="row justify-content-center">
+          {error ? <NoContent /> : renderCourses()}
+        </div>
       </div>
     </section>
   );

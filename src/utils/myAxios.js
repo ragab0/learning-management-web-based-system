@@ -1,12 +1,16 @@
 import axios from "axios";
 
-const REACT_APP_ENV = process.env.REACT_APP_ENV;
+const {
+  REACT_APP_ENV,
+  REACT_APP_API_SERVER_LOCAL,
+  REACT_APP_API_SERVER_REMOTE,
+} = process.env;
 
 const myAxios = axios.create({
   baseURL:
-    REACT_APP_ENV === "development"
-      ? "http://localhost:3500/api/v1"
-      : "https://lms-depi-d574ce496085.herokuapp.com/api/v1",
+    REACT_APP_ENV === "legend-dev"
+      ? REACT_APP_API_SERVER_LOCAL
+      : REACT_APP_API_SERVER_REMOTE,
   withCredentials: true,
   // timeout: 8000,
   headers: {
