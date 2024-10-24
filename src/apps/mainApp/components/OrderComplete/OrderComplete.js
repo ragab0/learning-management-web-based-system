@@ -3,13 +3,16 @@ import "./OrderComplete.css";
 import done from "../../../../assets/done.png";
 import { useDispatch } from "react-redux";
 import { unInitCheckout } from "../../../../store/slices/studentSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderComplete() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(function () {
     const timer = setTimeout(function () {
       dispatch(unInitCheckout());
+      navigate("/profile/courses");
     }, 5000);
     return function () {
       clearTimeout(timer);

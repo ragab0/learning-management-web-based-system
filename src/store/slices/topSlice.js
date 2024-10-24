@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import myAxios from "../../utils/myAxios";
 import { apiLoadingBuilder } from "../../utils/apiLoadingBuilder";
 import { basicThinker } from "../../utils/thunks";
 

@@ -1,9 +1,8 @@
 /* eslint-disable no-unreachable */
 import React from "react";
-import { Link } from "react-router-dom";
-import courseImg from "../../../../../../assets/course2.png";
-import { useDispatch } from "react-redux";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   addCartCourse,
   addWishlistCourse,

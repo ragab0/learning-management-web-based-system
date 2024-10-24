@@ -16,7 +16,10 @@ const hiddenPages = ["signup", "login", "reset-password"];
 export default function Sidebar() {
   const location = useLocation();
   const [isSideOpened, setIsSideOpened] = useState(true);
-  const { user, isAuthRole } = useSelector((state) => state.auth.login);
+  const {
+    apiData: { result: user = {} },
+    isAuthRole,
+  } = useSelector((state) => state.auth.login);
 
   function isSideOpenedHandler() {
     setIsSideOpened(!isSideOpened);

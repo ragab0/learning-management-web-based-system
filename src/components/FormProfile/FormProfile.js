@@ -37,10 +37,12 @@ const links = [
 
 export default function FormProfile({ ofRole = "student" }) {
   const dispatch = useDispatch();
-  const { user, loading, itInitialized } = useSelector(
-    (state) => state.auth.login
-  );
-  const { language: activeLang, email } = user || {};
+  const {
+    apiData: { result: user = {} },
+    loading,
+    itInitialized,
+  } = useSelector((state) => state.auth.login);
+  const { language: activeLang, email } = user;
 
   const {
     register,

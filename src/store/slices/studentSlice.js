@@ -36,6 +36,12 @@ const initialState = {
     loading: false,
     error: null,
   },
+  currentStudyCourse: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
+  },
   cartCourses: {
     apiData: {},
     isInitialized: false,
@@ -69,9 +75,9 @@ const updateStudentBasicProfile = createAsyncThunk(
 
 /******************** Courses Enrolled /******************** */
 /** Courses Enrolled (getAll, getContent, archive)  */
-const [enrolledPath, enrolledContentPath, archivedPath] = [
-  "/student/courses/",
-  "/student/study",
+const [enrolledPath, baughtContentPath, archivedPath] = [
+  "/student/courses", // default is enrolled courses;
+  "/student/courses",
   "/student/courses/archived",
 ];
 
@@ -80,9 +86,9 @@ const fetchEnrolledCourses = createAsyncThunk(
   basicThinker("get", enrolledPath)
 );
 
-const fetchEnrolledCourseContent = createAsyncThunk(
-  `${NAME}/fetchEnrolledCourseContent`,
-  basicThinker("post", enrolledContentPath)
+const fetchBaughtCourseContent = createAsyncThunk(
+  `${NAME}/fetchBaughtCourseContent`,
+  basicThinker("get", baughtContentPath)
 );
 
 const archiveEnrolledCourse = createAsyncThunk(
@@ -222,10 +228,10 @@ const studentSlice = createSlice({
       }
     });
 
-    // 01) Courses enrolled:
+    // 01) Courses enrolled, archived, getBaughtCourseFullContent:
     apiLoadingBuilder(builder, fetchEnrolledCourses, "enrolledCourses");
-    // apiLoadingBuilder(builder, fetchEnrolledCourseContent, "enrolledCourses");
     apiLoadingBuilder(builder, archiveEnrolledCourse, "enrolledCourses");
+    apiLoadingBuilder(builder, fetchBaughtCourseContent, "currentStudyCourse");
 
     // 02) Courses archived:
     apiLoadingBuilder(builder, fetchArchivedCourses, "archivedCourses");
@@ -257,7 +263,7 @@ export {
   fetchStudentBasicProfile,
   updateStudentBasicProfile,
   fetchEnrolledCourses,
-  fetchEnrolledCourseContent,
+  fetchBaughtCourseContent,
   archiveEnrolledCourse,
   fetchArchivedCourses,
   unArchiveEnrolledCourse,

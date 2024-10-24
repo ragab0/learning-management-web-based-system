@@ -11,9 +11,12 @@ const { SearchIcon, ShoppingIcon, HeartIcon, NotificationIcon } = imgsComps;
 export default function Navbar() {
   const location = useLocation();
   const [searchVal, setSearchVal] = useState("");
-  const { isAuthRole, isInitialized, loading, user } = useSelector(
-    (state) => state.auth.login
-  );
+  const {
+    isAuthRole,
+    isInitialized,
+    loading,
+    apiData: { result: user = {} },
+  } = useSelector((state) => state.auth.login);
 
   function submitHandler(e) {
     e.preventDefault();

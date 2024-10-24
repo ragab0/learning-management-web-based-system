@@ -1,16 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import myAxios from "../../utils/myAxios";
 import { toast } from "react-toastify";
-import { delay } from "../../utils/delay";
 import { fixedToastOptions } from "../../utils/fixedToast";
 import { updateMentorBasicProfile } from "./mentorSlice";
 import { updateStudentBasicProfile } from "./studentSlice";
+import { basicThinker, toastedThinker } from "../../utils/thunks";
 
 const NAME = "auth";
 const initialState = {
   login: {
+    apiData: {},
     loading: false,
-    user: null,
     isAuthRole: null,
     isInitialized: false,
   },
@@ -25,56 +24,23 @@ const initialState = {
 
 const login = createAsyncThunk(
   `${NAME}/login`,
-  async (data, { rejectWithValue }) => {
-    try {
-      const res = await toast.promise(myAxios.post("/login", data), {
-        pending: "Login in...",
-        success: "Login in successful! 🎉",
-        error: {
-          render(data) {
-            return data.data.message || "An error occur!";
-          },
-        },
-      });
-      return res.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
+  toastedThinker("post", "/login", "Logging in")
 );
 
-const isLogin = createAsyncThunk(`${NAME}/isLogin`, async () => {
-  const [res] = await Promise.allSettled([
-    myAxios.get("/is-login"),
-    // delay(1000),
-  ]);
-  return res?.value?.data || {};
-});
+const isLogin = createAsyncThunk(
+  `${NAME}/isLogin`,
+  basicThinker("get", "/is-login")
+);
 
 const signup = createAsyncThunk(
   `${NAME}/signup`,
-  async (data, { rejectWithValue }) => {
-    try {
-      const res = await toast.promise(myAxios.post("/signup", data), {
-        pending: "Signing up...",
-        success: "Signing up successful! 🎉",
-        error: {
-          render(data) {
-            return data.data.message || "An error occur!";
-          },
-        },
-      });
-      return res.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
+  toastedThinker("post", "/signup", "Signing up")
 );
 
-const logout = createAsyncThunk(`${NAME}/logout`, async () => {
-  const res = await myAxios.post("/logout");
-  return res.data;
-});
+const logout = createAsyncThunk(
+  `${NAME}/logout`,
+  toastedThinker("post", "/logout", "logging out")
+);
 
 const authSlice = createSlice({
   name: NAME,
@@ -85,8 +51,8 @@ const authSlice = createSlice({
       state.login.loading = true;
     });
     builder.addCase(updateStudentBasicProfile.fulfilled, (state, action) => {
-      state.login.user = action.payload?.user;
-      state.login.isAuthRole = action.payload?.user?.role;
+      state.login.apiData = action.payload;
+      state.login.isAuthRole = action.payload?.result?.role;
       state.login.loading = false;
     });
     builder.addCase(updateStudentBasicProfile.rejected, (state) => {
@@ -98,8 +64,8 @@ const authSlice = createSlice({
       state.login.loading = true;
     });
     builder.addCase(updateMentorBasicProfile.fulfilled, (state, action) => {
-      state.login.user = action.payload?.user;
-      state.login.isAuthRole = action.payload?.user?.role;
+      state.login.apiData = action.payload;
+      state.login.isAuthRole = action.payload?.result?.role;
       state.login.loading = false;
     });
     builder.addCase(updateMentorBasicProfile.rejected, (state) => {
@@ -109,20 +75,23 @@ const authSlice = createSlice({
     /************ USER Auth ************/
     // 01) login
     builder.addCase(login.pending, (state) => {
-      state.login.loading = true;
-      state.login.user = null;
+      state.login.apiData = {};
       state.login.isAuthRole = null;
+      state.login.loading = true;
+      state.login.isInitialized = false;
       toast.dismiss();
     });
     builder.addCase(login.fulfilled, (state, action) => {
+      state.login.apiData = action.payload;
+      state.login.isAuthRole = action.payload?.result?.role;
       state.login.loading = false;
-      state.login.user = action.payload?.user;
-      state.login.isAuthRole = action.payload?.user?.role;
+      state.login.isInitialized = true;
     });
     builder.addCase(login.rejected, (state, action) => {
-      state.login.loading = false;
-      state.login.user = null;
+      state.login.apiData = {};
       state.login.isAuthRole = null;
+      state.login.loading = false;
+      state.login.isInitialized = true;
       if (action.payload?.result) {
         toast.error(action.payload?.result, fixedToastOptions);
       } else {
@@ -136,23 +105,22 @@ const authSlice = createSlice({
 
     // 01 - 02) isLogin
     builder.addCase(isLogin.pending, (state) => {
+      state.login.apiData = {};
       state.login.loading = true;
-      state.login.user = null;
-      state.login.isAuthRole = null;
       state.login.isInitialized = false;
+      state.login.isAuthRole = null;
     });
     builder.addCase(isLogin.fulfilled, (state, action) => {
+      state.login.apiData = action.payload;
+      state.login.isAuthRole = action.payload?.result?.role;
       state.login.loading = false;
-      state.login.user = action.payload?.user;
-      state.login.isAuthRole = action.payload?.user?.role;
       state.login.isInitialized = true;
-
       // toast.success(`Auto login done!`);
     });
-    builder.addCase(isLogin.rejected, (state, action) => {
-      state.login.loading = false;
-      state.login.user = null;
+    builder.addCase(isLogin.rejected, (state) => {
+      state.login.apiData = {};
       state.login.isAuthRole = null;
+      state.login.loading = false;
       state.login.isInitialized = true;
     });
 

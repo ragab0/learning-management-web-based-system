@@ -13,7 +13,7 @@ const links = [
 
 export default function Aside() {
   const { fname, lname, photo, headline } = useSelector(
-    (state) => state.auth.login.user
+    (state) => state.auth.login.apiData.result || {}
   );
   return (
     <aside className="aside profile-page-aside">
