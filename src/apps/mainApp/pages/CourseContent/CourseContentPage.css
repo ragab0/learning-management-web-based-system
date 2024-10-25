@@ -1,58 +1,58 @@
-.course-content .course {
+.course-content-page .course {
   border: 1px solid rgba(0, 0, 0, 0.181);
   border-radius: 5px;
   background: rgb(248, 250, 252);
 }
 
-.course-content .container-fluid {
+.course-content-page .container-fluid {
   margin-left: 0;
   margin-right: 0;
 }
 
-.course-content .video-section {
+.course-content-page .video-section {
   margin-bottom: 20px;
 }
 
-.course-content .video-section video {
+.course-content-page .video-section video {
   max-width: 100%;
   height: auto;
 }
 
-.course-content .content:hover {
+.course-content-page .content:hover {
   background-color: #f1f1f1;
   transition: background-color 0.3s ease;
 }
 
-.course-content .content a.active {
+.course-content-page .content a.active {
   background: #000;
 }
 
-.course-content .checkbox {
+.course-content-page .checkbox {
   width: 20px;
   height: 20px;
   margin-right: 10px;
 }
 
-.course-content .course-title {
+.course-content-page .course-title {
   flex-grow: 1;
   margin: 0 10px;
   font-size: 16px;
   color: #333;
 }
 
-.course-content .course-icon {
+.course-content-page .course-icon {
   font-size: 20px;
   color: #666;
 }
 
-.course-content .course-icon:hover {
+.course-content-page .course-icon:hover {
   color: #000;
 }
 
-.course-content .cursor-pointer {
+.course-content-page .cursor-pointer {
   cursor: pointer;
 }
 
-.course-content button:hover {
+.course-content-page button:hover {
   background: #000;
 }

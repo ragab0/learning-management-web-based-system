@@ -37,6 +37,10 @@ export default function ScrollAnimatedSection({ children, isFadeup }) {
     if (inView) {
       controls.start("visible");
     }
+
+    return function () {
+      controls.stop("visible");
+    };
   }, [controls, inView]);
 
   return (

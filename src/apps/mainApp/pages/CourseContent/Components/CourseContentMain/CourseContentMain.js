@@ -3,52 +3,89 @@ import "./CourseContentMain.css";
 import Tabs from "../../../../components/Tabs/Tabs";
 import InstructorTab from "../../../../components/InstructorTab/InstructorTab";
 import LearnerReviews from "../../../../components/LearnerReviews/LearnerReviews";
-import LineOfCourses from "../../../../components/LineOfCourses/LineOfCourses";
 import ScrollAnimatedSection from "../../../../components/ScrollAnimatedFadeup/ScrollAnimatedFadeup";
 import { useSelector } from "react-redux";
 import MarkDownReadOnly from "../../../../../dashboardApp/components/MarkDown/MarkDownReadOnly";
+import { useLocation } from "react-router-dom";
+import Loader from "../../../../../../components/Loader/Loader";
+import NoContent from "../../../../../../components/NoContent/NoContent";
+import ReactPlayer from "react-player";
+import CourseContentAside from "../CourseContentAside/CourseContentAside";
 
-const tabs = ["Details", "Instructor", "Courses", "Reviews"];
+const tabs = [
+  {
+    name: "details",
+  },
+  {
+    name: "reviews",
+    Comp: LearnerReviews,
+  },
+  {
+    name: "notes",
+    Comp: NoContent,
+  },
+  {
+    name: "content",
+    Comp: () => (
+      <div>
+        <CourseContentAside />
+        <div className="aside-alternative d-none">
+          <NoContent />
+        </div>
+      </div>
+    ),
+  },
+];
 
 export default function CourseContentMain() {
+  const { hash } = useLocation();
   const {
     apiData: { result = {} },
     loading,
   } = useSelector((state) => state.student.currentStudyCourse);
-  const { description, mentor } = result._id || {};
+  const { description, mentor = {}, modules = [] } = result._id || {};
+  const video = modules[0]?.lessons?.[0]?.srcVideo;
 
   return (
     <div className="course-content-main">
-      <header className="flex">
-        <video src={"courseVideo"} className="w-100" controls />
+      <header className="course-content-main-header flex">
+        <div className="video-wrapper">
+          <ReactPlayer
+            url={video}
+            controls={true}
+            width={"100%"}
+            height={"100%"}
+          />
+        </div>
       </header>
-      <Tabs tabs={tabs} />
-      <div className="tabs-content">
-        <div className="tab-content" id={tabs[0].toLocaleLowerCase()}>
-          {loading ? (
-            <TabSkel />
-          ) : (
-            <ScrollAnimatedSection isFadeup={true}>
-              <MarkDownReadOnly source={description} />
-            </ScrollAnimatedSection>
-          )}
-        </div>
-        <div className="tab-content" id={tabs[1].toLocaleLowerCase()}>
-          <InstructorTab mentor={mentor} />
-        </div>
-        <ScrollAnimatedSection isFadeup={true}>
-          <div className="tab-content" id={tabs[2].toLocaleLowerCase()}>
-            <LineOfCourses title={`More Courses`} />
+      <div className="course-content-main-body container-fluid">
+        <Tabs tabs={tabs.map((e) => e.name)} />
+        <div className="tabs-content mx-auto" style={{ maxWidth: "700px" }}>
+          <div className="tab-content">
+            {loading ? (
+              <Loader />
+            ) : !hash || hash.slice(1) === tabs[0].name ? (
+              <div className="details">
+                <ScrollAnimatedSection isFadeup={true}>
+                  <MarkDownReadOnly source={description} />
+                  <div className=" mt-5">
+                    <InstructorTab mentor={mentor} fullDescription={true} />
+                  </div>
+                </ScrollAnimatedSection>
+              </div>
+            ) : (
+              tabs.slice(1).map(
+                ({ name, Comp }, i) =>
+                  name === hash?.slice(1) && (
+                    <ScrollAnimatedSection key={i} isFadeup={true}>
+                      <Comp key={i} />
+                    </ScrollAnimatedSection>
+                  )
+              )
+            )}
           </div>
-        </ScrollAnimatedSection>
-        <ScrollAnimatedSection isFadeup={true}>
-          <div className="tab-content" id={tabs[3].toLocaleLowerCase()}>
-            <LearnerReviews />
-          </div>
-        </ScrollAnimatedSection>
+        </div>
       </div>
     </div>
   );
 }
-
-function TabSkel() {}

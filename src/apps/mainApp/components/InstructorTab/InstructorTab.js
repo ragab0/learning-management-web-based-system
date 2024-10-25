@@ -1,14 +1,17 @@
 import React from "react";
 import "./InstructorTab.css";
 import { Link } from "react-router-dom";
+import MarkDownReadOnly from "../../../dashboardApp/components/MarkDown/MarkDownReadOnly";
 
-export default function InstructorTab({ mentor = {} }) {
-  const { fname, lname, headline, photo, _id } = mentor;
+export default function InstructorTab({
+  mentor = {},
+  fullDescription = false,
+}) {
+  const { fname, lname, headline, photo, _id, description } = mentor;
 
   return (
     <div className="instructor-tab">
       <h4 className=" text-dark fw-bold">Instructor</h4>
-
       <div className="ins_info">
         <Link to={`/mentors/${_id}`} className="rounded-circle overflow-hidden">
           <img src={photo} alt="instructor" />
@@ -23,16 +26,22 @@ export default function InstructorTab({ mentor = {} }) {
           <h5 className="fs-6">{headline}</h5>
         </div>
       </div>
-      <p className=" mt-4">
-        By joining our LMS as an instructor,{" "}
-        <span className=" d-inline-block text-capitalize">
-          {fname} {lname}
-        </span>{" "}
-        brings his wealth of knowledge, extensive teaching experience. Students
-        will have the opportunity to learn from one of the most respected names,
-        benefiting from his practical insights, clear teaching style, and years
-        of industry experience.
-      </p>
+      {fullDescription ? (
+        <div className="mt-4">
+          <MarkDownReadOnly source={description} />
+        </div>
+      ) : (
+        <p className="mt-4">
+          By joining our LMS as an instructor,{" "}
+          <span className=" d-inline-block text-capitalize">
+            {fname} {lname}
+          </span>{" "}
+          brings his wealth of knowledge, extensive teaching experience.
+          Students will have the opportunity to learn from one of the most
+          respected names, benefiting from his practical insights, clear
+          teaching style, and years of industry experience.
+        </p>
+      )}
     </div>
   );
 }

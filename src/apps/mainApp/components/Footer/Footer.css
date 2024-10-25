@@ -2,6 +2,7 @@ footer {
   background-color: var(--clr-grey-darker);
   color: var(--clr-grey-light);
   padding-block: 80px 140px;
+  overflow: hidden;
 }
 
 .footer-content {

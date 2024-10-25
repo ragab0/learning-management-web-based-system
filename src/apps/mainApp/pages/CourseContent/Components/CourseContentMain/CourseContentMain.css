@@ -1,9 +1,10 @@
 .course-content-main {
   margin-bottom: var(--main-margin);
 }
-.course-content-main video {
-  flex: 1;
-  min-height: 300px;
+
+.course-content-main-header .video-wrapper {
+  display: grid;
+  height: 60vh;
 }
 
 .course-content-main .tab-content section {
@@ -12,4 +13,24 @@
 
 .course-content-main .tab-content section .container {
   padding-inline: 0;
+}
+
+.course-content-main-body aside,
+.course-content-main-body .aside-content {
+  min-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 767px) {
+  .course-content-main-body .aside-content,
+  .course-content-main-body [href="#content"] {
+    display: none;
+  }
+  .course-content-main-body .aside-alternative {
+    display: block !important;
+  }
+}
+
+.course-content-main-body .from-main .aside-content {
+  height: auto;
 }

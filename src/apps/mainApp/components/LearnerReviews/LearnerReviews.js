@@ -8,7 +8,7 @@ export default function LearnerReviews() {
   return (
     <section className="learner-reviews-section">
       <h4 className=" mb-4 text-dark fw-bold">Learner Reviews</h4>
-      <div className=" mt-3 learner-reviews-body">
+      <div className=" mt-3 learner-reviews-body gap-2">
         <div className=" learner_rate ">
           <div className="learner_rate_no">
             <i className=" fs-2 star fa-solid fa-star"></i>

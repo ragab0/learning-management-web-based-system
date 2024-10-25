@@ -5,6 +5,15 @@
   overflow-y: auto;
 }
 
+@media (max-width: 766px) {
+  .course-content-page .aside-content {
+    display: none;
+  }
+  .course-content-page .course-content-main-body .aside-content {
+    display: block;
+  }
+}
+
 .course-content-page .aside-content .layout-menu-toggler {
   padding: 1rem;
   border-bottom: 1px solid var(--grey-border);

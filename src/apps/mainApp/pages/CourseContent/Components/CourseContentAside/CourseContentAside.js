@@ -14,7 +14,7 @@ export default function CourseContentAside() {
   } = result;
 
   return (
-    <aside className="aside container p-0 me-0">
+    <aside className="aside container p-0 m-0">
       <div className="aside-content p-0">
         <h3 className="m-3 mt-4">Course Content</h3>
         {modules.map(({ title, lessons, _id }, i) => (
