@@ -17,7 +17,7 @@ import TabMyCourses from "./pages/Profile/Components/TabMyCourses/TabMyCourses";
 import TabMyMentors from "./pages/Profile/Components/TabMentors/TabMentors";
 import TabMyMessages from "./pages/Profile/Components/TabMessages/TabMessages";
 import TabMyReviews from "./pages/Profile/Components/TabMyReviews/TabMyReviews";
-import CourseContentPage from "./pages/CourseContent/CourseContent";
+import CourseContentPage from "./pages/CourseContent/CourseContentPage";
 import MentorPage from "./pages/Mentor/MentorPage";
 import TabChat from "./pages/Profile/Components/TabChats/TabChats";
 import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";

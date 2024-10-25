@@ -25,16 +25,13 @@ export default function CourseDashboard() {
       <div className="tabs-content">
         {/* tab 01 */}
         <div className="course-desc-tab" id={tabs[0].toLocaleLowerCase()}>
-          <div className="course_desc">{}</div>
-          <div className="certification">
-            {loading ? (
-              <TabSkel />
-            ) : (
-              <ScrollAnimatedSection isFadeup={true}>
-                <MarkDownReadOnly source={description} />
-              </ScrollAnimatedSection>
-            )}
-          </div>
+          {loading ? (
+            <TabSkel />
+          ) : (
+            <ScrollAnimatedSection isFadeup={true}>
+              <MarkDownReadOnly source={description} />
+            </ScrollAnimatedSection>
+          )}
         </div>
         {/* tab 02 */}
         <div className="course-inst-tab" id={tabs[1].toLocaleLowerCase()}>

@@ -22,11 +22,10 @@ export default function Navbar() {
     e.preventDefault();
   }
 
+  if (location.pathname.includes("study")) return <div></div>;
+
   return (
-    <nav
-      className={`main-navbar ${isAuthRole === "student" ? "auth" : ""}`}
-      style={location.pathname.includes("study") ? { display: "none" } : {}}
-    >
+    <nav className={`main-navbar ${isAuthRole === "student" ? "auth" : ""}`}>
       {/* <div className="container-fluid"> */}
       <div className=" container-fluid px-4">
         <Logo />

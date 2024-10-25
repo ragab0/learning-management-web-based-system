@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
 }
-.main-no-content > * {
+.main-no-content .img-wrapper > * {
   width: 150px;
   height: 150px;
   opacity: 0.1;

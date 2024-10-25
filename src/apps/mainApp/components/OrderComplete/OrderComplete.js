@@ -9,15 +9,18 @@ export default function OrderComplete() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(function () {
-    const timer = setTimeout(function () {
-      dispatch(unInitCheckout());
-      navigate("/profile/courses");
-    }, 5000);
-    return function () {
-      clearTimeout(timer);
-    };
-  }, []);
+  useEffect(
+    function () {
+      const timer = setTimeout(function () {
+        dispatch(unInitCheckout());
+        navigate("/profile/courses");
+      }, 5000);
+      return function () {
+        clearTimeout(timer);
+      };
+    },
+    [dispatch, navigate]
+  );
 
   return (
     <div className="order-complete">

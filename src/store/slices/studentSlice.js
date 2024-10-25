@@ -37,6 +37,7 @@ const initialState = {
     error: null,
   },
   currentStudyCourse: {
+    progress: {},
     apiData: {},
     isInitialized: false,
     loading: false,
@@ -89,6 +90,12 @@ const fetchEnrolledCourses = createAsyncThunk(
 const fetchBaughtCourseContent = createAsyncThunk(
   `${NAME}/fetchBaughtCourseContent`,
   basicThinker("get", baughtContentPath)
+);
+
+// 2 params courseId, progress;
+const saveBaughtCourseProgress = createAsyncThunk(
+  `${NAME}/saveBaughtCourseProgress`,
+  basicThinker("post", baughtContentPath)
 );
 
 const archiveEnrolledCourse = createAsyncThunk(
@@ -190,6 +197,13 @@ const studentSlice = createSlice({
     unInitCheckout(state) {
       state.checkout = initialState.checkout;
     },
+    updateProgress: (state, action) => {
+      const { chapterId, lessonId, checked } = action.payload;
+      if (!state.currentStudyCourse.progress[chapterId]) {
+        state.currentStudyCourse.progress[chapterId] = {};
+      }
+      state.currentStudyCourse.progress[chapterId][lessonId] = checked;
+    },
   },
   extraReducers(builder) {
     /************ BASIC proile (Student) ************/
@@ -231,7 +245,23 @@ const studentSlice = createSlice({
     // 01) Courses enrolled, archived, getBaughtCourseFullContent:
     apiLoadingBuilder(builder, fetchEnrolledCourses, "enrolledCourses");
     apiLoadingBuilder(builder, archiveEnrolledCourse, "enrolledCourses");
-    apiLoadingBuilder(builder, fetchBaughtCourseContent, "currentStudyCourse");
+    // apiLoadingBuilder(builder, fetchBaughtCourseContent, "currentStudyCourse");
+    builder.addCase(fetchBaughtCourseContent.pending, (state) => {
+      state["currentStudyCourse"].isInitialized = false;
+      state["currentStudyCourse"].loading = true;
+      state["currentStudyCourse"].error = null;
+    });
+    builder.addCase(fetchBaughtCourseContent.fulfilled, (state, action) => {
+      state["currentStudyCourse"].isInitialized = true;
+      state["currentStudyCourse"].loading = false;
+      state["currentStudyCourse"].apiData = action.payload;
+      state.currentStudyCourse.progress = action.payload.result?.progress || {};
+    });
+    builder.addCase(fetchBaughtCourseContent.rejected, (state, action) => {
+      state["currentStudyCourse"].isInitialized = true;
+      state["currentStudyCourse"].loading = false;
+      state["currentStudyCourse"].error = action.payload.result;
+    });
 
     // 02) Courses archived:
     apiLoadingBuilder(builder, fetchArchivedCourses, "archivedCourses");
@@ -257,13 +287,15 @@ const studentSlice = createSlice({
 });
 
 export default studentSlice.reducer;
-const { unInitCheckout } = studentSlice.actions;
+const { unInitCheckout, updateProgress } = studentSlice.actions;
 export {
   unInitCheckout,
+  updateProgress,
   fetchStudentBasicProfile,
   updateStudentBasicProfile,
   fetchEnrolledCourses,
   fetchBaughtCourseContent,
+  saveBaughtCourseProgress,
   archiveEnrolledCourse,
   fetchArchivedCourses,
   unArchiveEnrolledCourse,

@@ -1,10 +1,8 @@
-.course-content-page .aside {
-  border-right: 5px solid rgb(247, 249, 250);
-}
-
 .course-content-page .aside-content {
   top: 0;
   border-radius: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .course-content-page .aside-content .layout-menu-toggler {
@@ -14,6 +12,14 @@
   font-size: 14px;
 }
 
+.course-content-page .aside-content .layout-menu-toggler-header p {
+  font-weight: bold;
+}
+
 .course-content-page .aside-content label {
   align-items: flex-start !important;
+}
+
+.course-content-page .layout-menu-toggler-content {
+  margin-top: 0.5rem;
 }

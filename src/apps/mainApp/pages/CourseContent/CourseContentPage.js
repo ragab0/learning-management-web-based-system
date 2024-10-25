@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
-import "./CourseContent.css";
+import "./CourseContentPage.css";
 import CourseContentAside from "./Components/CourseContentAside/CourseContentAside";
 import CourseContentMain from "./Components/CourseContentMain/CourseContentMain";
 import CourseContentNav from "./Components/CourseContentNav/CourseContentNav";
+import NoContent from "../../../../components/NoContent/NoContent";
+import Loader from "../../../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBaughtCourseContent } from "../../../../store/slices/studentSlice";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import NoContent from "../../../../components/NoContent/NoContent";
-import Loader from "../../../../components/Loader/Loader";
 
-export default function CourseContent() {
+export default function CourseContentPage() {
   const { courseId } = useParams();
   const dispatch = useDispatch();
   const {
@@ -19,6 +18,7 @@ export default function CourseContent() {
     isInitialized,
     error,
   } = useSelector((state) => state.student.currentStudyCourse);
+  const { title } = result._id || {};
 
   useEffect(
     function () {
@@ -32,13 +32,16 @@ export default function CourseContent() {
   }
 
   if (isInitialized && error) {
-    toast.error(error);
-    return <NoContent />;
+    return (
+      <NoContent>
+        <p className="text-dark font-monospace text-center">{error}</p>
+      </NoContent>
+    );
   }
 
   return (
     <div className="course-content-page">
-      <CourseContentNav title={"Introduction to User Experience Design"} />
+      <CourseContentNav title={title} />
       <div className="content-aside-layout gap-0">
         <CourseContentMain />
         <CourseContentAside />

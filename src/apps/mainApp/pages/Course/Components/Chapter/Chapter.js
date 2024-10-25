@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Chapter.css";
 import DownArrow from "../../../../../../assets/svgsComps/DownArrow";
+import { calcLessonsLong } from "../../../../../../utils/calcLong";
 
 export default function Chapter({ chapter = {} }) {
   const [isChapterOpen, setIsChapterOpen] = useState(false);
@@ -9,9 +10,7 @@ export default function Chapter({ chapter = {} }) {
   }
 
   const { title, lessons = [] } = chapter;
-  const long = lessons
-    .reduce((prev, curr) => prev + curr.duration.lengthSec / (60 * 60), 0)
-    .toFixed(2);
+  const long = calcLessonsLong(lessons);
 
   return (
     <div className="chapter-wrapper">
@@ -24,7 +23,7 @@ export default function Chapter({ chapter = {} }) {
         </div>
         <div className="chapter-info">
           <span>
-            {lessons.length} Lessons | {Math.round(long)} Hrs
+            {lessons.length} Lessons | {long}
           </span>
         </div>
       </div>

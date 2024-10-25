@@ -6,7 +6,12 @@ export function basicThinker(method, path) {
   return async (data, { rejectWithValue }) => {
     try {
       const res = await myAxios[method](
-        data && data.id ? `${path}/${data.id}` : data ? `${path}?${data}` : path
+        data && data.id
+          ? `${path}/${data.id}${data.id2 ? `/${data.id2}` : ""}`
+          : data
+          ? `${path}?${data}`
+          : path,
+        data
       );
       return res.data || {};
     } catch (axiosError) {
@@ -31,7 +36,6 @@ export function toastedThinker(method, path, actionName = "Processing") {
       });
       return res.data;
     } catch (error) {
-      console.log("toastedThinkerError:", error);
       return rejectWithValue(error.response.data);
     }
   };

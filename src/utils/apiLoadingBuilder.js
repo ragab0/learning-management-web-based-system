@@ -12,6 +12,7 @@ export function apiLoadingBuilder(builder, asyncCreator, field) {
   builder.addCase(asyncCreator.rejected, (state, action) => {
     state[field].isInitialized = true;
     state[field].loading = false;
-    state[field].error = action.error.message;
+    state[field].error = action.payload.result;
+    // state[field].error =  action.error.message;
   });
 }
