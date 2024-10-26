@@ -11,6 +11,8 @@ export default function LineOfCourses({ title }) {
   const {
     apiData: { results = [] },
     error,
+    loading,
+    isInitialized,
   } = useSelector((state) => state.top.topCourses);
 
   const dispatch = useDispatch();
@@ -41,9 +43,23 @@ export default function LineOfCourses({ title }) {
           </Link>
         </header>
         <div className="row justify-content-center">
-          {error ? <NoContent /> : renderCourses()}
+          {!isInitialized || loading ? (
+            [<Skel />]
+          ) : error ? (
+            <NoContent />
+          ) : (
+            renderCourses()
+          )}
         </div>
       </div>
     </section>
+  );
+}
+
+function Skel() {
+  return (
+    <div className="course-card-wrapper col-sm-12 gy-4">
+      <CourseOvervewCard isTwoSides={true} skeleton={true} />
+    </div>
   );
 }

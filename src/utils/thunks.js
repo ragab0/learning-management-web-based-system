@@ -15,7 +15,7 @@ export function basicThinker(method, path) {
       );
       return res.data || {};
     } catch (axiosError) {
-      return rejectWithValue(axiosError.response.data);
+      return rejectWithValue(axiosError?.response?.data);
     }
   };
 }

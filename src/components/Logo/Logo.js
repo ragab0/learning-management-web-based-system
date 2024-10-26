@@ -7,7 +7,7 @@ export default function Logo() {
   return (
     <Link to="/" className="logo">
       <LogoIcon />
-      <span>LMS-Depi</span>
+      <span>EDEPedia</span>
     </Link>
   );
 }

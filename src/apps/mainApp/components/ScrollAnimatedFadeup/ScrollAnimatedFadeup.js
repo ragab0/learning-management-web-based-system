@@ -8,25 +8,29 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1,
+      duration: 0.8,
       ease: "easeOut",
     },
   },
 };
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1.3,
+      duration: 0.8,
       ease: "easeInOut",
     },
   },
 };
 
-export default function ScrollAnimatedSection({ children, isFadeup }) {
+export default function ScrollAnimatedSection({
+  children,
+  isFadeup,
+  className,
+}) {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -49,6 +53,7 @@ export default function ScrollAnimatedSection({ children, isFadeup }) {
       initial="hidden"
       animate={controls}
       variants={isFadeup ? fadeUp : scaleIn}
+      className={className || ""}
     >
       {children}
     </motion.div>

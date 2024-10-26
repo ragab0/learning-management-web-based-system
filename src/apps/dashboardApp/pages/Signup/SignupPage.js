@@ -19,7 +19,7 @@ export default function SignupPage() {
       </header>
       <div className="form-dash-page-body">
         <div className="form-dash-page-content">
-          <p className="title text-center">Welcome to LMS-DEPI!</p>
+          <p className="title text-center">Welcome to EDEPedia!</p>
           <SignupForm role="mentor" />
         </div>
       </div>

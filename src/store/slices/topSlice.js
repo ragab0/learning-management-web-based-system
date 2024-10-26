@@ -63,9 +63,7 @@ const topSlice = createSlice({
   name: NAME,
   initialState,
   extraReducers(builder) {
-    // 04) topCourses;
     apiLoadingBuilder(builder, fetchTopCourses, "topCourses");
-    // 05) topMentors;
     apiLoadingBuilder(builder, fetchTopMentors, "topMentors");
   },
 });

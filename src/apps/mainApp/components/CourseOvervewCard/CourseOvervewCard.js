@@ -96,8 +96,8 @@ function Skel() {
     <div>
       <Skeleton height={250} />
       <div>
-        <Skeleton height={20} className=" mt-3" />
-        <Skeleton height={20} />
+        <Skeleton height={30} className=" mt-3" />
+        <Skeleton height={30} />
       </div>
     </div>
   );

@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import "./LineOfInstructors.css";
-import courseImage from "../../../../assets/mentorsImgs/mentor3.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopMentors } from "../../../../store/slices/topSlice";
 import ScrollAnimatedSection from "../ScrollAnimatedFadeup/ScrollAnimatedFadeup";
 import NoContent from "../../../../components/NoContent/NoContent";
+import Skeleton from "react-loading-skeleton";
 
 export default function LineOfInstructors({ title }) {
   const {
     apiData: { results = [] },
     error,
+    loading,
+    isInitialized,
   } = useSelector((state) => state.top.topMentors);
 
   const dispatch = useDispatch();
@@ -62,14 +64,30 @@ export default function LineOfInstructors({ title }) {
       <div className="container">
         <header className="d-flex justify-content-between">
           <h2>{title}</h2>
-          <Link to="#" className="btn btn-link text-decoration-none">
+          {/* <Link to="#" className="btn btn-link text-decoration-none">
             See All
-          </Link>
+          </Link> */}
         </header>
         <div className="row d-flex justify-content-center">
-          {error ? <NoContent /> : renderInstructors()}
+          {!isInitialized || loading ? (
+            [<Skels />, <Skels />, <Skels />]
+          ) : error ? (
+            <NoContent />
+          ) : (
+            renderInstructors()
+          )}
         </div>
       </div>
     </section>
+  );
+}
+
+function Skels() {
+  return (
+    <div className="col-lg-4 col-md-6 col-sm-12 gy-4">
+      <Skeleton height="350px" />
+      <Skeleton height={30} />
+      <Skeleton height={30} />
+    </div>
   );
 }

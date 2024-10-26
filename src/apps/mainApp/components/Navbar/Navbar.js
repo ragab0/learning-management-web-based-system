@@ -86,7 +86,7 @@ function AuthNavbarItems({ user }) {
     <ul className="navbar-items">
       <li>
         <NavLink to={"/dashboard"}>
-          teach <span style={{ textTransform: "lowercase" }}>on</span> LMS-Depi
+          teach <span style={{ textTransform: "lowercase" }}>on</span> EDEPedia
         </NavLink>
       </li>
       <li>
@@ -122,7 +122,7 @@ function DefaultNavbarItems() {
     <ul className="navbar-items">
       <li>
         <NavLink to={"/dashboard"}>
-          teach <span style={{ textTransform: "lowercase" }}>on</span> LMS-Depi
+          teach <span style={{ textTransform: "lowercase" }}>on</span> EDEPedia
         </NavLink>
       </li>
       <li>

@@ -15,6 +15,10 @@
   padding-inline: 0;
 }
 
+.course-content-main-body .learner-reviews-body {
+  grid-template-columns: 1fr;
+}
+
 .course-content-main-body aside,
 .course-content-main-body .aside-content {
   min-width: 100%;

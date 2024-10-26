@@ -32,7 +32,7 @@ export default function InstructorTab({
         </div>
       ) : (
         <p className="mt-4">
-          By joining our LMS as an instructor,{" "}
+          By joining our eLMS - EDEPedia, DEPI Academy - as an instructor,{" "}
           <span className=" d-inline-block text-capitalize">
             {fname} {lname}
           </span>{" "}
