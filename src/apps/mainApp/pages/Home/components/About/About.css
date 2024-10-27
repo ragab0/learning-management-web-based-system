@@ -1,0 +1,30 @@
+.home-page .instructors-overviews {
+  overflow: hidden;
+}
+
+.home-page .instructors-overviews > .container {
+  margin-block: calc(var(--main-margin));
+}
+
+.home-page .instructors-overviews .header-content {
+  max-width: 550px;
+}
+
+.home-page .instructors-overviews section:nth-of-type(2n) svg {
+  display: block;
+  margin-inline-start: auto;
+}
+
+svg g[clip-path="url(#clip3_5752_4210)"], /*salma*/
+svg g[clip-path="url(#clip0_5752_4210)"], /*nada*/
+svg g[clip-path="url(#clip0_5752_4210)"] + g > g:nth-of-type(2), /*ragab*/
+svg g[clip-path="url(#clip0_5752_4210)"] + g + g > g:nth-of-type(2) {
+  cursor: pointer;
+}
+
+svg g[clip-path="url(#clip3_5752_4210)"]:hover,
+svg g[clip-path="url(#clip0_5752_4210)"]:hover,
+svg g[clip-path="url(#clip0_5752_4210)"] + g > g:nth-of-type(2):hover,
+svg g[clip-path="url(#clip0_5752_4210)"] + g + g > g:nth-of-type(2):hover {
+  opacity: 0.8;
+}

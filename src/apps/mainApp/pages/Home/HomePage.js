@@ -1,14 +1,14 @@
 import React from "react";
 import "./HomePage.css";
 import Header from "./components/Header/Header";
-import Statistics from "./components/Statistics/Statistics";
-import TopCategories from "./components/TopCategories/TopCategories";
+// import Statistics from "./components/Statistics/Statistics";
+// import TopCategories from "./components/TopCategories/TopCategories";
 import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 import CustomerComments from "../../components/CustomerComments/CustomerComments";
-import InstructorsOverview from "./components/InstructorsOverview/InstructorsOverview";
+import About from "./components/About/About";
 import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstructors";
 import ScrollAnimatedSection from "../../components/ScrollAnimatedFadeup/ScrollAnimatedFadeup";
-import Parteners from "../../../../assets/parteners.png";
+// import Parteners from "../../../../assets/parteners.png";
 import InfoSection from "./components/InfoSection/InfoSection";
 
 export default function HomePage() {
@@ -36,7 +36,7 @@ export default function HomePage() {
         <CustomerComments />
       </ScrollAnimatedSection>
 
-      <InstructorsOverview />
+      <About />
     </div>
   );
 }

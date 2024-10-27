@@ -1,17 +1,17 @@
-import inst1 from "../assets/mentorsImgs/codezilla.jpg";
-import stud from "../assets/Ragab.png";
+import inst from "../assets/svgsComps/Abdelrahman";
+import team from "../assets/svgsComps/Team";
 
-export const instructorsOverviewsData = [
+export const about = [
   {
-    img: inst1,
+    Svgg: inst,
     title: "Become an Instructor",
     desc: "Instructors from around the world teach millions of students on EDEPedia . We provide the tools and skills to teach what you love.",
     more: "Start Your Instructor Journey",
   },
   {
-    img: stud,
+    Svgg: team,
     title: "Transform your life through education",
-    desc: "Learners around the world are launching new careers, advancing in their fields, and enriching their lives.",
+    desc: "Learners - not those owners xD - around the world are launching new careers, advancing in their fields, and enriching their lives.",
     more: "Checkout Courses",
   },
 ];

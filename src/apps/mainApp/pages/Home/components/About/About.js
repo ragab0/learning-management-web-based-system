@@ -1,15 +1,14 @@
 import React from "react";
-
-import "./InstructorsOverview.css";
+import "./About.css";
 import { Link } from "react-router-dom";
-import { instructorsOverviewsData } from "../../../../../../data/instructorsOverviews";
+import { about } from "../../../../../../data/about";
 import ScrollAnimatedSection from "../../../../components/ScrollAnimatedFadeup/ScrollAnimatedFadeup";
 
-export default function InstructorsOverview() {
+export default function About() {
   return (
     <div className="instructors-overviews">
       <div className="container">
-        {instructorsOverviewsData.map(({ img, title, desc, more }, i) => (
+        {about.map(({ img, Svgg, title, desc, more }, i) => (
           <section key={i} className="mb-5">
             <ScrollAnimatedSection isFadeup={true}>
               <div
@@ -17,9 +16,7 @@ export default function InstructorsOverview() {
                   i % 2 === 0 ? "flex-row" : "flex-row-reverse"
                 }`}
               >
-                <div className="col-4 mb-4">
-                  <img src={img} alt="instructor-overview" />
-                </div>
+                <div className="col mb-4">{Svgg && <Svgg />}</div>
                 <div className="header-content">
                   <h2>{title}</h2>
                   <p>{desc}</p>
