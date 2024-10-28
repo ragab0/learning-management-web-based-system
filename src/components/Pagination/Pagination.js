@@ -28,9 +28,9 @@ export default function Pagination({
               <span aria-hidden="true">&laquo;</span>
             </Link>
           </li>
-          {pageNumbers.map((num) => (
+          {pageNumbers.map((num, i) => (
             <li
-              key={num}
+              key={i}
               onClick={() => handlePageChange(num)}
               className={`page-item ${currentPage === num ? "active" : ""}`}
             >

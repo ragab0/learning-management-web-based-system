@@ -38,7 +38,7 @@ export default function CoursePage() {
         <Skeleton width={400} height={30} />
         <Skeleton width={600} height={30} />
         {[...Array(15)].map((e, i) => (
-          <Skeleton className="col-4" key={i} height={30}></Skeleton>
+          <Skeleton key={i} className="col-4" height={30}></Skeleton>
         ))}
       </div>
     );

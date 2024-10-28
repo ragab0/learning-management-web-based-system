@@ -12,11 +12,10 @@
 8. [Installation and Setup](#installation-and-setup)
 9. [Usage](#usage)
 10. [Contributing](#contributing)
-11. [License](#license)
 
 ## Introduction
 
-EDEPedia is a comprehensive eLearning Management System (eLMS) developed for DEPI Academy. It provides a platform for students to access courses, interact with instructors, and manage their learning journey. The system consists of three main components: the main app for students, a dashboard app for instructors, and an admin app for system management.
+EDEPedia or DEPI Academy is a comprehensive eLearning Management System (eLMS) that provides a platform for students to access courses, interact with instructors, and manage their learning journey. The system consists of three main components: the main app for students, a dashboard app for instructors, and an admin app for system management.
 
 ## Features
 
@@ -37,14 +36,15 @@ EDEPedia is a comprehensive eLearning Management System (eLMS) developed for DEP
 - Redux Toolkit for state management
 - React Router for navigation
 - Bootstrap for styling
+- Skeleton for skeleton components on initialization and loading
 - Axios for API requests
 - React Hook Form for form handling
+- React Select for advanced select inputs
 - React Player for video playback
 - React Markdown for rendering markdown content
 - React Toastify for notifications
 - Socket.io for real-time communication
 - Chart.js for data visualization
-- React Select for advanced select inputs
 
 ## Project Structure
 
@@ -64,12 +64,12 @@ The main app is the primary interface for students and visitors. It includes the
 
 - Showcases featured courses and instructors
 - Provides quick access to course categories
-- Displays testimonials and statistics
+- Displays team members and their mentor (About)
 
 ### Course Listing
 
 - Allows users to browse and search for courses
-- Implements filtering and sorting options
+- Implements pagination, filtering and sorting options
 - Displays course cards with key information
 
 ### Course Details Page
@@ -81,36 +81,29 @@ The main app is the primary interface for students and visitors. It includes the
 ### Shopping Cart
 
 - Manages selected courses
-- Allows users to adjust quantities or remove items
-- Calculates total price and applies discounts
+- Allows users to adjust quantities, wishes or remove items
 
 ### Wishlist
 
 - Enables users to save courses for later consideration
-- Provides quick access to wished courses from the user profile
 
 ### Checkout Process
 
-- Securely handles payment information
-- Integrates with payment gateways
-- Confirms successful enrollment
+- All courses are free till now!
+  <!-- - Securely handles payment information -->
+  <!-- - Integrates with payment gateways -->
+  <!-- - Confirms successful enrollment -->
 
 ### User Profile
 
-- Displays enrolled courses and progress
+- Displays enrolled, archived courses and progress
 - Manages account settings and preferences
-- Shows purchase history and achievements
+- Shows reviews, assigned instructors and the ability to massaging each one
 
 ### Instructor Profiles
 
 - Highlights instructor qualifications and courses
 - Displays ratings and student feedback
-- Allows students to follow instructors
-
-### Search Functionality
-
-- Enables users to find courses, instructors, and content
-- Implements auto-suggestions and advanced filtering
 
 ### Messaging System
 
@@ -129,38 +122,32 @@ The dashboard app is designed for instructors to manage their courses and intera
 ### Instructor Dashboard
 
 - Displays an overview of course performance and earnings
-- Shows recent reviews and student engagement metrics
+- Shows recent courses, reviews and student engagement metrics
 
 ### Course Management
 
 - Allows creation and editing of courses
-- Supports uploading and organizing course content (videos, documents, quizzes)
-- Provides tools for setting course pricing and promotional offers
+- Integrated with YoutubeApi to extract videos (titles, sources and thumbnails) from a playlist
+<!--
 
 ### Student Management
 
 - Lists enrolled students for each course
-- Allows communication with students through messaging system
+- Allows communication with students through messaging system -->
 
-### Analytics
+<!-- ### Analytics
 
 - Presents detailed analytics on course performance
-- Tracks student progress and completion rates
+- Tracks student progress and completion rates -->
 
 ### Review Management
 
 - Displays student reviews for instructor's courses
-- Allows instructors to respond to reviews
-
-### Earnings and Payouts
-
-- Shows earnings from course sales
-- Manages payout information and history
 
 ### Profile Management
 
 - Allows instructors to update their profile information
-- Manages instructor qualifications and expertise areas
+- Manages instructor qualifications and expertise areas using markdown
 
 ## 03 Admin App
 
@@ -176,44 +163,11 @@ The admin app provides system-wide management capabilities:
 - Reviews and approves new courses
 - Monitors course quality and student feedback
 
-### Content Moderation
-
-- Reviews and moderates user-generated content (reviews, discussions)
-- Manages reported content or users
-
-### System Analytics
-
-- Provides platform-wide analytics on user engagement, course performance, and revenue
-- Generates reports on key performance indicators
-
-### Payment Management
-
-- Oversees payment processing and refunds
-- Manages instructor payouts
-
-### Site Configuration
-
-- Manages site-wide settings and configurations
-- Controls feature toggles and system parameters
-
-### Category and Tag Management
-
-- Creates and manages course categories and tags
-- Organizes courses for improved discoverability
-
 ## Installation and Setup
 
 1. Clone the repository:
 
-   ```
-   git clone https://github.com/your-username/edepedia-lms.git
-   ```
-
 2. Navigate to the project directory:
-
-   ```
-   cd edepedia-lms
-   ```
 
 3. Install dependencies:
 
@@ -221,17 +175,11 @@ The admin app provides system-wide management capabilities:
    npm install
    ```
 
-4. Create a `.env.local` file in the root directory and add necessary environment variables:
-
-   ```
-   REACT_APP_API_BASE_URL=http://your-api-url.com
-   REACT_APP_SOCKET_URL=http://your-socket-url.com
-   ```
-
-5. Start the development server:
+4. Start the development server:
    ```
    npm start
    ```
+   **Note: server must be run either on 3000 or 3001** for API security
 
 ## Usage
 

@@ -28,7 +28,11 @@ export default function MentorAside() {
             return (
               v && (
                 <li>
-                  <Link to={v} className="btn btn-outline-dark py-3 w-100">
+                  <Link
+                    key={i}
+                    to={v}
+                    className="btn btn-outline-dark py-3 w-100"
+                  >
                     {k}
                   </Link>
                 </li>

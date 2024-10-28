@@ -22,8 +22,8 @@ export default function Cards() {
   if (!isInitialized || loading)
     return (
       <div className="results">
-        {[...Array(1)].map((e, i) => (
-          <Card isSkill={true} />
+        {[...Array(1)].map((_, i) => (
+          <Card key={i} isSkill={true} />
         ))}
       </div>
     );

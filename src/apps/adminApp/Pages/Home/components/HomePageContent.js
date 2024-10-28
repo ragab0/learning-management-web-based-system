@@ -27,7 +27,7 @@ export default function HomePageContent() {
         const { fname, lname, photo, email } = res || {};
 
         return (
-          <div className="admin-card">
+          <div key={i} className="admin-card">
             <div className="img-wrapper">
               {photo ? (
                 <img src={photo} alt="profile-img" />

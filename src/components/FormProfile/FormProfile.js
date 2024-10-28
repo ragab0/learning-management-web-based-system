@@ -200,8 +200,8 @@ function Skel() {
       {[...Array(3)].map((_, i) => (
         <section key={i} className=" mb-4">
           <Skeleton height={30} width={200}></Skeleton>
-          {[...Array(10)].map((_, i) => (
-            <Skeleton key={i} height={30} />
+          {[...Array(10)].map((_, j) => (
+            <Skeleton key={j} height={30} />
           ))}
         </section>
       ))}

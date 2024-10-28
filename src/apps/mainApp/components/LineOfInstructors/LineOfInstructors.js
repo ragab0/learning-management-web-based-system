@@ -8,6 +8,7 @@ import NoContent from "../../../../components/NoContent/NoContent";
 import Skeleton from "react-loading-skeleton";
 
 export default function LineOfInstructors({ title }) {
+  const dispatch = useDispatch();
   const {
     apiData: { results = [] },
     error,
@@ -15,7 +16,6 @@ export default function LineOfInstructors({ title }) {
     isInitialized,
   } = useSelector((state) => state.top.topMentors);
 
-  const dispatch = useDispatch();
   useEffect(
     function () {
       dispatch(fetchTopMentors());
@@ -28,27 +28,31 @@ export default function LineOfInstructors({ title }) {
       .slice(0, 5)
       .map(({ _id, photo, fname, headline, lname }, i) => (
         <div key={i} className="col-lg-4 col-md-6 col-sm-12 gy-4">
-          <ScrollAnimatedSection isFadeup={true}>
-            <Link to={`/mentors/${_id}`}>
-              <figure className="box d-flex flex-column align-items-center p-3 pb-0 mb-0">
-                <div className="text-start mb-3 w-100 text-center">
-                  <img
-                    src={photo}
-                    alt="profile-img"
-                    className="img-fluid "
-                    style={{ width: "350px", height: "350px" }}
-                  />
-                </div>
-                <div className="text-center">
-                  <h5 className="fw-bold text-capitalize">
-                    {fname} {lname}
-                  </h5>
-                  <h6 className=" fs-6">{headline}</h6>
+          <ScrollAnimatedSection isFadeup={true} className="h-100">
+            <Link to={`/mentors/${_id}`} className="d-block h-100 ">
+              <figure
+                className="box d-grid p-3 pb-0 mb-0 h-100"
+                style={{ gridTemplateRows: "1fr auto" }}
+              >
+                <div>
+                  <div className="text-start mb-3 w-100 text-center">
+                    <img src={photo} alt="profile-img" className="img-fluid " />
+                  </div>
+                  <div className="text-center">
+                    <h5 className="fw-bold text-capitalize">
+                      {fname} {lname}
+                    </h5>
+                    <h6 className=" fs-6">{headline}</h6>
+                  </div>
                 </div>
                 <div className="rate d-flex flex-wrap justify-content-between mt-4 ">
                   <div className="d-flex align-items-center">
-                    <i className="fa-solid fa-star me-2 text-warning"></i>
-                    <h6 className="mb-0 text-dark">5</h6>
+                    {[...Array(5)].map((_, i) => (
+                      <i
+                        key={i}
+                        className="fa-solid fa-star me-1 text-warning"
+                      ></i>
+                    ))}
                   </div>
                   <h6>Instructor</h6>
                 </div>
@@ -64,9 +68,6 @@ export default function LineOfInstructors({ title }) {
       <div className="container">
         <header className="d-flex justify-content-between">
           <h2>{title}</h2>
-          {/* <Link to="#" className="btn btn-link text-decoration-none">
-            See All
-          </Link> */}
         </header>
         <div className="row d-flex justify-content-center">
           {!isInitialized || loading ? (

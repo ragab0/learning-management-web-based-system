@@ -85,7 +85,7 @@ export default function CourseAside() {
               <h5>Share</h5>
               <ul className="shareLinks mt-4">
                 {links.map((icon, i) => (
-                  <li>
+                  <li key={i}>
                     <Link to={"#"}>{icon}</Link>
                   </li>
                 ))}

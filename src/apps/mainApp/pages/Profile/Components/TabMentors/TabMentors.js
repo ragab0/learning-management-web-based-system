@@ -41,7 +41,7 @@ export default function TabMentors() {
       </header>
       <div className="row">
         {results.map((mentor, i) => (
-          <div className="col-md-4">
+          <div key={i} className="col-md-4">
             <MentorOverviewCard mentor={mentor} key={i} />
           </div>
         ))}

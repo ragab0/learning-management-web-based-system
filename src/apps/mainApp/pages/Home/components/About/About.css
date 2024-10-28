@@ -26,5 +26,5 @@ svg g[clip-path="url(#clip3_5752_4210)"]:hover,
 svg g[clip-path="url(#clip0_5752_4210)"]:hover,
 svg g[clip-path="url(#clip0_5752_4210)"] + g > g:nth-of-type(2):hover,
 svg g[clip-path="url(#clip0_5752_4210)"] + g + g > g:nth-of-type(2):hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }

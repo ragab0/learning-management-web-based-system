@@ -22,7 +22,7 @@ export default function Lessons() {
       <h3 className="fs-5 fw-bold mt-3">
         Lessons ({methods.getValues().lessons?.length || 0})
       </h3>
-      {methods.watch("lessons")?.map((lesson, index) => (
+      {methods.watch("lessons")?.map((_, index) => (
         <FieldsetLayout
           key={index}
           title={`Lesson ${index + 1}`}

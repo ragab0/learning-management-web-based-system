@@ -14,7 +14,7 @@ export default function InfoSection() {
         </header>
         <div className="row d-flex justify-content-between">
           {infoSectionData.map((card, i) => (
-            <div className="col-lg-4 col-md-6 col-sm-12 gy-4">
+            <div key={i} className="col-lg-4 col-md-6 col-sm-12 gy-4">
               <InfoCard card={card} key={i} />
             </div>
           ))}

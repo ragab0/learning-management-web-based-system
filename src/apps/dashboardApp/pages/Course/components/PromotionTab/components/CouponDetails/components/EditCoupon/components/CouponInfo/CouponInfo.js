@@ -58,8 +58,8 @@ export default function CouponInfo() {
   return (
     <div className="mt-5">
       <h5 className="text-dark mb-3">Coupon Information</h5>
-      {selectFields.map((key) => (
-        <div className="mb-4" key={key}>
+      {selectFields.map((key, i) => (
+        <div className="mb-4" key={i}>
           <label className="form-label" htmlFor={key}>
             {key}
           </label>
@@ -73,8 +73,8 @@ export default function CouponInfo() {
                 color: key === "status" ? getStatusColor(formData.status) : "",
               }}
             >
-              {selectOptions[key].map((option) => (
-                <option key={option} value={option}>
+              {selectOptions[key].map((option, i) => (
+                <option key={i} value={option}>
                   {option}
                 </option>
               ))}
@@ -113,8 +113,8 @@ export default function CouponInfo() {
         "actions",
         "type",
         "amount",
-      ].map((key) => (
-        <div className="mb-4" key={key}>
+      ].map((key, i) => (
+        <div className="mb-4" key={i}>
           <label className="form-label" htmlFor={key}>
             {key}
           </label>
@@ -125,8 +125,8 @@ export default function CouponInfo() {
               value={formData[key]}
               onChange={(e) => handleInputChange(key, e.target.value)}
             >
-              {selectOptions[key].map((option) => (
-                <option key={option} value={option}>
+              {selectOptions[key].map((option, i) => (
+                <option key={i} value={option}>
                   {option}
                 </option>
               ))}
