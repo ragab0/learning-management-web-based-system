@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { useSelector } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 import HomePage from "./pages/Home/HomePage";
@@ -22,11 +23,9 @@ import EditCoupon from "./pages/Course/components/PromotionTab/components/Coupon
 import SignupPage from "./pages/Signup/SignupPage";
 import LoginPage from "./pages/Login/LoginPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
-import MessagesTab from "./pages/Communication/components/MessagesTab/MessagesTab";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPasswordPage";
 import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
-import { useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader";
 import FullReviewsTab from "./pages/Communication/FullReviewsTab/FullReviewsTab";
 import ChapterDetailsTab from "./pages/Course/components/ChaptersTab/Chapter/ChapterDetailsTab/ChapterDetailsTab";
@@ -34,6 +33,8 @@ import ChapterResourceTab from "./pages/Course/components/ChaptersTab/Chapter/Ch
 import Chapter from "./pages/Course/components/ChaptersTab/Chapter/Chapter";
 import Lessons from "./pages/Course/components/ChaptersTab/Chapter/Lessons/Lessons";
 import NotFound from "../../components/NotFound/NotFound";
+import ChatRoom from "../../components/ChatRoom/ChatRoom";
+import MessagesTab from "./pages/Communication/MessagesTab/MessagesTab";
 
 const ROLE = "mentor";
 const notRequireAuthRoutes = [
@@ -120,7 +121,10 @@ export default function DashboardApp() {
           }
         >
           <Route index element={<FullReviewsTab />} />
-          <Route path="messages" element={<MessagesTab />} />
+          <Route path="messages">
+            <Route index element={<MessagesTab />} />
+            <Route path=":id" element={<ChatRoom />} />
+          </Route>
         </Route>
         {/* protected (full - with children) */}
         {/* <Route

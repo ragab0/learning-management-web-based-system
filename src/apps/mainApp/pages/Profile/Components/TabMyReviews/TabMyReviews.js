@@ -1,43 +1,59 @@
-import React from "react";
-// import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import "./TabMyReviews.css";
-// import NoContent from "../../../../../../components/NoContent/NoContent";
-// import Loader from "../../../../../../components/Loader/Loader";
-import FilterOptions from "../FilterOptions/FilterOptions";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchReviews } from "../../../../../../store/slices/studentSlice";
+import NoContent from "../../../../../../components/NoContent/NoContent";
 import Reviews from "../../../../../../components/Reviews/Reviews";
+import MyHeader from "../MyHeader/MyHeader";
+import PaginationMain from "../../../../../../components/PaginationMain/PaginationMain";
+import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchReviews } from "../../../../../../store/slices/studentSlice";
 import { reviewsData } from "../../../../../../data/reviewsData";
 
-export default function TabReviews() {
-  // const dispatch = useDispatch();
-  // const {
-  //   apiData: { results = [] },
-  //   loading,
-  //   isInitialized,
-  // } = useSelector((state) => state.student.reviews);
+const sortOptions = [
+  { name: "new", value: "date" },
+  { name: "old", value: "-date" },
+];
 
-  // useEffect(
-  //   function () {
-  //     dispatch(fetchReviews());
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   []
-  // );
+export default function TabMyReviews() {
+  const dispatch = useDispatch();
+  const {
+    apiData: { results = [], totalPages, page: activePage },
+    loading,
+    isInitialized,
+  } = useSelector((state) => state.student.reviews);
 
-  // if (loading) return <Loader />;
-
-  // if (isInitialized && !results.length) {
-  //   return <NoContent />;
-  // }
+  useEffect(
+    function () {
+      dispatch(fetchReviews());
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return (
     <div className="tab-reviews">
-      <header className="header col-12">
-        <h2>my messages</h2>
-        <FilterOptions />
-      </header>
-      <Reviews list={reviewsData} />
+      <MyHeader
+        title="reviews"
+        sortOptions={sortOptions}
+        thinkAction={fetchReviews}
+      />
+      {isInitialized && !results.length ? (
+        <NoContent />
+      ) : isInitialized && !loading ? (
+        <Reviews list={reviewsData} />
+      ) : (
+        <Skel />
+      )}
+      <PaginationMain
+        totalPages={totalPages}
+        activePage={activePage}
+        pageSize={3}
+        thunkAction={fetchReviews}
+      />
     </div>
   );
+}
+
+function Skel() {
+  return <Skeleton count={5} height={100} className=" mb-3" />;
 }

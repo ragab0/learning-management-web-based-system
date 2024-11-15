@@ -51,7 +51,7 @@ export default function Footer() {
           <h4>Contact Us</h4>
           <ul>
             <li>Address: Cairo - Egypt</li>
-            <li>Tel: +(20) 109-454-5736-7890</li>
+            <li>Tel: +(20) 109-454-5736</li>
             <li>Mail: legendragab@gmail.com</li>
           </ul>
           <ul></ul>

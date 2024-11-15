@@ -10,7 +10,7 @@
 .line-of-instructors img {
   border-radius: 15px;
   max-width: 100%;
-  height: auto;
+  /* height: auto; */
 }
 
 .line-of-instructors .rate {

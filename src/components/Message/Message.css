@@ -1,0 +1,41 @@
+.message-container {
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--grey-border, #e2e8f0);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 18px;
+  color: var(--grey-900, #0f172a);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.user-avatar {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.message-date {
+  color: var(--grey-700, #334155);
+  font-size: 14px;
+  margin: auto 0;
+}
+
+.message-content {
+  color: var(--grey-900, #0f172a);
+  font-weight: 500;
+  margin-top: 1rem;
+}

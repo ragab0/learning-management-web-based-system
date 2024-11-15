@@ -17,3 +17,7 @@
 .profile-page article {
   margin-bottom: 1rem;
 }
+
+.profile-page .main-no-content {
+  margin-block: 5rem;
+}

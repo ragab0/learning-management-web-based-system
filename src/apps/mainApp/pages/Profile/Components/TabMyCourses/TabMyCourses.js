@@ -1,32 +1,45 @@
 import React from "react";
 import "./TabMyCourses.css";
-import { NavLink, Outlet } from "react-router-dom";
+import MyHeader from "../MyHeader/MyHeader";
+import Courses from "./Courses";
+import { NavLink } from "react-router-dom";
+import { fetchEnrolledCourses } from "../../../../../../store/slices/studentSlice";
 
-export default function TabMyCourses() {
+const sortOptions = [
+  // { name: "progress", value: "progress" },
+  { name: "rating", value: "rate" },
+  { name: "category", value: "catg" },
+];
+
+export default function TabMyCourses({ isArchived }) {
   return (
     <div className="tab-my-courses">
-      <header className="header col-12">
-        <h2>
-          my courses
-          {/* <span className="ms-2 fs-5">({myCourses.length})</span> */}
-        </h2>
+      <MyHeader
+        title="courses"
+        sortOptions={sortOptions}
+        thinkAction={fetchEnrolledCourses}
+      >
         <ul className=" d-flex filter-tabs gap-2">
           <li>
-            <NavLink to={`.`} className="btn btn-outline-dark px-4 fw-bold" end>
+            <NavLink
+              to={`/profile/courses`}
+              className="btn btn-outline-dark px-4 fw-bold"
+              end
+            >
               Active
             </NavLink>
           </li>
           <li>
             <NavLink
-              to={`./archived`}
+              to={`/profile/courses/archived`}
               className="btn btn-outline-dark px-4 fw-bold"
             >
               Archived
             </NavLink>
           </li>
         </ul>
-      </header>
-      <Outlet />
+      </MyHeader>
+      <Courses isArchived={isArchived} />
     </div>
   );
 }

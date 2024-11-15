@@ -34,9 +34,12 @@ export default function LineOfInstructors({ title }) {
                 className="box d-grid p-3 pb-0 mb-0 h-100"
                 style={{ gridTemplateRows: "1fr auto" }}
               >
-                <div>
+                <div
+                  className="d-grid"
+                  style={{ gridTemplateRows: "1fr auto" }}
+                >
                   <div className="text-start mb-3 w-100 text-center">
-                    <img src={photo} alt="profile-img" className="img-fluid " />
+                    <img src={photo} alt="profile-img" className=" h-full" />
                   </div>
                   <div className="text-center">
                     <h5 className="fw-bold text-capitalize">

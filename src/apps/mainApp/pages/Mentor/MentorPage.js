@@ -38,9 +38,9 @@ export default function MentorPage() {
           <MentorAside />
         </div>
       )}
-      <ScrollAnimatedSection animationVariants={fadeUp}>
+      {/* <ScrollAnimatedSection animationVariants={fadeUp}>
         <LineOfCourses title={`More Courses by ${"Ronald"}`} />
-      </ScrollAnimatedSection>
+      </ScrollAnimatedSection> */}
       <ScrollAnimatedSection animationVariants={fadeUp}>
         <div className="container">
           <LearnerReviews />
