@@ -52,7 +52,3 @@
 .course-content-page .cursor-pointer {
   cursor: pointer;
 }
-
-.course-content-page button:hover {
-  background: #000;
-}

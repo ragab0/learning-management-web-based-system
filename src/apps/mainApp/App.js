@@ -36,7 +36,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="courses">
             <Route index element={<CoursesPage />} />
-            <Route path=":id" element={<CoursePage />} />
+            <Route path=":courseId" element={<CoursePage />} />
           </Route>
           <Route path="cart" element={<ShoppingCartPage />} />
           {/* 01) protected route (full - with nested) */}

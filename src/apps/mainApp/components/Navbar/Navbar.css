@@ -103,15 +103,6 @@
   background-color: var(--clr-grey-dark);
 }
 
-.main-navbar .navbar-items .profile-link:hover > img {
-  opacity: 0.8;
-}
-
-.main-navbar .navbar-items .profile-link:hover > span {
-  color: var(--clr-grey-lighter);
-  background-color: var(--clr-grey-darkest);
-}
-
 /* Responsive style */
 
 @media (max-width: 991px) {

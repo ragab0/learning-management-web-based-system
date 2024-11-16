@@ -5,13 +5,18 @@ import { calcOneLessonLong } from "../../../../utils/calcLong";
 import { useDispatch, useSelector } from "react-redux";
 import {
   saveBaughtCourseProgress,
+  setCurrentLessonSrc,
   updateProgress,
 } from "../../../../store/slices/studentSlice";
 import { debounceSaveProgress } from "../../../../utils/debounceThunks";
 import { useParams } from "react-router-dom";
 import store from "../../../../store/store";
 
-export default function LayoutCheckboxesCourseContent({ chapterId, lessons }) {
+export default function LayoutCheckboxesCourseContent({
+  chapterId,
+  lessons,
+  currentLessonSrc,
+}) {
   const { courseId } = useParams();
   const dispatch = useDispatch();
   const { progress = {} } = useSelector(
@@ -37,13 +42,27 @@ export default function LayoutCheckboxesCourseContent({ chapterId, lessons }) {
     });
   }
 
+  function videoSrcSetter(url) {
+    dispatch(setCurrentLessonSrc({ url }));
+  }
+
   return (
     <div
       className={`layout-checkboxes d-flex flex-column align-items-start gap-2`}
     >
-      {lessons.map(({ _id, title, duration: { lengthSec } }, i) => (
-        <label key={i} className={"d-flex align-items-center gap-2 w-100"}>
-          <div className="d-flex align-items-center gap-2">
+      {lessons.map(({ _id, srcVideo, title, duration: { lengthSec } }, i) => (
+        <div
+          key={i}
+          className={"d-flex gap-2 w-100"}
+          style={
+            srcVideo === currentLessonSrc
+              ? {
+                  textDecoration: "underline",
+                }
+              : {}
+          }
+        >
+          <label>
             <motion.input
               type="checkbox"
               name={_id}
@@ -56,18 +75,20 @@ export default function LayoutCheckboxesCourseContent({ chapterId, lessons }) {
               whileTap={{ scale: 1.2 }} // Scale up when clicked
               transition={{ type: "spring", stiffness: 300 }} // Spring animation for checkbox
             />
-          </div>
+          </label>
           <div className="w-100 d-grid align-items-start mb-1 small">
-            {i + 1}. {title}
+            <span
+              className=" cursor-pointer"
+              onClick={() => videoSrcSetter(srcVideo)}
+            >
+              {i + 1}. {title}
+            </span>
             <div className=" d-flex align-items-center gap-1">
-              <i
-                className="fa-solid fa-video course-icon"
-                style={{ opacity: 0.3 }}
-              ></i>
+              <i className="fa-solid fa-video" style={{ opacity: 0.3 }}></i>
               <span>{calcOneLessonLong(lengthSec)}</span>
             </div>
           </div>
-        </label>
+        </div>
       ))}
     </div>
   );

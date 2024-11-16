@@ -5,6 +5,7 @@ import { imgsComps } from "../../../../assets";
 import { useSelector } from "react-redux";
 import Logo from "../../../../components/Logo/Logo";
 import Skeleton from "react-loading-skeleton";
+import ProfileImg from "../../../../components/ProfileImg/ProfileImg";
 
 const { SearchIcon, ShoppingIcon, HeartIcon, NotificationIcon } = imgsComps;
 
@@ -106,11 +107,7 @@ function AuthNavbarItems({ user }) {
       </li>
       <li>
         <NavLink to={"/profile"} className="profile-link">
-          {user.profileImg ? (
-            <img src={user.profileImg} alt="profile" />
-          ) : (
-            <span className=" text-capitalize">{user.fname[0]}</span>
-          )}
+          <ProfileImg photo={user.profileImg} fL={user.fname[0]} />
         </NavLink>
       </li>
     </ul>

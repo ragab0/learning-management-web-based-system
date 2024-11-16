@@ -23,9 +23,14 @@ export function basicThinker(method, path) {
 export function toastedThinker(method, path, actionName = "Processing") {
   actionName = actionName[0].toLocaleUpperCase() + actionName.slice(1);
   return async (data, { rejectWithValue }) => {
-    // data are an object of params used with post/put/delete actions - whenever we need to send data - not with GET!;
+    let finalPath = path;
+    if (data.anotherDynamicPath && !path.endsWith(data.anotherDynamicPath)) {
+      finalPath += data.anotherDynamicPath;
+    }
+
+    // data is an object of req.BODY used with post/put/delete actions - whenever we need to send data - not with GET!;
     try {
-      const res = await toast.promise(myAxios[method](path, data), {
+      const res = await toast.promise(myAxios[method](finalPath, data), {
         pending: `${actionName}...`,
         success: `${actionName} done! 🎉`,
         error: {

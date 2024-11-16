@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "./MenuToggler.css";
 
-export default function LayoutMenuToggler({ children, title }) {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
+export default function LayoutMenuToggler({
+  children,
+  title,
+  isOpened = false,
+}) {
+  const [isMenuVisible, setIsMenuVisible] = useState(isOpened);
   const toggleChaptersMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };

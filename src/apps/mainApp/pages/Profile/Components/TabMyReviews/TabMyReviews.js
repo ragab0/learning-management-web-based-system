@@ -6,8 +6,7 @@ import MyHeader from "../MyHeader/MyHeader";
 import PaginationMain from "../../../../../../components/PaginationMain/PaginationMain";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchReviews } from "../../../../../../store/slices/studentSlice";
-import { reviewsData } from "../../../../../../data/reviewsData";
+import { fetchStudentReviews } from "../../../../../../store/slices/reviewsSlice";
 
 const sortOptions = [
   { name: "new", value: "date" },
@@ -20,11 +19,11 @@ export default function TabMyReviews() {
     apiData: { results = [], totalPages, page: activePage },
     loading,
     isInitialized,
-  } = useSelector((state) => state.student.reviews);
+  } = useSelector((state) => state.reviews.studentReviews);
 
   useEffect(
     function () {
-      dispatch(fetchReviews());
+      dispatch(fetchStudentReviews());
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -35,12 +34,12 @@ export default function TabMyReviews() {
       <MyHeader
         title="reviews"
         sortOptions={sortOptions}
-        thinkAction={fetchReviews}
+        thinkAction={fetchStudentReviews}
       />
       {isInitialized && !results.length ? (
         <NoContent />
       ) : isInitialized && !loading ? (
-        <Reviews list={reviewsData} />
+        <Reviews list={results} />
       ) : (
         <Skel />
       )}
@@ -48,7 +47,7 @@ export default function TabMyReviews() {
         totalPages={totalPages}
         activePage={activePage}
         pageSize={3}
-        thunkAction={fetchReviews}
+        thunkAction={fetchStudentReviews}
       />
     </div>
   );

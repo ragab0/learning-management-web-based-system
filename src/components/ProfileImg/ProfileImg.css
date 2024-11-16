@@ -1,0 +1,17 @@
+.profile-img {
+  border-radius: 50%;
+  background-color: var(--clr-grey-dark);
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img span {
+  text-transform: uppercase !important;
+  font-weight: bold;
+}

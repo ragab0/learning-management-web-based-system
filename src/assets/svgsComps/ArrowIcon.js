@@ -16,6 +16,7 @@ export default function ArrowIcon(props) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        {...props}
       />
     </svg>
   );

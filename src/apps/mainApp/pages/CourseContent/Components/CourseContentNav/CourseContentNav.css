@@ -7,3 +7,12 @@
 .course-content-nav button:hover {
   opacity: 0.8;
 }
+
+.course-content-page .modal-box-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.course-content-page .modal-box textarea {
+  min-width: 320px;
+}

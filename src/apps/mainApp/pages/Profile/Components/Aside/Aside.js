@@ -2,6 +2,7 @@ import React from "react";
 import "./Aside.css";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ProfileImg from "../../../../../../components/ProfileImg/ProfileImg";
 
 const links = [
   { name: "profile", to: "." },
@@ -19,9 +20,7 @@ export default function Aside() {
     <aside className="aside profile-page-aside">
       <div className="aside-content">
         <header className=" text-center">
-          <div className="img-wrapper d-flex justify-content-center align-items-center">
-            {photo ? <img alt="profile" src={photo} /> : fname[0] + lname[0]}
-          </div>
+          <ProfileImg photo={photo} fL={fname[0]} lL={lname[0]} />
           <h5 className="mt-3 text-capitalize fw-bold">
             {fname} {lname}
           </h5>

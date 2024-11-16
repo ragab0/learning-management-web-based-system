@@ -21,7 +21,7 @@ export default function CourseDashboard() {
 
   return (
     <div className="course-dashboard">
-      <Tabs tabs={tabs} />
+      <Tabs tabs={tabs} loading={loading} />
       <div className="tabs-content">
         {/* tab 01 */}
         <div className="course-desc-tab" id={tabs[0].toLocaleLowerCase()}>

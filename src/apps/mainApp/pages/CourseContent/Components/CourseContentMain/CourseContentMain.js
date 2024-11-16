@@ -9,8 +9,10 @@ import MarkDownReadOnly from "../../../../../dashboardApp/components/MarkDown/Ma
 import { useLocation } from "react-router-dom";
 import Loader from "../../../../../../components/Loader/Loader";
 import NoContent from "../../../../../../components/NoContent/NoContent";
-import ReactPlayer from "react-player";
 import CourseContentAside from "../CourseContentAside/CourseContentAside";
+import { parseYouTubeUrl } from "../../../../../../utils/parseYTUrl";
+import ReactPlayer from "react-player";
+import CommentsSection from "../CommentsSection/CommentsSection";
 
 const tabs = [
   {
@@ -21,8 +23,8 @@ const tabs = [
     Comp: LearnerReviews,
   },
   {
-    name: "notes",
-    Comp: NoContent,
+    name: "comments",
+    Comp: CommentsSection,
   },
   {
     name: "content",
@@ -42,16 +44,19 @@ export default function CourseContentMain() {
   const {
     apiData: { result = {} },
     loading,
+    currentLessonSrc,
   } = useSelector((state) => state.student.currentStudyCourse);
   const { description, mentor = {}, modules = [] } = result._id || {};
-  const video = modules[0]?.lessons?.[0]?.srcVideo;
+
+  const video = currentLessonSrc || modules[0]?.lessons?.[0]?.srcVideo;
+  const src = parseYouTubeUrl(video);
 
   return (
     <div className="course-content-main">
       <header className="course-content-main-header flex">
         <div className="video-wrapper">
           <ReactPlayer
-            url={video}
+            url={src}
             controls={true}
             width={"100%"}
             height={"100%"}

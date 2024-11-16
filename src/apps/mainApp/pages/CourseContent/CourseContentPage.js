@@ -28,7 +28,7 @@ export default function CourseContentPage() {
   );
 
   if (!isInitialized || loading) {
-    return <Loader color="#ffff" />;
+    return <Loader />;
   }
 
   if (isInitialized && error) {

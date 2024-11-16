@@ -5,13 +5,13 @@ import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 import CourseAside from "./Components/CourseAside/CourseAside";
 import CourseDashboard from "./Components/CourseDashboard/CourseDashboard";
 import CourseHeader from "./Components/CourseHeader/CourseHeader";
+import NoContent from "../../../../components/NoContent/NoContent";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse } from "../../../../store/slices/coursesSlice";
-import NoContent from "../../../../components/NoContent/NoContent";
 
 export default function CoursePage() {
-  const { id } = useParams();
+  const { courseId } = useParams();
   const dispatch = useDispatch();
   const {
     isInitialized,
@@ -21,9 +21,9 @@ export default function CoursePage() {
 
   useEffect(
     function () {
-      dispatch(getCourse({ id }));
+      dispatch(getCourse({ id: courseId }));
     },
-    [dispatch, id]
+    [dispatch, courseId]
   );
 
   if (isInitialized && !result) {

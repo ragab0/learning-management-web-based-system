@@ -39,6 +39,7 @@ const initialState = {
   currentStudyCourse: {
     progress: {},
     apiData: {},
+    currentLessonSrc: "",
     isInitialized: false,
     loading: false,
     error: null,
@@ -160,14 +161,13 @@ const removeWishlistCourse = createAsyncThunk(
 const checkoutPath = "/student/cart/checkout";
 
 const checkoutCartCourses = createAsyncThunk(
-  `${NAME}/cechkout`,
+  `${NAME}/checkout`,
   toastedThinker("post", checkoutPath, "Checking our")
 );
 
 /****************************************** [Mentors, Messages, Reviews, Chats] **********************/
 const mentorsPath = `/student/mentors`;
 const messagesPath = `/student/messages`;
-const reviewsPath = `/student/reviews`;
 const chatsPath = `/student/chats`;
 
 const fetchMentors = createAsyncThunk(
@@ -178,11 +178,6 @@ const fetchMentors = createAsyncThunk(
 const fetchMessages = createAsyncThunk(
   `${NAME}/fetchMessages`,
   basicThinker("get", messagesPath)
-);
-
-const fetchReviews = createAsyncThunk(
-  `${NAME}/fetchReviews`,
-  basicThinker("get", reviewsPath)
 );
 
 const fetchChats = createAsyncThunk(
@@ -203,6 +198,9 @@ const studentSlice = createSlice({
         state.currentStudyCourse.progress[chapterId] = {};
       }
       state.currentStudyCourse.progress[chapterId][lessonId] = checked;
+    },
+    setCurrentLessonSrc(state, action) {
+      state.currentStudyCourse.currentLessonSrc = action.payload.url;
     },
   },
   extraReducers(builder) {
@@ -281,16 +279,17 @@ const studentSlice = createSlice({
     /** [Mentors, messages, reviews, chats] */
     apiLoadingBuilder(builder, fetchMentors, "mentors");
     apiLoadingBuilder(builder, fetchMessages, "messages");
-    apiLoadingBuilder(builder, fetchReviews, "reviews");
     apiLoadingBuilder(builder, fetchChats, "chats");
   },
 });
 
 export default studentSlice.reducer;
-const { unInitCheckout, updateProgress } = studentSlice.actions;
+const { unInitCheckout, updateProgress, setCurrentLessonSrc } =
+  studentSlice.actions;
 export {
   unInitCheckout,
   updateProgress,
+  setCurrentLessonSrc,
   fetchStudentBasicProfile,
   updateStudentBasicProfile,
   fetchEnrolledCourses,
@@ -308,6 +307,5 @@ export {
   checkoutCartCourses,
   fetchMentors,
   fetchMessages,
-  fetchReviews,
   fetchChats,
 };

@@ -8,12 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCourses } from "../../../../store/slices/coursesSlice";
 import FilterOptions from "./components/FilterOptions/FilterOptions";
 import SortOptions from "./components/SortOptions/SortOptions";
-import NoContent from "../../../../components/NoContent/NoContent";
 
 export default function CoursesPage() {
   const dispatch = useDispatch();
   const {
-    apiData: { totalPages, page: activePage },
+    apiData: { results = [], totalPages, page: activePage },
+    loading,
   } = useSelector((state) => state.courses.publicCourses);
 
   useEffect(
@@ -28,11 +28,32 @@ export default function CoursesPage() {
       <h1>Design Courses</h1>
       <h3 className="mt-4">All Development Courses</h3>
       <div className="row">
-        <div className="col-lg-3 col-md-3">
+        <div
+          className="col-lg-3 col-md-3"
+          style={
+            loading || !results.length
+              ? {
+                  opacity: ".6",
+                  pointerEvents: "none",
+                }
+              : {}
+          }
+        >
           <FilterOptions />
         </div>
         <div className="col-lg-9 col-md-9">
-          <SortOptions />
+          <div
+            style={
+              loading || !results.length
+                ? {
+                    opacity: ".6",
+                    pointerEvents: "none",
+                  }
+                : {}
+            }
+          >
+            <SortOptions />
+          </div>
           <CoursesList />
           <PaginationMain
             totalPages={totalPages}
