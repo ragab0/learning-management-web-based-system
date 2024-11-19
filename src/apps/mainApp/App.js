@@ -23,6 +23,7 @@ import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import NotFound from "../../components/NotFound/NotFound";
 import ChatRoom from "../../components/ChatRoom/ChatRoom";
 import TabMyMessages from "./pages/Profile/Components/TabMyMessages/TabMyMessages";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 
 const ROLE = "student";
 
@@ -30,6 +31,7 @@ function App() {
   useLoginCheck();
   return (
     <div className="main-app">
+      <ScrollToTop />
       <Navbar />
       <div className="app-wrapper">
         <Routes>

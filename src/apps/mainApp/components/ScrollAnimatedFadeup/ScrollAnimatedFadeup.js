@@ -30,6 +30,7 @@ export default function ScrollAnimatedSection({
   children,
   isFadeup,
   className,
+  delay,
 }) {
   const controls = useAnimation();
   const [ref, inView] = useInView({

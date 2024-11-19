@@ -8,7 +8,7 @@ import { calcLessonsLong } from "../../../../../../utils/calcLong";
 export default function CourseContentAside() {
   const {
     apiData: { result = {} },
-    currentLessonSrc,
+    currentLesson: { url: lessonSrc, id: lessonId },
   } = useSelector((state) => state.student.currentStudyCourse);
   const {
     _id: { modules },
@@ -17,10 +17,10 @@ export default function CourseContentAside() {
   return (
     <aside className="aside container p-0 m-0">
       <div className="aside-content p-0">
-        <h3 className="m-3 mt-4">Course Content</h3>
+        <h2 className="m-3 mt-4">Course Content</h2>
         {modules.map(({ title, lessons, _id }, i) => (
           <LayoutMenuToggler
-            isOpened={lessons.find((l) => l.srcVideo === currentLessonSrc)}
+            isOpened={Boolean(lessons.find((l) => l._id === lessonId))}
             title={
               <>
                 {`Chapter ${i + 1}: ${title}`}
@@ -37,7 +37,8 @@ export default function CourseContentAside() {
             <LayoutCheckboxesCourseContent
               chapterId={_id}
               lessons={lessons}
-              currentLessonSrc={currentLessonSrc}
+              currentLessonSrc={lessonSrc}
+              currentLessonId={lessonId}
             />
           </LayoutMenuToggler>
         ))}

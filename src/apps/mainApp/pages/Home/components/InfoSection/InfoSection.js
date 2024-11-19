@@ -27,12 +27,12 @@ export default function InfoSection() {
 function InfoCard({ card = {} }) {
   const { Icon, title, description } = card;
   return (
-    <article className="box h-100 mx-auto">
-      <ScrollAnimatedSection isFadeup={true} className="h-100">
+    <ScrollAnimatedSection isFadeup={true} className="h-100">
+      <article className="box h-100 mx-auto">
         <Icon />
         <h3>{title}</h3>
         <p>{description}</p>
-      </ScrollAnimatedSection>
-    </article>
+      </article>
+    </ScrollAnimatedSection>
   );
 }

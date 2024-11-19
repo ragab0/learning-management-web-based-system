@@ -158,7 +158,15 @@ export default function CourseContentNav({ title }) {
           className="btn text-white d-flex ms-auto align-items-center gap-2"
           onClick={provideOpenHandler}
         >
-          {result.course ? [<StarLight />, "Edit"] : [<Star />, "Provide"]}{" "}
+          {result.course ? (
+            <>
+              <StarLight /> Edit
+            </>
+          ) : (
+            <>
+              <Star /> Provide
+            </>
+          )}{" "}
           Rating
         </button>
       </nav>

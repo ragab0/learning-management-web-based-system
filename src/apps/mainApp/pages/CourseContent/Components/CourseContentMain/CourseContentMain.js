@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CourseContentMain.css";
 import Tabs from "../../../../components/Tabs/Tabs";
 import InstructorTab from "../../../../components/InstructorTab/InstructorTab";
 import LearnerReviews from "../../../../components/LearnerReviews/LearnerReviews";
-import ScrollAnimatedSection from "../../../../components/ScrollAnimatedFadeup/ScrollAnimatedFadeup";
-import { useSelector } from "react-redux";
 import MarkDownReadOnly from "../../../../../dashboardApp/components/MarkDown/MarkDownReadOnly";
-import { useLocation } from "react-router-dom";
 import Loader from "../../../../../../components/Loader/Loader";
 import NoContent from "../../../../../../components/NoContent/NoContent";
 import CourseContentAside from "../CourseContentAside/CourseContentAside";
-import { parseYouTubeUrl } from "../../../../../../utils/parseYTUrl";
 import ReactPlayer from "react-player";
 import CommentsSection from "../CommentsSection/CommentsSection";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { parseYouTubeUrl } from "../../../../../../utils/parseYTUrl";
+import { setCurrentLesson } from "../../../../../../store/slices/studentSlice";
 
 const tabs = [
   {
@@ -40,16 +40,30 @@ const tabs = [
 ];
 
 export default function CourseContentMain() {
+  const dispatch = useDispatch();
   const { hash } = useLocation();
   const {
     apiData: { result = {} },
     loading,
-    currentLessonSrc,
+    currentLesson: { url: lessonSrc },
   } = useSelector((state) => state.student.currentStudyCourse);
   const { description, mentor = {}, modules = [] } = result._id || {};
 
-  const video = currentLessonSrc || modules[0]?.lessons?.[0]?.srcVideo;
-  const src = parseYouTubeUrl(video);
+  useEffect(
+    function () {
+      if (!lessonSrc) {
+        dispatch(
+          setCurrentLesson({
+            url: modules[0]?.lessons?.[0]?.srcVideo,
+            id: modules[0]?.lessons?.[0]?._id,
+          })
+        );
+      }
+    },
+    [dispatch, modules, lessonSrc]
+  );
+
+  const src = lessonSrc && parseYouTubeUrl(lessonSrc);
 
   return (
     <div className="course-content-main">
@@ -71,22 +85,18 @@ export default function CourseContentMain() {
               <Loader />
             ) : !hash || hash.slice(1) === tabs[0].name ? (
               <div className="details">
-                <ScrollAnimatedSection isFadeup={true}>
-                  <MarkDownReadOnly source={description} />
-                  <div className=" mt-5">
-                    <InstructorTab mentor={mentor} fullDescription={true} />
-                  </div>
-                </ScrollAnimatedSection>
+                <MarkDownReadOnly source={description} />
+                <div className=" mt-5">
+                  <InstructorTab mentor={mentor} fullDescription={true} />
+                </div>
               </div>
             ) : (
-              tabs.slice(1).map(
-                ({ name, Comp }, i) =>
-                  name === hash?.slice(1) && (
-                    <ScrollAnimatedSection key={i} isFadeup={true}>
-                      <Comp key={i} />
-                    </ScrollAnimatedSection>
-                  )
-              )
+              tabs
+                .slice(1)
+                .map(
+                  ({ name, Comp }, i) =>
+                    name === hash?.slice(1) && <Comp key={i} />
+                )
             )}
           </div>
         </div>

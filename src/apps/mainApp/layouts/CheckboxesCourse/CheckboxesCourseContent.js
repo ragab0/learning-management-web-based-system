@@ -5,7 +5,7 @@ import { calcOneLessonLong } from "../../../../utils/calcLong";
 import { useDispatch, useSelector } from "react-redux";
 import {
   saveBaughtCourseProgress,
-  setCurrentLessonSrc,
+  setCurrentLesson,
   updateProgress,
 } from "../../../../store/slices/studentSlice";
 import { debounceSaveProgress } from "../../../../utils/debounceThunks";
@@ -16,6 +16,7 @@ export default function LayoutCheckboxesCourseContent({
   chapterId,
   lessons,
   currentLessonSrc,
+  currentLessonId,
 }) {
   const { courseId } = useParams();
   const dispatch = useDispatch();
@@ -42,8 +43,8 @@ export default function LayoutCheckboxesCourseContent({
     });
   }
 
-  function videoSrcSetter(url) {
-    dispatch(setCurrentLessonSrc({ url }));
+  function videoSrcSetter(url, id) {
+    dispatch(setCurrentLesson({ url, id }));
   }
 
   return (
@@ -55,7 +56,7 @@ export default function LayoutCheckboxesCourseContent({
           key={i}
           className={"d-flex gap-2 w-100"}
           style={
-            srcVideo === currentLessonSrc
+            _id === currentLessonId
               ? {
                   textDecoration: "underline",
                 }
@@ -79,7 +80,7 @@ export default function LayoutCheckboxesCourseContent({
           <div className="w-100 d-grid align-items-start mb-1 small">
             <span
               className=" cursor-pointer"
-              onClick={() => videoSrcSetter(srcVideo)}
+              onClick={() => videoSrcSetter(srcVideo, _id)}
             >
               {i + 1}. {title}
             </span>

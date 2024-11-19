@@ -3,5 +3,5 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-block: var(--main-margin);
+  margin-block: calc(var(--main-margin) * 2);
 }

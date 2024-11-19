@@ -20,11 +20,28 @@ export function basicThinker(method, path) {
   };
 }
 
+export function basicThinkerMain(method, path) {
+  // data is either query stirng || object contains id of an items;
+  return async (data, { rejectWithValue }) => {
+    let finalPath = path;
+    if (data?.anotherDynamicPath && !path.endsWith(data.anotherDynamicPath)) {
+      finalPath += data.anotherDynamicPath;
+    }
+
+    try {
+      const res = await myAxios[method](finalPath, data);
+      return res.data || {};
+    } catch (axiosError) {
+      return rejectWithValue(axiosError?.response?.data);
+    }
+  };
+}
+
 export function toastedThinker(method, path, actionName = "Processing") {
   actionName = actionName[0].toLocaleUpperCase() + actionName.slice(1);
   return async (data, { rejectWithValue }) => {
     let finalPath = path;
-    if (data.anotherDynamicPath && !path.endsWith(data.anotherDynamicPath)) {
+    if (data?.anotherDynamicPath && !path.endsWith(data.anotherDynamicPath)) {
       finalPath += data.anotherDynamicPath;
     }
 
@@ -35,7 +52,9 @@ export function toastedThinker(method, path, actionName = "Processing") {
         success: `${actionName} done! 🎉`,
         error: {
           render(props) {
-            return props.data.response.data?.result || "An error occur!";
+            return (
+              props?.data?.response?.data?.result || "An internal error occur!"
+            );
           },
         },
       });

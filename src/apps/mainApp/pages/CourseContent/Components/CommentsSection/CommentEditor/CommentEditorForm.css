@@ -1,0 +1,8 @@
+.comment-editor-wrapper {
+  border: 1px solid var(--grey-border);
+}
+
+.comment-editor {
+  padding-inline: 1rem;
+  min-height: 100px;
+}

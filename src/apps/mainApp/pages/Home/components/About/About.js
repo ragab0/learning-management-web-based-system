@@ -20,32 +20,31 @@ export default function About() {
       <div className="container">
         {about.map(({ img, Svgg, title, desc, more }, i) => (
           <section key={i} className="mb-5">
-            <ScrollAnimatedSection isFadeup={true}>
-              <div
-                className={`container row align-items-center justify-content-between ${
-                  i % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                }`}
-              >
-                <div className="col mb-4">
-                  {Svgg && (
-                    <div ref={i === 1 ? teamSvg : null}>
-                      <Svgg />
-                    </div>
-                  )}
-                </div>
-                <div className="header-content">
-                  <h2>{title}</h2>
-                  <p>{desc}</p>
-                  <Link
-                    to={i / 2 === 0 ? "/dashboard/signup" : "/courses"}
-                    className="btn btn-dark p-3 ps-4 pe-4"
-                  >
-                    {more}
-                    <i className="fa-solid fa-arrow-right ps-2"></i>
-                  </Link>
-                </div>
+            <div
+              className={`container row align-items-center justify-content-between ${
+                i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+              }`}
+            >
+              <div className="col mb-4">
+                {Svgg && (
+                  <div ref={i === 1 ? teamSvg : null}>
+                    <Svgg />
+                  </div>
+                )}
               </div>
-            </ScrollAnimatedSection>
+              <div className="header-content">
+                <h2>{title}</h2>
+                <p>{desc}</p>
+                <Link
+                  to={i / 2 === 0 ? "/dashboard/signup" : "/courses"}
+                  className="btn btn-dark p-3 ps-4 pe-4"
+                  scroll={true}
+                >
+                  {more}
+                  <i className="fa-solid fa-arrow-right ps-2"></i>
+                </Link>
+              </div>
+            </div>
           </section>
         ))}
       </div>

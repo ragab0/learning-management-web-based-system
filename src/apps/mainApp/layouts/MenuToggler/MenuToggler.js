@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MenuToggler.css";
 
 export default function LayoutMenuToggler({
@@ -6,10 +6,17 @@ export default function LayoutMenuToggler({
   title,
   isOpened = false,
 }) {
-  const [isMenuVisible, setIsMenuVisible] = useState(isOpened);
+  const [isMenuVisible, setIsMenuVisible] = useState(null);
   const toggleChaptersMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
+
+  useEffect(
+    function () {
+      setIsMenuVisible(isOpened);
+    },
+    [isOpened]
+  );
 
   return (
     <div className="layout-menu-toggler w-100">

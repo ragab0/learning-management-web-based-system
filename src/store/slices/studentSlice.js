@@ -39,7 +39,10 @@ const initialState = {
   currentStudyCourse: {
     progress: {},
     apiData: {},
-    currentLessonSrc: "",
+    currentLesson: {
+      url: "",
+      id: "",
+    },
     isInitialized: false,
     loading: false,
     error: null,
@@ -199,8 +202,11 @@ const studentSlice = createSlice({
       }
       state.currentStudyCourse.progress[chapterId][lessonId] = checked;
     },
-    setCurrentLessonSrc(state, action) {
-      state.currentStudyCourse.currentLessonSrc = action.payload.url;
+    setCurrentLesson(state, action) {
+      action.payload.url &&
+        (state.currentStudyCourse.currentLesson.url = action.payload.url);
+      action.payload.id &&
+        (state.currentStudyCourse.currentLesson.id = action.payload.id);
     },
   },
   extraReducers(builder) {
@@ -284,12 +290,12 @@ const studentSlice = createSlice({
 });
 
 export default studentSlice.reducer;
-const { unInitCheckout, updateProgress, setCurrentLessonSrc } =
+const { unInitCheckout, updateProgress, setCurrentLesson } =
   studentSlice.actions;
 export {
   unInitCheckout,
   updateProgress,
-  setCurrentLessonSrc,
+  setCurrentLesson,
   fetchStudentBasicProfile,
   updateStudentBasicProfile,
   fetchEnrolledCourses,

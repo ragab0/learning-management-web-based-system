@@ -19,22 +19,17 @@ export default function HomePage() {
       {/* <ScrollAnimatedSection>
         <Statistics />
       </ScrollAnimatedSection> */}
-
       {/* <ScrollAnimatedSection isFadeup={true}>
         <TopCategories />
       </ScrollAnimatedSection> */}
 
       <InfoSection />
 
-      <ScrollAnimatedSection isFadeup={true}>
-        <LineOfCourses title="Top Courses" />
-      </ScrollAnimatedSection>
+      <LineOfCourses title="Top Courses" />
 
       <LineOfInstructors title="Top Instructors" />
 
-      <ScrollAnimatedSection isFadeup={true}>
-        <CustomerComments />
-      </ScrollAnimatedSection>
+      <CustomerComments />
 
       <About />
     </div>

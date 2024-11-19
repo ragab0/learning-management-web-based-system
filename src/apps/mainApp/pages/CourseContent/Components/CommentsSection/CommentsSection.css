@@ -1,0 +1,21 @@
+.comment .profile-img {
+  width: 30px;
+  height: 30px;
+  font-size: 0.7rem;
+}
+
+.comment .public-DraftStyleDefault-block {
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+}
+
+.reply-comment,
+.reply-comment-editor-wrapper {
+  border-left: 2px solid var(--grey-border);
+  margin-inline-start: -0.625rem;
+  padding-inline-start: 0.625rem;
+}
+
+.reply-comment .comment {
+  margin-bottom: 0 !important;
+}
