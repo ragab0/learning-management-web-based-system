@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { basicThinker, toastedThinker } from "../../utils/thunks";
+import {
+  basicThinker,
+  basicThinkerMain,
+  toastedThinker,
+} from "../../utils/thunks";
 import { toast } from "react-toastify";
 import { fixedToastOptions } from "../../utils/fixedToast";
 import { apiLoadingBuilder } from "../../utils/apiLoadingBuilder";
@@ -32,6 +36,14 @@ const initialState = {
   },
   extractedChapterInfo: {
     apiData: {},
+  },
+  reviews: { apiData: {}, isInitialized: false, loading: false, error: null },
+  chats: { apiData: {}, isInitialized: false, loading: false, error: null },
+  currentChatRoom: {
+    apiData: {},
+    isInitialized: false,
+    loading: false,
+    error: null,
   },
 };
 
@@ -82,6 +94,27 @@ const mentorCoursePath = mentorCoursesPath + `/extract-playlist`;
 const extractMentorChapterYoutubePlaylist = createAsyncThunk(
   `${NAME}/extractMentorChapterYoutubePlaylist`,
   toastedThinker("post", mentorCoursePath, "Extracting a youtube playlist")
+);
+
+/** Mentor [Reviews, chats, currentChatRoom] */
+
+/************* Student [Messages, Chats] ***************/
+const messagesPath = `/mentor/messages`;
+const chatsPath = `/mentor/chats`;
+
+const fetchChats = createAsyncThunk(
+  `${NAME}/fetchChats`,
+  basicThinkerMain("get", chatsPath)
+);
+
+const fetchChatRoom = createAsyncThunk(
+  `${NAME}/fetchChatRoom`,
+  basicThinkerMain("get", chatsPath)
+);
+
+const addMessage = createAsyncThunk(
+  `${NAME}/addMessage`,
+  basicThinkerMain("get", messagesPath)
 );
 
 const mentorSlice = createSlice({
@@ -190,6 +223,11 @@ const mentorSlice = createSlice({
 
     apiLoadingBuilder(builder, deleteMentorCourse, "taughtCourses");
     apiLoadingBuilder(builder, fetchMentorCourse, "currentCourse");
+
+    /** [chats, messages, reviews] */
+    apiLoadingBuilder(builder, fetchChats, "chats");
+    apiLoadingBuilder(builder, fetchChatRoom, "currentChatRoom");
+    apiLoadingBuilder(builder, addMessage, "chats");
   },
 });
 
@@ -217,4 +255,7 @@ export {
   deleteMentorCourse,
   fetchMentorCourse,
   extractMentorChapterYoutubePlaylist,
+  fetchChats,
+  fetchChatRoom,
+  addMessage,
 };

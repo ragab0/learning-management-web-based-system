@@ -1,26 +1,64 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ChatRoom.css";
-import ArrowIcon from "../../assets/svgsComps/ArrowIcon";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { msgsData } from "../../data/chat";
+import { useDispatch, useSelector } from "react-redux";
+import ArrowIcon from "../../assets/svgsComps/ArrowIcon";
+import NoContent from "../NoContent/NoContent";
+import Loader from "../Loader/Loader";
+import ProfileImg from "../ProfileImg/ProfileImg";
+import {
+  fetchMentorChatRoom,
+  fetchStudentChatRoom,
+} from "../../store/slices/chatsSlice";
 
-export default function ChatRoom() {
+export default function ChatRoom({ type = "student" }) {
+  const { roomId } = useParams();
+  const dispatch = useDispatch();
+  const {
+    apiData: { result = {} },
+    loading,
+    isInitialized,
+    error,
+  } = useSelector((state) => state.chats.currentChatRoom);
+
+  const targetUser = type === "student" ? result.mentor : result.student;
+  const { fname, lname, photo } = targetUser || {};
+
+  useEffect(
+    function () {
+      const action =
+        type === "mentor" ? fetchMentorChatRoom : fetchStudentChatRoom;
+      dispatch(action({ anotherDynamicPath: "/" + roomId }));
+    },
+    [dispatch, roomId, type]
+  );
+
+  if (!isInitialized || loading) {
+    return <Loader />;
+  }
+
+  if (isInitialized && error) {
+    return <NoContent />;
+  }
+
   return (
-    <main className="chat-room">
+    <div className="chat-room d-flex flex-column h-100">
       <header className="header">
         <div className="header-user-info d-flex align-items-center gap-2">
           <Link to=".." className="btn d-flex align-items-center py-3">
             <ArrowIcon />
           </Link>
-          <img src="" alt="Mentor" className="avatar border-1 border-black" />
-          <h2 className="user-name h5 mb-0">Ronald Richards</h2>
+          <ProfileImg fL={fname[0]} lL={lname[0]} photo={photo} />
+          <h2 className="user-name h4 mb-0">
+            {fname} {lname}
+          </h2>
         </div>
         {/* <p>...</p> */}
       </header>
-      <div className="chat-room-body p-3">
-        <div className="date-chip mx-auto rounded-2 my-3">Today</div>
-        {msgsData.map(({ sender, text, timestamp }, i) => (
+      <div className="chat-room-body p-3" style={{ height: "100%" }}>
+        {/* <div className="date-chip mx-auto rounded-2 my-3">Today</div> */}
+        {/* {msgsData.map(({ sender, text, timestamp }, i) => (
           <p
             key={i}
             className={`message ${sender !== "123" ? "reply-message" : ""}`}
@@ -28,10 +66,10 @@ export default function ChatRoom() {
             {text}
             <span className="timestamp">{timestamp}</span>
           </p>
-        ))}
+        ))} */}
       </div>
       <MessageForm />
-    </main>
+    </div>
   );
 }
 
@@ -55,7 +93,7 @@ function MessageForm() {
         className={`form-control py-2 ${
           errors?.message ? "is-invalid border-danger" : ""
         }`}
-        placeholder="type your message"
+        placeholder="Type your message"
         {...register("message", {
           required: "Message must not be empty!",
         })}

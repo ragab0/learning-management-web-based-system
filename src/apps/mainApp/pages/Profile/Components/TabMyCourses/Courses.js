@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CourseOvervewCard from "../../../../components/CourseOvervewCard/CourseOvervewCard";
 import PaginationMain from "../../../../../../components/PaginationMain/PaginationMain";
 import NoContent from "../../../../../../components/NoContent/NoContent";
@@ -19,13 +19,6 @@ export default function Courses({ isArchived }) {
     isInitialized,
   } = useSelector(
     (state) => state.student[isArchived ? "archivedCourses" : "enrolledCourses"]
-  );
-
-  useEffect(
-    function () {
-      dispatch(isArchived ? fetchArchivedCourses() : fetchEnrolledCourses());
-    },
-    [dispatch, isArchived]
   );
 
   function archiveHandler(id) {

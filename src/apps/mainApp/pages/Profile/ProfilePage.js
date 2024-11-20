@@ -8,7 +8,7 @@ export default function ProfilePage() {
     <div className="profile-page">
       <div className="content-aside-layout content-aside-layout-reverse container">
         <Aside />
-        <main className="profile-page-main">
+        <main className="profile-page-main d-grid">
           <Outlet />
         </main>
       </div>

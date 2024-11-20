@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function MentorOverviewCard({ mentor = {} }) {
-  const { _id, fname, lname, headline, photo } = mentor;
+  const { _id, fname, lname, headline, photo, chatId } = mentor;
   return (
     <div className="h-100">
       <Link
@@ -19,7 +19,7 @@ export default function MentorOverviewCard({ mentor = {} }) {
             </h5>
             <h6 className=" fs-6">{headline}</h6>
             <Link
-              to={`/profile/messages/${_id}`}
+              to={`/profile/chats/${chatId}`}
               className="btn btn-primary mt-2"
             >
               Send Message

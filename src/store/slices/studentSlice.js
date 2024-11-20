@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { fixedToastOptions } from "../../utils/fixedToast";
-import { basicThinker, toastedThinker } from "../../utils/thunks";
+import {
+  basicThinker,
+  basicThinkerMain,
+  toastedThinker,
+} from "../../utils/thunks";
 import { apiLoadingBuilder } from "../../utils/apiLoadingBuilder";
 
 /**
@@ -15,7 +19,7 @@ import { apiLoadingBuilder } from "../../utils/apiLoadingBuilder";
  * 05) wishlist: [getAll, ^^^1.addOne, ^^^2.removeOne, ^^^3.cartOne (move)];
  *
  * Student mentors: [getAll];
- * Student messages: [getAll];
+ * Student chats: [getAll];
  * Student reviews: [getAll];
  * Student chats: [getAll];
  *
@@ -61,9 +65,7 @@ const initialState = {
   },
   checkout: { apiData: {}, isInitialized: false, loading: false, error: null },
   mentors: { apiData: {}, isInitialized: false, loading: false, error: null },
-  messages: { apiData: {}, isInitialized: false, loading: false, error: null },
   reviews: { apiData: {}, isInitialized: false, loading: false, error: null },
-  chats: { apiData: {}, isInitialized: false, loading: false, error: null },
 };
 
 /******************** Studnet basic profile (Fetch && Update) */
@@ -168,24 +170,12 @@ const checkoutCartCourses = createAsyncThunk(
   toastedThinker("post", checkoutPath, "Checking our")
 );
 
-/****************************************** [Mentors, Messages, Reviews, Chats] **********************/
+/******************* Student Mentors *******************/
 const mentorsPath = `/student/mentors`;
-const messagesPath = `/student/messages`;
-const chatsPath = `/student/chats`;
 
 const fetchMentors = createAsyncThunk(
   `${NAME}/fetchMentors`,
   basicThinker("get", mentorsPath)
-);
-
-const fetchMessages = createAsyncThunk(
-  `${NAME}/fetchMessages`,
-  basicThinker("get", messagesPath)
-);
-
-const fetchChats = createAsyncThunk(
-  `${NAME}/fetchChats`,
-  basicThinker("get", chatsPath)
 );
 
 const studentSlice = createSlice({
@@ -278,14 +268,11 @@ const studentSlice = createSlice({
     apiLoadingBuilder(builder, fetchWishlistCourses, "wishlistCourses");
     apiLoadingBuilder(builder, addWishlistCourse, "wishlistCourses");
     apiLoadingBuilder(builder, removeWishlistCourse, "wishlistCourses");
-
     // 05) checkoutCartCourses
     apiLoadingBuilder(builder, checkoutCartCourses, "checkout");
 
-    /** [Mentors, messages, reviews, chats] */
+    // 06) Mentors
     apiLoadingBuilder(builder, fetchMentors, "mentors");
-    apiLoadingBuilder(builder, fetchMessages, "messages");
-    apiLoadingBuilder(builder, fetchChats, "chats");
   },
 });
 
@@ -312,6 +299,4 @@ export {
   removeWishlistCourse,
   checkoutCartCourses,
   fetchMentors,
-  fetchMessages,
-  fetchChats,
 };

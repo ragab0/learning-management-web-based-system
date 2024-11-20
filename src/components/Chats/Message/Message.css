@@ -15,10 +15,14 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 18px;
   color: var(--grey-900, #0f172a);
   font-weight: 600;
   line-height: 1.6;
+}
+
+.user-info h2 {
+  font-size: 18px;
+  margin-bottom: 0;
 }
 
 .user-avatar {

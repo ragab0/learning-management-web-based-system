@@ -117,7 +117,7 @@ export default function Comment({ comment = {} }) {
                 wrapperClassName="comment-readonly-editor-wrapper"
               />
               <div className="d-flex gap-3 align-items-center bold mb-3">
-                <button className="btn d-flex align-items-center">
+                {/* <button className="btn d-flex align-items-center">
                   <UpArrowEmpty width={20} height={20} />
                 </button>
                 {0}
@@ -127,7 +127,7 @@ export default function Comment({ comment = {} }) {
                     height={20}
                     className=" fa-rotate-180"
                   />
-                </button>
+                </button> */}
                 <button
                   className="btn d-flex align-items-center gap-1 opacity-50"
                   onClick={replyViewHandler}

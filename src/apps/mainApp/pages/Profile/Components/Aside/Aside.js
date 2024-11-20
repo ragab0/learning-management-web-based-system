@@ -8,7 +8,7 @@ const links = [
   { name: "profile", to: "." },
   { name: "courses" },
   { name: "teachers" },
-  { name: "messages" },
+  { name: "chats" },
   { name: "reviews" },
 ];
 

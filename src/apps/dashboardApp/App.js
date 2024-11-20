@@ -34,7 +34,7 @@ import Chapter from "./pages/Course/components/ChaptersTab/Chapter/Chapter";
 import Lessons from "./pages/Course/components/ChaptersTab/Chapter/Lessons/Lessons";
 import NotFound from "../../components/NotFound/NotFound";
 import ChatRoom from "../../components/ChatRoom/ChatRoom";
-import MessagesTab from "./pages/Communication/MessagesTab/MessagesTab";
+import ChatTab from "./pages/Communication/ChatTab/ChatTab";
 
 const ROLE = "mentor";
 const notRequireAuthRoutes = [
@@ -121,9 +121,9 @@ export default function DashboardApp() {
           }
         >
           <Route index element={<FullReviewsTab />} />
-          <Route path="messages">
-            <Route index element={<MessagesTab />} />
-            <Route path=":id" element={<ChatRoom />} />
+          <Route path="chats">
+            <Route index element={<ChatTab />} />
+            <Route path=":roomId" element={<ChatRoom type="mentor" />} />
           </Route>
         </Route>
         {/* protected (full - with children) */}

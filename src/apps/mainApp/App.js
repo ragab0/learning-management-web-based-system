@@ -22,7 +22,7 @@ import useLoginCheck from "../../hooks/useLoginCheck";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import NotFound from "../../components/NotFound/NotFound";
 import ChatRoom from "../../components/ChatRoom/ChatRoom";
-import TabMyMessages from "./pages/Profile/Components/TabMyMessages/TabMyMessages";
+import TabMyChats from "./pages/Profile/Components/TabMyChats/TabMyChats";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 
 const ROLE = "student";
@@ -81,9 +81,9 @@ function App() {
               />
             </Route>
             <Route path="teachers" element={<TabMyTeachers />} />
-            <Route path="messages">
-              <Route index element={<TabMyMessages />} />
-              <Route path=":id" element={<ChatRoom />} />
+            <Route path="chats">
+              <Route index element={<TabMyChats />} />
+              <Route path=":roomId" element={<ChatRoom />} />
             </Route>
             <Route path="reviews" element={<TabMyReviews />} />
           </Route>

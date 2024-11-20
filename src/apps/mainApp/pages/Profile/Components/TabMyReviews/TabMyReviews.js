@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./TabMyReviews.css";
 import NoContent from "../../../../../../components/NoContent/NoContent";
 import Reviews from "../../../../../../components/Reviews/Reviews";
 import MyHeader from "../MyHeader/MyHeader";
 import PaginationMain from "../../../../../../components/PaginationMain/PaginationMain";
 import Skeleton from "react-loading-skeleton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchStudentReviews } from "../../../../../../store/slices/reviewsSlice";
 
 const sortOptions = [
@@ -14,20 +14,11 @@ const sortOptions = [
 ];
 
 export default function TabMyReviews() {
-  const dispatch = useDispatch();
   const {
     apiData: { results = [], totalPages, page: activePage },
     loading,
     isInitialized,
   } = useSelector((state) => state.reviews.studentReviews);
-
-  useEffect(
-    function () {
-      dispatch(fetchStudentReviews());
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
 
   return (
     <div className="tab-reviews">

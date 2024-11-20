@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./TabMyTeachers.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMentors } from "../../../../../../store/slices/studentSlice";
@@ -20,14 +20,6 @@ export default function TabMyTeachers() {
     isInitialized,
     loading,
   } = useSelector((state) => state.student.mentors);
-
-  useEffect(
-    function () {
-      dispatch(fetchMentors());
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
 
   return (
     <div className="tab-my-teachers">
