@@ -8,6 +8,7 @@ export default function PaginationMain({
   activePage,
   pageSize,
   thunkAction,
+  doInitialLoad = true,
 }) {
   const shownPages = [
     1,
@@ -25,9 +26,11 @@ export default function PaginationMain({
 
   useEffect(
     function () {
-      dispatch(thunkAction(searchParams.toString()));
+      if (doInitialLoad) {
+        dispatch(thunkAction(searchParams.toString()));
+      }
     },
-    [searchParams, dispatch, thunkAction]
+    [searchParams, dispatch, thunkAction, doInitialLoad]
   );
 
   function pageHandler(p) {

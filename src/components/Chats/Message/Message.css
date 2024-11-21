@@ -38,8 +38,9 @@
   margin: auto 0;
 }
 
-.message-content {
-  color: var(--grey-900, #0f172a);
-  font-weight: 500;
-  margin-top: 1rem;
+.message-content-wrapper p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-block: 0.5rem 0;
 }

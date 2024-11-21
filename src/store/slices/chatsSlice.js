@@ -54,6 +54,15 @@ const addMentorMessage = createAsyncThunk(
 const chatsSlice = createSlice({
   name: NAME,
   initialState,
+  reducers: {
+    addMessageClientSide(state, action) {
+      if (!state.currentChatRoom.apiData.result) {
+        state.currentChatRoom.apiData.result = {};
+        state.currentChatRoom.apiData.result.msgs = [];
+      }
+      state.currentChatRoom.apiData.result.msgs.push(action.payload.msg);
+    },
+  },
   extraReducers(builder) {
     /** Student */
     apiLoadingBuilder(builder, fetchStudentChats, "chatsList");
@@ -67,6 +76,7 @@ const chatsSlice = createSlice({
 });
 
 export default chatsSlice.reducer;
+const { addMessageClientSide } = chatsSlice.actions;
 export {
   fetchStudentChats,
   fetchStudentChatRoom,
@@ -74,4 +84,5 @@ export {
   fetchMentorChats,
   fetchMentorChatRoom,
   addMentorMessage,
+  addMessageClientSide,
 };

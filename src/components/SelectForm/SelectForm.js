@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-export default function SelectForm({ name, label, options = [], thinkAction }) {
+export default function SelectForm({
+  name,
+  label,
+  options = [],
+  thinkAction,
+  doInitialLoad = true,
+}) {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentOptionObj, setter] = useState({});
@@ -16,9 +22,11 @@ export default function SelectForm({ name, label, options = [], thinkAction }) {
 
   useEffect(
     function () {
-      dispatch(thinkAction(searchParams.toString()));
+      if (doInitialLoad) {
+        dispatch(thinkAction(searchParams.toString()));
+      }
     },
-    [searchParams, dispatch, thinkAction]
+    [searchParams, dispatch, thinkAction, doInitialLoad]
   );
 
   useEffect(

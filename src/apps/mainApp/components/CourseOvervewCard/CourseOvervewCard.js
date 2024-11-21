@@ -40,8 +40,7 @@ export default function CourseOvervewCard({
     .toFixed(2);
 
   return (
-    <Link
-      to={`/${isEnrolled ? "study" : "courses"}/${_id}`}
+    <div
       className={`course-overvew-card ${
         isTwoSides ? "two-sides" : ""
       } d-block h-100`}
@@ -53,7 +52,9 @@ export default function CourseOvervewCard({
               Course has been archvied by owner!
             </p>
           )}
-          <img src={coursePhoto} alt={title} className=" rounded-2" />
+          <Link to={`/${isEnrolled ? "study" : "courses"}/${_id}`}>
+            <img src={coursePhoto} alt={title} className=" rounded-2" />
+          </Link>
         </div>
         <fieldset className="pt-3">
           <div className=" text-capitalize">
@@ -87,7 +88,7 @@ export default function CourseOvervewCard({
           {children}
         </fieldset>
       </figure>
-    </Link>
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./ChatRoom.css";
 import { Link, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -7,12 +7,19 @@ import ArrowIcon from "../../assets/svgsComps/ArrowIcon";
 import NoContent from "../NoContent/NoContent";
 import Loader from "../Loader/Loader";
 import ProfileImg from "../ProfileImg/ProfileImg";
+import mySocket from "../../utils/myIoSocketServer";
+import Reply from "./Reply/Reply";
+import debounce from "lodash.debounce";
 import {
+  addMessageClientSide,
   fetchMentorChatRoom,
   fetchStudentChatRoom,
 } from "../../store/slices/chatsSlice";
 
 export default function ChatRoom({ type = "student" }) {
+  const datesHistory = new Set();
+
+  const [isTyping, setIsTyping] = useState(false);
   const { roomId } = useParams();
   const dispatch = useDispatch();
   const {
@@ -21,9 +28,13 @@ export default function ChatRoom({ type = "student" }) {
     isInitialized,
     error,
   } = useSelector((state) => state.chats.currentChatRoom);
+  const currentUserId = useSelector(
+    (state) => state.auth.login.apiData.result?._id
+  );
 
   const targetUser = type === "student" ? result.mentor : result.student;
   const { fname, lname, photo } = targetUser || {};
+  const msgs = result.msgs || [];
 
   useEffect(
     function () {
@@ -42,6 +53,15 @@ export default function ChatRoom({ type = "student" }) {
     return <NoContent />;
   }
 
+  function checkDay(day) {
+    if (datesHistory.has(day)) {
+      return false;
+    } else {
+      datesHistory.add(day);
+      return true;
+    }
+  }
+
   return (
     <div className="chat-room d-flex flex-column h-100">
       <header className="header">
@@ -57,23 +77,28 @@ export default function ChatRoom({ type = "student" }) {
         {/* <p>...</p> */}
       </header>
       <div className="chat-room-body p-3" style={{ height: "100%" }}>
-        {/* <div className="date-chip mx-auto rounded-2 my-3">Today</div> */}
-        {/* {msgsData.map(({ sender, text, timestamp }, i) => (
-          <p
+        {msgs.map((msg, i) => (
+          <Reply
             key={i}
-            className={`message ${sender !== "123" ? "reply-message" : ""}`}
-          >
-            {text}
-            <span className="timestamp">{timestamp}</span>
-          </p>
-        ))} */}
+            msg={msg}
+            checkDay={checkDay}
+            currentUserId={currentUserId}
+          />
+        ))}
+        {isTyping && "Typing..."}
       </div>
-      <MessageForm />
+      <MessageForm
+        roomId={roomId}
+        isTyping={isTyping}
+        setIsTyping={setIsTyping}
+        currentUserId={currentUserId}
+      />
     </div>
   );
 }
 
-function MessageForm() {
+function MessageForm({ roomId, setIsTyping, currentUserId }) {
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
@@ -81,13 +106,81 @@ function MessageForm() {
     handleSubmit,
   } = useForm();
 
+  const debouncedStartTyping = useCallback(
+    debounce(() => {
+      mySocket.emit("userStartTyping", { roomId });
+    }, 500),
+    []
+  );
+
+  const debouncedStopTyping = useCallback(
+    debounce(() => {
+      mySocket.emit("userStopedTyping", { roomId });
+    }, 500),
+    []
+  );
+
+  const handleInputChange = useCallback(
+    (e) => {
+      const inputValue = e.target.value;
+
+      // Cancel previous debounced calls
+      debouncedStartTyping.cancel();
+      debouncedStopTyping.cancel();
+
+      if (inputValue.trim() !== "") {
+        debouncedStartTyping();
+      } else {
+        debouncedStopTyping();
+      }
+    },
+    [debouncedStartTyping, debouncedStopTyping]
+  );
+
+  useEffect(() => {
+    mySocket.emit("joinRoom", { roomId });
+    return function () {
+      mySocket.off("joinRoom");
+    };
+  }, [roomId]);
+
+  useEffect(() => {
+    mySocket.on("userStartTyping", () => {
+      setIsTyping(true);
+    });
+    mySocket.on("userStopedTyping", () => {
+      setIsTyping(false);
+    });
+
+    return function () {
+      mySocket.off("userStartTyping");
+      mySocket.off("userStopedTyping");
+    };
+  }, [setIsTyping]);
+
+  useEffect(() => {
+    mySocket.on("savedMessage", function (msgData) {
+      dispatch(addMessageClientSide({ msg: msgData }));
+    });
+
+    return function () {
+      mySocket.off("savedMessage");
+    };
+  }, [dispatch]);
+
   function submitHandler(data) {
     reset();
+    mySocket.emit("newMessage", {
+      content: data.message,
+      roomId,
+    });
+    debouncedStopTyping();
   }
+
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
-      className="input-container d-flex gap-3 p-3 mt-3 border-top"
+      className="input-container d-flex gap-3 p-3 border-top"
     >
       <input
         className={`form-control py-2 ${
@@ -96,6 +189,7 @@ function MessageForm() {
         placeholder="Type your message"
         {...register("message", {
           required: "Message must not be empty!",
+          onChange: handleInputChange,
         })}
       />
       <button type="submit" className="btn btn-primary">

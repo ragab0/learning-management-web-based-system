@@ -3,9 +3,10 @@ import "./Message.css";
 import { Link } from "react-router-dom";
 import ProfileImg from "../../ProfileImg/ProfileImg";
 
-export default function Message({ chat, type = "student" }) {
-  const { _id, student, mentor } = chat;
+export default function Message({ chat = {}, type = "student" }) {
+  const { _id, student, mentor, lastMessage = {} } = chat;
   const { fname, lname, photo } = type === "mentor" ? student : mentor;
+  const { content, createdAt } = lastMessage;
 
   return (
     <Link to={`./${_id}`} className="message-wrappepr">
@@ -17,11 +18,18 @@ export default function Message({ chat, type = "student" }) {
               {fname} {lname}
             </h2>
           </div>
-          {/* <time className={"message-date"} dateTime={date}>
-            {date}
-          </time> */}
+          <time className={"message-date"} dateTime={createdAt}>
+            {createdAt &&
+              new Intl.DateTimeFormat(undefined, {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              }).format(new Date(createdAt))}
+          </time>
         </header>
-        {/* <p className={"message-content"}>{content}</p> */}
+        <div className="message-content-wrapper">
+          <p>{content}</p>
+        </div>
       </article>
     </Link>
   );

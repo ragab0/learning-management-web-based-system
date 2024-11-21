@@ -42,6 +42,7 @@ export default function MyHeader({
             currentOptionObj={currentOptionObj}
             thinkAction={thinkAction}
             fetchInitialState={false}
+            doInitialLoad={false}
           />
         </div>
       </div>
