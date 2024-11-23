@@ -10,12 +10,13 @@ const sortOptions = [
 
 export default function TabMyChats() {
   return (
-    <Chats>
+    <div className="tab-chats h-100">
       <MyHeader
         title="chats"
         sortOptions={sortOptions}
         thinkAction={fetchStudentChats}
       />
-    </Chats>
+      <Chats />
+    </div>
   );
 }

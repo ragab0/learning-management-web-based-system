@@ -25,9 +25,9 @@ export default function Chats({ children, type = "student" }) {
       mySocket.emit("joinLopyOfRooms", { roomIds: results.map((r) => r._id) });
     }
 
-    // return function() {
-    //   mySocket.off("joinLopyOfRooms");
-    // }
+    return function () {
+      mySocket.off("joinLopyOfRooms");
+    };
   }, [results]);
 
   useEffect(() => {
@@ -50,8 +50,7 @@ export default function Chats({ children, type = "student" }) {
   }
 
   return (
-    <div className="tab-chats h-100">
-      {children}
+    <div className="chats-wrapper">
       <div className="chats">
         {results.map((chat, i) => (
           <Message type={type} key={i} chat={chat} />

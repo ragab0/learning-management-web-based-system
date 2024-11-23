@@ -85,7 +85,13 @@ export default function ChatRoom({ type = "student" }) {
             currentUserId={currentUserId}
           />
         ))}
-        {isTyping && "Typing..."}
+        {isTyping && (
+          <div className="typing-indicator">
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </div>
+        )}
       </div>
       <MessageForm
         roomId={roomId}
@@ -97,84 +103,77 @@ export default function ChatRoom({ type = "student" }) {
   );
 }
 
-function MessageForm({ roomId, setIsTyping, currentUserId }) {
+function MessageForm({ roomId, isTyping, setIsTyping, currentUserId }) {
   const dispatch = useDispatch();
+  const [isInputEmpty, setIsInputEmpty] = useState(true);
   const {
     register,
-    formState: { errors },
-    reset,
+    formState: { errors, isValid, isDirty },
+    setValue,
     handleSubmit,
+    watch,
   } = useForm();
-
-  const debouncedStartTyping = useCallback(
-    debounce(() => {
-      mySocket.emit("userStartTyping", { roomId });
-    }, 500),
-    []
-  );
-
-  const debouncedStopTyping = useCallback(
-    debounce(() => {
-      mySocket.emit("userStopedTyping", { roomId });
-    }, 500),
-    []
-  );
-
-  const handleInputChange = useCallback(
-    (e) => {
-      const inputValue = e.target.value;
-
-      // Cancel previous debounced calls
-      debouncedStartTyping.cancel();
-      debouncedStopTyping.cancel();
-
-      if (inputValue.trim() !== "") {
-        debouncedStartTyping();
-      } else {
-        debouncedStopTyping();
-      }
-    },
-    [debouncedStartTyping, debouncedStopTyping]
-  );
+  const message = watch("message");
 
   useEffect(() => {
     mySocket.emit("joinRoom", { roomId });
-    return function () {
+    return () => {
       mySocket.off("joinRoom");
+      mySocket.emit("userStopedTyping", { roomId });
     };
   }, [roomId]);
 
   useEffect(() => {
-    mySocket.on("userStartTyping", () => {
-      setIsTyping(true);
-    });
-    mySocket.on("userStopedTyping", () => {
-      setIsTyping(false);
-    });
-
-    return function () {
-      mySocket.off("userStartTyping");
-      mySocket.off("userStopedTyping");
-    };
-  }, [setIsTyping]);
-
-  useEffect(() => {
-    mySocket.on("savedMessage", function (msgData) {
+    const handleSavedMessage = (msgData) => {
       dispatch(addMessageClientSide({ msg: msgData }));
-    });
+    };
 
-    return function () {
-      mySocket.off("savedMessage");
+    mySocket.on("savedMessage", handleSavedMessage);
+    return () => {
+      mySocket.off("savedMessage", handleSavedMessage);
     };
   }, [dispatch]);
 
+  useEffect(
+    function () {
+      mySocket.on("userStartTyping", () => {
+        console.log(1);
+        setIsTyping(true);
+      });
+      mySocket.on("userStopedTyping", () => {
+        console.log(0);
+        setIsTyping(false);
+      });
+      return function () {
+        mySocket.off("userStartTyping");
+        mySocket.off("userStopedTyping");
+      };
+    },
+    [setIsTyping]
+  );
+
+  useEffect(function () {}, [message]);
+
+  function changeHandler({ target: { value } }) {
+    if (value.trim() && isInputEmpty) {
+      mySocket.emit("userStartTyping", { roomId });
+      setIsInputEmpty(false);
+      console.log("typing");
+    } else if (!value.trim() && !isInputEmpty) {
+      mySocket.emit("userStopedTyping", { roomId });
+      setIsInputEmpty(true);
+      console.log("stoped");
+    }
+  }
+
   function submitHandler(data) {
-    reset();
+    mySocket.emit("userStopedTyping", { roomId });
     mySocket.emit("newMessage", {
-      content: data.message,
+      content: data.message.trim(),
       roomId,
     });
-    debouncedStopTyping();
+    setIsInputEmpty(true);
+    setValue("message", "");
   }
 
   return (
@@ -183,16 +182,20 @@ function MessageForm({ roomId, setIsTyping, currentUserId }) {
       className="input-container d-flex gap-3 p-3 border-top"
     >
       <input
-        className={`form-control py-2 ${
-          errors?.message ? "is-invalid border-danger" : ""
-        }`}
+        className="form-control py-2"
         placeholder="Type your message"
         {...register("message", {
           required: "Message must not be empty!",
-          onChange: handleInputChange,
+          validate: (value) =>
+            value.trim().length > 0 || "Message cannot be empty",
+          onChange: changeHandler,
         })}
       />
-      <button type="submit" className="btn btn-primary">
+      <button
+        type="submit"
+        className="btn btn-primary"
+        disabled={!isValid || !isDirty}
+      >
         Send
       </button>
     </form>

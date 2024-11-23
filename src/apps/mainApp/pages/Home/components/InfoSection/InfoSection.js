@@ -9,7 +9,7 @@ export default function InfoSection() {
       <div className="container">
         <header>
           <ScrollAnimatedSection>
-            <h2>Benefits of Joining EDEPedia - DEPI Academy</h2>
+            <h2>Benefits of Joining EDEPedia, DEPI Academy</h2>
           </ScrollAnimatedSection>
         </header>
         <div className="row d-flex justify-content-between">

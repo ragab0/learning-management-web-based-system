@@ -1,8 +1,9 @@
 .home-page .home-header {
-  margin-block: 50px 100px;
+  margin-block: 50px 250px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem 5rem;
 }
 
 .header-content {
