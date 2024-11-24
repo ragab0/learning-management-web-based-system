@@ -108,8 +108,10 @@ export default function CustomerComments() {
     <section className="customer-comments-section container">
       <div className=" d-flex justify-content-center align-items-center row">
         <header className="col-lg-6 col-md-12">
-          <h1 className=" fw-semibold text-center">What Our Customers</h1>
-          <h1 className=" fw-semibold text-center">Say About Us...</h1>
+          <h2 className="fw-semibold text-center mb-0">
+            What Our Customers
+            <span className="d-block">Say About Us...</span>
+          </h2>
         </header>
         <motion.div
           style={{ width: "300px", height: "200px", position: "relative" }}

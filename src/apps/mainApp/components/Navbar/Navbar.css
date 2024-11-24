@@ -125,3 +125,34 @@
     display: none;
   }
 }
+
+/* first mobile design */
+@media (min-width: 768px) {
+  .main-navbar .menu-icon {
+    display: none;
+  }
+}
+
+.main-navbar .my-btn {
+  /* border-radius: 0 !important; */
+  border: 1px solid currentColor;
+  text-transform: capitalize;
+}
+
+.main-navbar .btn--dark-light {
+  color: #fff;
+  background-color: var(--clr-grey-dark);
+  border-color: var(--clr-grey-dark);
+}
+
+.main-navbar .btn--dark-light:hover {
+  background-color: var(--clr-grey-darker);
+}
+
+.main-navbar .btn--trans {
+  border-color: var(--clr-grey-dark);
+}
+
+.main-navbar .btn--trans:hover {
+  background-color: #eeee;
+}

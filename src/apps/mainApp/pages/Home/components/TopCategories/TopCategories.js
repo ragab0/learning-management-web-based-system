@@ -5,7 +5,7 @@ import { topCatgs } from "../../../../../../data/topCatgs";
 
 export default function TopCategories() {
   return (
-    <section className="top-catgs">
+    <div className="top-catgs">
       <div className="container">
         <header className="d-flex justify-content-between">
           <h2>Top Categories</h2>
@@ -29,6 +29,6 @@ export default function TopCategories() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -5,7 +5,7 @@ import Benifit4 from "../assets/svgsComps/benifits/Benifit4";
 import Benifit5 from "../assets/svgsComps/benifits/Benifit5";
 import Benifit6 from "../assets/svgsComps/benifits/Benifit6";
 
-export const infoSectionData = [
+export const BenefitsData = [
   {
     Icon: Benifit1,
     title: "Free Courses",

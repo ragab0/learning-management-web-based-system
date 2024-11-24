@@ -8,21 +8,15 @@ import LineOfCourses from "../../components/LineOfCourses/LineOfCourses";
 import CustomerComments from "../../components/CustomerComments/CustomerComments";
 import About from "./components/About/About";
 import LineOfInstructors from "../../components/LineOfInstructors/LineOfInstructors";
-import InfoSection from "./components/InfoSection/InfoSection";
+import Benefits from "./components/Benefits/Benefits";
 
 export default function HomePage() {
   return (
     <div className="home-page">
       <Header />
-      {/* <ScrollAnimatedSection>
-        <Statistics />
-      </ScrollAnimatedSection> */}
-      {/* <ScrollAnimatedSection isFadeup={true}>
-        <TopCategories />
-      </ScrollAnimatedSection> */}
-      <InfoSection />
-      <LineOfCourses title="Top Courses" />
-      <LineOfInstructors title="Top Instructors" />
+      <Benefits />
+      <LineOfCourses title="Top Courses" mt={true} />
+      <LineOfInstructors title="Top Instructors" mt={true} />
       <CustomerComments />
       <About />
     </div>

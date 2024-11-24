@@ -18,7 +18,7 @@ const statistics = [
 
 export default function Statistics() {
   return (
-    <section className="statistics-section">
+    <div className="statistics">
       <div className="container ">
         <div className="d-flex stats overflow-x-auto">
           {statistics.map(({ title }, i) => (
@@ -35,6 +35,6 @@ export default function Statistics() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

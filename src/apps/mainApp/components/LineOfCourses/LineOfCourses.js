@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import CourseOvervewCard from "../CourseOvervewCard/CourseOvervewCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopCourses } from "../../../../store/slices/topSlice";
-import ScrollAnimatedSection from "../ScrollAnimatedFadeup/ScrollAnimatedFadeup";
 import NoContent from "../../../../components/NoContent/NoContent";
+import ScrollAnimations from "../ScrollAnimations/ScrollAnimations";
 
-export default function LineOfCourses({ title }) {
+export default function LineOfCourses({ title, mt = false }) {
   const {
     apiData: { results = [] },
     error,
@@ -25,11 +25,14 @@ export default function LineOfCourses({ title }) {
 
   const renderCourses = () => {
     return results.map((course, index) => (
-      <div key={index} className="course-card-wrapper col-sm-12 gy-4">
-        <ScrollAnimatedSection isFadeup={true}>
-          <CourseOvervewCard course={course} isTwoSides={true} />
-        </ScrollAnimatedSection>
-      </div>
+      <ScrollAnimations
+        animationName="cardSprintToDown"
+        delay={0.1 * index}
+        key={index}
+        className="course-card-wrapper col-sm-12 gy-4"
+      >
+        <CourseOvervewCard course={course} isTwoSides={true} />
+      </ScrollAnimations>
     ));
   };
 
@@ -44,9 +47,9 @@ export default function LineOfCourses({ title }) {
         </header>
         <div className="row justify-content-center">
           {!isInitialized || loading ? (
-            [<Skel />]
+            <Skel />
           ) : error ? (
-            <NoContent />
+            <NoContent style={{ marginBlock: mt ? "100px 0" : "100px" }} />
           ) : (
             renderCourses()
           )}
@@ -58,8 +61,11 @@ export default function LineOfCourses({ title }) {
 
 function Skel() {
   return (
-    <div className="course-card-wrapper col-sm-12 gy-4">
+    <ScrollAnimations
+      animationName="scaleIn"
+      className="course-card-wrapper col-sm-12 gy-4"
+    >
       <CourseOvervewCard isTwoSides={true} skeleton={true} />
-    </div>
+    </ScrollAnimations>
   );
 }

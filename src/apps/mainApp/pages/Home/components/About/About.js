@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "./About.css";
 import { Link } from "react-router-dom";
 import { about } from "../../../../../../data/about";
-import ScrollAnimatedSection from "../../../../components/ScrollAnimatedFadeup/ScrollAnimatedFadeup";
+import ScrollAnimations from "../../../../components/ScrollAnimations/ScrollAnimations";
 
 export default function About() {
   const teamSvg = useRef(null);
@@ -11,43 +11,58 @@ export default function About() {
     const Ragab = document.querySelector(
       `svg g[clip-path="url(#clip0_5752_4210)"] + g > g:nth-of-type(2)`
     );
-
     Ragab.innerHTML = `<a target="_blank" href="https://www.linkedin.com/in/ragab-eid">${Ragab.outerHTML}</a>`;
   }, []);
 
   return (
-    <div className="instructors-overviews">
+    <section className="instructors-overviews">
       <div className="container">
-        {about.map(({ img, Svgg, title, desc, more }, i) => (
+        {about.map(({ Svgg, title, desc, more }, i) => (
           <section key={i} className="mb-5">
             <div
               className={`container row align-items-center justify-content-between ${
                 i % 2 === 0 ? "flex-row" : "flex-row-reverse"
               }`}
             >
-              <div className="col mb-4">
-                {Svgg && (
-                  <div ref={i === 1 ? teamSvg : null}>
-                    <Svgg />
-                  </div>
-                )}
-              </div>
+              <ScrollAnimations
+                className="col mb-4"
+                animationName="scaleIn"
+                delay={0.1}
+              >
+                <div ref={i === 1 ? teamSvg : null}>
+                  <Svgg />
+                </div>
+              </ScrollAnimations>
               <div className="header-content">
-                <h2>{title}</h2>
-                <p>{desc}</p>
-                <Link
-                  to={i / 2 === 0 ? "/dashboard/signup" : "/courses"}
-                  className="btn btn-dark p-3 ps-4 pe-4"
-                  scroll={true}
+                <ScrollAnimations
+                  animationName={i % 2 === 0 ? "springToLeft" : "springToRight"}
+                  delay={0.1}
                 >
-                  {more}
-                  <i className="fa-solid fa-arrow-right ps-2"></i>
-                </Link>
+                  <h2>{title}</h2>
+                </ScrollAnimations>
+                <ScrollAnimations
+                  animationName={i % 2 === 0 ? "springToLeft" : "springToRight"}
+                  delay={0.2}
+                >
+                  <p>{desc}</p>
+                </ScrollAnimations>
+                <ScrollAnimations
+                  animationName={i % 2 === 0 ? "springToLeft" : "springToRight"}
+                  delay={0.3}
+                >
+                  <Link
+                    to={i / 2 === 0 ? "/dashboard/signup" : "/courses"}
+                    className="btn btn-dark p-3 ps-4 pe-4"
+                  >
+                    {more}
+                    <i className="fa-solid fa-arrow-right ps-2"></i>
+                  </Link>
+                </ScrollAnimations>
               </div>
             </div>
           </section>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

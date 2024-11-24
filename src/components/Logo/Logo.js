@@ -5,7 +5,7 @@ import "./Logo.css";
 
 export default function Logo() {
   return (
-    <Link to="/" className="logo">
+    <Link to="/" className="logo me-auto">
       <LogoIcon />
       <span>EDEPedia</span>
     </Link>

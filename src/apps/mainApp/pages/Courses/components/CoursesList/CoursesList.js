@@ -3,6 +3,7 @@ import "./CoursesList.css";
 import { useSelector } from "react-redux";
 import CourseOvervewCard from "../../../../components/CourseOvervewCard/CourseOvervewCard";
 import NoContent from "../../../../../../components/NoContent/NoContent";
+import ScrollAnimations from "../../../../components/ScrollAnimations/ScrollAnimations";
 
 export default function CoursesList() {
   const {
@@ -16,9 +17,14 @@ export default function CoursesList() {
     return (
       <div className="row">
         {[...Array(9)].map((course, i) => (
-          <div className="col-md-6 mb-4" key={i}>
+          <ScrollAnimations
+            delay={0.05 * i}
+            animationName="cardSprintToDown"
+            className="col-md-6 mb-4"
+            key={i}
+          >
             <CourseOvervewCard skeleton={true} />
-          </div>
+          </ScrollAnimations>
         ))}
       </div>
     );
@@ -35,9 +41,14 @@ export default function CoursesList() {
   return (
     <div className="row">
       {results.map((course, i) => (
-        <div className="col-md-6 mb-4" key={i}>
+        <ScrollAnimations
+          delay={0.05 * i}
+          animationName="cardSprintToDown"
+          className="col-md-6 mb-4"
+          key={i}
+        >
           <CourseOvervewCard course={course} isLoading={loading} />
-        </div>
+        </ScrollAnimations>
       ))}
     </div>
   );

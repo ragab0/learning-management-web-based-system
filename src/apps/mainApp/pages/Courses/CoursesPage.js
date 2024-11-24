@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCourses } from "../../../../store/slices/coursesSlice";
 import FilterOptions from "./components/FilterOptions/FilterOptions";
 import SortOptions from "./components/SortOptions/SortOptions";
+import ScrollAnimations from "../../components/ScrollAnimations/ScrollAnimations";
 
 export default function CoursesPage() {
   const dispatch = useDispatch();

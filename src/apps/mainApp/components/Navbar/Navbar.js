@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { imgsComps } from "../../../../assets";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
 import Logo from "../../../../components/Logo/Logo";
 import Skeleton from "react-loading-skeleton";
 import ProfileImg from "../../../../components/ProfileImg/ProfileImg";
@@ -11,25 +13,30 @@ const { SearchIcon, ShoppingIcon, HeartIcon, NotificationIcon } = imgsComps;
 
 export default function Navbar() {
   const location = useLocation();
-  const [searchVal, setSearchVal] = useState("");
+  const { register, handleSubmit, watch } = useForm();
   const {
     isAuthRole,
     isInitialized,
     loading,
     apiData: { result: user = {} },
   } = useSelector((state) => state.auth.login);
-
-  function submitHandler(e) {
-    e.preventDefault();
-  }
+  const search = watch("search");
 
   if (location.pathname.includes("study")) return <div></div>;
 
+  function submitHandler(data) {}
+
   return (
-    <nav className={`main-navbar ${isAuthRole === "student" ? "auth" : ""}`}>
+    <motion.nav
+      initial={{ y: "-100%" }}
+      animate={{ y: 0 }}
+      transition={{ delay: 0.1 }}
+      className={`main-navbar ${isAuthRole === "student" ? "auth" : ""}`}
+    >
       {/* <div className="container-fluid"> */}
       <div className=" container-fluid px-4">
         <Logo />
+        <div className="menu-icon">111</div>
         <ul className="navbar-items">
           <li>
             <NavLink to={"/courses"} end>
@@ -37,19 +44,17 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li className="form-item">
-            <form onSubmit={submitHandler}>
+            <form onSubmit={handleSubmit(submitHandler)}>
               <input
                 className="form-control"
                 type="search"
-                name="search"
                 placeholder="Search on courses..."
-                value={searchVal}
-                onChange={(e) => setSearchVal(e.target.value)}
+                {...register("search")}
               />
               <div
                 className="button-wrapper d-flex align-items-center"
                 style={
-                  searchVal === ""
+                  search === ""
                     ? {
                         cursor: "not-allowed",
                       }
@@ -59,7 +64,7 @@ export default function Navbar() {
                 <button
                   type="submit"
                   className={`btn d-flex align-items-center ${
-                    searchVal === "" ? "disabled" : ""
+                    search === "" ? "disabled" : ""
                   }`}
                 >
                   <SearchIcon />
@@ -69,7 +74,7 @@ export default function Navbar() {
           </li>
         </ul>
         {loading ? (
-          <SkeletonNavbarItems />
+          <Skel />
         ) : isAuthRole === "student" ? (
           <AuthNavbarItems user={user} />
         ) : isInitialized ? (
@@ -78,7 +83,7 @@ export default function Navbar() {
           <ul></ul>
         )}
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 
@@ -91,7 +96,7 @@ function AuthNavbarItems({ user }) {
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/cart#wishlist"}>
+        <NavLink to={"/cart/#wishlist"}>
           <HeartIcon />
         </NavLink>
       </li>
@@ -101,7 +106,7 @@ function AuthNavbarItems({ user }) {
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/profile/messages"}>
+        <NavLink to={"/profile/chats"}>
           <NotificationIcon />
         </NavLink>
       </li>
@@ -141,12 +146,11 @@ function DefaultNavbarItems() {
   );
 }
 
-function SkeletonNavbarItems() {
+function Skel() {
   return (
-    <div className=" ms-3 d-flex">
-      <div className=" me-2 mt-1">
-        <Skeleton width={200} height={10} />
-        <Skeleton width={200} height={10} />
+    <div className="ms-3 d-flex justify-content-end">
+      <div className="me-2 mt-1">
+        <Skeleton width={200} height={10} count={2} />
       </div>
       <Skeleton width={45} height={45} className="rounded-circle" />
     </div>
