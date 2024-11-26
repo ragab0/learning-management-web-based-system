@@ -22,7 +22,6 @@ export default function CourseContentNav({ title }) {
   const {
     apiData: { result = {} },
     loading,
-    isInitialized,
   } = useSelector((state) => state.reviews.currentStudyCourseReview);
 
   const {
@@ -36,11 +35,7 @@ export default function CourseContentNav({ title }) {
 
   useEffect(
     function () {
-      dispatch(getReview({ id: courseId })).then(({ payload, error }) => {
-        if (!error) {
-          reset(payload.result);
-        }
-      });
+      dispatch(getReview({ id: courseId }));
     },
     [dispatch, courseId]
   );
@@ -51,7 +46,11 @@ export default function CourseContentNav({ title }) {
 
   function provideCloseHandler() {
     setIsOpen(false);
-    reset();
+  }
+
+  function closeModalHandler() {
+    provideCloseHandler();
+    reset(result);
   }
 
   function currentRatingHandler(count) {
@@ -67,7 +66,11 @@ export default function CourseContentNav({ title }) {
 
     dispatch(saveReview(myData))?.then(({ error }) => {
       if (!error) {
-        dispatch(fetchCourseReviews({ id: courseId }));
+        dispatch(fetchCourseReviews({ id: courseId }))?.then(({ error }) => {
+          if (!error) {
+            provideCloseHandler();
+          }
+        });
       }
     });
   }
@@ -76,8 +79,12 @@ export default function CourseContentNav({ title }) {
     dispatch(deleteReview({ anotherDynamicPath: `/${courseId}` }))?.then(
       ({ error }) => {
         if (!error) {
-          dispatch(fetchCourseReviews({ id: courseId }));
-          reset();
+          dispatch(fetchCourseReviews({ id: courseId }))?.then(({ error }) => {
+            if (!error) {
+              reset();
+              provideCloseHandler();
+            }
+          });
         }
       }
     );
@@ -97,7 +104,7 @@ export default function CourseContentNav({ title }) {
                 width: " fit-content",
                 borderColor: "var(--grey-border)",
               }}
-              onClick={provideCloseHandler}
+              onClick={closeModalHandler}
             >
               <CloseIcon />
             </i>

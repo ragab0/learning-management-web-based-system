@@ -106,35 +106,38 @@ export default function CustomerComments() {
 
   return (
     <section className="customer-comments-section container">
-      <div className=" d-flex justify-content-center align-items-center row">
+      <div className=" d-flex justify-content-center align-items-center row gy-4">
         <header className="col-lg-6 col-md-12">
           <h2 className="fw-semibold text-center mb-0">
             What Our Customers
             <span className="d-block">Say About Us...</span>
           </h2>
         </header>
-        <motion.div
-          style={{ width: "300px", height: "200px", position: "relative" }}
-        >
-          <AnimatePresence initial={false}>
-            <CustomerCard
-              key={currentIndex - 1}
-              customer={
-                customers[
-                  (currentIndex - 1 + customers.length) % customers.length
-                ]
-              }
-              isFrontCard={false}
-              onDragEnd={handleDragEnd}
-            />
-            <CustomerCard
-              key={currentIndex}
-              customer={customers[currentIndex]}
-              isFrontCard={true}
-              onDragEnd={handleDragEnd}
-            />
-          </AnimatePresence>
-        </motion.div>
+        <div className="col-lg-6 col-md-12">
+          <motion.div
+            style={{ width: "300px", height: "200px", position: "relative" }}
+            className="mx-auto"
+          >
+            <AnimatePresence initial={false}>
+              <CustomerCard
+                key={currentIndex - 1}
+                customer={
+                  customers[
+                    (currentIndex - 1 + customers.length) % customers.length
+                  ]
+                }
+                isFrontCard={false}
+                onDragEnd={handleDragEnd}
+              />
+              <CustomerCard
+                key={currentIndex}
+                customer={customers[currentIndex]}
+                isFrontCard={true}
+                onDragEnd={handleDragEnd}
+              />
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

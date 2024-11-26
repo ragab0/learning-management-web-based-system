@@ -76,6 +76,7 @@ export default function LineOfInstructors({ title }) {
           {!isInitialized || loading ? (
             [...Array(3)].map((_, i) => (
               <ScrollAnimations
+                key={i}
                 className="col-lg-4 col-md-6 col-sm-12 gy-4"
                 animationName="cardSprintToDown"
                 delay={0.1 + 0.1 * i}

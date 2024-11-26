@@ -18,7 +18,7 @@ export default function About() {
     <section className="instructors-overviews">
       <div className="container">
         {about.map(({ Svgg, title, desc, more }, i) => (
-          <section key={i} className="mb-5">
+          <section key={i} className="mb-5 ">
             <div
               className={`container row align-items-center justify-content-between ${
                 i % 2 === 0 ? "flex-row" : "flex-row-reverse"
